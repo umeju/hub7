@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+
     (function (exports) {
         // We use socket.io as our bridge. It will sort out what sort of
         // connection we're going to use.
@@ -22,24 +22,24 @@ $(document).ready(function() {
         socket.on('user-list', function(data) {
             users.update(data);
         });
-        
+
         // export
         exports.socket = socket;
     })(window);
-    
-    
-    
+
+
+
     // Message management.
     (function(exports) {
         // Templates we'll use:
         var template = Handlebars.compile($("#message-template").html());
-        
+
         // How many messages do we allow to be displayed at any one time
         // in the client?
         var messageLimit = 100;
         // Current list of messages.
         var messageList = [];
-        
+
         var writeMessage = function(data) {
             // Build our HTML from the associated template.
             var message = template(data);
@@ -48,7 +48,7 @@ $(document).ready(function() {
             // Write the current history of messages.
             $('#messages ul').html(messageList.join(''));
         };
-        
+
         // Export.
         exports.messages = {
             // Info and error are overloaded methods that can take objects
@@ -86,23 +86,23 @@ $(document).ready(function() {
     (function(exports) {
         // Only 1 template for our user list.
         var template =  Handlebars.compile($("#userlist-template").html());
-        
+
         // Users are always updated en-masse.
         var update = function(data) {
             $('#users ul').html(template(data));
         };
-        
+
         var clear = function() {
             $('#users ul').empty();
         };
-        
+
         // export
         exports.users = {
             'update': update,
             'clear': clear
         };
     })(window);
-    
+
 
 
     // Information about the person using the client (the person in your chair).
@@ -114,9 +114,9 @@ $(document).ready(function() {
             // Publish our name change to the server.
             socket.emit('set-name', {
                 'username': name
-            });            
+            });
         };
-        
+
         exports.user = user;
     })(window);
 
@@ -126,7 +126,7 @@ $(document).ready(function() {
     $('#status-update-form input[type="text"]').on('keydown', function(e) {
         // The context of the message is determined by our state.
         var message = $(this).val();
-        
+
         // Send a message to everyone on the return key.
         if (e.which == 13 && message && socket.socket.connected) {
             if (!user.name) {
@@ -145,7 +145,67 @@ $(document).ready(function() {
         }
     });
     $('#status-update-form button').on('click', function(e) {
-        socket.disconnect();
+        //socket.disconnect();
     });
+
+	$('#left').on('click', function(e) {
+        console.log('oooh!');
+		$( "a.control_next" ).trigger( "click" );
+    });
+
+	$('#right').on('click', function(e) {
+        console.log('uuuh!');
+		$( "a.control_prev" ).trigger( "click" );
+
+    });
+
+
+
+
+
+  $('#checkbox').change(function(){
+    setInterval(function () {
+        moveRight();
+    }, 3000);
+  });
+
+	var slideCount = $('#slider ul li').length;
+	var slideWidth = $('#slider ul li').width();
+	var slideHeight = $('#slider ul li').height();
+	var sliderUlWidth = slideCount * slideWidth;
+
+	$('#slider').css({ width: slideWidth, height: slideHeight });
+
+	$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+
+    $('#slider ul li:last-child').prependTo('#slider ul');
+
+    function moveLeft() {
+        $('#slider ul').animate({
+            left: + slideWidth
+        }, 200, function () {
+            $('#slider ul li:last-child').prependTo('#slider ul');
+            $('#slider ul').css('left', '');
+        });
+    };
+
+    function moveRight() {
+        $('#slider ul').animate({
+            left: - slideWidth
+        }, 200, function () {
+            $('#slider ul li:first-child').appendTo('#slider ul');
+            $('#slider ul').css('left', '');
+        });
+    };
+
+    $('a.control_prev').click(function () {
+        moveLeft();
+    });
+
+    $('a.control_next').click(function () {
+        moveRight();
+    });
+
+
 });
 

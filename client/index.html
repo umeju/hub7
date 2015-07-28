@@ -22,6 +22,31 @@
         </script>
     </head>
     <body>
+
+
+
+		<h1>Incredibly Basic Slider</h1>
+<div id="slider">
+  <a href="#" class="control_next">>></a>
+  <a href="#" class="control_prev"><</a>
+  <ul>
+    <li>SLIDE 1</li>
+    <li style="background: #aaa;">SLIDE 2</li>
+    <li>SLIDE 3</li>
+    <li style="background: #aaa;">SLIDE 4</li>
+  </ul>
+</div>
+
+<div class="slider_option">
+  <input type="checkbox" id="checkbox">
+  <label for="checkbox">Autoplay Slider</label>
+</div>
+
+
+
+
+
+		
         <div id="header">
             <h1>chatty web client</h1>
         </div>
@@ -30,6 +55,12 @@
                 <div>
                     <input type="text" required autofocus placeholder="type a message, hit return"/>
                     <button type="button">leave the chatroom</button>
+
+					<button id="right" type="button">Right</button>
+
+					<button id="left" type="button">Left</button>
+
+
                 </div>
             </form>
             <div id="messages">

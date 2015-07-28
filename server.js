@@ -93,15 +93,17 @@ var users = {
 // To keep with the theme, all messages are handlebars functions, even the
 // ones that don't do substitution.
 var messages = {
+
     // Do not expect a context object.
-    "welcome": Handlebars.compile('the chatty server welcomes you. before i let you join the chat room, please provide a username for yourself and hit return. please no spaces or special characters. letters, numbers, and underscores are okay.'),
-    "invalidRequireName": Handlebars.compile('sorry, you need to tell me your name first.'),
-    "invalidNameChange": Handlebars.compile('not sure what you did, but please do not change your username midchat.'),
+    "welcome": Handlebars.compile('AAA'),
+    "invalidRequireName": Handlebars.compile('BBB'),
+    "invalidNameChange": Handlebars.compile('CCC'),
     // Expect a context object.
     "leftChatroom": Handlebars.compile("{{name}} has left the chatroom."),
     "haveFun": Handlebars.compile('have fun {{name}}.'),
     "hasJoinedRoom": Handlebars.compile('{{name}} has joined the chatroom.'),
-    "invalidName": Handlebars.compile('sorry, {{name}} is an invalid username. make sure there are no spaces or bizarre characters in your name (underscores are okay). disconnecting.'),
+    "invalidName": Handlebars.compile('sorry, {{name}} DDD')
+
 };
 
 
@@ -117,6 +119,7 @@ io.configure(function() {
 // referenced for future communication with an explicit client.
 io.sockets.on('connection', function (socket) {
 
+	console.log("connection!");
     // The username for this socket.
     var user = User();
     // Cleans up a bit when we disconnect.

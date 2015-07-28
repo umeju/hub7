@@ -12,25 +12,37 @@
         <script src="/varSocketURI.js"></script>
         <script src="/client/code.js"></script>
         <script id="message-template" type="text/x-handlebars-template">
+
+
 <li class='message {{type}}'>
     ({{user.name}}): {{message}}
 </li>
+
+
         </script>
         <script id="userlist-template" type="text/x-handlebars-template">
 {{#each users}}
 <li>{{name}}</li>
 {{/each}}
         </script>
+
+
     </head>
     <body>
         <div id="header">
             <h1>chatty web client</h1>
         </div>
+
         <div id="main">
             <form id="status-update-form" action="javascript:void(0);" novalidate="novalidate">
                 <div>
                     <input type="text" required autofocus placeholder="type a message, hit return"/>
-                    <button type="button">leave the chatroom</button>
+
+					<button type="button">leave the chatroom</button>
+
+					<button id="action" type="button">leave the chatroom</button>
+
+
                 </div>
             </form>
             <div id="messages">
