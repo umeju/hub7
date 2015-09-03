@@ -1,0 +1,221 @@
+/* Colors picked from: http://colorschemedesigner.com/#2V41Tk4jzxQq3 */
+
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    color: #6394A1;
+    background-color: white;;
+}
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.5em;
+}
+
+#header > h1 {
+    margin: 0;
+    padding: 0.2em;
+    text-align: right;
+
+    background-color: #0B323D;
+}
+
+#main {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+
+    background-color: black;
+}
+
+#status-update-form {
+    padding: 0.5em;
+}
+#status-update-form input[type='text'] {
+    padding: 0.3em;
+    width: 50em;
+}
+#status-update-form input[type='text'] {
+    outline: none;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+#status-update-form input[type='text']:invalid {
+    border: 3px solid #9C473A;
+    /* for mozilla */
+    box-shadow: 0 0 0 transparent;
+}
+#status-update-form input[type='text']:valid {
+    border: 3px solid #2B7341;
+}
+#status-update-form button {
+    -webkit-appearance: none;
+    color: #6394A1;
+    background-color: #0B323D;
+    border: 0.2em solid #6394A1;
+
+    border-radius: 0.1em;
+    padding: 0.5em;
+    text-align: center;
+}
+#status-update-form button:disabled {
+    color: #888;
+    border-color: #888;
+    background-color: black;
+}
+
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+/*
+html {
+  border-top: 5px solid #fff;
+  background: #58DDAF;
+  color: #2a2a2a;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans';
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+  font-weight: 300;
+}
+*/
+#slider {
+  position: relative;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+  border-radius: 4px;
+  float: left;
+  margin-left: 30px;
+}
+
+#slider ul {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 500px;
+  list-style: none;
+}
+
+#slider ul li {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 500px;
+  height: 500px;
+  background: #ccc;
+  text-align: center;
+  line-height: 500px;
+  /*transform: rotate(7deg);*/
+}
+
+a.control_prev, a.control_next {
+  position: absolute;
+  top: 40%;
+  z-index: 999;
+  display: block;
+  padding: 4% 3%;
+  width: auto;
+  height: auto;
+  background: #2a2a2a;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+a.control_prev:hover, a.control_next:hover {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease;
+}
+
+a.control_prev {
+  border-radius: 0 2px 2px 0;
+}
+
+a.control_next {
+  right: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+.slider_option {
+  position: relative;
+  margin: 10px auto;
+  width: 160px;
+  font-size: 18px;
+}
+
+.allNews {
+    bottom: 0;
+    left: -1%;
+    position: fixed;
+    width: 101%;
+}
+
+.scroll_text {
+    background: white none repeat scroll 0 0;
+    font-family: ubuntu mono;
+    font-size: 4em !important;
+    list-style-type: none;
+    width: 10000px;
+}
+
+.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
+    height: 700px !important;
+}
+
+.red_background {
+    background-color: red;
+    color: white;
+    display: inline-block;
+    font-family: Helvetica;
+    font-size: xx-large;
+    font-stretch: expanded;
+    font-weight: bolder !important;
+    padding: 10px;
+}
+#hub{
+	background-color: black;
+	color: red;
+}
+
+#anero{
+	background-color: red;
+	color: black;
+}
+
+.hubanero{
+    font-family: Helvetica;
+    font-size: xx-large;
+    font-stretch: expanded;
+    font-weight: bolder !important;
+    padding: 10px;
+    
+}
+
+
+.float_right{ float: right; }
+
+
+
+
+
+
+
+
