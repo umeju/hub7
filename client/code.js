@@ -1,5 +1,66 @@
 $(document).ready(function() {
+    var items = [];
+    var getNews = function(){
+        
+        //var url = 'http://localhost/slider/test.php?callback=?';
+        var url = 'http://www.di-vision.org/pediatra/feedOpenshift.php?callback=?';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: false,
+            jsonpCallback: 'jsonCallback',
+            contentType: "application/json",
+            dataType: 'jsonp',
+            success: function (json) {
+                console.dir(json.sites);
+                $.each(json.sites, function (key, val) {
+//                    items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
+                    items.push("<h2 class='red_background'>" + val.titolo + "</h2><br/><p class='scroll_text'>" + val.descrizione + "</p>");    
+                });
+                putInPage(items);
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    };
+    getNews();
 
+    function putInPage(items){
+        var items = items;
+	var i = 1;	
+	$('.allNews').css({"marginLeft": "0px" });
+                   $('.allNews').html(items[0]);
+        $(".scroll_text").animate({ 
+			"marginLeft": "-=9200px" }, 90000, "linear" );
+	
+        setInterval(
+                function(){
+
+                   $('.allNews').css({"marginLeft": "0px" });
+                   $('.allNews').html(items[i]);
+		   $(".scroll_text").animate({ 
+			"marginLeft": "-=9200px" }, 90000, "linear" );
+                    if(i<10){
+                        i++;
+                    }else{
+                        i=0;
+                    }
+                }, 90000);
+    }
+
+/*
+function scroll(){
+
+for (i = 0; i < 10000; i++) {
+	$(".scroll_text").css("margin-left", '-'+i+'px');
+}
+$(".scroll_text").animate({
+    			marginLeft: '-=338px'
+		}, 500);
+
+}
+*/    
     (function (exports)
 	{
         var socket = io.connect(socketURI);

@@ -10,14 +10,25 @@ body, html {
     padding: 0;
 
     color: #6394A1;
-    background-color: #0B323D;
+    background-color: white;
+
+
+background: rgba(226,226,226,1);
+background: -moz-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(226,226,226,1)), color-stop(32%, rgba(219,219,219,1)), color-stop(62%, rgba(209,209,209,1)), color-stop(100%, rgba(254,254,254,1)));
+background: -webkit-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
+background: -o-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
+background: -ms-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
+background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );
+
+
+
 }
 body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.5em;
 }
-
-
 
 #header > h1 {
     margin: 0;
@@ -27,8 +38,6 @@ body {
     background-color: #0B323D;
 }
 
-
-
 #main {
     width: 90%;
     height: 100%;
@@ -36,8 +45,6 @@ body {
 
     background-color: black;
 }
-
-
 
 #status-update-form {
     padding: 0.5em;
@@ -78,81 +85,8 @@ body {
 }
 
 
-
-#messages {
-    width: 75%;
-    height: 100%;
-    float: left;
-    border-top: 3px solid #0B323D;
-}
-#messages > h2 {
-    margin: 0;
-    padding: 0.5em;
-
-    font-size: 1em;
-}
-#messages > ul {
-    margin: 0;
-    padding: 0 0.5em;
-    list-style: none;
-}
-.message {
-    font-family: "Courier New", Courier, monospace;
-}
-.message.chat {
-    color: #2B7341;
-}
-.message.echo {
-    color: #265461;
-}
-.message.info {
-    background-color: #2B7341;
-    color: black;
-    border-bottom: 1px solid black;
-}
-.message.error {
-    background-color: #9C473A;
-    color: black;
-    border-bottom: 1px solid black;
-}
-
-
-
-#users {
-    width: 25%;
-    height: 100%;
-    float: left;
-    border-top: 3px solid #0B323D;
-    border-left: 3px solid #0B323D;
-}
-#users > h2 {
-    margin: 0;
-    padding: 0.5em;
-
-    font-size: 1em;
-}
-#users > ul {
-    margin: 0;
-    padding: 0 0.5em;
-    list-style: none;
-
-    font-family: "Courier New", Courier, monospace;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
-
+/*
 html {
   border-top: 5px solid #fff;
   background: #58DDAF;
@@ -170,19 +104,21 @@ h1 {
   text-align: center;
   font-weight: 300;
 }
-
+*/
 #slider {
   position: relative;
   overflow: hidden;
   margin: 20px auto 0 auto;
   border-radius: 4px;
+  float: left;
+  margin-left: 30px;
 }
 
 #slider ul {
   position: relative;
   margin: 0;
   padding: 0;
-  height: 200px;
+  height: 500px;
   list-style: none;
 }
 
@@ -193,10 +129,11 @@ h1 {
   margin: 0;
   padding: 0;
   width: 500px;
-  height: 300px;
+  height: 500px;
   background: #ccc;
   text-align: center;
-  line-height: 300px;
+  line-height: 500px;
+  /*transform: rotate(7deg);*/
 }
 
 a.control_prev, a.control_next {
@@ -236,3 +173,62 @@ a.control_next {
   width: 160px;
   font-size: 18px;
 }
+
+.allNews {
+    bottom: 0;
+    left: -1%;
+    position: fixed;
+    width: 101%;
+}
+
+.scroll_text {
+    background: white none repeat scroll 0 0;
+    font-family: ubuntu mono;
+    font-size: 4em !important;
+    list-style-type: none;
+    width: 10000px;
+}
+
+.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
+    height: 700px !important;
+}
+
+.red_background {
+    background-color: red;
+    color: white;
+    display: inline-block;
+    font-family: Helvetica;
+    font-size: xx-large;
+    font-stretch: expanded;
+    font-weight: bolder !important;
+    padding: 10px;
+}
+#hub{
+	background-color: black;
+	color: red;
+}
+
+#anero{
+	background-color: red;
+	color: black;
+}
+
+.hubanero{
+    font-family: Helvetica;
+    font-size: xx-large;
+    font-stretch: expanded;
+    font-weight: bolder !important;
+    padding: 10px;
+    
+}
+
+
+.float_right{ float: right; }
+
+
+
+
+
+
+
+
