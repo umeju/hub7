@@ -15,7 +15,10 @@ $(document).ready(function() {
                 console.dir(json.sites);
                 $.each(json.sites, function (key, val) {
 //                    items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                    items.push("<h2 class='red_background'>" + val.titolo + "</h2><br/><p class='scroll_text'>" + val.descrizione + "</p>");    
+                    items.push("<h2 class='red_background'>" 
+                            + val.titolo 
+                            + "</h2><br/><p class='scroll_text'>" 
+                            + val.descrizione + "</p>");    
                 });
                 putInPage(items);
             },
@@ -46,7 +49,7 @@ $(document).ready(function() {
                     }else{
                         i=0;
                     }
-                }, 90000);
+                }, 1000);
     }
 
 /*
@@ -69,15 +72,15 @@ $(".scroll_text").animate({
             console.log('client listen on left');
 			console.log("data log from client:"+data);
 			$( "a.control_prev" ).trigger( "click" );
+                        $( ".glyphicon-chevron-left" ).trigger( "click" );
         });
 
 		socket.on('right', function(data) {
             console.log('client listen on right');
 			console.log("data log from client:"+data);
 			$( "a.control_next" ).trigger( "click" );
+                        $( ".glyphicon-chevron-right" ).trigger( "click" );
         });
-
-
 
         // export
         exports.socket = socket;
@@ -113,6 +116,8 @@ $(".scroll_text").animate({
     $('#slider ul li:last-child').prependTo('#slider ul');
 
     function moveLeft() {
+        $( ".glyphicon-chevron-left" ).trigger( "click" );
+        
         $('#slider ul').animate({
             left: + slideWidth
         }, 200, function () {
@@ -122,6 +127,8 @@ $(".scroll_text").animate({
     };
 
     function moveRight() {
+	$( ".glyphicon-chevron-right" ).trigger( "click" );
+        
         $('#slider ul').animate({
             left: - slideWidth
         }, 200, function () {
@@ -129,12 +136,20 @@ $(".scroll_text").animate({
             $('#slider ul').css('left', '');
         });
     };
-
+    /*
     $('a.control_prev').click(function () {
         moveLeft();
     });
 
-    $('a.control_next').click(function () {
+    $('span.control_next').click(function () {
+        moveRight();
+    });
+    */
+    $('#left').click(function () {
+        moveLeft();
+    });
+
+    $('#right').click(function () {
         moveRight();
     });
 });

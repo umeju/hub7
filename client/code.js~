@@ -31,15 +31,16 @@ $(document).ready(function() {
 	var i = 1;	
 	$('.allNews').css({"marginLeft": "0px" });
                    $('.allNews').html(items[0]);
-        
+        $(".scroll_text").animate({ 
+			"marginLeft": "-=9200px" }, 90000, "linear" );
 	
         setInterval(
                 function(){
 
                    $('.allNews').css({"marginLeft": "0px" });
                    $('.allNews').html(items[i]);
-			$(".scroll_text").animate({ 
-				"marginLeft": "-=9200px" }, 90000, "linear" );
+		   $(".scroll_text").animate({ 
+			"marginLeft": "-=9200px" }, 90000, "linear" );
                     if(i<10){
                         i++;
                     }else{
@@ -133,7 +134,14 @@ $(".scroll_text").animate({
         moveLeft();
     });
 
-    $('a.control_next').click(function () {
+    $('span.control_next').click(function () {
+        moveRight();
+    });
+    $('span.glyphicon-chevron-left').click(function () {
+        moveLeft();
+    });
+
+    $('span.glyphicon-chevron-right').click(function () {
         moveRight();
     });
 });

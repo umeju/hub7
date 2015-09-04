@@ -182,7 +182,6 @@ a.control_next {
 }
 
 .scroll_text {
-    background: white none repeat scroll 0 0;
     font-family: ubuntu mono;
     font-size: 4em !important;
     list-style-type: none;
