@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    var winW = $( window ).width();
+    var winH = $( window ).height();
+    
     var items = [];
     var getNews = function(){
         
@@ -12,13 +15,15 @@ $(document).ready(function() {
             contentType: "application/json",
             dataType: 'jsonp',
             success: function (json) {
-                console.dir(json.sites);
+                
+                //console.dir(json.sites);
+                
                 $.each(json.sites, function (key, val) {
 //                    items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
                     items.push("<h2 class='red_background'>" 
-                            + val.titolo 
-                            + "</h2><br/><p class='scroll_text'>" 
-                            + val.descrizione + "</p>");    
+                            + val.titolo
+                            + "</h2><br/> <div id='scroll_text'><p class='scroll_text'>" 
+                            + val.descrizione + "</p></div>");    
                 });
                 putInPage(items);
             },
@@ -28,30 +33,66 @@ $(document).ready(function() {
         });
     };
     getNews();
-
+    
+    function showNews(i){
+        /* visualizzo la prima notizia */
+        $('.allNews').html(items[i]);
+        
+    }
     function putInPage(items){
         var items = items;
-	var i = 1;	
-	$('.allNews').css({"marginLeft": "0px" });
-                   $('.allNews').html(items[0]);
-        $(".scroll_text").animate({ 
-			"marginLeft": "-=9200px" }, 90000, "linear" );
+	var i = 0;
+        showNews(i);
+        /*
+        $('.scroll_text').css({
+            "width" : winW,
+        });
+        */
 	
-        setInterval(
+        var interval = setInterval(
+                
                 function(){
-
-                   $('.allNews').css({"marginLeft": "0px" });
-                   $('.allNews').html(items[i]);
-		   $(".scroll_text").animate({ 
-			"marginLeft": "-=9200px" }, 90000, "linear" );
+                    showNews(i);
+                    
                     if(i<10){
                         i++;
                     }else{
                         i=0;
                     }
-                }, 1000);
+                }, 15000);
+                
+        setInterval(
+            function(){
+                $('.scroll_text').animate({
+                    "marginTop" : "-=80px"
+                }, 3500, "linear");
+                
+                //loop();
+                
+            }, 1000);
+        
+        
+        function loop() {
+            flag = true;
+            
+            pix = 8;
+            
+            for(i=0; i < 15; i++){
+            
+                $('.scroll_text').css({
+                    "marginTop" : (-i*pix)
+                    });
+            }
+            
+          /*
+           * funziona lento
+           * $('.scroll_text').animate({
+                "marginTop" : "-=80px",
+            }, 4500, loop);
+           */
+           
+        }
     }
-
 /*
 function scroll(){
 
@@ -61,7 +102,6 @@ for (i = 0; i < 10000; i++) {
 $(".scroll_text").animate({
     			marginLeft: '-=338px'
 		}, 500);
-
 }
 */    
     (function (exports)

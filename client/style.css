@@ -10,19 +10,7 @@ body, html {
     padding: 0;
 
     color: #6394A1;
-    background-color: white;
-
-
-background: rgba(226,226,226,1);
-background: -moz-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(226,226,226,1)), color-stop(32%, rgba(219,219,219,1)), color-stop(62%, rgba(209,209,209,1)), color-stop(100%, rgba(254,254,254,1)));
-background: -webkit-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
-background: -o-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
-background: -ms-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
-background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );
-
-
+    background-color: lightgrey;
 
 }
 body {
@@ -176,6 +164,7 @@ a.control_next {
 
 .allNews {
     bottom: 0;
+    height: 220px;
     left: -1%;
     position: fixed;
     width: 101%;
@@ -185,7 +174,13 @@ a.control_next {
     font-family: ubuntu mono;
     font-size: 4em !important;
     list-style-type: none;
-    width: 10000px;
+
+}
+
+#scroll_text {
+    bottom: 0;
+    overflow: hidden;
+    position: relative;
 }
 
 .carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
@@ -223,11 +218,4 @@ a.control_next {
 
 
 .float_right{ float: right; }
-
-
-
-
-
-
-
 
