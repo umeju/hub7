@@ -36,7 +36,7 @@ $(document).ready(function() {
     
     function showNews(i){
         /* visualizzo la prima notizia */
-        $('.allNews').html(items[i]);
+        $('.allNews').hide().html(items[i]).fadeIn('slow');
         
     }
     function putInPage(items){
@@ -71,27 +71,6 @@ $(document).ready(function() {
                 
             }, 1000);
         
-        
-        function loop() {
-            flag = true;
-            
-            pix = 8;
-            
-            for(i=0; i < 15; i++){
-            
-                $('.scroll_text').css({
-                    "marginTop" : (-i*pix)
-                    });
-            }
-            
-          /*
-           * funziona lento
-           * $('.scroll_text').animate({
-                "marginTop" : "-=80px",
-            }, 4500, loop);
-           */
-           
-        }
     }
 /*
 function scroll(){
