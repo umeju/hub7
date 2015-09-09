@@ -78,22 +78,32 @@ $(document).ready(function () {
 
         socket.on('left', function (data) {
             console.log('client listen on left');
-            console.log("data log from client:" + data);
+            /*console.log("data log from client:" + data);
             $("a.control_prev").trigger("click");
             $(".glyphicon-chevron-left").trigger("click");
-            
+            */
             test1();
         });
 
         socket.on('right', function (data) {
             console.log('client listen on right');
-            console.log("data log from client:" + data);
+            /*console.log("data log from client:" + data);
             $("a.control_next").trigger("click");
             $(".glyphicon-chevron-right").trigger("click");
-            
+            */
             test2();
         });
-
+        
+        socket.on('stop', function (data) {
+            console.log('client listen on stop');
+            /*console.log("data log from client:" + data);
+            $("a.control_next").trigger("click");
+            $(".glyphicon-chevron-right").trigger("click");
+            */
+            stopSlide();
+        });
+        
+        
         // export
         exports.socket = socket;
     })(window);
@@ -109,6 +119,14 @@ $(document).ready(function () {
         //$( "a.control_prev" ).trigger( "click" );
         socket.emit('right', {action: 'right'});
     });
+    
+    $('#stop').on('click', function (e) {
+        console.log('stop clicked!');
+        //$( "a.control_prev" ).trigger( "click" );
+        socket.emit('stop', {action: 'stop'});
+    });
+    
+    
 
     $('#checkbox').change(function () {
         setInterval(function () {
@@ -185,16 +203,12 @@ $(document).ready(function () {
             showByIndex(2);
         }
     }
-
-    /*
-     $('a.control_prev').click(function () {
-     moveLeft();
-     });
-     
-     $('span.control_next').click(function () {
-     moveRight();
-     });
-     */
+    
+    function stopSlide() {
+        stopStartFlag();
+    }
+    
+    
 
 });
 

@@ -88,5 +88,14 @@ io.sockets.on('connection', function (socket) {
 		//io.sockets.emit('right', { action: 'right' });
                 socket.broadcast.emit('right', { action: 'right' });
 	});
+        
+        socket.on('stop', function(data){
+		console.log('server listen on action ');
+		console.log("data log from server:"+data);
+		//io.sockets.emit('right', { action: 'right' });
+                socket.broadcast.emit('stop', { action: 'stop' });
+	});
+        
+        
 
 });
