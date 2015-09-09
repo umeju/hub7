@@ -78,13 +78,15 @@ io.sockets.on('connection', function (socket) {
 	socket.on('left', function(data){
 		console.log('server listen on action ');
 		console.log("data log from server:"+data);
-		io.sockets.emit('left', { action: 'left' });
+		//io.sockets.emit('left', { action: 'left' });
+                socket.broadcast.emit('left', { action: 'left' });
 	});
 
 	socket.on('right', function(data){
 		console.log('server listen on action ');
 		console.log("data log from server:"+data);
-		io.sockets.emit('right', { action: 'right' });
+		//io.sockets.emit('right', { action: 'right' });
+                socket.broadcast.emit('right', { action: 'right' });
 	});
 
 });

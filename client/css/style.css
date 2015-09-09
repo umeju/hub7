@@ -1,1 +1,19 @@
-# Empty CSS file for your own CSS
+.my_carousel {
+    position: relative;
+    display: block;
+}
+.my_image {
+    overflow: hidden;
+    width: 100%;
+    display: none;
+}
+
+.carousel_img{
+    position: relative;
+    width: 100%;
+}
+.shown{
+    display: block;
+}
+
+.activate{}

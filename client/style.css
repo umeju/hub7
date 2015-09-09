@@ -216,6 +216,24 @@ a.control_next {
     
 }
 
-
 .float_right{ float: right; }
+.jumbotron{
+    overflow: hidden;
+}
+.logoframe {
+    display: block;
+    height: 84px;
+    position: relative;
+    width: 100%;
+}
 
+.hublogo {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 207px;
+}
+
+.spicy{
+    float: right;
+}

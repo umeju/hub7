@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    var winW = $( window ).width();
+    var winH = $( window ).height();
+    
     var items = [];
     var getNews = function(){
         
@@ -12,10 +15,15 @@ $(document).ready(function() {
             contentType: "application/json",
             dataType: 'jsonp',
             success: function (json) {
-                console.dir(json.sites);
+                
+                //console.dir(json.sites);
+                
                 $.each(json.sites, function (key, val) {
 //                    items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                    items.push("<h2 class='red_background'>" + val.titolo + "</h2><br/><p class='scroll_text'>" + val.descrizione + "</p>");    
+                    items.push("<h2 class='red_background'>" 
+                            + val.titolo
+                            + "</h2><br/> <div id='scroll_text'><p class='scroll_text'>" 
+                            + val.descrizione + "</p></div>");    
                 });
                 putInPage(items);
             },
@@ -25,30 +33,45 @@ $(document).ready(function() {
         });
     };
     getNews();
-
+    
+    function showNews(i){
+        /* visualizzo la prima notizia */
+        $('.allNews').hide().html(items[i]).fadeIn('slow');
+        
+    }
     function putInPage(items){
         var items = items;
-	var i = 1;	
-	$('.allNews').css({"marginLeft": "0px" });
-                   $('.allNews').html(items[0]);
-        $(".scroll_text").animate({ 
-			"marginLeft": "-=9200px" }, 90000, "linear" );
+	var i = 0;
+        showNews(i);
+        /*
+        $('.scroll_text').css({
+            "width" : winW,
+        });
+        */
 	
-        setInterval(
+        var interval = setInterval(
+                
                 function(){
-
-                   $('.allNews').css({"marginLeft": "0px" });
-                   $('.allNews').html(items[i]);
-		   $(".scroll_text").animate({ 
-			"marginLeft": "-=9200px" }, 90000, "linear" );
+                    showNews(i);
+                    
                     if(i<10){
                         i++;
                     }else{
                         i=0;
                     }
-                }, 90000);
+                }, 15000);
+                
+        setInterval(
+            function(){
+                $('.scroll_text').animate({
+                    "marginTop" : "-=80px"
+                }, 3500, "linear");
+                
+                //loop();
+                
+            }, 1000);
+        
     }
-
 /*
 function scroll(){
 
@@ -58,7 +81,6 @@ for (i = 0; i < 10000; i++) {
 $(".scroll_text").animate({
     			marginLeft: '-=338px'
 		}, 500);
-
 }
 */    
     (function (exports)
@@ -69,15 +91,15 @@ $(".scroll_text").animate({
             console.log('client listen on left');
 			console.log("data log from client:"+data);
 			$( "a.control_prev" ).trigger( "click" );
+                        $( ".glyphicon-chevron-left" ).trigger( "click" );
         });
 
 		socket.on('right', function(data) {
             console.log('client listen on right');
 			console.log("data log from client:"+data);
 			$( "a.control_next" ).trigger( "click" );
+                        $( ".glyphicon-chevron-right" ).trigger( "click" );
         });
-
-
 
         // export
         exports.socket = socket;
@@ -113,6 +135,8 @@ $(".scroll_text").animate({
     $('#slider ul li:last-child').prependTo('#slider ul');
 
     function moveLeft() {
+        $( ".glyphicon-chevron-left" ).trigger( "click" );
+        
         $('#slider ul').animate({
             left: + slideWidth
         }, 200, function () {
@@ -122,6 +146,8 @@ $(".scroll_text").animate({
     };
 
     function moveRight() {
+	$( ".glyphicon-chevron-right" ).trigger( "click" );
+        
         $('#slider ul').animate({
             left: - slideWidth
         }, 200, function () {
@@ -129,7 +155,7 @@ $(".scroll_text").animate({
             $('#slider ul').css('left', '');
         });
     };
-
+    /*
     $('a.control_prev').click(function () {
         moveLeft();
     });
@@ -137,11 +163,12 @@ $(".scroll_text").animate({
     $('span.control_next').click(function () {
         moveRight();
     });
-    $('span.glyphicon-chevron-left').click(function () {
+    */
+    $('#left').click(function () {
         moveLeft();
     });
 
-    $('span.glyphicon-chevron-right').click(function () {
+    $('#right').click(function () {
         moveRight();
     });
 });
