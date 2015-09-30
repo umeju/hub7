@@ -28,6 +28,9 @@
 
 .activate{}
 
+.img-circle{
+    border-radius: 0;
+}
 #right.img-circle{
     width: 33%;
     float: left;
