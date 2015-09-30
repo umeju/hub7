@@ -27,3 +27,8 @@
 }
 
 .activate{}
+
+#right.img-circle{
+    width: 33%;
+    float: left;
+}
