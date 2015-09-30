@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    var _AGGIORNAMENTO_NEWS = 15000
+    
     var winW = $(window).width();
     var winH = $(window).height();
 
@@ -6,7 +8,7 @@ $(document).ready(function () {
     var getNews = function () {
 
         //var url = 'http://localhost/slider/test.php?callback=?';
-        var url = 'http://www.di-vision.org/pediatra/feedOpenshift.php?callback=?';
+        var url = 'http://www.di-vision.org/verardi/feedOpenshift.php?callback=?';
         $.ajax({
             type: 'GET',
             url: url,
@@ -37,72 +39,63 @@ $(document).ready(function () {
     function showNews(i) {
         /* visualizzo la prima notizia */
         $('.allNews').hide().html(items[i]).fadeIn('slow');
-
     }
+    
     function putInPage(items) {
         var items = items;
         var i = 0;
         showNews(i);
-        /*
-         $('.scroll_text').css({
-         "width" : winW,
-         });
-         */
-
+        
         var interval = setInterval(
-                function () {
-                    showNews(i);
+            function () {
+                showNews(i);
 
-                    if (i < 10) {
-                        i++;
-                    } else {
-                        i = 0;
-                    }
-                }, 15000);
+                if (i < 10) {
+                    i++;
+                } else {
+                    i = 0;
+                }
+            }, _AGGIORNAMENTO_NEWS);
 
         setInterval(
-                function () {
-                    $('.scroll_text').animate({
-                        "marginTop": "-=80px"
-                    }, 3500, "linear");
-
-                    //loop();
-
-                }, 1000);
+            function () {
+                $('.scroll_text').animate({
+                    "marginTop": "-=80px"
+                }, 3500, "linear");
+                //loop();
+            }, 1000);
 
     }
 
-    (function (exports)
-    {
+    (function (exports){
         var socket = io.connect(socketURI);
 
         socket.on('left', function (data) {
-            console.log('client listen on left');
+            console.log('client cod l-83: slide to left');
             /*console.log("data log from client:" + data);
             $("a.control_prev").trigger("click");
             $(".glyphicon-chevron-left").trigger("click");
             */
-            test1();
+            slideToLeft();
         });
 
         socket.on('right', function (data) {
-            console.log('client listen on right');
+            console.log('client cod l-83: slide to right');
             /*console.log("data log from client:" + data);
             $("a.control_next").trigger("click");
             $(".glyphicon-chevron-right").trigger("click");
             */
-            test2();
+            slideToRight();
         });
         
         socket.on('stop', function (data) {
-            console.log('client listen on stop');
+            console.log('client code l-92: stop/start');
             /*console.log("data log from client:" + data);
             $("a.control_next").trigger("click");
             $(".glyphicon-chevron-right").trigger("click");
             */
             stopSlide();
         });
-        
         
         // export
         exports.socket = socket;
@@ -126,12 +119,10 @@ $(document).ready(function () {
         socket.emit('stop', {action: 'stop'});
     });
     
-    
-
     $('#checkbox').change(function () {
         setInterval(function () {
             moveRight();
-        }, 3000);
+        }, 6000);
     });
 
     var slideCount = $('#slider ul li').length;
@@ -145,8 +136,6 @@ $(document).ready(function () {
 
     $('#slider ul li:last-child').prependTo('#slider ul');
 
-
-
     $('#left').click(function () {
         moveLeft();
     });
@@ -154,7 +143,6 @@ $(document).ready(function () {
     $('#right').click(function () {
         moveRight();
     });
-
 
     function moveLeft() {
         $(".glyphicon-chevron-left").trigger("click");
@@ -165,9 +153,7 @@ $(document).ready(function () {
             $('#slider ul li:last-child').prependTo('#slider ul');
             $('#slider ul').css('left', '');
         });
-
-    }
-    ;
+    };
 
     function moveRight() {
         $(".glyphicon-chevron-right").trigger("click");
@@ -178,11 +164,9 @@ $(document).ready(function () {
             $('#slider ul li:first-child').appendTo('#slider ul');
             $('#slider ul').css('left', '');
         });
+    };
 
-    }
-    ;
-
-    function test1() {
+    function slideToLeft() {
         $shownImg = $('.my_image').parent().find('.activate');
         $shownImg.hide();
         $shownImg.removeClass('activate');
@@ -193,7 +177,7 @@ $(document).ready(function () {
         }
     }
 
-    function test2() {
+    function slideToRight() {
         $shownImg = $('.my_image').parent().find('.activate');
         $shownImg.hide();
         $shownImg.removeClass('activate');
@@ -207,8 +191,5 @@ $(document).ready(function () {
     function stopSlide() {
         stopStartFlag();
     }
-    
-    
-
 });
 

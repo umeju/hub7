@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>chatty web client</title>
+        <title>var www hub chatty</title>
         <link href="/client/style.css" rel="stylesheet"/>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/client/lib/jquery.js"></script>
@@ -11,24 +11,18 @@
         <script src="/common/models.js"></script>
         <script src="/varSocketURI.js"></script>
         <script src="/client/code.js"></script>
-
-
     </head>
     <body>
         <div id="header">
-            <h1>chatty web client</h1>
+            <h1>var www hub chatty</h1>
         </div>
 
         <div id="main">
             <form id="status-update-form" action="javascript:void(0);" novalidate="novalidate">
                 <div>
                     <input type="text" required autofocus placeholder="type a message, hit return"/>
-
-					<button type="button">leave the chatroom</button>
-
-					<button id="action" type="button">leave the chatroom</button>
-
-
+                    <button type="button">leave the chatroom</button>
+                    <button id="action" type="button">leave the chatroom</button>
                 </div>
             </form>
             <div id="messages">

@@ -1,5 +1,6 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT || process.env.OPENSHIFT_NODEJS_PORT  || 8080;
-var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+//var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.3';
 
 var express = require('express');
 var server;
@@ -11,7 +12,6 @@ var Message = require('./common/models').Message;
 var User = require('./common/models').User;
 // Grab any arguments that are passed in.
 var argv = require('optimist').argv;
-
 
 // Setup a very simple express application.
 app = express();
@@ -53,14 +53,10 @@ app.get('/verardi', function(req, res) {
     res.sendfile(__dirname + '/verardi/index.html');
 });
 
-
 // Our express application functions as our main listener for HTTP requests
 // in this example which is why we don't just invoke listen on the app object.
 server = require('http').createServer(app);
 server.listen(PORT, IPADDRESS);
-
-
-
 
 // socket.io augments our existing HTTP server instance.
 io = require('socket.io').listen(server);
@@ -76,26 +72,23 @@ io.sockets.on('connection', function (socket) {
     // The username for this socket.
 
 	socket.on('left', function(data){
-		console.log('server listen on action ');
-		console.log("data log from server:"+data);
-		//io.sockets.emit('left', { action: 'left' });
-                socket.broadcast.emit('left', { action: 'left' });
+            console.log('server listen on action ');
+            console.log("data log from server:"+data);
+            //io.sockets.emit('left', { action: 'left' });
+            socket.broadcast.emit('left', { action: 'left' });
 	});
 
 	socket.on('right', function(data){
-		console.log('server listen on action ');
-		console.log("data log from server:"+data);
-		//io.sockets.emit('right', { action: 'right' });
-                socket.broadcast.emit('right', { action: 'right' });
+            console.log('server listen on action ');
+            console.log("data log from server:"+data);
+            //io.sockets.emit('right', { action: 'right' });
+            socket.broadcast.emit('right', { action: 'right' });
 	});
         
         socket.on('stop', function(data){
-		console.log('server listen on action ');
-		console.log("data log from server:"+data);
-		//io.sockets.emit('right', { action: 'right' });
-                socket.broadcast.emit('stop', { action: 'stop' });
+            console.log('server listen on action ');
+            console.log("data log from server:"+data);
+            //io.sockets.emit('right', { action: 'right' });
+            socket.broadcast.emit('stop', { action: 'stop' });
 	});
-        
-        
-
 });

@@ -1,12 +1,13 @@
 
-var alterImages = setInterval( slideMyImage, 2000);
 
+var TIME_TO_CHANGE_TOP_RIGHT_IMAGE = 3000
 var i = 0;
 var SLEEP_TIME = 6000;
 var stopFlag = true;
 var $images = $('.my_inner').find('.my_image');
 var NUM_OF_IMAGE = $('.my_inner > div').length;
 
+var alterImages = setInterval( slideMyImage, TIME_TO_CHANGE_TOP_RIGHT_IMAGE);
 
 function slideMyImage() {
     var index = (i % 3);
@@ -35,15 +36,13 @@ function hideByIndex(index){
 
 function stopStartFlag(){
     stopFlag = !stopFlag;
-    
 }
+
 $('#stop').on('click', function(e) {
     stopStartFlag();
 });
 
 $('#left').on('click', function(e) {
-    
-    
     $shownImg = $('.my_image').parent().find('.activate');
     $shownImg.hide();
     $shownImg.removeClass('activate');
@@ -53,7 +52,6 @@ $('#left').on('click', function(e) {
         showByIndex(0);
     }
 });
-
 
 $('#right').on('click', function (e) {
     

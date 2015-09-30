@@ -1,3 +1,13 @@
+@media only screen and (max-width: 500px) {
+    iframe {
+        display: none;
+    }
+    .col-md-12 {
+        display:none;
+    }
+}
+
+
 .my_carousel {
     position: relative;
     display: block;
