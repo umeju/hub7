@@ -1,11 +1,6 @@
 $(document).ready(function () {
 
 
-$('#right').click(function () {
-	$.playSound('/client/bip');
-});
-
-
     var _AGGIORNAMENTO_NEWS = 34000
     
     var winW = $(window).width();

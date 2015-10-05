@@ -44,3 +44,7 @@
     width: 33%;
     float: left;
 }
+
+.glyphicon{
+    display: none;
+}

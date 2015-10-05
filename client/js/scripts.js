@@ -10,7 +10,7 @@ var NUM_OF_IMAGE = $('.my_inner > div').length;
 var alterImages = setInterval( slideMyImage, TIME_TO_CHANGE_TOP_RIGHT_IMAGE);
 
 function slideMyImage() {
-    var index = (i % 3);
+    var index = (i % 5);
     if (stopFlag) {
 
         if (index == 0) {
@@ -21,6 +21,9 @@ function slideMyImage() {
         hideByIndex(prev);
         showByIndex(index);
         i++;
+        if(i>1000){
+            i=0;
+        }
     }
 }
 
