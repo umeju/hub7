@@ -1,5 +1,12 @@
 $(document).ready(function () {
-    var _AGGIORNAMENTO_NEWS = 15000
+
+
+$('#right').click(function () {
+	$.playSound('/client/bip');
+});
+
+
+    var _AGGIORNAMENTO_NEWS = 34000
     
     var winW = $(window).width();
     var winH = $(window).height();
@@ -8,7 +15,7 @@ $(document).ready(function () {
     var getNews = function () {
 
         //var url = 'http://localhost/slider/test.php?callback=?';
-        var url = 'http://www.di-vision.org/verardi/feedOpenshift.php?callback=?';
+        var url = 'http://www.di-vision.org/feedOpenshift.php?callback=?';
         $.ajax({
             type: 'GET',
             url: url,
@@ -44,7 +51,8 @@ $(document).ready(function () {
     function putInPage(items) {
         var items = items;
         var i = 0;
-        showNews(i);
+        //show last news at first 
+        showNews(10);
         
         var interval = setInterval(
             function () {
@@ -60,7 +68,7 @@ $(document).ready(function () {
         setInterval(
             function () {
                 $('.scroll_text').animate({
-                    "marginTop": "-=80px"
+                    "marginTop": "-=70px"
                 }, 3500, "linear");
                 //loop();
             }, 1000);
@@ -77,6 +85,7 @@ $(document).ready(function () {
             $(".glyphicon-chevron-left").trigger("click");
             */
             slideToLeft();
+$.playSound('/client/bip');
         });
 
         socket.on('right', function (data) {
@@ -86,6 +95,7 @@ $(document).ready(function () {
             $(".glyphicon-chevron-right").trigger("click");
             */
             slideToRight();
+$.playSound('/client/bip');
         });
         
         socket.on('stop', function (data) {
@@ -191,5 +201,7 @@ $(document).ready(function () {
     function stopSlide() {
         stopStartFlag();
     }
+
+
 });
 

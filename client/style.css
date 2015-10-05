@@ -74,25 +74,7 @@ body {
 
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
-/*
-html {
-  border-top: 5px solid #fff;
-  background: #58DDAF;
-  color: #2a2a2a;
-}
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Open Sans';
-}
-
-h1 {
-  color: #fff;
-  text-align: center;
-  font-weight: 300;
-}
-*/
 #slider {
   position: relative;
   overflow: hidden;
@@ -168,6 +150,7 @@ a.control_next {
     left: -1%;
     position: fixed;
     width: 101%;
+    bottom: 0;
 }
 
 .scroll_text {
@@ -197,29 +180,23 @@ a.control_next {
     font-weight: bolder !important;
     padding: 10px;
 }
-#hub{
-	background-color: black;
-	color: red;
-}
-
-#anero{
-	background-color: red;
-	color: black;
-}
 
 .hubanero{
     font-family: Helvetica;
     font-size: xx-large;
     font-stretch: expanded;
     font-weight: bolder !important;
-    padding: 10px;
-    
+    padding: 10px;    
 }
 
-.float_right{ float: right; }
+.float_right{ 
+    float: right; 
+}
+
 .jumbotron{
     overflow: hidden;
 }
+
 .logoframe {
     display: block;
     height: 84px;
@@ -228,12 +205,13 @@ a.control_next {
 }
 
 .hublogo {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 207px;
+    float: right;
 }
 
 .spicy{
     float: right;
+}
+
+.container-fluid {
+    min-height: 500px;
 }

@@ -22,17 +22,24 @@
     </head>
     <body>
 
+<audio controls preload>
+    <source src="path/to/file.ogg" type="audio/ogg" />
+    <source src="path/to/file.mp3" type="audio/mpeg" />
+    <!--
+    Here comes the Flash (in case you want any) fallback,
+    or you can write something here like this
+    -->
+    <p class="error-message">Try another browser...</p>
+</audio>
+
+
     <div class="container-fluid">
         <div class="row">
             
             <div class="col-md-12">
                 <div class="logoframe">
                     <div class="hublogo">
-                        <h2>
-                            <span class='hubanero' id='hub'>hub' </span> 
-                            <span class='hubanero' id='anero'>anero</span> 
-                        </h2>
-                        <p class="spicy">Spicy Technologies...</p>
+                        <img id="logo-hubanero" src="http://www.hubanero.it/hubanero-logo.png" width="250" />
                     </div>
                     
                 </div>
@@ -172,6 +179,8 @@
 
     <script src="/client/js/bootstrap.min.js"></script>
     <script src="/client/js/scripts.js"></script>
+    <script src="/client/js/jquery.playSound.js"></script>
+
 
     </body>
 </html>
