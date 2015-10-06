@@ -1,0 +1,7 @@
+.allNews {
+    bottom: 0;
+    height: 333px;
+    left: -1%;
+    position: fixed;
+    width: 101%;
+}

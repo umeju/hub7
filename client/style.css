@@ -150,7 +150,8 @@ a.control_next {
     left: -1%;
     position: fixed;
     width: 101%;
-    bottom: 0;
+    background: url('http://www.nibong.ac.th/kb/57/24suphawet/job4-supawesh--polawet/bg/bg_02.png');
+    
 }
 
 .scroll_text {
@@ -179,6 +180,7 @@ a.control_next {
     font-stretch: expanded;
     font-weight: bolder !important;
     padding: 10px;
+    margin-top: 0 !important;
 }
 
 .hubanero{
@@ -195,11 +197,13 @@ a.control_next {
 
 .jumbotron{
     overflow: hidden;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .logoframe {
     display: block;
-    height: 84px;
+    height: 70px;
     position: relative;
     width: 100%;
 }
@@ -214,4 +218,11 @@ a.control_next {
 
 .container-fluid {
     min-height: 500px;
+}
+
+.radial {
+//  background-image: linear-gradient(rgba(221,72,20,.25), rgba(0,0,0,0));
+//  background: url('http://www.nibong.ac.th/kb/57/24suphawet/job4-supawesh--polawet/bg/bg_02.png');
+  background: url('https://www.sgidna.com/assets/img/sliders/layer/bg1.jpg');
+  background-size: cover;
 }

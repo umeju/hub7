@@ -80,7 +80,6 @@ $(document).ready(function () {
             $(".glyphicon-chevron-left").trigger("click");
             */
             slideToLeft();
-$.playSound('/client/bip');
         });
 
         socket.on('right', function (data) {
@@ -90,7 +89,6 @@ $.playSound('/client/bip');
             $(".glyphicon-chevron-right").trigger("click");
             */
             slideToRight();
-$.playSound('/client/bip');
         });
         
         socket.on('stop', function (data) {

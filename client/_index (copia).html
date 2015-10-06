@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>chatty web client</title>
+        <link href="/client/style.css" rel="stylesheet"/>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/client/lib/jquery.js"></script>
+        <script src="/common/handlebars.js"></script>
+        <script src="/common/models.js"></script>
+        <script src="/varSocketURI.js"></script>
+        <script src="/client/code.js"></script>
+
+    </head>
+    <body>
+
+<!-- VIDEO HTML -->
+<video width="320" height="240" autoplay>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+		<div id="slider">
+		  <a href="#" class="control_next">>></a>
+		  <a href="#" class="control_prev"><<</a>
+		  
+		  <ul>
+			<li>
+                            <img class="images" src="http://static.boredpanda.com/blog/wp-content/uploads/2015/09/photos-that-do-not-look-real-11__880.jpg" />
+                            SLIDE 1
+                        </li>
+			<li style="background: #aaa;">
+                            <img class="images" src="/common/2.jpg" />
+                            SLIDE 2
+                        </li>
+			<li>
+                            <img class="images" src="/common/3.jpg" />
+                            SLIDE 3 
+                        </li>
+			<li style="background: #aaa;">
+                            <img class="images" src="/common/4.jpg" />
+                            SLIDE 4
+                        </li>
+		  </ul>
+		</div>
+
+		<div class="slider_option">
+		  <input type="checkbox" id="checkbox">
+		  <label for="checkbox">Autoplay Slider</label>
+
+
+			<button id="right" type="button">Right</button>
+
+			<button id="left" type="button">Left</button>
+		</div>
+                <div>
+                    <ul class="allNews">
+                        
+                    </ul>
+		</div>
+                
+
+
+    </body>
+</html>

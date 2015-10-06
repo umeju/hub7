@@ -1,0 +1,7 @@
+#scroll_text {
+    border: 1px none red !important;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+}
