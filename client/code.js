@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 
-    var _AGGIORNAMENTO_NEWS = 34000
+    var _AGGIORNAMENTO_NEWS = 38000
     
     var winW = $(window).width();
     var winH = $(window).height();
@@ -24,10 +24,12 @@ $(document).ready(function () {
 
                 $.each(json.sites, function (key, val) {
 //                    items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                    items.push("<h2 class='red_background'>"
-                            + val.titolo
-                            + "</h2><br> <div id='scroll_text'><p class='scroll_text'>"
-                            + val.descrizione + "</p></div>");
+                    items.push(
+                        "<h2 class='red_background'>" + val.titolo + "</h2>"
+                            + "<br>"
+                            + "<div id='scroll_text'>"
+                            + "<p class='scroll_text'>" + val.descrizione + "</p>"
+                            + "</div>");
                 });
                 putInPage(items);
             },
@@ -48,9 +50,10 @@ $(document).ready(function () {
         var i = 0;
         //show last news at first 
         showNews(10);
+        interval_counter = 1;
         
-        var interval = setInterval(
-            function () {
+        var interval = setInterval(function () {
+                
                 showNews(i);
 
                 if (i < 10) {
@@ -59,14 +62,24 @@ $(document).ready(function () {
                     i = 0;
                 }
             }, _AGGIORNAMENTO_NEWS);
+            
 
-        setInterval(
-            function () {
-                $('.scroll_text').animate({
-                    "marginTop": "-=70px"
-                }, 3500, "linear");
-                //loop();
-            }, 1000);
+        var globalInterval = setInterval(function () {
+            //show news
+            if(interval_counter % 8 === 0){
+              /*  showNews(i);
+                if (i < 10) {
+                    i++;
+                } else {
+                    i = 0;
+                }*/
+            }
+
+            $('.scroll_text').animate({
+                "marginTop": "-=44px"
+            }, 1000, "linear");
+            //loop();
+        }, 5000);
 
     }
 

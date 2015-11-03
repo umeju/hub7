@@ -1,6 +1,6 @@
 
 
-var TIME_TO_CHANGE_TOP_RIGHT_IMAGE = 3000
+var TIME_TO_CHANGE_TOP_RIGHT_IMAGE = 5000
 var i = 0;
 var SLEEP_TIME = 6000;
 var stopFlag = true;
