@@ -10,19 +10,7 @@ body, html {
     padding: 0;
 
     color: #6394A1;
-    background-color: white;
-
-
-background: rgba(226,226,226,1);
-background: -moz-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(226,226,226,1)), color-stop(32%, rgba(219,219,219,1)), color-stop(62%, rgba(209,209,209,1)), color-stop(100%, rgba(254,254,254,1)));
-background: -webkit-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
-background: -o-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
-background: -ms-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
-background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 32%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );
-
-
+    background-color: lightgrey;
 
 }
 body {
@@ -86,25 +74,7 @@ body {
 
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
-/*
-html {
-  border-top: 5px solid #fff;
-  background: #58DDAF;
-  color: #2a2a2a;
-}
 
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Open Sans';
-}
-
-h1 {
-  color: #fff;
-  text-align: center;
-  font-weight: 300;
-}
-*/
 #slider {
   position: relative;
   overflow: hidden;
@@ -176,17 +146,26 @@ a.control_next {
 
 .allNews {
     bottom: 0;
+    height: 220px;
     left: -1%;
     position: fixed;
     width: 101%;
+    background: url('http://www.nibong.ac.th/kb/57/24suphawet/job4-supawesh--polawet/bg/bg_02.png');
+    
 }
 
 .scroll_text {
-    background: white none repeat scroll 0 0;
-    font-family: ubuntu mono;
-    font-size: 4em !important;
+    font-family: "Tahoma", Geneva, sans-serif;
+    font-size: 3em !important;
     list-style-type: none;
-    width: 10000px;
+    text-align: justify;
+}
+
+#scroll_text {
+    bottom: -30px;
+    overflow: hidden;
+    position: relative;
+    line-height: 1;
 }
 
 .carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
@@ -202,15 +181,7 @@ a.control_next {
     font-stretch: expanded;
     font-weight: bolder !important;
     padding: 10px;
-}
-#hub{
-	background-color: black;
-	color: red;
-}
-
-#anero{
-	background-color: red;
-	color: black;
+    margin-top: 0 !important;
 }
 
 .hubanero{
@@ -218,17 +189,53 @@ a.control_next {
     font-size: xx-large;
     font-stretch: expanded;
     font-weight: bolder !important;
-    padding: 10px;
-    
+    padding: 10px;    
 }
 
+.float_right{ 
+    float: right; 
+}
 
-.float_right{ float: right; }
+.jumbotron{
+    overflow: hidden;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
+}
 
+.logoframe {
+    display: block;
+    height: 70px;
+    position: relative;
+    width: 100%;
+}
 
+.hublogo {
+    float: right;
+    background-image: url('http://www.hubanero.it/hubanero-logo.png');
+    width: 254px;
+    height: 70px;
+    background-size: cover;
+}
+.js-date {
+    float: left;
+    font-size: xx-large;
+    font-style: oblique;
+    font-weight: bold;
+    font-family: "Verdana", sans-serif, serif;
+    color: #dd4814;
+}
 
+.spicy{
+    float: right;
+}
 
+.container-fluid {
+    min-height: 500px;
+}
 
-
-
-
+.radial {
+//  background-image: linear-gradient(rgba(221,72,20,.25), rgba(0,0,0,0));
+//  background: url('http://www.nibong.ac.th/kb/57/24suphawet/job4-supawesh--polawet/bg/bg_02.png');
+  background: url('https://www.sgidna.com/assets/img/sliders/layer/bg1.jpg');
+  background-size: cover;
+}

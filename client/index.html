@@ -26,9 +26,11 @@
         <div class="row">
             
             <div class="col-md-12">
+                <div class="js-date"></div>
+                
                 <div class="logoframe">
                     <div class="hublogo">
-                        <img id="logo-hubanero" src="http://www.hubanero.it/hubanero-logo.png" width="250" />
+                        <!--img id="logo-hubanero" src="http://www.hubanero.it/hubanero-logo.png" width="250" /-->
                     </div>
                     
                 </div>
@@ -37,8 +39,10 @@
 	<div class="row">
 		<div class="col-md-6">
 			
-                    <div>
-                        <iframe width="600" height="350" src="https://www.youtube.com/embed/_vgnH4RzoNs?rel=0&autoplay=0&loop=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="tube">
+                        <iframe width="320" height="240" 
+                                src="https://www.youtube.com/embed/1w7OgIMMRc4?list=PLP4CGQEPAJPJbZOnCv7MgdWSoZzeaqBpm&autoplay=1&loop=1" 
+                                frameborder="0" allowfullscreen></iframe>
                     </div>
                     
 			<div class="row">
@@ -67,31 +71,31 @@
                                 <div id="my_image_0" class="my_image">
                                             <img class="carousel_img" src="/common/img/1.jpg">
                                             <div class="carousel-caption">
-                                                    hubanero - Spicy Technologies
+                                                    
                                             </div>
                                     </div>
                                     <div id="my_image_1" class="my_image">
                                             <img class="carousel_img" src="/common/img/2.jpg">
                                             <div class="carousel-caption">
-                                                    hubanero - Spicy Technologies
+                                                    
                                             </div>
                                     </div>
                                     <div id="my_image_2" class="my_image">
                                             <img class="carousel_img" src="/common/img/3.jpg">
                                             <div class="carousel-caption">
-                                                    hubanero - Spicy Technologies
+                                                    
                                             </div>
                                     </div>
                                     <div id="my_image_2" class="my_image">
                                             <img class="carousel_img" src="/common/img/4.jpg">
                                             <div class="carousel-caption">
-                                                    hubanero - Spicy Technologies
+                                                    
                                             </div>
                                     </div>
                                     <div id="my_image_2" class="my_image">
                                             <img class="carousel_img" src="/common/img/5.jpg">
                                             <div class="carousel-caption">
-                                                    hubanero - Spicy Technologies
+                                                    
                                             </div>
                                     </div>
                             </div> 
@@ -159,26 +163,26 @@
 	<div class="row">
 		<div class="col-md-12">
 <!-- use class allNews to visualize news from the web -->
-			<div class="jumbotron well allNews">
-				<div class='float_right'> 
-				<h2>
-					<span class='hubanero' id='hub'>hub' </span> 
-					<span class='hubanero' id='anero'>anero</span> 
-				</h2>
-				<p>
-					Spice Technologies...
-				</p>
-				</div>
-				<!--p>
-					<a class="btn btn-primary btn-large" href="#">Learn more</a>
-				</p-->
-			</div>
+			<div class="jumbotron well allNews"></div>
 		</div>
 	</div>
 </div>
 
     <script src="/client/js/bootstrap.min.js"></script>
     <script src="/client/js/scripts.js"></script>
+    <script>
+        
+        var d = new Date();
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+
+        var output = d.getFullYear() + ' - ' +
+        ((''+month).length<2 ? '0' : '') + month + ' - ' +
+        ((''+day).length<2 ? '0' : '') + day;
+
+        $('.js-date').html(output);
+        
+    </script>
 
 
     </body>

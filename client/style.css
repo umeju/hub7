@@ -159,10 +159,11 @@ a.control_next {
     font-size: 3em !important;
     list-style-type: none;
     text-align: justify;
+    margin-top: 45px;
 }
 
 #scroll_text {
-    bottom: 0;
+    bottom: 0px;
     overflow: hidden;
     position: relative;
     line-height: 1;
@@ -211,6 +212,18 @@ a.control_next {
 
 .hublogo {
     float: right;
+    background-image: url('http://www.hubanero.it/hubanero-logo.png');
+    width: 254px;
+    height: 70px;
+    background-size: cover;
+}
+.js-date {
+    float: left;
+    font-size: xx-large;
+    font-style: oblique;
+    font-weight: bold;
+    font-family: "Verdana", sans-serif, serif;
+    color: #dd4814;
 }
 
 .spicy{

@@ -136,9 +136,9 @@ $(document).ready(function () {
     });
     
     $('#checkbox').change(function () {
-        setInterval(function () {
+       /* setInterval(function () {
             moveRight();
-        }, 6000);
+        }, 6000);*/
     });
 
     var slideCount = $('#slider ul li').length;
