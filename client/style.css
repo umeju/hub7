@@ -240,3 +240,6 @@ a.control_next {
   background: url('https://www.sgidna.com/assets/img/sliders/layer/bg1.jpg');
   background-size: cover;
 }
+.invisible{
+    display: none;
+}

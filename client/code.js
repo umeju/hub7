@@ -1,6 +1,5 @@
 $(document).ready(function () {
-
-
+    
     var _AGGIORNAMENTO_NEWS = 38000
     
     var winW = $(window).width();
@@ -134,12 +133,12 @@ $(document).ready(function () {
         //$( "a.control_prev" ).trigger( "click" );
         socket.emit('stop', {action: 'stop'});
     });
-    
+    /*
     $('#checkbox').change(function () {
-       /* setInterval(function () {
+        setInterval(function () {
             moveRight();
-        }, 6000);*/
-    });
+        }, 6000);
+    });*/
 
     var slideCount = $('#slider ul li').length;
     var slideWidth = $('#slider ul li').width();

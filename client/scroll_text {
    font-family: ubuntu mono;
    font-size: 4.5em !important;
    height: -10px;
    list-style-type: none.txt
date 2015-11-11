@@ -1,7 +1,0 @@
-.scroll_text {
-    font-family: ubuntu mono;
-    font-size: 4.5em !important;
-    height: -10px;
-    list-style-type: none;
-    margin-top: -92px;
-}
