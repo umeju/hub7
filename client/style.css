@@ -150,7 +150,7 @@ a.control_next {
     left: -1%;
     position: fixed;
     width: 101%;
-    background: url('http://www.nibong.ac.th/kb/57/24suphawet/job4-supawesh--polawet/bg/bg_02.png');
+    //background: url('http://www.nibong.ac.th/kb/57/24suphawet/job4-supawesh--polawet/bg/bg_02.png');
     
 }
 
@@ -237,8 +237,8 @@ a.control_next {
 .radial {
 //  background-image: linear-gradient(rgba(221,72,20,.25), rgba(0,0,0,0));
 //  background: url('http://www.nibong.ac.th/kb/57/24suphawet/job4-supawesh--polawet/bg/bg_02.png');
-  background: url('https://www.sgidna.com/assets/img/sliders/layer/bg1.jpg');
-  background-size: cover;
+  //background: url('https://www.sgidna.com/assets/img/sliders/layer/bg1.jpg');
+  //background-size: cover;
 }
 .invisible{
     display: none;

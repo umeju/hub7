@@ -1,22 +1,13 @@
 $(document).ready(function () {
     
-    /*
-     * 
-     * cambiare src iframe al click da cell:
-     * 
-     * $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php')
-     * 
-     * 
-     */
-    
-    var _AGGIORNAMENTO_NEWS = 8000
+    var _AGGIORNAMENTO_NEWS = 38000
     
     var winW = $(window).width();
     var winH = $(window).height();
 
     var items = [];
     var getNews = function () {
-        
+
         //var url = 'http://localhost/slider/test.php?callback=?';
         var url = 'http://www.di-vision.org/feedOpenshift.php?callback=?';
         $.ajax({
@@ -40,7 +31,6 @@ $(document).ready(function () {
                             + "</div>");
                 });
                 putInPage(items);
-                
             },
             error: function (e) {
                 console.log(e.message);
@@ -48,9 +38,7 @@ $(document).ready(function () {
         });
     };
     getNews();
-    
 
-    
     function showNews(i) {
         /* visualizzo la prima notizia */
         $('.allNews').hide().html(items[i]).fadeIn('slow');
@@ -64,7 +52,6 @@ $(document).ready(function () {
         interval_counter = 1;
         
         var interval = setInterval(function () {
-            t +=1;
                 
                 showNews(i);
 
@@ -98,7 +85,7 @@ $(document).ready(function () {
     (function (exports){
         var socket = io.connect(socketURI);
 
-        socket.on('left', function (data) {
+        socket.on('left_verardi', function (data) {
             console.log('client cod l-83: slide to left');
             /*console.log("data log from client:" + data);
             $("a.control_prev").trigger("click");
@@ -107,7 +94,7 @@ $(document).ready(function () {
             slideToLeft();
         });
 
-        socket.on('right', function (data) {
+        socket.on('right_verardi', function (data) {
             console.log('client cod l-83: slide to right');
             /*console.log("data log from client:" + data);
             $("a.control_next").trigger("click");
@@ -116,7 +103,7 @@ $(document).ready(function () {
             slideToRight();
         });
         
-        socket.on('stop', function (data) {
+        socket.on('stop_verardi', function (data) {
             console.log('client code l-92: stop/start');
             /*console.log("data log from client:" + data);
             $("a.control_next").trigger("click");
@@ -125,51 +112,26 @@ $(document).ready(function () {
             stopSlide();
         });
         
-        /*
-         * INTERAZIONE PER NEWS
-         */
-        socket.on('news-calcio', function (data) {
-            console.log('news calcio clicked');
-            $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2_1.php');
-        });
-        
-        socket.on('news-ultimora', function (data) {
-            console.log('news calcio clicked');
-            $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php');
-        });
-        
-        socket.on('news-gossip', function (data) {
-            console.log('news calcio clicked');
-            $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index3.php');
-        });
-        
-        
-        
-        
-        
-        
         // export
         exports.socket = socket;
     })(window);
 
-    $('#left').on('click', function (e) {
+    $('#left_verardi').on('click', function (e) {
         console.log('click on left!');
         //$( "a.control_next" ).trigger( "click" );
-        socket.emit('left', {action: 'left'});
+        socket.emit('left_verardi', {action: 'left_verardi'});
     });
 
-    $('#right').on('click', function (e) {
+    $('#right_verardi').on('click', function (e) {
         console.log('click on right!');
         //$( "a.control_prev" ).trigger( "click" );
-        socket.emit('right', {action: 'right'});
-        $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php');
+        socket.emit('right_verardi', {action: 'right_verardi'});
     });
     
-    $('#stop').on('click', function (e) {
+    $('#stop_verardi').on('click', function (e) {
         console.log('stop clicked!');
-        
         //$( "a.control_prev" ).trigger( "click" );
-        socket.emit('stop', {action: 'stop'});
+        socket.emit('stop_verardi', {action: 'stop_verardi'});
     });
     /*
     $('#checkbox').change(function () {
@@ -218,9 +180,8 @@ $(document).ready(function () {
             $('#slider ul').css('left', '');
         });
     };
-//TODO: nuovo slide action con criterio usato per immagini .eq(index)
+
     function slideToLeft() {
-        
         $shownImg = $('.my_image').parent().find('.activate');
         $shownImg.hide();
         $shownImg.removeClass('activate');
@@ -232,7 +193,6 @@ $(document).ready(function () {
     }
 
     function slideToRight() {
-        
         $shownImg = $('.my_image').parent().find('.activate');
         $shownImg.hide();
         $shownImg.removeClass('activate');

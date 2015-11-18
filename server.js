@@ -91,4 +91,27 @@ io.sockets.on('connection', function (socket) {
             //io.sockets.emit('right', { action: 'right' });
             socket.broadcast.emit('stop', { action: 'stop' });
 	});
+        /*
+         * new page in verardi folder
+         */
+	socket.on('left_verardi', function(data){
+            console.log('server listen on action ');
+            console.log("data log from server:"+data);
+            //io.sockets.emit('left', { action: 'left' });
+            socket.broadcast.emit('left_verardi', { action: 'left' });
+	});
+
+	socket.on('right_verardi', function(data){
+            console.log('server listen on action ');
+            console.log("data log from server:"+data);
+            //io.sockets.emit('right', { action: 'right' });
+            socket.broadcast.emit('right_verardi', { action: 'right_verardi' });
+	});
+        
+        socket.on('stop_verardi', function(data){
+            console.log('server listen on action ');
+            console.log("data log from server:"+data);
+            //io.sockets.emit('right', { action: 'right' });
+            socket.broadcast.emit('stop_verardi', { action: 'stop_verardi' });
+	});
 });

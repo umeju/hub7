@@ -89,7 +89,8 @@
     border: 1px solid white;
     left: 0;
     position: absolute;
-    /* margin-top: 5%; */
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .box-msg-2 {
@@ -98,7 +99,7 @@
     background-image: url('http://www.hubanero.it/images/giochi.jpg');
 }
 .box-msg-1 {
-    background-image: url('http://www.hubanero.it/images/giochi.jpg');
+    background-image: url('http://www.hubanero.e it/images/giochi.jpg');
 }
 
 
@@ -110,4 +111,32 @@
     border: 1px solid red;
     margin: 0 auto;
     top: 13%;
+}
+iframe, object, embed {
+    width: 102%;
+    overflow-y: hidden;
+    position: fixed;
+    bottom: 0;
+    left: -1%;
+}
+#total{
+    position: relative;
+}
+.iframes{
+    position: relative;
+    padding: 2% !important;
+    
+}
+.iframe-wrapper{
+    height: 154px;
+    border: 1px solid;
+    z-index: 999;
+    width: 101%;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 0;
+    left: -1%;
+    overflow: hidden;
+    background-image: url('/common/img/bgx.jpg');
+    background-position-y: -47px;
 }
