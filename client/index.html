@@ -158,9 +158,9 @@
             var month = d.getMonth() + 1;
             var day = d.getDate();
 
-            var output = d.getFullYear() + ' - ' +
+            var output = (('' + day).length < 2 ? '0' : '') + day + ' - ' +
                     (('' + month).length < 2 ? '0' : '') + month + ' - ' +
-                    (('' + day).length < 2 ? '0' : '') + day;
+                    d.getFullYear();
 
             $('.js-date').html(output);
             
@@ -207,6 +207,7 @@
                         + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
                         // + val.descrizione to use html as text...
                         + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
+                        + "<div class='arr_2'>" + val.note + "</div>"
                         + "</div>");
                 }
                 count++;

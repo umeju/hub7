@@ -5,7 +5,7 @@ $(document).ready(function () {
      * 
      */
     
-    var _AGGIORNAMENTO_NEWS = 4000;
+    var _AGGIORNAMENTO_NEWS = 18000;
     
     var _TECH_URL = 'http://www.di-vision.org/getFeedUltimora.php';
     var count = 0;

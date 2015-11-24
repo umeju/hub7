@@ -254,3 +254,11 @@ a.control_next {
     max-height: 475px;
     overflow: hidden;
 }
+.arr_2 {
+    color: #5A047B;
+    font-size: 31px;
+    font-style: oblique;
+    text-shadow: 1px 1px 2px white;
+    /* text-transform: uppercase; */
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}

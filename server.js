@@ -24,13 +24,8 @@ fs.readFile('/home/division/public_html/fromAdminPanel.php', 'utf8', function (e
   
 });
 
-
 // Setup a very simple express application.
 app = express();
-
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-
 
 // Allow cross origin requests.
 app.use(function(req, res, next) {
