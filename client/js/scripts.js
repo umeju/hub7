@@ -1,56 +1,12 @@
+//var t=0 , dd, aa;
+var items = $('.news-from-control-panel');
 
-var t=0 , dd, aa;
-var items = $('.my_image');
-
-var TIME_TO_CHANGE_TOP_RIGHT_IMAGE = 35000
+var TIME_TO_CHANGE_TOP_RIGHT_IMAGE = 35000;
 var i = 0;
 var SLEEP_TIME = 6000;
 var stopFlag = true;
 var $images = $('.my_inner').find('.my_image');
 var NUM_OF_IMAGE = $('.my_inner > div').length;
-
-var alterImages = setInterval( slideMyImage, 
-                        TIME_TO_CHANGE_TOP_RIGHT_IMAGE);
-                        
-scorriImg();
-
-function slideMyImage() {
-    t += 1;
-    if(t > items.length){
-        t = 0;
-    }
-    scorriImg();
-}
-
-function scorriImg(){
-    items.hide();
-    item = items.eq(t);
-    
-    item.css({
-        'display':'inline-block',
-        'float' : 'left',
-    });
-}
-
-/*
-function slideMyImage() {
-    var index = (i % 5);
-    if (stopFlag) {
-
-        if (index == 0) {
-            prev = NUM_OF_IMAGE -1;
-        } else {
-            prev = index - 1;
-        }
-        hideByIndex(prev);
-        showByIndex(index);
-        i++;
-        if(i>1000){
-            i=0;
-        }
-    }
-}
-*/
 
 function showByIndex(currentImg){
     $($images[currentImg]).fadeIn('slow');
@@ -69,7 +25,6 @@ function stopStartFlag(){
         $('#stop').attr('src', '/common/img/suremote-universal-remote-8-l-140x140.png');
     }else{
         $('#stop').attr('src', '/common/img/grey-suremote-universal-remote-8-l-140x140.png');
-        
     }
 }
 

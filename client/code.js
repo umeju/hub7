@@ -1,119 +1,97 @@
-$(document).ready(function () {
-    
+$(document).ready(function () {    
     /*
-     * 
      * cambiare src iframe al click da cell:
-     * 
      * $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php')
-     * 
      * 
      */
     
-    var _AGGIORNAMENTO_NEWS = 8000
+    var _AGGIORNAMENTO_NEWS = 4000;
     
-    var winW = $(window).width();
-    var winH = $(window).height();
-
-    var items = [];
-    var getNews = function () {
-        
-        //var url = 'http://localhost/slider/test.php?callback=?';
-        var url = 'http://www.di-vision.org/feedOpenshift.php?callback=?';
-        $.ajax({
-            type: 'GET',
-            url: url,
-            async: false,
-            jsonpCallback: 'jsonCallback',
-            contentType: "application/json",
-            dataType: 'jsonp',
-            success: function (json) {
-
-                //console.dir(json.sites);
-
-                $.each(json.sites, function (key, val) {
-//                    items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                    items.push(
-                        "<h2 class='red_background'>" + val.titolo + "</h2>"
-                            + "<br>"
-                            + "<div id='scroll_text'>"
-                            + "<p class='scroll_text'>" + val.descrizione + "</p>"
-                            + "</div>");
-                });
-                putInPage(items);
-                
-            },
-            error: function (e) {
-                console.log(e.message);
+    var _TECH_URL = 'http://www.di-vision.org/getFeedUltimora.php';
+    var count = 0;
+    var countFunc = null;
+    
+    function runInterval(cmd) {
+        if(countFunc !== null) return;
+        if(cmd === "start"){
+            countFunc = setInterval(function () {
+            count += 1;
+            if (count > $('.notizia').length) {
+                count = 0;
             }
-        });
-    };
-    getNews();
-    
+            loopNews();
+        }, _AGGIORNAMENTO_NEWS);
+        }else{ // stop
+            setTimeout(function(){
+                runInterval("start");
+            }, 12000);
+        }
+        //if (countFunc !== null) return;
+        
+    }
+//    countFunc = null;
+    runInterval("start");
 
-    
-    function showNews(i) {
-        /* visualizzo la prima notizia */
-        $('.allNews').hide().html(items[i]).fadeIn('slow');
+    function loopNews(){
+        notizie = $('.notizia');
+        notizie.hide();
+        notizia = $('.notizia').eq(count);
+        notizia.css('display','inline-block');
     }
     
-    function putInPage(items) {
-        var items = items;
-        var i = 0;
-        //show last news at first 
-        showNews(10);
-        interval_counter = 1;
+    $('#right').click(function (){
+        oneMore();
+    });
+    
+    $('#left').click(function (){
+        oneLess();
+    });
+    // move 1 pic back
+    function oneLess(){
+        clearInterval(countFunc);
+        countFunc = null;
+        runInterval("stop");
         
-        var interval = setInterval(function () {
-            t +=1;
-                
-                showNews(i);
-
-                if (i < 10) {
-                    i++;
-                } else {
-                    i = 0;
-                }
-            }, _AGGIORNAMENTO_NEWS);
-            
-
-        var globalInterval = setInterval(function () {
-            //show news
-            if(interval_counter % 8 === 0){
-              /*  showNews(i);
-                if (i < 10) {
-                    i++;
-                } else {
-                    i = 0;
-                }*/
-            }
-
-            $('.scroll_text').animate({
-                "marginTop": "-=44px"
-            }, 1000, "linear");
-            //loop();
-        }, 5000);
-
+        count -=1;
+        if(count > $('.notizia').length){
+            count = 0;
+        }
+        loopNews();
     }
-
+    // move 1 pic ahead
+    function oneMore(){
+        clearInterval(countFunc);
+        countFunc = null;
+        runInterval("stop");
+        
+        count +=1;
+        if(count > $('.notizia').length){
+            count = 0;
+        }
+        loopNews();
+    }
+    
     (function (exports){
         var socket = io.connect(socketURI);
 
         socket.on('left', function (data) {
-            console.log('client cod l-83: slide to left');
+            console.log('codejs client slide to left');
             /*console.log("data log from client:" + data);
             $("a.control_prev").trigger("click");
             $(".glyphicon-chevron-left").trigger("click");
             */
             slideToLeft();
+            oneMore()();
         });
 
         socket.on('right', function (data) {
-            console.log('client cod l-83: slide to right');
+            console.log('codejs client  slide to right');
             /*console.log("data log from client:" + data);
             $("a.control_next").trigger("click");
             $(".glyphicon-chevron-right").trigger("click");
             */
             slideToRight();
+            oneMore()()
         });
         
         socket.on('stop', function (data) {
@@ -130,36 +108,32 @@ $(document).ready(function () {
          */
         socket.on('news-calcio', function (data) {
             console.log('news calcio clicked');
-            $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2_1.php');
+            $('iframe').attr('src',_CALCIO_URL);
         });
         
         socket.on('news-ultimora', function (data) {
             console.log('news calcio clicked');
-            $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php');
+            $('iframe').attr('src',_TECH_URL);
         });
         
         socket.on('news-gossip', function (data) {
             console.log('news calcio clicked');
-            $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index3.php');
+            $('iframe').attr('src',_GOSSIP_URL);
         });
-        
-        
-        
-        
-        
-        
         // export
         exports.socket = socket;
     })(window);
+    
 
     $('#left').on('click', function (e) {
-        console.log('click on left!');
+        console.log('click on left! emit left');
         //$( "a.control_next" ).trigger( "click" );
         socket.emit('left', {action: 'left'});
+        $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index1.php')
     });
 
     $('#right').on('click', function (e) {
-        console.log('click on right!');
+        console.log('click on right! emit right');
         //$( "a.control_prev" ).trigger( "click" );
         socket.emit('right', {action: 'right'});
         $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php');
@@ -246,7 +220,5 @@ $(document).ready(function () {
     function stopSlide() {
         stopStartFlag();
     }
-
-
 });
 

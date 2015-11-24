@@ -8,10 +8,7 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-
     color: #6394A1;
-    background-color: lightgrey;
-
 }
 body {
     font-family: Helvetica, Arial, sans-serif;
@@ -22,7 +19,6 @@ body {
     margin: 0;
     padding: 0.2em;
     text-align: right;
-
     background-color: #0B323D;
 }
 
@@ -150,16 +146,17 @@ a.control_next {
     left: -1%;
     position: fixed;
     width: 101%;
+    line-height: 1.2;
     //background: url('http://www.nibong.ac.th/kb/57/24suphawet/job4-supawesh--polawet/bg/bg_02.png');
     
 }
-
 .scroll_text {
     font-family: "Tahoma", Geneva, sans-serif;
-    font-size: 3em !important;
+    font-size: 35px !important;
     list-style-type: none;
-    text-align: justify;
-    margin-top: 45px;
+    text-align: left;
+    margin-top: 15px;
+    line-height: 1;
 }
 
 #scroll_text {
@@ -174,20 +171,24 @@ a.control_next {
 }
 
 .red_background {
-    background-color: red;
+    background-color: #dd4814;
+    text-align: left;
     color: white;
     display: inline-block;
     font-family: Helvetica;
-    font-size: xx-large;
+    font-size: 25px;
     font-stretch: expanded;
     font-weight: bolder !important;
     padding: 10px;
     margin-top: 0 !important;
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
 }
 
 .hubanero{
     font-family: Helvetica;
-    font-size: xx-large;
+    font-size: 25px;
     font-stretch: expanded;
     font-weight: bolder !important;
     padding: 10px;    
@@ -238,8 +239,18 @@ a.control_next {
 //  background-image: linear-gradient(rgba(221,72,20,.25), rgba(0,0,0,0));
 //  background: url('http://www.nibong.ac.th/kb/57/24suphawet/job4-supawesh--polawet/bg/bg_02.png');
   //background: url('https://www.sgidna.com/assets/img/sliders/layer/bg1.jpg');
-  //background-size: cover;
+  background-size: cover;
+  background-image: url('http://www.hubanero.it/images/bg1.jpg') !important;
+  background-position-y: -60px;
+  overflow: hidden;
 }
 .invisible{
     display: none;
+}
+
+.notizia {
+    position: relative;
+    width: 100%;
+    max-height: 475px;
+    overflow: hidden;
 }

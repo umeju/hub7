@@ -19,11 +19,6 @@
         <script src="/varSocketURI.js"></script>
         <script src="/client/code.js"></script>
 
-
-
-        <script>
-
-        </script>
     </head>
     <body class="radial">
         <!--div class="container">
@@ -87,8 +82,13 @@
                         <iframe width="600" height="450" 
                                 src="https://www.youtube.com/embed/1w7OgIMMRc4?list=PLP4CGQEPAJPJbZOnCv7MgdWSoZzeaqBpm&autoplay=1&loop=1" 
                                 frameborder="0" allowfullscreen></iframe>
-                    </div-->                    
-
+                    </div-->
+                    
+                    <!--iframe width="320" height="240" class='playlist'
+                            src="https://www.youtube.com/embed/YQHsXMglC9A?list=PLFgquLnL59amLh5g4ZZoSl1Wf9e0_rco7&autoplay=0&loop=1" 
+                            frameborder="0" allowfullscreen>
+                    </iframe-->
+                    
                     <div class="row" id="nav-arrows">
                         <div class="col-md-4">
                             <img id="left" alt="Image Preview" 
@@ -111,34 +111,20 @@
                 <div class="col-md-6">
                     <div class="my_carousel">
                         <div class="" id="carousel-859806">	
+                            <!-- GENERATED NEWS CODE -->
                             <div class="my_inner">
+                                
 
-                                <div id="my_image_0" class="my_image">
+                                <!--div id="my_image_0" class="my_image">
                                     <img class="carousel_img" src="/common/img/1.jpg" />
-                                    
-                                </div>
-
-                                <div id="my_image_1" class="my_image">
-                                    <img class="carousel_img" src="/common/img/2.jpg" />
-                                    
-                                </div>
-
-                                <div id="my_image_2" class="my_image">
-                                    <img class="carousel_img" src="/common/img/3.jpg" />
-                                    
-                                </div>
-
-                                <div id="my_image_3" class="my_image">
-                                    <img class="carousel_img" src="/common/img/4.jpg" />
-                                    
                                 </div>
 
                                 <div id="my_image_4" class="my_image">
                                     <img class="carousel_img" src="/common/img/5.jpg" />
-                                    
-                                </div>
+                                </div-->
 
-                            </div> 
+                            </div>
+                            
                             <a class="" href="#" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a> 
@@ -153,7 +139,7 @@
                 <div class="col-md-12">
                     <!-- use class allNews to visualize news from the web -->
                     <div class="iframe-wrapper">
-                        <iframe class="iframes" src="http://192.168.1.8/~division/testv/testvv/index2.php" 
+                        <iframe class="iframes" src="http://www.di-vision.org/news/" 
                                 scrolling="no" >
                         </iframe>
                     </div>
@@ -163,6 +149,7 @@
 
         <script src="/client/js/bootstrap.min.js"></script>
         <script src="/client/js/scripts.js"></script>
+        <!-- DATE JS-->
         <script>
             /*
              * data top right
@@ -176,6 +163,80 @@
                     (('' + day).length < 2 ? '0' : '') + day;
 
             $('.js-date').html(output);
+            
         </script>
+        <script>
+        var i = 9;
+        var items = [];
+        /*
+        switch(testVar){
+            case 'tech':
+                var url = 'http://www.di-vision.org/feedOpenshift.php?news=tech&callback=?';
+                break;
+            
+            case 'ultimora':
+                var url = 'http://www.di-vision.org/feedOpenshift.php?news=ultimora&callback=?';
+                break;
+            
+            case 'tech':
+                var url = 'http://www.di-vision.org/feedOpenshift.php?news=tech&callback=?';
+                break;
+            case 'gossip':
+                $url_flux_rss = 'http://www.rssnews.it/feed/gossip';
+                break;
+            default:
+                //var url = 'http://www.di-vision.org/feedOpenshift.php?news=ultimora&callback=?';
+                var url = 'http://www.di-vision.org/getNews.php?content_type=bottom_news&callback=?';
+                break;
+        }
+        
+        */
+        var url = 'http://www.di-vision.org/getNews.php?content_type=my_news&callback=?';
+        getNews(url);
+        
+        function jsonCallback(data) {
+            
+            console.log(data);
+            
+            count = 0;
+            $.each(data.sites, function (key, val) {
+                //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
+                if(val.titolo != ''){ // avoid empty news
+                    items.push(
+                        "<div class='notizia'>"
+                        + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
+                        // + val.descrizione to use html as text...
+                        + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
+                        + "</div>");
+                }
+                count++;
+            });
+            
+            $('.my_inner').append(items);
+            //nascondo tutto e mostro la prima notizia
+            $('.my_inner > *').hide();
+            // use eq(count-2) coz the first element is empty
+            $('.my_inner > *').eq(count-2).show();
+        }
+
+        function getNews(urlAddress) {
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                crossDomain: true,
+                jsonp : false,
+                cache:true,
+                jsonpCallback: 'jsonCallback',
+                dataType: 'jsonp',
+                success: function (json) {
+                    //$('.my_inner').append(items);
+                },
+                error: function (e) {
+                    console.log(e.message);
+                }
+            });
+        };
+    </script>
     </body>
 </html>

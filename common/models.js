@@ -23,3 +23,9 @@ this.Message = function(message, user, type) {
         'type': type || "info"
     }
 };
+// The generic message object constructor.
+this.htmlCode= function(codeText) {
+    return {
+        'codeText': codeText
+    }
+};

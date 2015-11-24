@@ -1,6 +1,6 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT || process.env.OPENSHIFT_NODEJS_PORT  || 8080;
 //var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.8';
+var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.8' || '127.0.0.1';
 
 var express = require('express');
 var server;
@@ -13,8 +13,25 @@ var User = require('./common/models').User;
 // Grab any arguments that are passed in.
 var argv = require('optimist').argv;
 
+var newsFromPanel = '';
+fs = require('fs')
+fs.readFile('/home/division/public_html/fromAdminPanel.php', 'utf8', function (err,data) {
+  if (err) {
+    return console.log(err);
+  }
+  newsFromPanel = data;
+  console.log(data);
+  
+});
+
+
 // Setup a very simple express application.
 app = express();
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
+
 // Allow cross origin requests.
 app.use(function(req, res, next) {
     var origin = '*';
@@ -75,7 +92,9 @@ io.sockets.on('connection', function (socket) {
             console.log('server listen on action ');
             console.log("data log from server:"+data);
             //io.sockets.emit('left', { action: 'left' });
-            socket.broadcast.emit('left', { action: 'left' });
+            //socket.broadcast.emit('left', { action: 'left' });
+            socket.broadcast.emit('news-calcio', { action: 'news-calcio' });
+            
 	});
 
 	socket.on('right', function(data){
