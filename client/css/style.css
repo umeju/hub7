@@ -6,7 +6,7 @@
     iframe, .carousel-caption {
         display: none;
     }
-    
+
     .red_background{
         font-size: medium;
     }
@@ -19,7 +19,23 @@
         position: relative;
         margin-top: 5px;
     }
-    
+    #right.img-circle{
+        width: 33%;
+        float: left;
+        display: inline-block;
+    }
+
+    #left.img-circle{
+        width: 33%;
+        float: left;
+        display: inline-block;
+    }
+    #stop.img-circle{
+        width: 33%;
+        float: left;
+        display: inline-block;
+    }
+
 }
 
 .my_carousel {
@@ -45,18 +61,8 @@
 .img-circle{
     border-radius: 0;
 }
-#right.img-circle{
-    width: 33%;
-    float: left;
-}
-
-#left.img-circle{
-    width: 33%;
-    float: left;
-}
-#stop.img-circle{
-    width: 33%;
-    float: left;
+.img-circle{
+    display: none;
 }
 
 .glyphicon{

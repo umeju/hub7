@@ -100,11 +100,11 @@ io.sockets.on('connection', function (socket) {
             socket.broadcast.emit('right', { action: 'right' });
 	});
         
-        socket.on('stop', function(data){
+        socket.on('changeNewsCategory', function(data){
             console.log('server listen on action ');
             console.log("data log from server:"+data);
             //io.sockets.emit('right', { action: 'right' });
-            socket.broadcast.emit('stop', { action: 'stop' });
+            socket.broadcast.emit('changeNewsCategory', { action: 'changeNewsCategory' });
 	});
         /*
          * new page in verardi folder

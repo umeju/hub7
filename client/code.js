@@ -12,8 +12,7 @@ $(document).ready(function () {
      * 
      */
     $('<iframe>', {
-        //src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=1&loop=1',
-        src: 'https://www.youtube.com/embed/YQHsXMglC9A?list=PLFgquLnL59amLh5g4ZZoSl1Wf9e0_rco7&autoplay=0&loop=1',
+        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=1&loop=1',
         id:  'myFrame',
         frameborder: 0,
         scrolling: 'no',
@@ -80,6 +79,23 @@ $(document).ready(function () {
     $('#left').click(function (){
         oneLess();
     });
+    
+    
+    $('#stop').click(function (){
+        changeNewsCategory();
+    });
+    var flag = true;
+    function changeNewsCategory(){
+        if(flag){
+            $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=gossip');
+            $('.newsCategory').text("NEWS: GOSSIP");
+            flag = !flag;
+        } else {
+            $('#myFrame2').attr('src','http://www.di-vision.org/news');
+            $('.newsCategory').text("NEWS: ULTIM'ORA");
+            flag = !flag;
+        }
+    }
     // move 1 pic back
     function oneLess(){
         clearInterval(countFunc);
@@ -132,16 +148,23 @@ $(document).ready(function () {
             $("a.control_next").trigger("click");
             $(".glyphicon-chevron-right").trigger("click");
             */
-            stopSlide();
+            //stopSlide();
         });
         
         /*
          * INTERAZIONE PER NEWS
          */
+        
+        socket.on('changeNewsCategory', function (data) {
+            changeNewsCategory();
+        });
+        
         socket.on('news-calcio', function (data) {
             console.log('news calcio clicked');
             $('#myFrame2').attr('src',_CALCIO_URL);
         });
+        
+        
         
         socket.on('news-ultimora', function (data) {
             console.log('news calcio clicked');
@@ -185,7 +208,7 @@ $(document).ready(function () {
         console.log('stop clicked!');
         
         //$( "a.control_prev" ).trigger( "click" );
-        socket.emit('stop', {action: 'stop'});
+        socket.emit('changeNewsCategory', {action: 'changeNewsCategory'});
     });
     /*
     $('#checkbox').change(function () {

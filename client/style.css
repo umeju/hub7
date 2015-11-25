@@ -178,7 +178,7 @@ a.control_next {
     font-size: 25px;
     font-stretch: expanded;
     font-weight: bolder !important;
-    padding: 10px;
+    padding: 5px;
     margin-top: 0 !important;
     border-radius: 10px;
     position: relative;
@@ -260,4 +260,17 @@ a.control_next {
     text-shadow: 1px 1px 2px white;
     /* text-transform: uppercase; */
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.newsCategory {
+    position: absolute;
+    width: 307px;
+    height: 59px;
+    float: right;
+    padding: 0;
+    font-size: 28px;
+    font-weight: bold;
+    bottom: 92px;
+    right: 19px;
+    color: white;
+    z-index: 9999;
 }
