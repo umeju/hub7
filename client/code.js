@@ -12,7 +12,8 @@ $(document).ready(function () {
      * 
      */
     $('<iframe>', {
-        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
+        //src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=1&loop=1',
+        src: 'https://www.youtube.com/embed/YQHsXMglC9A?list=PLFgquLnL59amLh5g4ZZoSl1Wf9e0_rco7&autoplay=0&loop=1',
         id:  'myFrame',
         frameborder: 0,
         scrolling: 'no',
