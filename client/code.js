@@ -114,7 +114,7 @@ $(document).ready(function () {
             $("a.control_prev").trigger("click");
             $(".glyphicon-chevron-left").trigger("click");
             */
-            oneMore()();
+            oneLess()();
         });
 
         socket.on('right', function (data) {
