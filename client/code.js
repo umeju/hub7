@@ -1,13 +1,42 @@
-$(document).ready(function () {    
+$(document).ready(function () {
     /*
      * cambiare src iframe al click da cell:
      * $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php')
      * 
      */
+    $('<iframe>', {
+        src: 'https://www.youtube.com/embed/YQHsXMglC9A?list=PLFgquLnL59amLh5g4ZZoSl1Wf9e0_rco7&autoplay=0&loop=1',
+        id:  'myFrame',
+        frameborder: 0,
+        scrolling: 'no',
+        width: 600,
+        height: 450
+    }).prependTo('#iframeContainer');
+    
+    $('<iframe>', {
+        src: 'http://www.di-vision.org/news/',
+        id:  'myFrame2',
+        class: 'iframes',
+        frameborder: 0,
+        scrolling: 'no'
+    }).prependTo('.iframe-wrapper');
+    
     
     var _AGGIORNAMENTO_NEWS = 18000;
+    var _TIMEOUT_TIME = 12000;
+    /*
+    var _ULTIMORA_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=ultimora';
+    var _TECH_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=tech';
+    var _GOSSIP_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=gossip';
+    var _CALCIO_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=calcio';
+    */
+    var _ULTIMORA_URL = 'http://www.di-vision.org/news/index.php?news=ultimora';
+    var _TECH_URL = 'http://www.di-vision.org/news/index.php?news=tech';
+    var _GOSSIP_URL = 'http://www.di-vision.org/news/index.php?news=gossip';
+    var _SPORT_URL = 'http://www.di-vision.org/news/index.php?news=sport';
     
-    var _TECH_URL = 'http://www.di-vision.org/getFeedUltimora.php';
+    
+    
     var count = 0;
     var countFunc = null;
     
@@ -15,21 +44,20 @@ $(document).ready(function () {
         if(countFunc !== null) return;
         if(cmd === "start"){
             countFunc = setInterval(function () {
-            count += 1;
-            if (count > $('.notizia').length) {
-                count = 0;
-            }
-            loopNews();
-        }, _AGGIORNAMENTO_NEWS);
-        }else{ // stop
+                count += 1;
+                if (count > $('.notizia').length) {
+                    count = 0;
+                }
+                loopNews();
+            }, _AGGIORNAMENTO_NEWS);
+            
+        } else { // stop
             setTimeout(function(){
                 runInterval("start");
-            }, 12000);
+            }, _TIMEOUT_TIME);
         }
-        //if (countFunc !== null) return;
-        
     }
-//    countFunc = null;
+    
     runInterval("start");
 
     function loopNews(){
@@ -91,7 +119,7 @@ $(document).ready(function () {
             $(".glyphicon-chevron-right").trigger("click");
             */
             slideToRight();
-            oneMore()()
+            oneMore();
         });
         
         socket.on('stop', function (data) {
@@ -108,18 +136,25 @@ $(document).ready(function () {
          */
         socket.on('news-calcio', function (data) {
             console.log('news calcio clicked');
-            $('iframe').attr('src',_CALCIO_URL);
+            $('#myFrame2').attr('src',_CALCIO_URL);
         });
         
         socket.on('news-ultimora', function (data) {
             console.log('news calcio clicked');
-            $('iframe').attr('src',_TECH_URL);
+            $('#myFrame2').attr('src',_ULTIMORA_URL);
         });
         
         socket.on('news-gossip', function (data) {
             console.log('news calcio clicked');
-            $('iframe').attr('src',_GOSSIP_URL);
+            $('#myFrame2').attr('src',_GOSSIP_URL);
         });
+        
+        socket.on('news-tech', function (data) {
+            console.log('news calcio clicked');
+            $('#myFrame2').attr('src',_TECH_URL);
+            console(_TECH_URL);
+        });
+        
         // export
         exports.socket = socket;
     })(window);
@@ -128,15 +163,15 @@ $(document).ready(function () {
     $('#left').on('click', function (e) {
         console.log('click on left! emit left');
         //$( "a.control_next" ).trigger( "click" );
-        socket.emit('left', {action: 'left'});
-        $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index1.php')
+        socket.emit('news-tech', {action: 'news-tech'}); //send to js server 
+        $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=gossip')
     });
 
     $('#right').on('click', function (e) {
         console.log('click on right! emit right');
         //$( "a.control_prev" ).trigger( "click" );
         socket.emit('right', {action: 'right'});
-        $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php');
+        $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=tech');
     });
     
     $('#stop').on('click', function (e) {

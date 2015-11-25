@@ -1,4 +1,5 @@
 //var t=0 , dd, aa;
+
 var items = $('.news-from-control-panel');
 
 var TIME_TO_CHANGE_TOP_RIGHT_IMAGE = 35000;
@@ -7,7 +8,7 @@ var SLEEP_TIME = 6000;
 var stopFlag = true;
 var $images = $('.my_inner').find('.my_image');
 var NUM_OF_IMAGE = $('.my_inner > div').length;
-
+/*
 function showByIndex(currentImg){
     $($images[currentImg]).fadeIn('slow');
     $($images[currentImg]).addClass('activate');
@@ -57,3 +58,4 @@ $('#right').on('click', function (e) {
 });
 
 
+*/

@@ -147,8 +147,6 @@ a.control_next {
     position: fixed;
     width: 101%;
     line-height: 1.2;
-    //background: url('http://www.nibong.ac.th/kb/57/24suphawet/job4-supawesh--polawet/bg/bg_02.png');
-    
 }
 .scroll_text {
     font-family: "Tahoma", Geneva, sans-serif;
@@ -157,6 +155,7 @@ a.control_next {
     text-align: left;
     margin-top: 15px;
     line-height: 1;
+    list-style-type: square;
 }
 
 #scroll_text {
