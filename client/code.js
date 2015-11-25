@@ -3,9 +3,16 @@ $(document).ready(function () {
      * cambiare src iframe al click da cell:
      * $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php')
      * 
+     * 
+     * <iframe width="560" height="315" 
+     *  src="https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H" 
+     *  frameborder="0" allowfullscreen>
+     * </iframe>
+     * 
+     * 
      */
     $('<iframe>', {
-        src: 'https://www.youtube.com/embed/YQHsXMglC9A?list=PLFgquLnL59amLh5g4ZZoSl1Wf9e0_rco7&autoplay=0&loop=1',
+        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
         id:  'myFrame',
         frameborder: 0,
         scrolling: 'no',
@@ -34,8 +41,6 @@ $(document).ready(function () {
     var _TECH_URL = 'http://www.di-vision.org/news/index.php?news=tech';
     var _GOSSIP_URL = 'http://www.di-vision.org/news/index.php?news=gossip';
     var _SPORT_URL = 'http://www.di-vision.org/news/index.php?news=sport';
-    
-    
     
     var count = 0;
     var countFunc = null;
@@ -108,7 +113,6 @@ $(document).ready(function () {
             $("a.control_prev").trigger("click");
             $(".glyphicon-chevron-left").trigger("click");
             */
-            slideToLeft();
             oneMore()();
         });
 
@@ -118,7 +122,6 @@ $(document).ready(function () {
             $("a.control_next").trigger("click");
             $(".glyphicon-chevron-right").trigger("click");
             */
-            slideToRight();
             oneMore();
         });
         
@@ -163,15 +166,18 @@ $(document).ready(function () {
     $('#left').on('click', function (e) {
         console.log('click on left! emit left');
         //$( "a.control_next" ).trigger( "click" );
-        socket.emit('news-tech', {action: 'news-tech'}); //send to js server 
-        $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=gossip')
+        
+        socket.emit('left', {action: 'left'});
+        //socket.emit('news-tech', {action: 'news-tech'}); //send to js server 
+        //$('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=gossip')
     });
 
     $('#right').on('click', function (e) {
         console.log('click on right! emit right');
         //$( "a.control_prev" ).trigger( "click" );
+        
         socket.emit('right', {action: 'right'});
-        $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=tech');
+        //$('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=tech');
     });
     
     $('#stop').on('click', function (e) {
@@ -208,49 +214,27 @@ $(document).ready(function () {
 
     function moveLeft() {
         $(".glyphicon-chevron-left").trigger("click");
-
+        /*
         $('#slider ul').animate({
             left: +slideWidth
         }, 200, function () {
             $('#slider ul li:last-child').prependTo('#slider ul');
             $('#slider ul').css('left', '');
-        });
+        });*/
     };
 
     function moveRight() {
+        
         $(".glyphicon-chevron-right").trigger("click");
-
+        /*
         $('#slider ul').animate({
             left: -slideWidth
         }, 200, function () {
             $('#slider ul li:first-child').appendTo('#slider ul');
             $('#slider ul').css('left', '');
-        });
+        });*/
     };
-//TODO: nuovo slide action con criterio usato per immagini .eq(index)
-    function slideToLeft() {
-        
-        $shownImg = $('.my_image').parent().find('.activate');
-        $shownImg.hide();
-        $shownImg.removeClass('activate');
-        if ($shownImg.next()[0] !== undefined) {
-            $shownImg.next().fadeIn().addClass('activate');
-        } else {
-            showByIndex(0);
-        }
-    }
 
-    function slideToRight() {
-        
-        $shownImg = $('.my_image').parent().find('.activate');
-        $shownImg.hide();
-        $shownImg.removeClass('activate');
-        if ($shownImg.prev()[0] !== undefined) {
-            $shownImg.prev().fadeIn().addClass('activate');
-        } else {
-            showByIndex(2);
-        }
-    }
     
     function stopSlide() {
         stopStartFlag();

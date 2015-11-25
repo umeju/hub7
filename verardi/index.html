@@ -199,7 +199,7 @@
             count = 0;
             $.each(data.sites, function (key, val) {
                 //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                if(val.titolo != ''){ // avoid empty news
+                if(val.titolo !== ''){ // avoid empty news
                     items.push(
                         "<div class='notizia'>"
                         + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
@@ -215,7 +215,7 @@
             //nascondo tutto e mostro la prima notizia
             $('.my_inner > *').hide();
             // use eq(count-2) coz the first element is empty
-            $('.my_inner > *').eq(count-2).show();
+            $('.my_inner > *').eq(1).show();
         }
 
         function getNews(urlAddress) {

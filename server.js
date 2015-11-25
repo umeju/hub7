@@ -15,14 +15,15 @@ var argv = require('optimist').argv;
 
 var newsFromPanel = '';
 fs = require('fs')
+/*
 fs.readFile('/home/division/public_html/fromAdminPanel.php', 'utf8', function (err,data) {
   if (err) {
     return console.log(err);
   }
   newsFromPanel = data;
   console.log(data);
-  
 });
+*/
 
 // Setup a very simple express application.
 app = express();
@@ -87,8 +88,8 @@ io.sockets.on('connection', function (socket) {
             console.log('server listen on action ');
             console.log("data log from server:"+data);
             //io.sockets.emit('left', { action: 'left' });
-            //socket.broadcast.emit('left', { action: 'left' });
-            socket.broadcast.emit('news-calcio', { action: 'news-calcio' });
+            socket.broadcast.emit('left', { action: 'left' });
+            //socket.broadcast.emit('news-calcio', { action: 'news-calcio' });
             
 	});
 
