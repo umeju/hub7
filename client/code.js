@@ -23,7 +23,7 @@ $(document).ready(function () {
      */
     
     $('<iframe>', {
-        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
+        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=1&loop=1',
         id:  'myFrame',
         class: 'visible-sm-myFrame',
         frameborder: 0,

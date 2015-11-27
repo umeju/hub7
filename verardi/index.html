@@ -116,28 +116,19 @@
                                  src="http://www.hubanero.it/images/news.gif" 
                                  class="img-circle" />
                         </div>
-                        
-                        
+                                                
                         <div class="col-md-4">
                             <img id="right" alt="Preview" 
                                  src="/common/img/right_arrow_sign.png" 
                                  class="img-circle" />
                         </div>
-                        
-                    </div>                    
-
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="my_carousel">
-                        <div class="" id="carousel-859806">	
-                            
-                            
-                            
+                        <div class="" id="carousel-859806">
                             <!-- GENERATED NEWS CODE -->
                             <div class="my_inner"></div>
-                            
-                            
-                            
                             <!--a class="" href="#" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a> 
@@ -159,10 +150,7 @@
                         called in code.js with jquery 
                         iframe src="http://www.di-vision.org/news" 
                                 id="myFrame2" class="iframes" frameborder="0" scrolling="no">
-                        
                         </iframe-->
-
-
                     </div>
                 </div>
             </div>
@@ -172,10 +160,6 @@
         <!--script src="/client/js/scripts.js"></script-->
         <!-- DATE JS-->
         <script>
-            
-            /*
-             * data top right
-             */
             var d = new Date();
             var month = d.getMonth() + 1;
             var day = d.getDate();
@@ -188,29 +172,6 @@
         
         var i = 9;
         var items = [];
-        /*
-        switch(testVar){
-            case 'tech':
-                var url = 'http://www.di-vision.org/feedOpenshift.php?news=tech&callback=?';
-                break;
-            
-            case 'ultimora':
-                var url = 'http://www.di-vision.org/feedOpenshift.php?news=ultimora&callback=?';
-                break;
-            
-            case 'tech':
-                var url = 'http://www.di-vision.org/feedOpenshift.php?news=tech&callback=?';
-                break;
-            case 'gossip':
-                $url_flux_rss = 'http://www.rssnews.it/feed/gossip';
-                break;
-            default:
-                //var url = 'http://www.di-vision.org/feedOpenshift.php?news=ultimora&callback=?';
-                var url = 'http://www.di-vision.org/getNews.php?content_type=bottom_news&callback=?';
-                break;
-        }
-        
-        */
         
     var url = 'http://www.di-vision.org/getNews.php?content_type=my_news&callback=?';
         getNews(url);
@@ -242,7 +203,6 @@
         }
 
         function getNews(urlAddress) {
-
             $.ajax({
                 type: 'GET',
                 url: url,
