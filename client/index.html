@@ -7,7 +7,6 @@
 
         <title>hubanero chatty client</title>
 
-        <link href="/client/style.css" rel="stylesheet"/>
         <link href="/client/css/bootstrap.min.css" rel="stylesheet">
         <link href="/client/css/style.css" rel="stylesheet">
         
@@ -65,7 +64,7 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <div class="js-date"></div>
+                    <div class="js-date visible-lg"></div>
 
                     <div class="logoframe">
                         <div class="hublogo">
@@ -76,13 +75,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6" id="iframeContainer">
 
+                <div class="hidden-lg">
+                    <h4>Scegli tu le notizie che vuoi leggere!
+                        <span class="actualNews label label-default"></span>
+                    </h4>
+                    <select class="form-control col-sm-offset-2 btn btn-default dropdown-toggle my-select">
+                        <option>ULTIM'ORA</option>
+                        <option>SPORT</option>
+                        <option>HI-TECH</option>
+                        <option>OROSCOPO</option>
+                        <option>GOSSIP</option>
+                    </select>
+
+                    <hr>
+                </div>
+                
+                <div class="col-md-6" id="iframeContainer">
+      
                     <!--div class="tube">
                         <iframe width="600" height="450" 
                                 src="https://www.youtube.com/embed/1w7OgIMMRc4?list=PLP4CGQEPAJPJbZOnCv7MgdWSoZzeaqBpm&autoplay=1&loop=1" 
                                 frameborder="0" allowfullscreen></iframe>
-                    </div-->
+                    </div>
                     
                     <!--iframe width="320" height="240" class='playlist'
                             src="https://www.youtube.com/embed/YQHsXMglC9A?list=PLFgquLnL59amLh5g4ZZoSl1Wf9e0_rco7&autoplay=0&loop=1" 
@@ -95,16 +110,20 @@
                                  src="/common/img/left_arrow_sign.png" 
                                  class="img-circle" />
                         </div>
+                        
+                        <div class="col-md-4">
+                            <img id="stop" alt="Preview" 
+                                 src="http://www.hubanero.it/images/news.gif" 
+                                 class="img-circle" />
+                        </div>
+                        
+                        
                         <div class="col-md-4">
                             <img id="right" alt="Preview" 
                                  src="/common/img/right_arrow_sign.png" 
                                  class="img-circle" />
                         </div>
-                        <div class="col-md-4">
-                            <img id="stop" alt="Preview" 
-                                 src="/common/img/suremote-universal-remote-8-l-140x140.png" 
-                                 class="img-circle" />
-                        </div>
+                        
                     </div>                    
 
                 </div>
@@ -119,26 +138,31 @@
                             
                             
                             
-                            <a class="" href="#" data-slide="prev">
+                            <!--a class="" href="#" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a> 
                             <a class="" href="#" data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
+                            </a-->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="id3">
+                <div class="newsCategory">
+                    NEWS: ULTIMORA
+                </div>
                 <div class="col-md-12">
                     <!-- use class allNews to visualize news from the web -->
                     <div class="iframe-wrapper">
-                        <iframe src="http://www.di-vision.org/news" 
+                        <!--
+                        called in code.js with jquery 
+                        iframe src="http://www.di-vision.org/news" 
                                 id="myFrame2" class="iframes" frameborder="0" scrolling="no">
                         
-                        </iframe>
-                        
-        
+                        </iframe-->
+
+
                     </div>
                 </div>
             </div>
@@ -148,6 +172,7 @@
         <!--script src="/client/js/scripts.js"></script-->
         <!-- DATE JS-->
         <script>
+            
             /*
              * data top right
              */
@@ -158,7 +183,6 @@
             var output = (('' + day).length < 2 ? '0' : '') + day + ' - ' +
                     (('' + month).length < 2 ? '0' : '') + month + ' - ' +
                     d.getFullYear();
-
             $('.js-date').html(output);
             
         
@@ -187,7 +211,8 @@
         }
         
         */
-        var url = 'http://www.di-vision.org/getNews.php?content_type=my_news&callback=?';
+        
+    var url = 'http://www.di-vision.org/getNews.php?content_type=my_news&callback=?';
         getNews(url);
         
         function jsonCallback(data) {
@@ -234,6 +259,7 @@
                 }
             });
         };
+        
     </script>
     </body>
 </html>

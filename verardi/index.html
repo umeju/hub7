@@ -7,7 +7,6 @@
 
         <title>hubanero chatty client</title>
 
-        <link href="/client/style.css" rel="stylesheet"/>
         <link href="/client/css/bootstrap.min.css" rel="stylesheet">
         <link href="/client/css/style.css" rel="stylesheet">
         
@@ -65,7 +64,7 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <div class="js-date"></div>
+                    <div class="js-date visible-lg"></div>
 
                     <div class="logoframe">
                         <div class="hublogo">
@@ -76,36 +75,52 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6" id="iframeContainer">
 
+                <div class="hidden-lg">
+                    <h4>Scegli tu le notizie che vuoi leggere!
+                        <span class="actualNews label label-default"></span>
+                    </h4>
+                    <select class="form-control col-sm-offset-2 btn btn-default dropdown-toggle my-select">
+                        <option>ULTIM'ORA</option>
+                        <option>SPORT</option>
+                        <option>HI-TECH</option>
+                        <option>OROSCOPO</option>
+                        <option>GOSSIP</option>
+                    </select>
+
+                    <hr>
+                </div>
+                
+                <div class="col-md-6" id="iframeContainer">
+      
                     <!--div class="tube">
                         <iframe width="600" height="450" 
                                 src="https://www.youtube.com/embed/1w7OgIMMRc4?list=PLP4CGQEPAJPJbZOnCv7MgdWSoZzeaqBpm&autoplay=1&loop=1" 
                                 frameborder="0" allowfullscreen></iframe>
                     </div>
                     
-                    <iframe width="600" height="450" class='playlist'
-                            src="https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=1&loop=1" 
+                    <!--iframe width="320" height="240" class='playlist'
+                            src="https://www.youtube.com/embed/YQHsXMglC9A?list=PLFgquLnL59amLh5g4ZZoSl1Wf9e0_rco7&autoplay=0&loop=1" 
                             frameborder="0" allowfullscreen>
                     </iframe-->
                     
                     <div class="row" id="nav-arrows">
-                        
                         <div class="col-md-4">
-                            <img id="left" alt="Image Preview" 
+                            <img id="left" alt="Preview" 
                                  src="/common/img/left_arrow_sign.png" 
                                  class="img-circle" />
                         </div>
                         
                         <div class="col-md-4">
-                            <img id="right" alt="Image Preview" 
-                                 src="/common/img/right_arrow_sign.png" 
+                            <img id="stop" alt="Preview" 
+                                 src="http://www.hubanero.it/images/news.gif" 
                                  class="img-circle" />
                         </div>
                         
+                        
                         <div class="col-md-4">
-                            <img id="stop" alt="Image Preview" 
-                                 src="http://www.hubanero.it/images/news.gif" 
+                            <img id="right" alt="Preview" 
+                                 src="/common/img/right_arrow_sign.png" 
                                  class="img-circle" />
                         </div>
                         
@@ -115,49 +130,49 @@
                 <div class="col-md-6">
                     <div class="my_carousel">
                         <div class="" id="carousel-859806">	
-                            <!-- GENERATED NEWS CODE -->
-                            <div class="my_inner">
-                                
-
-                                <!--div id="my_image_0" class="my_image">
-                                    <img class="carousel_img" src="/common/img/1.jpg" />
-                                </div>
-
-                                <div id="my_image_4" class="my_image">
-                                    <img class="carousel_img" src="/common/img/5.jpg" />
-                                </div-->
-
-                            </div>
                             
-                            <a class="" href="#" data-slide="prev">
+                            
+                            
+                            <!-- GENERATED NEWS CODE -->
+                            <div class="my_inner"></div>
+                            
+                            
+                            
+                            <!--a class="" href="#" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a> 
                             <a class="" href="#" data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
+                            </a-->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="id3">
                 <div class="newsCategory">
-                           NEWS: ULTIM'ORA
-                        </div>
+                    NEWS: ULTIMORA
+                </div>
                 <div class="col-md-12">
-                    
                     <!-- use class allNews to visualize news from the web -->
                     <div class="iframe-wrapper">
+                        <!--
+                        called in code.js with jquery 
+                        iframe src="http://www.di-vision.org/news" 
+                                id="myFrame2" class="iframes" frameborder="0" scrolling="no">
                         
-                        
+                        </iframe-->
+
+
                     </div>
                 </div>
             </div>
         </div>
 
         <script src="/client/js/bootstrap.min.js"></script>
-        <script src="/client/js/scripts.js"></script>
+        <!--script src="/client/js/scripts.js"></script-->
         <!-- DATE JS-->
         <script>
+            
             /*
              * data top right
              */
@@ -168,11 +183,9 @@
             var output = (('' + day).length < 2 ? '0' : '') + day + ' - ' +
                     (('' + month).length < 2 ? '0' : '') + month + ' - ' +
                     d.getFullYear();
-
             $('.js-date').html(output);
             
-        </script>
-        <script>
+        
         var i = 9;
         var items = [];
         /*
@@ -198,7 +211,8 @@
         }
         
         */
-        var url = 'http://www.di-vision.org/getNews.php?content_type=my_news&callback=?';
+        
+    var url = 'http://www.di-vision.org/getNews.php?content_type=my_news&callback=?';
         getNews(url);
         
         function jsonCallback(data) {
@@ -208,7 +222,7 @@
             count = 0;
             $.each(data.sites, function (key, val) {
                 //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                if(val.titolo !== ''){ // avoid empty news
+                if(val.titolo != ''){ // avoid empty news
                     items.push(
                         "<div class='notizia'>"
                         + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
@@ -224,7 +238,7 @@
             //nascondo tutto e mostro la prima notizia
             $('.my_inner > *').hide();
             // use eq(count-2) coz the first element is empty
-            $('.my_inner > *').eq(1).show();
+            $('.my_inner > *').eq(count-2).show();
         }
 
         function getNews(urlAddress) {
@@ -245,6 +259,7 @@
                 }
             });
         };
+        
     </script>
     </body>
 </html>

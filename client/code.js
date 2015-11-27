@@ -1,4 +1,14 @@
 $(document).ready(function () {
+    
+    $("select.my-select").change(function(){
+        var category = $(".my-select option:selected").val();
+        console.log("You have selected the country - " + category);
+        //changeNewsCategory(category);
+        socket.emit('changeNews', {action: category});
+    });
+    
+    
+    
     /*
      * cambiare src iframe al click da cell:
      * $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php')
@@ -11,9 +21,11 @@ $(document).ready(function () {
      * 
      * 
      */
+    
     $('<iframe>', {
-        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=1&loop=1',
+        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
         id:  'myFrame',
+        class: 'visible-sm-myFrame',
         frameborder: 0,
         scrolling: 'no',
         width: 600,
@@ -23,7 +35,7 @@ $(document).ready(function () {
     $('<iframe>', {
         src: 'http://www.di-vision.org/news/',
         id:  'myFrame2',
-        class: 'iframes',
+        class: 'iframes visible-sm-iframes',
         frameborder: 0,
         scrolling: 'no'
     }).prependTo('.iframe-wrapper');
@@ -44,6 +56,8 @@ $(document).ready(function () {
     
     var count = 0;
     var countFunc = null;
+    
+    //var newCatArray = new Array("ultimora","sport","tech","gossip","locale");
     
     function runInterval(cmd) {
         if(countFunc !== null) return;
@@ -80,21 +94,17 @@ $(document).ready(function () {
         oneLess();
     });
     
-    
     $('#stop').click(function (){
-        changeNewsCategory();
+        
     });
-    var flag = true;
-    function changeNewsCategory(){
-        if(flag){
-            $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=gossip');
-            $('.newsCategory').text("NEWS: GOSSIP");
-            flag = !flag;
-        } else {
-            $('#myFrame2').attr('src','http://www.di-vision.org/news');
-            $('.newsCategory').text("NEWS: ULTIM'ORA");
-            flag = !flag;
-        }
+    
+    function changeNewsCategory(newsCategory){
+        $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=' +
+                newsCategory);
+        $('.newsCategory').text("NEWS: " + newsCategory);
+        $('.actualNews').text(newsCategory);
+        $('.actualNews').show();
+        
     }
     // move 1 pic back
     function oneLess(){
@@ -121,50 +131,52 @@ $(document).ready(function () {
         loopNews();
     }
     
+    $('#left').on('click', function (e) {
+        console.log('click on left! emit left');
+        socket.emit('left', {action: 'left'});
+    });
+
+    $('#right').on('click', function (e) {
+        console.log('click on right! emit right');
+        socket.emit('right', {action: 'right'});
+    });
+    
+    $('#stop').on('click', function (e) {
+        console.log('stop clicked!');
+    });
+    
+    /*
+    $('#checkbox').change(function () {
+        setInterval(function () {
+            moveRight();
+        }, 6000);
+    });*/
+    
     (function (exports){
         var socket = io.connect(socketURI);
 
         socket.on('left', function (data) {
             console.log('codejs client slide to left');
-            /*console.log("data log from client:" + data);
-            $("a.control_prev").trigger("click");
-            $(".glyphicon-chevron-left").trigger("click");
-            */
-            oneLess()();
+            oneLess();
         });
 
         socket.on('right', function (data) {
             console.log('codejs client  slide to right');
-            /*console.log("data log from client:" + data);
-            $("a.control_next").trigger("click");
-            $(".glyphicon-chevron-right").trigger("click");
-            */
             oneMore();
         });
         
         socket.on('stop', function (data) {
             console.log('client code l-92: stop/start');
-            /*console.log("data log from client:" + data);
-            $("a.control_next").trigger("click");
-            $(".glyphicon-chevron-right").trigger("click");
-            */
-            //stopSlide();
         });
         
+        socket.on('changeNews', function (data) {
+            changeNewsCategory(data);
+        });
         /*
-         * INTERAZIONE PER NEWS
-         */
-        
-        socket.on('changeNewsCategory', function (data) {
-            changeNewsCategory();
-        });
-        
         socket.on('news-calcio', function (data) {
             console.log('news calcio clicked');
             $('#myFrame2').attr('src',_CALCIO_URL);
         });
-        
-        
         
         socket.on('news-ultimora', function (data) {
             console.log('news calcio clicked');
@@ -180,88 +192,10 @@ $(document).ready(function () {
             console.log('news calcio clicked');
             $('#myFrame2').attr('src',_TECH_URL);
             console(_TECH_URL);
-        });
+        });*/
         
         // export
         exports.socket = socket;
     })(window);
-    
-
-    $('#left').on('click', function (e) {
-        console.log('click on left! emit left');
-        //$( "a.control_next" ).trigger( "click" );
-        
-        socket.emit('left', {action: 'left'});
-        //socket.emit('news-tech', {action: 'news-tech'}); //send to js server 
-        //$('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=gossip')
-    });
-
-    $('#right').on('click', function (e) {
-        console.log('click on right! emit right');
-        //$( "a.control_prev" ).trigger( "click" );
-        
-        socket.emit('right', {action: 'right'});
-        //$('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=tech');
-    });
-    
-    $('#stop').on('click', function (e) {
-        console.log('stop clicked!');
-        
-        //$( "a.control_prev" ).trigger( "click" );
-        socket.emit('changeNewsCategory', {action: 'changeNewsCategory'});
-    });
-    /*
-    $('#checkbox').change(function () {
-        setInterval(function () {
-            moveRight();
-        }, 6000);
-    });*/
-
-    var slideCount = $('#slider ul li').length;
-    var slideWidth = $('#slider ul li').width();
-    var slideHeight = $('#slider ul li').height();
-    var sliderUlWidth = slideCount * slideWidth;
-
-    $('#slider').css({width: slideWidth, height: slideHeight});
-
-    $('#slider ul').css({width: sliderUlWidth, marginLeft: -slideWidth});
-
-    $('#slider ul li:last-child').prependTo('#slider ul');
-
-    $('#left').click(function () {
-        moveLeft();
-    });
-
-    $('#right').click(function () {
-        moveRight();
-    });
-
-    function moveLeft() {
-        $(".glyphicon-chevron-left").trigger("click");
-        /*
-        $('#slider ul').animate({
-            left: +slideWidth
-        }, 200, function () {
-            $('#slider ul li:last-child').prependTo('#slider ul');
-            $('#slider ul').css('left', '');
-        });*/
-    };
-
-    function moveRight() {
-        
-        $(".glyphicon-chevron-right").trigger("click");
-        /*
-        $('#slider ul').animate({
-            left: -slideWidth
-        }, 200, function () {
-            $('#slider ul li:first-child').appendTo('#slider ul');
-            $('#slider ul').css('left', '');
-        });*/
-    };
-
-    
-    function stopSlide() {
-        stopStartFlag();
-    }
 });
 

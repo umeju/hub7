@@ -61,7 +61,7 @@ app.use('/common', express.static(__dirname + '/common'));
 app.get('/', function(req, res) {
     res.sendfile(__dirname + '/client/index.html');
 });
-
+// VERARDI PAGE
 app.get('/verardi', function(req, res) {
     res.sendfile(__dirname + '/verardi/index.html');
 });
@@ -85,48 +85,29 @@ io.sockets.on('connection', function (socket) {
     // The username for this socket.
 
 	socket.on('left', function(data){
-            console.log('server listen on action ');
             console.log("data log from server:"+data);
             //io.sockets.emit('left', { action: 'left' });
             socket.broadcast.emit('left', { action: 'left' });
-            //socket.broadcast.emit('news-calcio', { action: 'news-calcio' });
-            
 	});
 
 	socket.on('right', function(data){
-            console.log('server listen on action ');
             console.log("data log from server:"+data);
             //io.sockets.emit('right', { action: 'right' });
             socket.broadcast.emit('right', { action: 'right' });
 	});
         
-        socket.on('changeNewsCategory', function(data){
-            console.log('server listen on action ');
+        socket.on('changeNews', function(data){
             console.log("data log from server:"+data);
             //io.sockets.emit('right', { action: 'right' });
-            socket.broadcast.emit('changeNewsCategory', { action: 'changeNewsCategory' });
+            socket.broadcast.emit('changeNews', data.action);
 	});
         /*
          * new page in verardi folder
-         */
-	socket.on('left_verardi', function(data){
-            console.log('server listen on action ');
-            console.log("data log from server:"+data);
-            //io.sockets.emit('left', { action: 'left' });
-            socket.broadcast.emit('left_verardi', { action: 'left' });
-	});
-
-	socket.on('right_verardi', function(data){
-            console.log('server listen on action ');
-            console.log("data log from server:"+data);
-            //io.sockets.emit('right', { action: 'right' });
-            socket.broadcast.emit('right_verardi', { action: 'right_verardi' });
-	});
-        
+         
         socket.on('stop_verardi', function(data){
             console.log('server listen on action ');
             console.log("data log from server:"+data);
             //io.sockets.emit('right', { action: 'right' });
             socket.broadcast.emit('stop_verardi', { action: 'stop_verardi' });
-	});
+	});*/
 });
