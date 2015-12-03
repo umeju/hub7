@@ -24,18 +24,18 @@
         position: relative;
         margin-top: 5px;
     }
-    #right.img-circle{
+    .right.img-circle{
         width: 33%;
         float: left;
         display: inline-block;
     }
 
-    #left.img-circle{
+    .left.img-circle{
         width: 33%;
         float: left;
         display: inline-block;
     }
-    #stop.img-circle{
+    .stop.img-circle{
         width: 33%;
         float: left;
         display: inline-block;

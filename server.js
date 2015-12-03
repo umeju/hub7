@@ -1,6 +1,6 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT || process.env.OPENSHIFT_NODEJS_PORT  || 8080;
 //var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.8' || '127.0.0.1';
+var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.4' || '127.0.0.1';
 
 var express = require('express');
 var server;
@@ -13,8 +13,9 @@ var User = require('./common/models').User;
 // Grab any arguments that are passed in.
 var argv = require('optimist').argv;
 
-var newsFromPanel = '';
-fs = require('fs')
+var clients = [];
+
+/*/fs = require('fs')
 /*
 fs.readFile('/home/division/public_html/fromAdminPanel.php', 'utf8', function (err,data) {
   if (err) {
@@ -24,7 +25,6 @@ fs.readFile('/home/division/public_html/fromAdminPanel.php', 'utf8', function (e
   console.log(data);
 });
 */
-
 // Setup a very simple express application.
 app = express();
 
@@ -65,6 +65,11 @@ app.get('/', function(req, res) {
 app.get('/verardi', function(req, res) {
     res.sendfile(__dirname + '/verardi/index.html');
 });
+//  MUCCA PAGE
+app.get('/frisenda', function(req, res) {
+    res.sendfile(__dirname + '/frisenda/index.html');
+});
+
 
 // Our express application functions as our main listener for HTTP requests
 // in this example which is why we don't just invoke listen on the app object.
@@ -75,32 +80,130 @@ server.listen(PORT, IPADDRESS);
 io = require('socket.io').listen(server);
 io.configure(function() {
     // Logging: 3 = debug (default), 1 = warn
-    var logLevel = (argv["log-level"] === undefined) ? 3 : argv["log-level"];
+    //var logLevel = (argv["log-level"] === undefined) ? 3 : argv["log-level"];
+    var logLevel = (argv["log-level"] === undefined) ? 1 : argv["log-level"];
     io.set("log level", logLevel);
 });
 
 io.sockets.on('connection', function (socket) {
-
-	console.log("connection!");
     // The username for this socket.
-
-	socket.on('left', function(data){
-            console.log("data log from server:"+data);
+    console.log("connection!");
+    //save the first user
+    //clients.push(socket.id);
+    for(var i=0;i<clients.length;i++){
+        console.log(clients[i]);
+    }
+    //io.sockets.socket(clients[0]).emit("greeting", "user0");
+    
+    var events = {
+        "verardi-left": function(data){
+            console.log('verardi-left, data: '+data);
+            socket.broadcast.emit('verardi-left', data);
+        },
+        "verardi-right": function(data){
+            console.log('verardi-right, data: ' + data);
+            socket.broadcast.emit('verardi-right', data);
+        },
+        
+        "client-right": function(data){
+            console.log('client-right, data: ' + data);
+            socket.broadcast.emit('client-right', data);
+        },
+        "client-left": function(data){
+            console.log('client-left, data: ' + data);
+            socket.broadcast.emit('client-left', data);
+        },
+        
+        "frisenda-right": function(data){
+            console.log('frisenda-right, data: ' + data);
+            socket.broadcast.emit('frisenda-right', data);
+        },
+        "frisenda-left": function(data){
+            console.log('frisenda-left, data: ' + data);
+            socket.broadcast.emit('frisenda-left', data);
+        },
+        
+        "verardi-stop": function(data){
+            console.log('!!! data: ' + data);
+            socket.broadcast.emit('stop', data);
+        },
+        "verardi-changeNews": function(data){
+            console.log('!!!___' + data);
+        }
+    };
+    
+    for (var method in events) {
+        //console.log("add handler for " + method);
+        //console.log("aaaaa" + event);
+        
+        (function (realMethod) {
+            socket.on(realMethod, function (data) {
+                //console.log('CONTROL: realMethod ####### ' + realMethod);
+                //console.log('data.action: ' +data.action);
+                events[realMethod].apply(this, data);
+            });
+        })(method);
+    }
+/*
+	socket.on('99999-left', function(data){
+            console.log("data log from server:**********"+data.action);
             //io.sockets.emit('left', { action: 'left' });
-            socket.broadcast.emit('left', { action: 'left' });
+            //socket.broadcast.emit('left', { action: 'left' });
+            socket.broadcast.emit('left', data.action);
 	});
 
-	socket.on('right', function(data){
+	socket.on('99999-right', function(data){
             console.log("data log from server:"+data);
             //io.sockets.emit('right', { action: 'right' });
             socket.broadcast.emit('right', { action: 'right' });
 	});
         
-        socket.on('changeNews', function(data){
+	socket.on('99999-stop', function(data){
             console.log("data log from server:"+data);
             //io.sockets.emit('right', { action: 'right' });
-            socket.broadcast.emit('changeNews', data.action);
+            socket.broadcast.emit('stop', { action: 'stop' });
 	});
+        */
+        
+        socket.on('verardi-changeNews', function(data){
+            console.log("data log from server:"+data);
+            //io.sockets.emit('right', { action: 'right' });
+            socket.broadcast.emit('verardi-changeNews', data.action);
+	});
+        
+        socket.on('frisenda-changeNews', function(data){
+            console.log("data log from server:"+data);
+            //io.sockets.emit('right', { action: 'right' });
+            socket.broadcast.emit('frisenda-changeNews', data.action);
+	});
+        
+        
+        socket.on('storeClientInfo', function (data) {
+            /*
+            var clientInfo = new Object();
+            clientInfo.customId = data.customId;
+            clientInfo.clientId = socket.id;
+            console.log('clients push: ' + socket.id +' '+data.customId);
+            clients.push(clientInfo);
+            */
+        });
+        socket.on('disconnect', function (data) {
+            /*
+            for( var i=0, len=clients.length; i<len; ++i ){
+                var c = clients[i];
+                if(c.clientId == socket.id){
+                    clients.splice(i,1);
+                    console.log('clients splice: ' + c.clientId +' _ '+i);
+                    break;
+                }
+            }
+            */
+        });
+        
+        
+        
+    
+    
         /*
          * new page in verardi folder
          

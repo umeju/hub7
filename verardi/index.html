@@ -16,7 +16,7 @@
         <!--script src="/common/handlebars.js"></script-->
         <!--<script src="/common/models.js"></script>-->
         <script src="/varSocketURI.js"></script>
-        <script src="/client/code.js"></script>
+        <script src="/client/js/code_verardi.js"></script>
 
     </head>
     <body class="radial">
@@ -62,7 +62,6 @@
 
         <div class="container-fluid">
             <div class="row">
-
                 <div class="col-md-12">
                     <div class="js-date visible-lg"></div>
 
@@ -105,30 +104,21 @@
                     </iframe-->
                     
                     <div class="row" id="nav-arrows">
-                        <div class="col-md-4">
-                            <img id="left" alt="Preview" 
-                                 src="/common/img/left_arrow_sign.png" 
-                                 class="img-circle" />
-                        </div>
                         
-                        <div class="col-md-4">
-                            <img id="stop" alt="Preview" 
-                                 src="http://www.hubanero.it/images/news.gif" 
-                                 class="img-circle" />
-                        </div>
-                                                
-                        <div class="col-md-4">
-                            <img id="right" alt="Preview" 
-                                 src="/common/img/right_arrow_sign.png" 
-                                 class="img-circle" />
-                        </div>
-                    </div>
+                        <div class="col-md-4" id="for-left"></div>
+                        <div class="col-md-4" id="for-stop"></div>
+                        <div class="col-md-4" id="for-right"></div>
+                        
+                    </div>                    
+
                 </div>
                 <div class="col-md-6">
                     <div class="my_carousel">
-                        <div class="" id="carousel-859806">
+                        <div class="" id="carousel-859806">	
+                            
                             <!-- GENERATED NEWS CODE -->
                             <div class="my_inner"></div>
+                            
                             <!--a class="" href="#" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a> 
@@ -150,6 +140,7 @@
                         called in code.js with jquery 
                         iframe src="http://www.di-vision.org/news" 
                                 id="myFrame2" class="iframes" frameborder="0" scrolling="no">
+                        
                         </iframe-->
                     </div>
                 </div>
@@ -160,26 +151,27 @@
         <!--script src="/client/js/scripts.js"></script-->
         <!-- DATE JS-->
         <script>
-            var d = new Date();
-            var month = d.getMonth() + 1;
-            var day = d.getDate();
-
-            var output = (('' + day).length < 2 ? '0' : '') + day + ' - ' +
-                    (('' + month).length < 2 ? '0' : '') + month + ' - ' +
-                    d.getFullYear();
-            $('.js-date').html(output);
+            /*
+             * data top right
+             * userID per recuperare le news giuste dal DB
+             */
+            var userID = "00004";
             
-        
+        var d = new Date();
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+
+        var output = (('' + day).length < 2 ? '0' : '') + day + ' - ' +
+                (('' + month).length < 2 ? '0' : '') + month + ' - ' +
+                d.getFullYear();
+        $('.js-date').html(output);
         var i = 9;
         var items = [];
-        
-    var url = 'http://www.di-vision.org/getNews.php?content_type=my_news&callback=?';
+        var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
         getNews(url);
         
         function jsonCallback(data) {
-            
-            console.log(data);
-            
+            //console.log(data);
             count = 0;
             $.each(data.sites, function (key, val) {
                 //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
@@ -221,5 +213,7 @@
         };
         
     </script>
+    <!-- SET USERID VAL -->
+    <div id="userID" style="display: none;">verardi</div>
     </body>
 </html>

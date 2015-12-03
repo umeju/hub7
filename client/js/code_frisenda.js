@@ -1,13 +1,27 @@
 $(document).ready(function () {
+    //$('#prev').contents().find('body').html('<div> blah </div>');
+    //
+    //
+    //get userid val from last div in the html page
+    var userID = $('#userID').text();
+    
+    var directions = ['left','stop','right'];
+    
+    // generate images to slide top right news
+    for (var x in directions){
+        $('<img>', {
+            id: userID + "-" + directions[x],
+            src: "/common/img/"+directions[x]+"_arrow_sign.png",
+            class: "img-circle " + directions[x]
+        }).prependTo('#for-' + directions[x]);
+    }
     
     $("select.my-select").change(function(){
         var category = $(".my-select option:selected").val();
-        console.log("You have selected the country - " + category);
+        console.log("select.my-select - " + category);
         //changeNewsCategory(category);
-        socket.emit('changeNews', {action: category});
+        socket.emit('frisenda-changeNews', {action: category});
     });
-    
-    
     
     /*
      * cambiare src iframe al click da cell:
@@ -23,7 +37,7 @@ $(document).ready(function () {
      */
     
     $('<iframe>', {
-        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=1&loop=1',
+        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
         id:  'myFrame',
         class: 'visible-sm-myFrame',
         frameborder: 0,
@@ -40,7 +54,6 @@ $(document).ready(function () {
         scrolling: 'no'
     }).prependTo('.iframe-wrapper');
     
-    
     var _AGGIORNAMENTO_NEWS = 18000;
     var _TIMEOUT_TIME = 12000;
     /*
@@ -56,9 +69,7 @@ $(document).ready(function () {
     
     var count = 0;
     var countFunc = null;
-    
-    //var newCatArray = new Array("ultimora","sport","tech","gossip","locale");
-    
+    var clickedTagID = '';
     function runInterval(cmd) {
         if(countFunc !== null) return;
         if(cmd === "start"){
@@ -86,18 +97,39 @@ $(document).ready(function () {
         notizia.css('display','inline-block');
     }
     
-    $('#right').click(function (){
+    $('.right').click(function (){
+        console.log('click on right! emit right');
+        /*
+         * this.id è l'id del tag html su cui 
+         * è stato fatto il click:
+         */
+        clickedTagID = this.id;
+        myEmit('right', clickedTagID);
         oneMore();
     });
     
-    $('#left').click(function (){
+    $('.left').click(function (){
+        console.log('click on left! emit left');
+        clickedTagID = this.id;
+        myEmit('left', clickedTagID);
         oneLess();
     });
     
-    $('#stop').click(function (){
-        
+    $('.stop').click(function (){
+        console.log('stop clicked!');
+        clickedTagID = this.id;
+        myEmit('stop', clickedTagID);
     });
     
+    function myEmit(actionToDo, clickedTagID){
+        socket.emit(userID+'-'+actionToDo, {action: clickedTagID});
+        /*
+         * esempio:
+         * userID: 99999
+         * actionToDo: left
+         * clickedTagID: 99999-left
+         */
+    }
     function changeNewsCategory(newsCategory){
         $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=' +
                 newsCategory);
@@ -130,21 +162,22 @@ $(document).ready(function () {
         }
         loopNews();
     }
-    
-    $('#left').on('click', function (e) {
-        console.log('click on left! emit left');
-        socket.emit('left', {action: 'left'});
+    /*
+    $('.left').on('click', function (e) {
+        //console.log('click on left! emit left');
+        //socket.emit('left', {action: this.id});
     });
 
-    $('#right').on('click', function (e) {
-        console.log('click on right! emit right');
-        socket.emit('right', {action: 'right'});
+    $('.right').on('click', function (e) {
+        //console.log('click on right! emit right');
+        //socket.emit('right', {action: this.id});
     });
     
-    $('#stop').on('click', function (e) {
-        console.log('stop clicked!');
+    $('.stop').on('click', function (e) {
+        //console.log('stop clicked!');
+        //socket.emit('stop', {action: this.id});
     });
-    
+    */
     /*
     $('#checkbox').change(function () {
         setInterval(function () {
@@ -154,22 +187,26 @@ $(document).ready(function () {
     
     (function (exports){
         var socket = io.connect(socketURI);
-
-        socket.on('left', function (data) {
-            console.log('codejs client slide to left');
+        
+        socket.on('connect', function (data) {
+            //socket.emit('storeClientInfo', { customId:"000_frisendaJS_0000" });
+        });
+        /*
+        socket.on('greeting', function (data) {
+            console.log('greeting '+data);
+        });*/
+        socket.on('frisenda-left', function (data) {
+            console.log('codejs client slide to left ' + data);
             oneLess();
         });
-
-        socket.on('right', function (data) {
-            console.log('codejs client  slide to right');
+        socket.on('frisenda-right', function (data) {
+            console.log('codejs client  slide to right ' + data);
             oneMore();
         });
-        
-        socket.on('stop', function (data) {
-            console.log('client code l-92: stop/start');
+        socket.on('frisenda-stop', function (data) {
+            console.log('client code l-92: stop/start ' + data);
         });
-        
-        socket.on('changeNews', function (data) {
+        socket.on('frisenda-changeNews', function (data) {
             changeNewsCategory(data);
         });
         /*
