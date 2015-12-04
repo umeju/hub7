@@ -20,7 +20,7 @@ $(document).ready(function () {
         var category = $(".my-select option:selected").val();
         console.log("You have selected the country - " + category);
         //changeNewsCategory(category);
-        socket.emit('changeNews', {action: category});
+        socket.emit('client-changeNews', {action: category});
     });
     
     /*

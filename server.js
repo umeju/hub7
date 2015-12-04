@@ -177,6 +177,13 @@ io.sockets.on('connection', function (socket) {
             socket.broadcast.emit('frisenda-changeNews', data.action);
 	});
         
+        socket.on('client-changeNews', function(data){
+            console.log("data log from server:"+data);
+            //io.sockets.emit('right', { action: 'right' });
+            socket.broadcast.emit('client-changeNews', data.action);
+	});
+        
+        
         
         socket.on('storeClientInfo', function (data) {
             /*
