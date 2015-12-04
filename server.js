@@ -68,14 +68,14 @@ var hosts = [
     'frisenda',
     'client',
     'garzia'];
-
+/*
 for (var host in hosts){
     console.log(hosts[host]);
     app.get('/'+hosts[host], function(req, res) {
         res.sendfile(__dirname + '/'+hosts[host]+'/index.html');
     });
-}
-/*
+}*/
+
 app.get('/verardi', function(req, res) {
     res.sendfile(__dirname + '/verardi/index.html');
 });
@@ -86,7 +86,10 @@ app.get('/frisenda', function(req, res) {
 app.get('/garzia', function(req, res) {
     res.sendfile(__dirname + '/garzia/index.html');
 });
-*/
+app.get('/preite', function(req, res) {
+    res.sendfile(__dirname + '/preite/index.html');
+});
+
 
 
 // Our express application functions as our main listener for HTTP requests
@@ -189,15 +192,15 @@ io.sockets.on('connection', function (socket) {
             socket.broadcast.emit('stop', { action: 'stop' });
 	});
         */
-        
+       /* 
     for (var host in hosts) {
         socket.on(hosts[host]+'-changeNews', function(data){
-            console.log("hosts[host] - data log from server:"+data);
+            console.log(hosts[host] +" - data log from server:"+data);
             //io.sockets.emit('right', { action: 'right' });
             socket.broadcast.emit(hosts[host]+'-changeNews', data.action);
 	});
-    }
-        /*
+    }*/
+        
         socket.on('verardi-changeNews', function(data){
             console.log("data log from server:"+data);
             //io.sockets.emit('right', { action: 'right' });
@@ -221,7 +224,13 @@ io.sockets.on('connection', function (socket) {
             //io.sockets.emit('right', { action: 'right' });
             socket.broadcast.emit('garzia-changeNews', data.action);
 	});
-        */
+        
+        socket.on('preite-changeNews', function(data){
+            console.log("data log from server:"+data);
+            //io.sockets.emit('right', { action: 'right' });
+            socket.broadcast.emit('garzia-changeNews', data.action);
+	});
+        
         socket.on('storeClientInfo', function (data) {
             /*
             var clientInfo = new Object();
