@@ -23,36 +23,37 @@ $(document).ready(function () {
         socket.emit('verardi-changeNews', {action: category});
     });
     
-    /*
-     * cambiare src iframe al click da cell:
+    /* cambiare src iframe al click da cell:
      * $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php')
-     * 
      * 
      * <iframe width="560" height="315" 
      *  src="https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H" 
      *  frameborder="0" allowfullscreen>
      * </iframe>
-     * 
-     * 
      */
+    if ($(window).width() > 500) {
+        $('<iframe>', {
+            src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=1&loop=1',
+            id: 'myFrame',
+            class: 'class',
+            frameborder: 0,
+            scrolling: 'no',
+            width: 600,
+            height: 450
+        }).prependTo('#iframeContainer');
+
+        $('<iframe>', {
+            src: 'http://www.di-vision.org/news/',
+            id: 'myFrame2',
+            class: 'iframes',
+            frameborder: 0,
+            scrolling: 'no'
+        }).prependTo('.iframe-wrapper');
+
+
+    }
     
-    $('<iframe>', {
-        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
-        id:  'myFrame',
-        class: 'visible-sm-myFrame',
-        frameborder: 0,
-        scrolling: 'no',
-        width: 600,
-        height: 450
-    }).prependTo('#iframeContainer');
-    
-    $('<iframe>', {
-        src: 'http://www.di-vision.org/news/',
-        id:  'myFrame2',
-        class: 'iframes visible-sm-iframes',
-        frameborder: 0,
-        scrolling: 'no'
-    }).prependTo('.iframe-wrapper');
+   
     
     var _AGGIORNAMENTO_NEWS = 18000;
     var _TIMEOUT_TIME = 12000;
