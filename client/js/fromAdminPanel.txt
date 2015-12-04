@@ -1,0 +1,19 @@
+<div id="my_image_0" class="my_image">
+    <img class="carousel_img" src="/common/img/1.jpg" />
+</div>
+
+<div id="my_image_1" class="my_image">
+    <img class="carousel_img" src="/common/img/2.jpg" />
+</div>
+
+<div id="my_image_2" class="my_image">
+    <img class="carousel_img" src="/common/img/3.jpg" />
+</div>
+
+<div id="my_image_3" class="my_image">
+    <img class="carousel_img" src="/common/img/4.jpg" />
+</div>
+
+<div id="my_image_4" class="my_image">
+    <img class="carousel_img" src="/common/img/5.jpg" />
+</div>
