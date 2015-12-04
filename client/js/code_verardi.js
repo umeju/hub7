@@ -49,8 +49,6 @@ $(document).ready(function () {
             frameborder: 0,
             scrolling: 'no'
         }).prependTo('.iframe-wrapper');
-
-
     }
     
    

@@ -35,24 +35,25 @@ $(document).ready(function () {
      * 
      * 
      */
-    
-    $('<iframe>', {
-        src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
-        id:  'myFrame',
-        class: 'visible-sm-myFrame',
-        frameborder: 0,
-        scrolling: 'no',
-        width: 600,
-        height: 450
-    }).prependTo('#iframeContainer');
-    
-    $('<iframe>', {
-        src: 'http://www.di-vision.org/news/',
-        id:  'myFrame2',
-        class: 'iframes visible-sm-iframes',
-        frameborder: 0,
-        scrolling: 'no'
-    }).prependTo('.iframe-wrapper');
+if ($(window).width() > 500) {
+        $('<iframe>', {
+            src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=1&loop=1',
+            id: 'myFrame',
+            class: 'class',
+            frameborder: 0,
+            scrolling: 'no',
+            width: 600,
+            height: 450
+        }).prependTo('#iframeContainer');
+
+        $('<iframe>', {
+            src: 'http://www.di-vision.org/news/',
+            id: 'myFrame2',
+            class: 'iframes',
+            frameborder: 0,
+            scrolling: 'no'
+        }).prependTo('.iframe-wrapper');
+    }
     
     var _AGGIORNAMENTO_NEWS = 18000;
     var _TIMEOUT_TIME = 12000;
