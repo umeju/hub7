@@ -22,18 +22,14 @@ $(document).ready(function () {
         //changeNewsCategory(category);
         socket.emit('frisenda-changeNews', {action: category});
     });
-    
     /*
      * cambiare src iframe al click da cell:
      * $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php')
-     * 
      * 
      * <iframe width="560" height="315" 
      *  src="https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H" 
      *  frameborder="0" allowfullscreen>
      * </iframe>
-     * 
-     * 
      */
 if ($(window).width() > 500) {
     /*
