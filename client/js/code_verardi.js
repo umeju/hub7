@@ -34,7 +34,7 @@ $(document).ready(function () {
     if ($(window).width() > 500) {
         $('<iframe>', {
             //src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
-            src: 'https://www.youtube.com/embed/HXjq1O4s3c8?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
+            src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9QnW8ZOtAIGG7XAsxTMb7zs&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
             id: 'myFrame',
             class: 'class',
             frameborder: 0,

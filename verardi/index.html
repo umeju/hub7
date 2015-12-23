@@ -7,8 +7,8 @@
 
         <title>hubanero chatty client</title>
 
-        <link href="/client/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/client/css/style.css" rel="stylesheet">
+        <link href="../client/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../client/css/style.css" rel="stylesheet">
         
         <script src="/socket.io/socket.io.js"></script>
         
@@ -16,7 +16,7 @@
         <!--script src="/common/handlebars.js"></script-->
         <!--<script src="/common/models.js"></script>-->
         <script src="/varSocketURI.js"></script>
-        <script src="/client/js/code_verardi.js"></script>
+        <script src="../client/js/code_verardi.js"></script>
 
     </head>
     <body class="radial">
@@ -35,46 +35,6 @@
             
         </div>
         
-        <!--div class="container">
-            
-  <h2>hubanero</h2>
-        <!-- Trigger the modal with a button --
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-      
-        <!-- Modal --
-        <div class="modal fade" id="myModal" role="dialog">
-          <div class="modal-dialog">
-          
-        <!-- Modal content--
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">
-                <img class="mymodal-inner-logo" src="http://www.hubanero.it/hubanero-logo.png" />
-            </h4>
-          </div>
-          <div class="modal-body">
-            
-              <p></p>
-                
-              <div class="interaction" id="benvenuto">
-                  <div class="my-frame">
-                      <div class="box-msg-1"></div>
-                      <div class="box-msg-2"></div>
-                  </div>
-              </div>
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default ubu-orange" data-dismiss="modal">CHIUDI</button>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-    
-  </div-->
-
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -82,7 +42,7 @@
 
                     <div class="logoframe">
                         <div class="hublogo">
-                            <!--img id="logo-hubanero" src="http://www.hubanero.it/hubanero-logo.png" width="250" /-->
+                            
                         </div>
 
                     </div>
@@ -127,12 +87,6 @@
                             <!-- GENERATED NEWS CODE -->
                             <div class="my_inner"></div>
                             
-                            <!--a class="" href="#" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a> 
-                            <a class="" href="#" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a-->
                         </div>
                     </div>
                 </div>
@@ -144,18 +98,13 @@
                 <div class="col-md-12 visible-lg">
                     <!-- use class allNews to visualize news from the web -->
                     <div class="iframe-wrapper">
-                        <!--
-                        called in code.js with jquery 
-                        iframe src="http://www.di-vision.org/news" 
-                                id="myFrame2" class="iframes" frameborder="0" scrolling="no">
-                        
-                        </iframe-->
+                       
                     </div>
                 </div>
             </div>
         </div>
 
-        <script src="/client/js/bootstrap.min.js"></script>
+        <script src="../client/js/bootstrap.min.js"></script>
         <!-- DATE JS-->
         <script>
             /*
@@ -174,8 +123,29 @@
         $('.js-date').html(output);
         var i = 9;
         var items = [];
-        var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
-        getNews(url);
+        //var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
+        var json = "json.json";
+        var obj = $.getJSON(json, function(data){
+            count = 0;
+            $.each(data.sites, function (key, val) {
+                //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
+                if(val.title != ''){ // avoid empty news
+                    items.push(
+                        "<div class='notizia'>"
+                        + "<div class='red_background shadow titolo'>" + val.title + "</div>"
+                        // + val.descrizione to use html as text...
+                        + "<div class='scroll_text descrizione'>" + val.content + "</div>"
+                        + "<div class='arr_2'>" + val.note + "</div>"
+                        + "</div>");
+                }
+                count++;
+            });
+            $('.my_inner').append(items);
+            //nascondo tutto e mostro la prima notizia
+            $('.my_inner > *').hide();
+            // use eq(count-2) coz the first element is empty
+            $('.my_inner > *').eq(count-2).show();
+        });
         
         function jsonCallback(data) {
             //console.log(data);
@@ -212,13 +182,14 @@
                 dataType: 'jsonp',
                 success: function (json) {
                     //$('.my_inner').append(items);
+                    console.log('00000');
                 },
                 error: function (e) {
                     console.log(e.message);
                 }
             });
         };
-        
+        console.log('00000');
     </script>
     <!-- SET USERID VAL -->
     <div id="userID" style="display: none;">verardi</div>
