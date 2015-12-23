@@ -123,8 +123,9 @@
         $('.js-date').html(output);
         var i = 9;
         var items = [];
-        //var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
-        var json = "json.json";
+        var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
+        getNews(url);
+        /*var json = "json.json";
         var obj = $.getJSON(json, function(data){
             count = 0;
             $.each(data.sites, function (key, val) {
@@ -146,6 +147,7 @@
             // use eq(count-2) coz the first element is empty
             $('.my_inner > *').eq(count-2).show();
         });
+        */
         
         function jsonCallback(data) {
             //console.log(data);
