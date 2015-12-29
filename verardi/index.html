@@ -42,12 +42,12 @@
 
                     <div class="logoframe">
                         <div class="hublogo">
-                            
                         </div>
-
                     </div>
+                    
                 </div>
             </div>
+            
             <div class="row">
 
                 <div class="hidden-lg">
@@ -75,7 +75,7 @@
                     <div class="row" id="nav-arrows">
                         
                         <div class="col-md-4" id="for-left"></div>
-                        <div class="col-md-4" id="for-stop"></div>
+                        <div class="col-md-4" id="for-refresh"></div>
                         <div class="col-md-4" id="for-right"></div>
                         
                     </div>                    
@@ -111,7 +111,8 @@
              * data top right
              * userID per recuperare le news giuste dal DB
              */
-            var userID = "00004";
+            
+        var userID = "00004";
             
         var d = new Date();
         var month = d.getMonth() + 1;
@@ -125,7 +126,8 @@
         var items = [];
         var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
         getNews(url);
-        /*var json = "json.json";
+        
+    /*var json = "json.json";
         var obj = $.getJSON(json, function(data){
             count = 0;
             $.each(data.sites, function (key, val) {
@@ -154,7 +156,7 @@
             count = 0;
             $.each(data.sites, function (key, val) {
                 //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                if(val.titolo != ''){ // avoid empty news
+                if(val.titolo !== ''){ // avoid empty news
                     items.push(
                         "<div class='notizia'>"
                         + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
@@ -172,8 +174,8 @@
             // use eq(count-2) coz the first element is empty
             $('.my_inner > *').eq(count-2).show();
         }
-
-        function getNews(urlAddress) {
+        //url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
+        function getNews(url) {
             $.ajax({
                 type: 'GET',
                 url: url,
@@ -184,14 +186,14 @@
                 dataType: 'jsonp',
                 success: function (json) {
                     //$('.my_inner').append(items);
-                    console.log('00000');
+                    console.log('1');
                 },
                 error: function (e) {
                     console.log(e.message);
                 }
             });
         };
-        console.log('00000');
+        console.log('2');
     </script>
     <!-- SET USERID VAL -->
     <div id="userID" style="display: none;">verardi</div>

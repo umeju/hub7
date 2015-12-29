@@ -5,7 +5,7 @@ $(document).ready(function () {
     //get userid val from last div in the html page
     var userID = $('#userID').text();
     
-    var directions = ['left','stop','right'];
+    var directions = ['left','refresh','right'];
     
     // generate images to slide top right news
     for (var x in directions){
@@ -93,10 +93,10 @@ if ($(window).width() > 500) {
         myEmit('left', clickedTagID);
         oneLess();
     });
-    $('.stop').click(function (){
-        console.log('stop clicked!');
+    $('.refresh').click(function (){
+        console.log('refresh clicked!');
         clickedTagID = this.id;
-        myEmit('stop', clickedTagID);
+        myEmit('refresh', clickedTagID);
     });
     function myEmit(actionToDo, clickedTagID){
         socket.emit(userID+'-'+actionToDo, {action: clickedTagID});
@@ -132,6 +132,11 @@ if ($(window).width() > 500) {
         }
         loopNews();
     }
+    
+    function refresh(){
+        location.reload();
+    }
+    
     (function (exports){
         var socket = io.connect(socketURI);
         
@@ -150,8 +155,9 @@ if ($(window).width() > 500) {
             console.log('codejs client  slide to right ' + data);
             oneMore();
         });
-        socket.on('garzia-stop', function (data) {
-            console.log('client code l-92: stop/start ' + data);
+        socket.on('garzia-refresh', function (data) {
+            console.log('client code l-92: refresh/start ' + data);
+            refresh();
         });
         socket.on('garzia-changeNews', function (data) {
             changeNewsCategory(data);

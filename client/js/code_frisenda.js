@@ -5,7 +5,7 @@ $(document).ready(function () {
     //get userid val from last div in the html page
     var userID = $('#userID').text();
     
-    var directions = ['left','stop','right'];
+    var directions = ['left','refresh','right'];
     
     // generate images to slide top right news
     for (var x in directions){
@@ -113,10 +113,10 @@ if ($(window).width() > 500) {
         oneLess();
     });
     
-    $('.stop').click(function (){
-        console.log('stop clicked!');
+    $('.refresh').click(function (){
+        console.log('refresh clicked!');
         clickedTagID = this.id;
-        myEmit('stop', clickedTagID);
+        myEmit('refresh', clickedTagID);
     });
     
     function myEmit(actionToDo, clickedTagID){
@@ -160,6 +160,10 @@ if ($(window).width() > 500) {
         }
         loopNews();
     }
+    
+    function refresh(){
+        location.reload();
+    }
     /*
     $('.left').on('click', function (e) {
         //console.log('click on left! emit left');
@@ -171,9 +175,9 @@ if ($(window).width() > 500) {
         //socket.emit('right', {action: this.id});
     });
     
-    $('.stop').on('click', function (e) {
-        //console.log('stop clicked!');
-        //socket.emit('stop', {action: this.id});
+    $('.refresh').on('click', function (e) {
+        //console.log('refresh clicked!');
+        //socket.emit('refresh', {action: this.id});
     });
     */
     /*
@@ -201,8 +205,9 @@ if ($(window).width() > 500) {
             console.log('codejs client  slide to right ' + data);
             oneMore();
         });
-        socket.on('frisenda-stop', function (data) {
-            console.log('client code l-92: stop/start ' + data);
+        socket.on('frisenda-refresh', function (data) {
+            console.log('client code l-92: refresh/start ' + data);
+            refresh();
         });
         socket.on('frisenda-changeNews', function (data) {
             changeNewsCategory(data);

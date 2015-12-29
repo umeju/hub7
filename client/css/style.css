@@ -35,11 +35,13 @@
         float: left;
         display: inline-block;
     }
-    .stop.img-circle{
+    
+    .refresh.img-circle{
         width: 33%;
         float: left;
         display: inline-block;
     }
+    
     .newsCategory, .glyphicon{
         display: none;
     }
@@ -379,7 +381,7 @@ a.control_next {
 .activate{}
 
 .img-circle{
-    border-radius: 0;
+    /*border-radius: 0;*/
 }
 .img-circle{
     display: none;

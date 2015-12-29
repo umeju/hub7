@@ -96,9 +96,9 @@ io.sockets.on('connection', function (socket) {
             console.log('verardi-right, data: ' + data);
             socket.broadcast.emit('verardi-right', 'verardi-right');
         },
-        "verardi-stop": function(data){
-            console.log('verardi-stop data: ' + data);
-            socket.broadcast.emit('verardi-stop', 'verardi-stop');
+        "verardi-refresh": function(data){
+            console.log('verardi-refresh data: ' + data);
+            socket.broadcast.emit('verardi-refresh', 'verardi-refresh');
         },
         "verardi-changeNews": function(data){
             console.log('verardi-changeNews data:' + data);
@@ -113,9 +113,9 @@ io.sockets.on('connection', function (socket) {
             console.log('garzia-right, data: ' + data);
             socket.broadcast.emit('garzia-right', 'garzia-right');
         },
-        "garzia-stop": function(data){
-            console.log('garzia-stop data: ' + data);
-            socket.broadcast.emit('stop', 'garzia-stop');
+        "garzia-refresh": function(data){
+            console.log('garzia-refresh, data: ' + data);
+            socket.broadcast.emit('garzia-refresh', 'garzia-refresh');
         },
         "garzia-changeNews": function(data){
             console.log('garzia-changeNews data:' + data);
@@ -130,9 +130,9 @@ io.sockets.on('connection', function (socket) {
             console.log('client-left, data: ' + data);
             socket.broadcast.emit('client-left', 'client-left');
         },
-        "client-stop": function(data){
-            console.log('client-stop data: ' + data);
-            socket.broadcast.emit('stop', 'client-stop');
+        "client-refresh": function(data){
+            console.log('client-refresh data: ' + data);
+            socket.broadcast.emit('refresh', 'client-refresh');
         },
         "client-changeNews": function(data){
             console.log('client-changeNews data:' + data);
@@ -147,9 +147,9 @@ io.sockets.on('connection', function (socket) {
             console.log('frisenda-left, data: ' + data);
             socket.broadcast.emit('frisenda-left', 'frisenda-left');
         },
-        "frisenda-stop": function(data){
-            console.log('frisenda-stop data: ' + data);
-            socket.broadcast.emit('frisenda-stop', 'frisenda-stop');
+        "frisenda-refresh": function(data){
+            console.log('frisenda-refresh data: ' + data);
+            socket.broadcast.emit('frisenda-refresh', 'frisenda-refresh');
         },
         "frisenda-changeNews": function(data){
             console.log('frisenda-changeNews data:' + data);
@@ -165,9 +165,9 @@ io.sockets.on('connection', function (socket) {
             console.log('preite-left, data: ' + data);
             socket.broadcast.emit('preite-left',  'preite-left');
         },
-        "preite-stop": function(data){
-            console.log('preite-stop data: ' + data);
-            socket.broadcast.emit('stop',  'preite-stop');
+        "preite-refresh": function(data){
+            console.log('preite-refresh data: ' + data);
+            socket.broadcast.emit('refresh',  'preite-refresh');
         },
         "preite-changeNews": function(data){
             console.log('preite-changeNews data:' + data);
