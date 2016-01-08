@@ -1,5 +1,5 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT || process.env.OPENSHIFT_NODEJS_PORT  || 8080;
-var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.4' || '127.0.0.1';
+var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.3' || '127.0.0.1';
 var express = require('express');
 var server;
 var io;
@@ -77,6 +77,7 @@ io.configure(function() {
     io.set("log level", logLevel);
 });
 
+var socket = this;
 io.sockets.on('connection', function (socket) {
     // The username for this socket.
     console.log("connection!");
@@ -86,6 +87,36 @@ io.sockets.on('connection', function (socket) {
         console.log(clients[i]);
     }
     //io.sockets.socket(clients[0]).emit("greeting", "user0");
+    var users = {
+            "verardi":"verardi",
+            "garzia":"garzia",
+            "client":"client",
+            "frisenda":"frisenda",
+            "preite":"preite"
+        };
+    var actions = {
+            'left':'left',
+            'right':'right',
+            'refresh':'refresh',
+            'changeNews':'changeNews'
+            };
+    
+    var events2 = {};
+    
+    for(var action in actions)
+    {
+        for(var user in users)
+        {
+            key = user +'-'+action;
+            console.log(key);
+            
+            events2[key] = function(data){
+                        console.log(user + ' --- ' +  action);
+                        socket.broadcast.emit(user +' --- '+action);
+                    };            
+        }
+    }
+        console.log(JSON.stringify(events2));
     
     var events = {
         "verardi-left": function(data){
@@ -176,13 +207,28 @@ io.sockets.on('connection', function (socket) {
     };
     
     for (var method in events) {
+        var dynamicHandler = function (realMethod) 
+        {
+            socket.on(realMethod, function (data) {
+                console.log('CONTROL: received -->'+realMethod);
+                //console.log('DATA: received '+JSON.stringify(data.dataVal));
+                events[realMethod].apply(this, data);
+            });
+        };
+        dynamicHandler(method);
+        /*
+         *  OLD SOLUTION DIDN'T WORK
         (function (realMethod) {
             socket.on(realMethod, function (data) {
+                console.log('CONTROL: received '+realMethod);
+                
                 events[realMethod].apply(this, data);
             });
         })(method);
+        */
     }
-        /* ON CHANGE NEWS USATO QUI PER SPARARE I DATI NEL CLIENT: */
+    
+        /* ON CHANGE NEWS USATO QUI PER SPARARE I DATI NEL CLIENT: 
         socket.on('verardi-changeNews', function(data){
             console.log("server data log data.action:"+data.action);
             //io.sockets.emit('right', { action: 'right' });
@@ -212,7 +258,7 @@ io.sockets.on('connection', function (socket) {
             //io.sockets.emit('right', { action: 'right' });
             socket.broadcast.emit('garzia-changeNews', data.action);
 	});
-        
+        */
         socket.on('storeClientInfo', function (data) {
             /*
             var clientInfo = new Object();
@@ -222,6 +268,7 @@ io.sockets.on('connection', function (socket) {
             clients.push(clientInfo);
             */
         });
+        
         socket.on('disconnect', function (data) {
             console.log('disconnect!');
             /*
