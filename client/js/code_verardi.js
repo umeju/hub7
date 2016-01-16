@@ -123,7 +123,7 @@ $(document).ready(function () {
     });
     
     function myEmit(actionToDo, clickedTagID){
-        socket.emit(userID+'-'+actionToDo, {action: clickedTagID});
+        socket.emit(userID+'-'+actionToDo, {action: clickedTagID, dataVal: "esempio-data"});
         /*
          * esempio:
          * userID: 99999

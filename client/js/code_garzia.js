@@ -35,7 +35,7 @@ if ($(window).width() > 500) {
         }).prependTo('#iframeContainer');
         */
         $('<iframe>', {
-            src: 'http://www.di-vision.org/news/',
+            src: 'http://www.di-vision.org/news/index.php?news=HI-TECH',
             id: 'myFrame2',
             class: 'iframes',
             frameborder: 0,
@@ -80,10 +80,11 @@ if ($(window).width() > 500) {
         notizia.css('display','inline-block');
     }
     $('.right').click(function (){
-        console.log('click on right! emit right');
+        
         /** this.id è l'id del tag html su cui 
          * è stato fatto il click:*/
         clickedTagID = this.id;
+        console.log('click on right! emit RIGHT - clicked tag ID: '+clickedTagID);
         myEmit('right', clickedTagID);
         oneMore();
     });
@@ -98,13 +99,20 @@ if ($(window).width() > 500) {
         clickedTagID = this.id;
         myEmit('refresh', clickedTagID);
     });
+    
     function myEmit(actionToDo, clickedTagID){
-        socket.emit(userID+'-'+actionToDo, {action: clickedTagID});
+        socket.emit(userID+'-'+actionToDo, {action: clickedTagID, data:"datas"});
         /** esempio:
          * userID: 99999
          * actionToDo: left
          * clickedTagID: 99999-left*/
     }
+    
+    function myEmitWithText(actionToDo, clickedTagID, text){
+        socket.emit(userID+'-'+actionToDo, {action: clickedTagID, data:text});
+    }
+    
+    
     function changeNewsCategory(newsCategory){
         $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=' +
                 newsCategory);
@@ -137,6 +145,49 @@ if ($(window).width() > 500) {
         location.reload();
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function prepareFlashMsg(){
+        var confirmMsg = "Confermi di voler inviare questo messaggio?";
+        var form = '<form action="http://www.example.com" \
+                            data-confirm=' + confirmMsg + '>\
+                    <input type="text" name="q" />\
+                    <button type="submit">Submit</button>\
+                   </form>';
+    }
+    
+    $("#prepareFlashMsg").click(function(){
+        //sendFlashMsg("text-asdasdasd");
+        $('#prepareFlash').removeClass('invisible').slideDown(1000, function(){
+            alert("Questa pagina permette \
+                l'invio instantaneo di un \
+                messaggio sui display hubanero");
+        });
+    });
+    
+    $("#ask4confirm").click(function(){
+        var text = $('#text-field').val();
+        
+        if (text !== ""){
+            alert("Messaggio:" + text);
+            sendFlashMsg(text);
+        }
+    });
+    
+    function sendFlashMsg(text){
+        myEmitWithText("showFlashMsg", "showFlashMsg", text);
+            console.log('sended text: ' + text);
+    }
+
     (function (exports){
         var socket = io.connect(socketURI);
         
@@ -162,6 +213,45 @@ if ($(window).width() > 500) {
         socket.on('garzia-changeNews', function (data) {
             changeNewsCategory(data);
         });
+        
+        
+        
+        
+        
+        
+        
+        
+        socket.on('garzia-showFlashMsg', function (data) {
+            
+            if(data !== "error"){
+                $('#textMsgID').text(data);
+                $('#prepareFlash').fadeOut(function (){
+                    $("#messageSentOk").fadeIn(function (){
+                        $("#messageSentOk").fadeOut(3000);
+                    });
+                });
+                
+                $('#flashID').addClass("flash");
+                $('#flashID').removeClass("invisible");
+                
+                setTimeout(function(){ 
+                    $('#flashID').addClass("invisible");
+                }, 1800000);
+                /*
+                $('#flashID').fadeOut(2000, function (){
+                    //$('#flashID').addClass("invisible");
+                    //$('#prepareFlash').addClass("invisible");
+                });
+                */
+            }else{
+                $('#flashID').fadeOut(2000, function (){
+                    //$('#flashID').addClass("invisible");
+                    //$('#prepareFlash').addClass("invisible");
+                    
+                });
+            }
+        });
+        
         exports.socket = socket;
     })(window);
 });

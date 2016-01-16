@@ -346,20 +346,6 @@ a.control_next {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .my_carousel {
     position: relative;
     display: block;
@@ -512,4 +498,53 @@ a.control_next {
     padding-left: 2%;
     background-color: rgba(255,0,0,.6);
     border: 5px solid black;
+}
+.flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 35px solid #dd4814;
+    background-color: rgba(0,0,76, .7);
+    z-index: 999;
+}
+#flash > * {
+    text-align: center;
+    color: #dd4814;
+    font-stretch: expanded;
+    font-weight: bolder;
+    top: 5%;
+    position: relative;
+    font-size: 75px;
+}
+.form-wrapper{
+    
+}
+.textarea {
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    top: 40px;
+    position: relative;
+}
+#my-form > input {
+        margin: 0 auto;
+    position: relative;
+    top: 55px;
+    display: block;
+}
+#flashID > *{
+    text-align: center;
+    top: 10%;
+    position: relative;
+    font-size: 125px;
+    margin-left: 50px;
+    margin-right: 50px;
+    color: white;
+    z-index: 999;
 }

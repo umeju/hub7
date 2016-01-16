@@ -212,6 +212,13 @@
                 }
             });
         };
+        //refresh page each 622 sec.
+        (function(time) {
+            setInterval(
+                    function(){ 
+                        location.reload(); 
+                    }, time);
+        }(625 * 1000));
         
     </script>
     <!-- SET USERID VAL -->

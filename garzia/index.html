@@ -65,12 +65,14 @@
                 <div class="col-md-12">
                     <div class="js-date visible-lg"></div>
 
-                    <div class="logoframe">
-                        <div class="hublogo">
+                    <a href="#" id="prepareFlashMsg">
+                        <div class="logoframe">
+                            <div class="hublogo">
                             <!--img id="logo-hubanero" src="http://www.hubanero.it/hubanero-logo.png" width="250" /-->
+                            </div>
                         </div>
-
-                    </div>
+                    </a>
+                    
                 </div>
             </div>
             <div class="row">
@@ -111,7 +113,6 @@
                         <div class="" id="carousel-859806">
                             <!-- GENERATED NEWS CODE -->
                             <div class="my_inner"></div>
-                            
                             <!--a class="" href="#" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a> 
@@ -205,8 +206,80 @@
             });
         };
         
+        //refresh page each 622 sec.
+        (function(time) {
+            setInterval(
+                    function(){ 
+                        location.reload(); 
+                    }, time);
+        }(625 * 1000));
     </script>
-    <!-- SET USERID VAL -->
+    
+    
+    
+    <div id="prepareFlash" class="flash invisible">
+        <div id="form-wrapper">Area riservata agli amministratori 
+            per la pubblicazione dei messaggi flash:
+        <div id="my-form">
+            <textarea class="textarea" id="text-field"
+                      rows="6" cols="25" name="flash-text" 
+                      placeholder="Inserire il messaggio flash"></textarea>
+            <input type="submit" class="" value="Invia" id="ask4confirm"/>
+        </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <div id="prepareFlash2" class="flash invisible">
+        <div id="form-wrapper">
+            <h1>Area riservata agli amministratori per 
+                la pubblicazione dei messaggi flash:</h1>
+        </div>
+    </div>
+    
+    
+    
+    
+    <div id="flashID" class="invisible flash">
+        <h2 class="textMsgClass">ATTENZIONE</h2>
+        <h2 class="textMsgClass" id="textMsgID">
+            mercoledi 13 gennaio lo studio resterà chiuso 
+            dalle ore 15:00 alle ore 17:00
+        </h2>
+    </div>
+    
+    
+    <div id="messageSentOk" class="invisible flash">
+        <h2 class="textMsgClass">OK</h2>
+        <h2 class="textMsgClass" id="textMsgID">
+            Il messaggio è stato inviato correttamente.
+        </h2>
+    </div>
+    
+    
+    <div id="messageSentError" class="invisible flash">
+        <h2 class="textMsgClass">ERRORE!</h2>
+        <h2 class="textMsgClass" id="textMsgID">
+            Errore durante l'invio o password mancante.
+            Riprova.
+        </h2>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- SET USERID VAL *************** dont change!!! **************** -->
     <div id="userID" style="display: none;">garzia</div>
     </body>
 </html>

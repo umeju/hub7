@@ -1,5 +1,5 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT || process.env.OPENSHIFT_NODEJS_PORT  || 8080;
-var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.3' || '127.0.0.1';
+var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.5' || '127.0.0.1';
 var express = require('express');
 var server;
 var io;
@@ -11,7 +11,13 @@ var User = require('./common/models').User;
 // Grab any arguments that are passed in.
 var argv = require('optimist').argv;
 var clients = [];
-
+/*
+ * VAR TO GET DATA FROM THE FRONT END 
+ * WE SAVE IT EACH TIME TO USE IN THE event{a:function(testData)}
+ */
+var testData = '';
+    
+    
 // Setup a very simple express application.
 app = express();
 // Allow cross origin requests.
@@ -62,6 +68,17 @@ app.get('/garzia', function(req, res) {
 app.get('/preite', function(req, res) {
     res.sendfile(__dirname + '/preite/index.html');
 });
+// MARINI
+app.get('/marini', function(req, res) {
+    res.sendfile(__dirname + '/preite/index.html');
+});
+// LICIGNANO
+app.get('/licignano', function(req, res) {
+    res.sendfile(__dirname + '/preite/index.html');
+});
+
+
+
 
 // Our express application functions as our main listener for HTTP requests
 // in this example which is why we don't just invoke listen on the app object.
@@ -87,6 +104,8 @@ io.sockets.on('connection', function (socket) {
         console.log(clients[i]);
     }
     //io.sockets.socket(clients[0]).emit("greeting", "user0");
+    
+    /*
     var users = {
             "verardi":"verardi",
             "garzia":"garzia",
@@ -113,105 +132,138 @@ io.sockets.on('connection', function (socket) {
             events2[key] = function(data){
                         console.log(user + ' --- ' +  action);
                         socket.broadcast.emit(user +' --- '+action);
-                    };            
+            };
         }
     }
         console.log(JSON.stringify(events2));
+        */
     
     var events = {
         "verardi-left": function(data){
-            console.log('verardi-left, data: '+data);
+            console.log('verardi-left, data: '+ testData);
             socket.broadcast.emit('verardi-left', 'verardi-left');
         },
         "verardi-right": function(data){
-            console.log('verardi-right, data: ' + data);
+            console.log('verardi-right, data: ' + testData);
             socket.broadcast.emit('verardi-right', 'verardi-right');
         },
         "verardi-refresh": function(data){
-            console.log('verardi-refresh data: ' + data);
+            console.log('verardi-refresh data: ' + testData);
             socket.broadcast.emit('verardi-refresh', 'verardi-refresh');
         },
         "verardi-changeNews": function(data){
-            console.log('verardi-changeNews data:' + data);
-            //socket.broadcast.emit('verardi-changeNews', 'verardi-changeNews');
+            console.log('verardi-changeNews data:' + testData);
+            socket.broadcast.emit('verardi-changeNews', 'verardi-changeNews');
         },
         
         "garzia-left": function(data){
-            console.log('garzia-left, data: '+data);
+            console.log('garzia-left, data: ' + testData);
             socket.broadcast.emit('garzia-left', 'garzia-left');
         },
         "garzia-right": function(data){
-            console.log('garzia-right, data: ' + data);
+            console.log('garzia-right, data: ' + testData);
             socket.broadcast.emit('garzia-right', 'garzia-right');
         },
         "garzia-refresh": function(data){
-            console.log('garzia-refresh, data: ' + data);
+            console.log('garzia-refresh, data: ' + testData);
             socket.broadcast.emit('garzia-refresh', 'garzia-refresh');
         },
         "garzia-changeNews": function(data){
-            console.log('garzia-changeNews data:' + data);
-            //socket.broadcast.emit('garzia-changeNews', 'garzia-changeNews');
+            console.log('garzia-changeNews data:' + testData);
+            socket.broadcast.emit('garzia-changeNews', testData);
         },
         
+        
+        
+        
+        
+        
+        
+        
+        /************ FLASH MESSAGES PER GARZIA *********/
+        "garzia-showFlashMsg": function(data){
+            
+            msgText = splitMsg(testData);
+            
+            console.log('*******************' + msgText);
+            
+            //console.log('garzia-showFlashMsg data:' + "testData");
+            socket.broadcast.emit('garzia-showFlashMsg', msgText);
+            
+            
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         "client-right": function(data){
-            console.log('client-right, data: ' + data);
+            console.log('client-right, data: ' + testData);
             socket.broadcast.emit('client-right', 'client-right');
         },
         "client-left": function(data){
-            console.log('client-left, data: ' + data);
+            console.log('client-left, data: ' + testData);
             socket.broadcast.emit('client-left', 'client-left');
         },
         "client-refresh": function(data){
-            console.log('client-refresh data: ' + data);
+            console.log('client-refresh data: ' + testData);
             socket.broadcast.emit('refresh', 'client-refresh');
         },
         "client-changeNews": function(data){
-            console.log('client-changeNews data:' + data);
-            //socket.broadcast.emit('client-changeNews', 'client-right');
+            console.log('client-changeNews data:' + testData);
+            socket.broadcast.emit('client-changeNews', 'client-right');
         },
         
         "frisenda-right": function(data){
-            console.log('frisenda-right, data: ' + data);
+            console.log('frisenda-right, data: ' + testData);
             socket.broadcast.emit('frisenda-right', 'frisenda-right');
         },
         "frisenda-left": function(data){
-            console.log('frisenda-left, data: ' + data);
+            console.log('frisenda-left, data: ' + testData);
             socket.broadcast.emit('frisenda-left', 'frisenda-left');
         },
         "frisenda-refresh": function(data){
-            console.log('frisenda-refresh data: ' + data);
+            console.log('frisenda-refresh data: ' + testData);
             socket.broadcast.emit('frisenda-refresh', 'frisenda-refresh');
         },
         "frisenda-changeNews": function(data){
-            console.log('frisenda-changeNews data:' + data);
-            //socket.broadcast.emit('frisenda-changeNews',  'frisenda-changeNews');
+            console.log('frisenda-changeNews data:' + testData);
+            socket.broadcast.emit('frisenda-changeNews',  'frisenda-changeNews');
         },
         
-        
         "preite-right": function(data){
-            console.log('preite-right, data: ' + data);
+            console.log('preite-right, data: ' + testData);
             socket.broadcast.emit('preite-right',  'preite-right');
         },
         "preite-left": function(data){
-            console.log('preite-left, data: ' + data);
+            console.log('preite-left, data: ' + testData);
             socket.broadcast.emit('preite-left',  'preite-left');
         },
         "preite-refresh": function(data){
-            console.log('preite-refresh data: ' + data);
+            console.log('preite-refresh data: ' + testData);
             socket.broadcast.emit('refresh',  'preite-refresh');
         },
         "preite-changeNews": function(data){
-            console.log('preite-changeNews data:' + data);
-            //socket.broadcast.emit('preite-changeNews', 'preite-changeNews');
+            console.log('preite-changeNews data:' + testData);
+            socket.broadcast.emit('preite-changeNews', 'preite-changeNews');
         },
     };
-    
+
     for (var method in events) {
-        var dynamicHandler = function (realMethod) 
-        {
+        var dynamicHandler = function (realMethod) {
             socket.on(realMethod, function (data) {
+                
                 console.log('CONTROL: received -->'+realMethod);
-                //console.log('DATA: received '+JSON.stringify(data.dataVal));
+                console.log('DATA: received -->'+data.data);
+                testData = data.data;
+                //console.log('DATA: received '+JSON.stringify(data.data));
                 events[realMethod].apply(this, data);
             });
         };
@@ -226,6 +278,16 @@ io.sockets.on('connection', function (socket) {
             });
         })(method);
         */
+    }
+    
+    function splitMsg(testData){
+        var array = testData.split(':');
+        
+        if (array[0] == "testo"){
+            return array[1];
+        }else{
+            return "error";
+        }
     }
     
         /* ON CHANGE NEWS USATO QUI PER SPARARE I DATI NEL CLIENT: 
