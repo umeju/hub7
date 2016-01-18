@@ -20,7 +20,7 @@ $(document).ready(function () {
         var category = $(".my-select option:selected").val();
         console.log("select.my-select - " + category);
         //changeNewsCategory(category);
-        socket.emit('garzia-changeNews', {action: category});
+        socket.emit('garzia-changeNews', {data: category});
     });
 if ($(window).width() > 500) {
     /*
@@ -180,6 +180,7 @@ if ($(window).width() > 500) {
         if (text !== ""){
             alert("Messaggio:" + text);
             sendFlashMsg(text);
+            $('#prepareFlash').fadeOut();
         }
     });
     
@@ -237,7 +238,7 @@ if ($(window).width() > 500) {
                 
                 setTimeout(function(){ 
                     $('#flashID').addClass("invisible");
-                }, 1800000);
+                }, 900 * 1000);
                 /*
                 $('#flashID').fadeOut(2000, function (){
                     //$('#flashID').addClass("invisible");

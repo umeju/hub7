@@ -149,11 +149,11 @@ io.sockets.on('connection', function (socket) {
         },
         "verardi-refresh": function(data){
             console.log('verardi-refresh data: ' + testData);
-            socket.broadcast.emit('verardi-refresh', 'verardi-refresh');
+            socket.broadcast.emit('verardi-refresh', testData);
         },
         "verardi-changeNews": function(data){
             console.log('verardi-changeNews data:' + testData);
-            socket.broadcast.emit('verardi-changeNews', 'verardi-changeNews');
+            socket.broadcast.emit('verardi-changeNews', testData);
         },
         
         "garzia-left": function(data){
@@ -185,7 +185,7 @@ io.sockets.on('connection', function (socket) {
             
             msgText = splitMsg(testData);
             
-            console.log('*******************' + msgText);
+            console.log('msgText 188*******************' + msgText);
             
             //console.log('garzia-showFlashMsg data:' + "testData");
             socket.broadcast.emit('garzia-showFlashMsg', msgText);
@@ -261,8 +261,8 @@ io.sockets.on('connection', function (socket) {
             socket.on(realMethod, function (data) {
                 
                 console.log('CONTROL: received -->'+realMethod);
-                console.log('DATA: received -->'+data.action);
-                testData = data.action;
+                console.log('DATA: received -->'+data.data);
+                testData = data.data;
                 //console.log('DATA: received '+JSON.stringify(data.data));
                 events[realMethod].apply(this, data);
             });
@@ -281,11 +281,14 @@ io.sockets.on('connection', function (socket) {
     }
     
     function splitMsg(testData){
-        var array = testData.split(':');
         
-        if (array[0] == "seroga2"){
+        var array = testData.split(':');
+        var lowerCaseString = array[0].toLowerCase();
+        console.log('testData: *******************' + lowerCaseString);
+        if (lowerCaseString == "seroga2"){
             return array[1];
         }else{
+            console.log('Error: *******************' + testData);
             return "error";
         }
     }
