@@ -211,6 +211,7 @@ if ($(window).width() > 500) {
             refresh();
         });
         socket.on('garzia-changeNews', function (data) {
+            console.log('client code l-214: change news: ' + data);
             changeNewsCategory(data);
         });
         

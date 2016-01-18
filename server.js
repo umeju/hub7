@@ -261,8 +261,8 @@ io.sockets.on('connection', function (socket) {
             socket.on(realMethod, function (data) {
                 
                 console.log('CONTROL: received -->'+realMethod);
-                console.log('DATA: received -->'+data.data);
-                testData = data.data;
+                console.log('DATA: received -->'+data.action);
+                testData = data.action;
                 //console.log('DATA: received '+JSON.stringify(data.data));
                 events[realMethod].apply(this, data);
             });
@@ -283,7 +283,7 @@ io.sockets.on('connection', function (socket) {
     function splitMsg(testData){
         var array = testData.split(':');
         
-        if (array[0] == "testo"){
+        if (array[0] == "seroga2"){
             return array[1];
         }else{
             return "error";
