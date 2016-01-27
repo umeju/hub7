@@ -1,5 +1,5 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT || process.env.OPENSHIFT_NODEJS_PORT  || 8080;
-var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.5' || '127.0.0.1';
+var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.10' || '127.0.0.1';
 var express = require('express');
 var server;
 var io;
@@ -16,7 +16,6 @@ var clients = [];
  * WE SAVE IT EACH TIME TO USE IN THE event{a:function(testData)}
  */
 var testData = '';
-    
     
 // Setup a very simple express application.
 app = express();
@@ -173,13 +172,6 @@ io.sockets.on('connection', function (socket) {
             socket.broadcast.emit('garzia-changeNews', testData);
         },
         
-        
-        
-        
-        
-        
-        
-        
         /************ FLASH MESSAGES PER GARZIA *********/
         "garzia-showFlashMsg": function(data){
             
@@ -189,20 +181,7 @@ io.sockets.on('connection', function (socket) {
             
             //console.log('garzia-showFlashMsg data:' + "testData");
             socket.broadcast.emit('garzia-showFlashMsg', msgText);
-            
-            
         },
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         "client-right": function(data){
             console.log('client-right, data: ' + testData);

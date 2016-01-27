@@ -218,11 +218,6 @@ if ($(window).width() > 500) {
         
         
         
-        
-        
-        
-        
-        
         socket.on('garzia-showFlashMsg', function (data) {
             
             if(data !== "error"){

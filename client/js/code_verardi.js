@@ -20,7 +20,7 @@ $(document).ready(function () {
         var category = $(".my-select option:selected").val();
         console.log("select.my-select - " + category);
         //changeNewsCategory(category);
-        socket.emit('verardi-changeNews', {action: category});
+        socket.emit('verardi-changeNews', {data: category});
     });
     
     /* cambiare src iframe al click da cell:
