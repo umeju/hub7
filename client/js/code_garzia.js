@@ -183,6 +183,10 @@ if ($(window).width() > 500) {
             $('#prepareFlash').fadeOut();
         }
     });
+    $("#hideFlashForm").click(function(){
+    	$('#prepareFlash').fadeOut();
+    });
+    
     
     function sendFlashMsg(text){
         myEmitWithText("showFlashMsg", "showFlashMsg", text);
