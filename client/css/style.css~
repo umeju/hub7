@@ -1,12 +1,17 @@
-@media only screen and (max-width: 500px) {
-    body {
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+
+@media only screen and (max-width: 499px) {
+    
+    html,body {
         min-height: 500px;
         min-width: 270px;
-    }
-    iframe, .carousel-caption {
-        display: none;
+        overflow: auto !important;
     }
     
+    iframe, .carousel-caption, .iframe-wrapper {
+        display: none;
+    }
+
     .red_background{
         font-size: medium;
     }
@@ -19,8 +24,336 @@
         position: relative;
         margin-top: 5px;
     }
+    .right.img-circle{
+        width: 33%;
+        float: left;
+        display: inline-block;
+    }
+
+    .left.img-circle{
+        width: 33%;
+        float: left;
+        display: inline-block;
+    }
+    
+    .refresh.img-circle{
+        width: 33%;
+        float: left;
+        display: inline-block;
+    }
+    
+    .newsCategory, .glyphicon{
+        display: none;
+    }
+    
+    .logoframe{
+        position: fixed;
+        left: 0;
+    }
+    .hublogo{
+        margin: 0 auto;
+        
+    }
+    .radial{
+        background-color: lightgrey;
+        background-image: url('') !important;
+    }
+
+    .scroll_text, .arr_2{
+        font-size: 20px !important;
+        
+    }
+
+}
+
+
+
+/* Colors picked from: http://colorschemedesigner.com/#2V41Tk4jzxQq3 */
+
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: url("/common/img/up.png") 0 32, crosshair;
     
 }
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #6394A1;
+}
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.5em;
+}
+body > *{
+	    cursor: url("/common/img/up.gif") 0 32, crosshair;
+}
+#header > h1 {
+    margin: 0;
+    padding: 0.2em;
+    text-align: right;
+    background-color: #0B323D;
+}
+
+#main {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+
+    background-color: black;
+}
+
+#status-update-form {
+    padding: 0.5em;
+}
+#status-update-form input[type='text'] {
+    padding: 0.3em;
+    width: 50em;
+}
+#status-update-form input[type='text'] {
+    outline: none;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+#status-update-form input[type='text']:invalid {
+    border: 3px solid #9C473A;
+    /* for mozilla */
+    box-shadow: 0 0 0 transparent;
+}
+#status-update-form input[type='text']:valid {
+    border: 3px solid #2B7341;
+}
+#status-update-form button {
+    -webkit-appearance: none;
+    color: #6394A1;
+    background-color: #0B323D;
+    border: 0.2em solid #6394A1;
+
+    border-radius: 0.1em;
+    padding: 0.5em;
+    text-align: center;
+}
+#status-update-form button:disabled {
+    color: #888;
+    border-color: #888;
+    background-color: black;
+}
+
+
+
+
+
+#slider {
+  position: relative;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+  border-radius: 4px;
+  float: left;
+  margin-left: 30px;
+}
+
+#slider ul {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 500px;
+  list-style: none;
+}
+
+#slider ul li {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 500px;
+  height: 500px;
+  background: #ccc;
+  text-align: center;
+  line-height: 500px;
+  /*transform: rotate(7deg);*/
+}
+
+a.control_prev, a.control_next {
+  position: absolute;
+  top: 40%;
+  z-index: 999;
+  display: block;
+  padding: 4% 3%;
+  width: auto;
+  height: auto;
+  background: #2a2a2a;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0.8;
+  /*
+  cursor: pointer;*/
+}
+
+a.control_prev:hover, a.control_next:hover {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease;
+}
+
+a.control_prev {
+  border-radius: 0 2px 2px 0;
+}
+
+a.control_next {
+  right: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+.slider_option {
+  position: relative;
+  margin: 10px auto;
+  width: 160px;
+  font-size: 18px;
+}
+
+.allNews {
+    bottom: 0;
+    height: 220px;
+    left: -1%;
+    position: fixed;
+    width: 101%;
+    line-height: 1.2;
+}
+.scroll_text {
+    font-family: "Tahoma", Geneva, sans-serif;
+    font-size: 35px;
+    list-style-type: none;
+    text-align: left;
+    margin-top: 15px;
+    line-height: 1;
+    list-style-type: square;
+    color: black;
+}
+
+#scroll_text {
+    bottom: 0px;
+    overflow: hidden;
+    position: relative;
+    line-height: 1;
+}
+
+.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
+    height: 700px !important;
+}
+
+.red_background {
+    background-color: #dd4814;
+    text-align: left;
+    color: white;
+    display: inline-block;
+    font-family: Helvetica;
+    font-size: 25px;
+    font-stretch: expanded;
+    font-weight: bolder !important;
+    padding: 5px;
+    margin-top: 0 !important;
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+}
+
+.hubanero{
+    font-family: Helvetica;
+    font-size: 25px;
+    font-stretch: expanded;
+    font-weight: bolder !important;
+    padding: 10px;    
+}
+
+.float_right{ 
+    float: right; 
+}
+
+.jumbotron{
+    overflow: hidden;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.logoframe {
+    display: block;
+    height: 70px;
+    position: relative;
+    width: 100%;
+}
+
+.hublogo {
+    background-image: url('http://www.hubanero.it/hubanero-logo.png');
+    width: 254px;
+    height: 70px;
+    background-size: cover;
+}
+.js-date {
+    float: right;
+    font-size: xx-large;
+    font-style: oblique;
+    font-weight: bold;
+    font-family: "Verdana", sans-serif, serif;
+    color: #dd4814;
+}
+
+.spicy{
+    float: right;
+}
+
+.container-fluid {
+    min-height: 500px;
+}
+
+.radial {
+
+  background-size: cover;
+  background-image: url('http://www.hubanero.it/images/bg1.jpg');
+  background-position-y: -60px;
+  overflow: hidden;
+  cursor: url("/common/img/up.png") 0 32, default !important;
+    
+}
+.invisible{
+    display: none;
+}
+
+.notizia {
+    position: relative;
+    width: 100%;
+    max-height: 475px;
+    overflow: hidden;
+}
+.arr_2 {
+    color: #5A047B;
+    font-size: 31px;
+    font-style: oblique;
+    text-shadow: 1px 1px 2px white;
+    /* text-transform: uppercase; */
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.newsCategory {
+    position: absolute;
+    width: 307px;
+    height: 59px;
+    float: right;
+    padding: 0;
+    font-size: 28px;
+    font-weight: bold;
+    bottom: 130px;
+    right: 19px;
+    color: white;
+    z-index: 999;
+    text-shadow: 1px 1px 2px #dd4814;
+}
+
+
 
 .my_carousel {
     position: relative;
@@ -43,30 +376,201 @@
 .activate{}
 
 .img-circle{
-    border-radius: 0;
+    /*border-radius: 0;*/
 }
-#right.img-circle{
-    width: 33%;
-    float: left;
-}
-
-#left.img-circle{
-    width: 33%;
-    float: left;
-}
-#stop.img-circle{
-    width: 33%;
-    float: left;
+.img-circle{
+    display: none;
 }
 
 .glyphicon{
     display: none;
 }
-.interaction{
-	width: 75%;
-	height: 75%;
-	background-color: rgba(0,0,0,0.7);
-	z-index:9999;
+
+.modal-content{
+    background-color: rgba(255,255,255,0.8);
+}
+.modal-dialog{
+    width: 95%;
+}
+.mymodal-inner-logo{
+    width: 15%;
+}
+.ubu-orange{
+    background-color: #dd4814;
+}
+.box-msg-1, .box-msg-2 {
+    display: block;
+    width: 350px;
+    height: 350px;
+    border-radius: 15px;
+    border: 1px solid white;
+    left: 0;
+    position: absolute;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.box-msg-2 {
+    float: right !important;
+    position: relative;
+    background-image: url('http://www.hubanero.it/images/giochi.jpg');
+}
+.box-msg-1 {
+    background-image: url('http://www.hubanero.e it/images/giochi.jpg');
+}
+
+
+.my-frame {
+    border: 1x solid red !important;
+    width: 92%;
+    height: 350px;
+    position: relative;
+    border: 1px solid red;
+    margin: 0 auto;
+    top: 13%;
+}
+
+#total{
+    position: relative;
+}
+
+.iframes{
+    position: relative;
+    padding-left: 2% !important;
+    padding-right: 2% !important;
+    width: 102%;
+    position: fixed;
+    bottom: 0;
+    left: -1%;
+    overflow-y: hidden;
+}
+
+.iframe-wrapper{
+    height: 154px;
+    z-index: 999;
+    width: 101%;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 0;
+    left: -1%;
+    overflow: hidden;
+}
+
+
+.for-border {
+    border: 10px solid grey;
+    position: relative;
+    height: 90%;
+    width: 90%;
+    margin: 3% auto;
+}
+.exit-all {
+    border-radius: 50%;
+    position: absolute;
+    top: -4%;
+    right: -2%;
+    width: 6%;
+    height: 12%;
+    color: black;
+    border: 3px solid red;
+    padding-top: 1.6%;
+    font-size: 34px;
+    font-weight: bold;
+    padding-left: 2%;
+    background-color: rgba(255,0,0,.6);
+    border: 5px solid black;
+}
+.flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 35px solid #dd4814;
+    background-color: rgba(0,0,76, .7);
+    z-index: 999;
+}
+#flash > * {
+    text-align: center;
+    color: #dd4814;
+    font-stretch: expanded;
+    font-weight: bolder;
+    top: 5%;
+    position: relative;
+    font-size: 75px;
+}
+div#form-wrapper {
+    color: #dd4814;
+    text-align: center;
+    font-size: medium;
+    font-weight: bold;
+    padding: 6%;
+}
+.textarea {
+    text-align: center;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    top: 40px;
+    position: relative;
+}
+#my-form > input {
+    margin: 0 auto;
+    position: relative;
+    top: 55px;
+    display: block;
+    float: right;
+    margin: 2%;
+}
+#flashID > *{
+    text-align: center;
+    top: 10%;
+    position: relative;
+    font-size: 125px;
+    margin-left: 50px;
+    margin-right: 50px;
+    color: white;
+    z-index: 999;
+}
+.infoleft{
+	float: left !important;
+	position: static;
+	margin-left: 100px;
+}
+#interaction{
+	text-align: center;
+	color: white;
+	font-size: xx-large;
 	position: absolute;
-	margin: 0 auto;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 1200px;
+	z-index: 1000;
+	background-color: rgba(1, 29, 6,0.9);
+	display: none;
+}
+#close-image{
+	position: absolute;
+	top: 1%;
+	right: 1%;
+	z-index: 1000;
+	width: 256px;
+	height: 256px;
+	display: none;
+}
+
+#gallerySpan{
+    font-size: 83px;
+    margin: 0;
+    top: 20%;
+    position: relative;
+    text-align: center;
+    border: 5px solid;
+    padding: 30px;
+    left: 0%;
+    display: none;
 }

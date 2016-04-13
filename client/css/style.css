@@ -58,6 +58,7 @@
         background-color: lightgrey;
         background-image: url('') !important;
     }
+
     .scroll_text, .arr_2{
         font-size: 20px !important;
         
@@ -72,7 +73,10 @@
 * {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    cursor: url("/common/img/up.png") 0 32, crosshair;
+    
 }
+
 body, html {
     height: 100%;
     margin: 0;
@@ -83,7 +87,9 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.5em;
 }
-
+body > *{
+	    cursor: url("/common/img/up.png") 0 32, crosshair;
+}
 #header > h1 {
     margin: 0;
     padding: 0.2em;
@@ -186,7 +192,8 @@ a.control_prev, a.control_next {
   font-weight: 600;
   font-size: 18px;
   opacity: 0.8;
-  cursor: pointer;
+  /*
+  cursor: pointer;*/
 }
 
 a.control_prev:hover, a.control_next:hover {
@@ -310,6 +317,8 @@ a.control_next {
   background-image: url('http://www.hubanero.it/images/bg1.jpg');
   background-position-y: -60px;
   overflow: hidden;
+  cursor: url("/common/img/up.png") 0 32, default !important;
+    
 }
 .invisible{
     display: none;
@@ -340,7 +349,7 @@ a.control_next {
     bottom: 130px;
     right: 19px;
     color: white;
-    z-index: 9999;
+    z-index: 999;
     text-shadow: 1px 1px 2px #dd4814;
 }
 
@@ -376,13 +385,7 @@ a.control_next {
 .glyphicon{
     display: none;
 }
-.interaction {
-    height: 480px;
-    background-color: rgba(0,0,0,0.8);
-    position: relative;
-    margin: 0 auto;
-    border-radius: 47px;
-}
+
 .modal-content{
     background-color: rgba(255,255,255,0.8);
 }
@@ -452,30 +455,8 @@ a.control_next {
     left: -1%;
     overflow: hidden;
 }
-.allBlocks {
-    position: absolute;
-    margin: 0 auto;
-    border: 1px solid red;
-    width: 90%;
-    height: 90%;
-    z-index: 9999;
-    top: 5%;
-    left: 5%;
-    background-color: rgba(0,0,0,0.7);
-}
-.myBlock {
-    position: relative;
-    width: 20%;
-    background-color: grey;
-    margin: 5%;
-    float: left;
-    /* padding: 20px; */
-    border: 2px solid black;
-    margin-top: 8%;
-    height: 25%;
-    margin-right: 8%;
-    border-radius: 10%;
-}
+
+
 .for-border {
     border: 10px solid grey;
     position: relative;
@@ -553,4 +534,43 @@ div#form-wrapper {
     margin-right: 50px;
     color: white;
     z-index: 999;
+}
+.infoleft{
+	float: left !important;
+	position: static;
+	margin-left: 100px;
+}
+#interaction{
+	text-align: center;
+	color: white;
+	font-size: xx-large;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 1200px;
+	z-index: 1000;
+	background-color: rgba(1, 29, 6,0.9);
+	display: none;
+}
+#close-image{
+	position: absolute;
+	top: 1%;
+	right: 1%;
+	z-index: 1000;
+	width: 256px;
+	height: 256px;
+	display: none;
+}
+
+#gallerySpan{
+    font-size: 83px;
+    margin: 0;
+    top: 20%;
+    position: relative;
+    text-align: center;
+    border: 5px solid;
+    padding: 30px;
+    left: 0%;
+    display: none;
 }
