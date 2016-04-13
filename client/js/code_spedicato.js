@@ -20,10 +20,10 @@ $(document).ready(function () {
         var category = $(".my-select option:selected").val();
         console.log("select.my-select - " + category);
         //changeNewsCategory(category);
-        socket.emit('verardi-changeNews', {data: category});
+        socket.emit('frisenda-changeNews', {data: category});
     });
-    
-    /* cambiare src iframe al click da cell:
+    /*
+     * cambiare src iframe al click da cell:
      * $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php')
      * 
      * <iframe width="560" height="315" 
@@ -31,18 +31,17 @@ $(document).ready(function () {
      *  frameborder="0" allowfullscreen>
      * </iframe>
      */
-    if ($(window).width() > 500) {
+if ($(window).width() > 500) {
+    /*
         $('<iframe>', {
-            //src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
-            src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9QnW8ZOtAIGG7XAsxTMb7zs&amp;controls=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
-            //src: 'https://www.youtube.com/embed/HXjq1O4s3c8?rel=0&autoplay=1&loop=1&amp;controls=0&amp;showinfo=0',
+            src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=1&loop=1',
             id: 'myFrame',
             class: 'class',
             frameborder: 0,
             scrolling: 'no',
             width: 600,
             height: 450
-        }).prependTo('#iframeContainer');
+        }).prependTo('#iframeContainer');*/
 
         $('<iframe>', {
             src: 'http://www.di-vision.org/news/',
@@ -52,8 +51,6 @@ $(document).ready(function () {
             scrolling: 'no'
         }).prependTo('.iframe-wrapper');
     }
-    
-   
     
     var _AGGIORNAMENTO_NEWS = 18000;
     var _TIMEOUT_TIME = 12000;
@@ -123,7 +120,7 @@ $(document).ready(function () {
     });
     
     function myEmit(actionToDo, clickedTagID){
-        socket.emit(userID+'-'+actionToDo, {action: clickedTagID, dataVal: "esempio-data"});
+        socket.emit(userID+'-'+actionToDo, {action: clickedTagID});
         /*
          * esempio:
          * userID: 99999
@@ -146,12 +143,8 @@ $(document).ready(function () {
         runInterval("stop");
         
         count -=1;
-        if(count > $('.notizia').length-1){
+        if(count > $('.notizia').length){
             count = 0;
-        }
-        
-        if(count == -1){
-            count = $('.notizia').length-1;
         }
         loopNews();
     }
@@ -162,67 +155,16 @@ $(document).ready(function () {
         runInterval("stop");
         
         count +=1;
-        if(count > $('.notizia').length-1){
+        if(count > $('.notizia').length){
             count = 0;
         }
-        
-        if(count == -1){
-            count = $('.notizia').length-1;
-        }
-        
         loopNews();
     }
     
     function refresh(){
         location.reload();
     }
-    
-    
-    $('.infoleft').on('click', function (e) {
-    	window.open("http://192.168.1.126:8080/verardi");
-    });
-    
-    $('.newsCategory').on('click', function (e) {
-    	window.close();
-    });
-    
-    $(".logoframe").hover(function() {
-    	animShow($("#interaction"));
-    	animShow($("#gallerySpan"));
-    	//$('#close-image').slideDown();
-    });
-    
-    $("#gallerySpan").hover(function() {
-    	//location.replace("http://www.di-vision.org/verardi/superslide/examples/preserved-images.html#1");
-    	location.replace("http://localhost/~roberto/progetti-copia/verardi/superslide/examples/preserved-images.html");
-    });
-    
-    
-    
-    $('#close-image').hover(function() {
-    	animHide($("#interaction"));
-    	
-		//$('#close-image').slideUp();
-    });
-
-    function animShow(obj) {
-    	obj.fadeIn('slow', function(){
-    		$('#close-image').fadeIn('slow');
-    	});
-	}
-    
-    function animHide(obj) {
-    		obj.fadeOut('slow', function(){
-        		$('#close-image').fadeOut('slow');
-        	});
-	}
-    
     /*
-     * 
-     * <a href="javascript:window.open('','_self').close();">close</a>
-    
-    
-    
     $('.left').on('click', function (e) {
         //console.log('click on left! emit left');
         //socket.emit('left', {action: this.id});
@@ -233,9 +175,9 @@ $(document).ready(function () {
         //socket.emit('right', {action: this.id});
     });
     
-    $('.stop').on('click', function (e) {
-        //console.log('stop clicked!');
-        //socket.emit('stop', {action: this.id});
+    $('.refresh').on('click', function (e) {
+        //console.log('refresh clicked!');
+        //socket.emit('refresh', {action: this.id});
     });
     */
     /*
@@ -249,25 +191,25 @@ $(document).ready(function () {
         var socket = io.connect(socketURI);
         
         socket.on('connect', function (data) {
-            //socket.emit('storeClientInfo', { customId:"000_verardiJS_0000" });
+            //socket.emit('storeClientInfo', { customId:"000_frisendaJS_0000" });
         });
         /*
         socket.on('greeting', function (data) {
             console.log('greeting '+data);
         });*/
-        socket.on('verardi-left', function (data) {
+        socket.on('frisenda-left', function (data) {
             console.log('codejs client slide to left ' + data);
             oneLess();
         });
-        socket.on('verardi-right', function (data) {
+        socket.on('frisenda-right', function (data) {
             console.log('codejs client  slide to right ' + data);
             oneMore();
         });
-        socket.on('verardi-refresh', function (data) {
+        socket.on('frisenda-refresh', function (data) {
             console.log('client code l-92: refresh/start ' + data);
             refresh();
         });
-        socket.on('verardi-changeNews', function (data) {
+        socket.on('frisenda-changeNews', function (data) {
             changeNewsCategory(data);
         });
         /*
