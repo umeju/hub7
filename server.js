@@ -1,5 +1,5 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT || process.env.OPENSHIFT_NODEJS_PORT  || 8080;
-var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
+var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.10' || '127.0.0.1';
 var express = require('express');
 var server;
 var io;
@@ -197,7 +197,7 @@ io.sockets.on('connection', function (socket) {
         },
         "client-changeNews": function(data){
             console.log('client-changeNews data:' + testData);
-            socket.broadcast.emit('client-changeNews', testData);
+            socket.broadcast.emit('client-changeNews', 'client-right');
         },
         
         "frisenda-right": function(data){
@@ -214,7 +214,7 @@ io.sockets.on('connection', function (socket) {
         },
         "frisenda-changeNews": function(data){
             console.log('frisenda-changeNews data:' + testData);
-            socket.broadcast.emit('frisenda-changeNews',  testData);
+            socket.broadcast.emit('frisenda-changeNews',  'frisenda-changeNews');
         },
         
         "preite-right": function(data){
@@ -231,11 +231,10 @@ io.sockets.on('connection', function (socket) {
         },
         "preite-changeNews": function(data){
             console.log('preite-changeNews data:' + testData);
-            socket.broadcast.emit('preite-changeNews', testData);
+            socket.broadcast.emit('preite-changeNews', 'preite-changeNews');
         },
     };
-    
-    //magic happensss:
+
     for (var method in events) {
         var dynamicHandler = function (realMethod) {
             socket.on(realMethod, function (data) {

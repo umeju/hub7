@@ -461,7 +461,7 @@ a.control_next {
     z-index: 9999;
     top: 5%;
     left: 5%;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.5);
 }
 .myBlock {
     position: relative;
@@ -518,12 +518,8 @@ a.control_next {
     position: relative;
     font-size: 75px;
 }
-div#form-wrapper {
-    color: #dd4814;
-    text-align: center;
-    font-size: medium;
-    font-weight: bold;
-    padding: 6%;
+.form-wrapper{
+    
 }
 .textarea {
     text-align: center;
@@ -537,12 +533,10 @@ div#form-wrapper {
     position: relative;
 }
 #my-form > input {
-    margin: 0 auto;
+        margin: 0 auto;
     position: relative;
     top: 55px;
     display: block;
-    float: right;
-    margin: 2%;
 }
 #flashID > *{
     text-align: center;
