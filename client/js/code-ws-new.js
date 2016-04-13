@@ -20,7 +20,7 @@ $(document).ready(function () {
         var category = $(".my-select option:selected").val();
         console.log("select.my-select - " + category);
         //changeNewsCategory(category);
-        socket.emit('verardi-changeNews', {data: category});
+        socket.emit('changeNews', {dataVal: userID + '-' + category});
     });
     
     /* cambiare src iframe al click da cell:
@@ -123,7 +123,12 @@ $(document).ready(function () {
     });
     
     function myEmit(actionToDo, clickedTagID){
-        socket.emit(userID+'-'+actionToDo, {action: clickedTagID, dataVal: "esempio-data"});
+    	//socket.emit(userID+'-'+actionToDo, {action: clickedTagID, dataVal: "esempio-data"});
+    	//socket.emit(userID+'-'+actionToDo, {action: clickedTagID, dataVal: actionToDo});
+    	//socket.emit(actionToDo, {action: actionToDo, dataVal: actionToDo});
+    	socket.emit(actionToDo, {action: actionToDo, dataVal: userID});
+    	
+        
         /*
          * esempio:
          * userID: 99999
@@ -177,7 +182,52 @@ $(document).ready(function () {
         location.reload();
     }
     
+    
+    $('.infoleft').on('click', function (e) {
+    	window.open("http://192.168.1.126:8080/spedicato");
+    });
+    
+    $('.newsCategory').on('click', function (e) {
+    	window.close();
+    });
+    
+    $(".logoframe").hover(function() {
+    	animShow($("#interaction"));
+    	animShow($("#gallerySpan"));
+    	//$('#close-image').slideDown();
+    });
+    
+    $("#gallerySpan").hover(function() {
+    	//location.replace("http://www.di-vision.org/spedicato/superslide/examples/preserved-images.html#1");
+    	location.replace("http://localhost/~roberto/progetti-copia/spedicato/superslide/examples/preserved-images.html");
+    });
+    
+    
+    
+    $('#close-image').hover(function() {
+    	animHide($("#interaction"));
+    	
+		//$('#close-image').slideUp();
+    });
+
+    function animShow(obj) {
+    	obj.fadeIn('slow', function(){
+    		$('#close-image').fadeIn('slow');
+    	});
+	}
+    
+    function animHide(obj) {
+    		obj.fadeOut('slow', function(){
+        		$('#close-image').fadeOut('slow');
+        	});
+	}
+    
     /*
+     * 
+     * <a href="javascript:window.open('','_self').close();">close</a>
+    
+    
+    
     $('.left').on('click', function (e) {
         //console.log('click on left! emit left');
         //socket.emit('left', {action: this.id});
@@ -204,26 +254,27 @@ $(document).ready(function () {
         var socket = io.connect(socketURI);
         
         socket.on('connect', function (data) {
-            //socket.emit('storeClientInfo', { customId:"000_verardiJS_0000" });
+            //socket.emit('storeClientInfo', { customId:"000_spedicatoJS_0000" });
         });
         /*
         socket.on('greeting', function (data) {
             console.log('greeting '+data);
         });*/
-        socket.on('verardi-left', function (data) {
+        socket.on(userID + '-left', function (data) {
             console.log('codejs client slide to left ' + data);
             oneLess();
         });
-        socket.on('verardi-right', function (data) {
+        socket.on(userID + '-right', function (data) {
             console.log('codejs client  slide to right ' + data);
             oneMore();
         });
-        socket.on('verardi-refresh', function (data) {
+        socket.on(userID + '-refresh', function (data) {
             console.log('client code l-92: refresh/start ' + data);
             refresh();
         });
-        socket.on('verardi-changeNews', function (data) {
-            changeNewsCategory(data);
+        socket.on('changeNews', function (data) {
+        	console.log('codejs client  slide to changeNews ' + data);
+        	changeNewsCategory(data);
         });
         /*
         socket.on('news-calcio', function (data) {
