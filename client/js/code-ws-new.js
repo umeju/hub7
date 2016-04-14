@@ -32,7 +32,7 @@ $(document).ready(function () {
      * </iframe>
      */
     if ($(window).width() > 500) {
-        $('<iframe>', {
+/*        $('<iframe>', {
             //src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
             src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9QnW8ZOtAIGG7XAsxTMb7zs&amp;controls=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
             //src: 'https://www.youtube.com/embed/HXjq1O4s3c8?rel=0&autoplay=1&loop=1&amp;controls=0&amp;showinfo=0',
@@ -43,7 +43,7 @@ $(document).ready(function () {
             width: 600,
             height: 450
         }).prependTo('#iframeContainer');
-
+*/
         $('<iframe>', {
             src: 'http://www.di-vision.org/news/',
             id: 'myFrame2',
