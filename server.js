@@ -1,7 +1,7 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.105' || '127.0.0.1';
+		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.111' || '127.0.0.1';
 var express = require('express');
 var server;
 var io;
@@ -56,7 +56,10 @@ app.get('/', function(req, res) {
 	res.sendfile(__dirname + '/client/index.html');
 });
 
-// VERARDI
+// ROMANO
+app.get('/romano', function(req, res) {
+	res.sendfile(__dirname + '/romano/index.html');
+});// VERARDI
 app.get('/verardi', function(req, res) {
 	res.sendfile(__dirname + '/verardi/index.html');
 });
