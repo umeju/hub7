@@ -142,14 +142,13 @@ $(document).ready(function () {
     
     function changeNewsCategory(newsCategory){
     	  newsCategorySplitted = splitNewsName(newsCategory);
-console.log('asd' + newsCategorySplitted[1]);    	  
+    	  
+    	  //gestire hi tech con spazio o trattino
     	  switch(newsCategorySplitted[1]) {
     	  	case "HI TECH":
     	  	console.log('poi' + newsCategorySplitted[1]);
     	  	newsCategorySplitted[1] = "hi-tech";
-    	  	default:
-    	  	console.log('lli' + newsCategorySplitted[1]);
-    	  	
+    	  	default:    	  	
     	  }    	  
     	  
         $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=' +

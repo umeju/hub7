@@ -147,7 +147,7 @@ $(document).ready(function () {
     	  switch(newsCategorySplitted[1]) {
     	  	case "HI TECH":
     	  	console.log('poi' + newsCategorySplitted[1]);
-    	  	newsCategorySplitted[1] = "hi-tech";
+    	  	newsCategorySplitted[1] = "HI-TECH";
     	  	default:    	  	
     	  }    	  
     	  

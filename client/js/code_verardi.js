@@ -146,15 +146,24 @@ $(document).ready(function () {
     
     
     function changeNewsCategory(newsCategory){
+    	  newsCategorySplitted = splitNewsName(newsCategory);
+    	  
+    	  //gestire hi tech con spazio o trattino
+    	  switch(newsCategorySplitted[1]) {
+    	  	case "HI TECH":
+    	  	console.log('poi' + newsCategorySplitted[1]);
+    	  	newsCategorySplitted[1] = "HI-TECH";
+    	  	default:    	  	
+    	  }    	  
+    	  
         $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=' +
-                
-                newsCategory);
-                newsCategorySplitted = splitNewsName(newsCategory);
+                newsCategorySplitted[1]);
+
         $('.newsCategory').text("NEWS: " + newsCategorySplitted[1]);
         $('.actualNews').text(newsCategory);
         $('.actualNews').show();
-        
     }
+    
     // move 1 pic back
     function oneLess(){
         clearInterval(countFunc);
