@@ -149,7 +149,7 @@
              * data top right
              * userID per recuperare le news giuste dal DB
              */
-            var userID = "00003";
+            var userID = "00001";
             
         var d = new Date();
         var month = d.getMonth() + 1;
@@ -214,9 +214,7 @@
                     }, time);
         }(3600 * 1000));
     </script>
-    
-    
-    
+
     <div id="prepareFlash" class="flash invisible">
         <div id="form-wrapper">Area riservata agli amministratori 
             per la pubblicazione dei messaggi flash:
@@ -230,20 +228,14 @@
         </div>
         </div>
     </div>
-    
-    
-    
-    
+
     <div id="prepareFlash2" class="flash invisible">
         <div id="form-wrapper">
             <h1>Area riservata agli amministratori per 
                 la pubblicazione dei messaggi flash:</h1>
         </div>
     </div>
-    
-    
-    
-    
+
     <div id="flashID" class="invisible flash">
         <h2 class="textMsgClass">AVVISO
             <br> IMPORTANTE
@@ -252,16 +244,14 @@
             MESSAGGIO TEST
         </h2>
     </div>
-    
-    
+
     <div id="messageSentOk" class="invisible flash">
         <h2 class="textMsgClass">OK</h2>
         <h2 class="textMsgClass" id="textMsgID">
             Il messaggio è stato inviato correttamente.
         </h2>
     </div>
-    
-    
+
     <div id="messageSentError" class="invisible flash">
         <h2 class="textMsgClass">ERRORE!</h2>
         <h2 class="textMsgClass" id="textMsgID">
@@ -269,9 +259,8 @@
             Riprova.
         </h2>
     </div>
-    
-    
+
     <!-- SET USERID VAL *************** dont change!!! **************** -->
-    <div id="userID" style="display: none;">garzia</div>
+    <div id="userID" style="display: none;">romano</div>
     </body>
 </html>
