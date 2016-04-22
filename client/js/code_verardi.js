@@ -4,7 +4,8 @@ $(document).ready(function () {
     //
     //get userid val from last div in the html page
     var userID = $('#userID').text();
-    var galleryUrl = "http://localhost/~roberto/progetti-copia/spedicato/superslide/examples/preserved-images.html";
+//    var galleryUrl = "http://localhost/~roberto/progetti-copia/spedicato/superslide/examples/preserved-images.html";
+    var galleryUrl = "http://www.di-vision.org/verardi/venobox/";
     
     var directions = ['left','refresh','right'];
     
@@ -226,7 +227,6 @@ $(document).ready(function () {
     
     $('#close-image').hover(function() {
     	animHide($("#interaction"));
-    	
 		//$('#close-image').slideUp();
     });
 
@@ -234,13 +234,13 @@ $(document).ready(function () {
     	obj.fadeIn('slow', function(){
     		$('#close-image').fadeIn('slow');
     	});
-	}
+    }
     
     function animHide(obj) {
-    		obj.fadeOut('slow', function(){
-        		$('#close-image').fadeOut('slow');
-        	});
-	}
+            obj.fadeOut('slow', function(){
+                    $('#close-image').fadeOut('slow');
+            });
+        }
     
     /*
      * 

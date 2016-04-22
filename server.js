@@ -1,7 +1,7 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.111' || '127.0.0.1';
+		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
 var express = require('express');
 var server;
 var io;
@@ -51,6 +51,8 @@ app.use('/varSocketURI.js', function(req, res) {
 app.use('/client', express.static(__dirname + '/client'));
 // The common path is for shared code: used by both client and server.
 app.use('/common', express.static(__dirname + '/common'));
+app.use('/audio', express.static(__dirname + '/audio'));
+
 // The root path should serve the client HTML.
 app.get('/', function(req, res) {
 	res.sendfile(__dirname + '/client/index.html');
