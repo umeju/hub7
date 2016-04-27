@@ -1,3 +1,20 @@
+(function($){
+    $.fn.attachSound = function (soundSrc)
+    {
+    return this.each(function(index){
+        $(this).click(function() {
+        var audioElement = document.createElement('audio');
+            if (audioElement.canPlayType('/audio/mpeg') == '')
+            {
+            soundSrc = soundSrc.replace('.mp3','.ogg');
+            }
+        audioElement.setAttribute('src', soundSrc);
+        audioElement.play();
+        });
+    })
+    }
+})( jQuery );
+
 
 // Images must be preloaded before they are used to draw into canvas
 function preloadImages( images, callback ) {
@@ -18,7 +35,7 @@ function preloadImages( images, callback ) {
     var loadc = 0;
     function _check( err, id ) {
     	if ( err ) {
-	        alert('Failed to load ' + id );
+	        console.log('Failed to load ' + id );
     	}
 	    loadc++;
 	    if ( images.length == loadc ) callback();
@@ -30,13 +47,13 @@ function preloadImages( images, callback ) {
 }
 
 function _initWebAudio( AudioContext, format, audios, callback ) {
-    // See more details in http://www.html5rocks.com/en/tutorials/webaudio/intro/
+    // See more details in http://www.html5rocks.com/en/tutorials/web/audio/intro/
 
     var context = new AudioContext();
 
     function _preload( asset ) {
         var request = new XMLHttpRequest();
-        request.open('GET',  'audio/' + asset.id + '.' + format, true);
+        request.open('GET',  '/audio/' + asset.id + '.' + format, true);
         request.responseType = 'arraybuffer';
 
         request.onload = function() {
@@ -74,7 +91,7 @@ function _initWebAudio( AudioContext, format, audios, callback ) {
     var loadc = 0;
     function _check( err, id ) {
         if ( err ) {
-            alert('Failed to load ' + id + '.' + format);
+            console.log('Failed to load ' + id + '.' + format);
         }
         loadc++;
         if ( audios.length == loadc ) callback();
@@ -89,7 +106,7 @@ function _initWebAudio( AudioContext, format, audios, callback ) {
 function _initHTML5Audio( format, audios, callback ) {
 
     function _preload( asset ) {
-        asset.audio = new Audio( 'audio/' + asset.id + '.' + format);
+        asset.audio = new Audio( '/audio/' + asset.id + '.' + format);
         asset.audio.preload = 'auto';
         asset.audio.addEventListener("loadeddata", function() {
             // Loaded ok, set play function in object and set default volume
@@ -112,7 +129,7 @@ function _initHTML5Audio( format, audios, callback ) {
     var loadc = 0;
     function _check( err, id ) {
         if ( err ) {
-            alert('Failed to load ' + id + '.' + format);
+            console.log('Failed to load ' + id + '.' + format);
         }
         loadc++;
         if ( audios.length == loadc ) callback();
@@ -130,7 +147,7 @@ function initAudio( audios, callback ) {
     var elem = document.createElement('audio');
     if ( elem ) {
         // Check if we can play mp3, if not then fall back to ogg
-        if( !elem.canPlayType( 'audio/mpeg;' ) && elem.canPlayType('audio/ogg;')) format = 'ogg';
+        if( !elem.canPlayType( '/audio/mpeg;' ) && elem.canPlayType('/audio/ogg;')) format = 'ogg';
     }
 
     var AudioContext = window.AudioContext || window.mozAudioContext || window.MSAudioContext || window.AudioContext;
@@ -173,13 +190,18 @@ function SlotGame() {
     initAudio(audios, function() {
             // audio is initialized and loaded
             game.audios[0].play();
+            
+        $('.img-circle').click(function (e) {
+            game.audios[3].play();
         });
         
+        $('button').click(function (e) {
+            game.audios[3].play();
+        });
         
-
-    $('#play').click(function(e) {
-        game.audios[0].play();
+        $('.img-circle').attachSound(game.audios[3]);
     });
+    
 }
 
 function Game() {

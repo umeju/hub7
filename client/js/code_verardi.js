@@ -24,6 +24,10 @@ $(document).ready(function () {
         //changeNewsCategory(category);
         socket.emit('changeNews', {dataVal: userID + '-' + category});
     });
+    $('.btn-warning').on('click', function(){
+        var category = $(this).data('category');
+        socket.emit('changeNews', {dataVal: userID + '-' + category});
+    });
     
     /* cambiare src iframe al click da cell:
      * $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php')
@@ -54,8 +58,6 @@ $(document).ready(function () {
             scrolling: 'no'
         }).prependTo('.iframe-wrapper');
     }
-    
-   
     
     var _AGGIORNAMENTO_NEWS = 18000;
     var _TIMEOUT_TIME = 12000;
@@ -130,7 +132,6 @@ $(document).ready(function () {
     	//socket.emit(actionToDo, {action: actionToDo, dataVal: actionToDo});
     	socket.emit(actionToDo, {action: actionToDo, dataVal: userID});
     	
-        
         /*
          * esempio:
          * userID: 99999
@@ -139,12 +140,10 @@ $(document).ready(function () {
          */
     }
 
-    
     function splitNewsName(data) {
     	newsName = data.split('-');
     	return newsName;
     }    
-    
     
     function changeNewsCategory(newsCategory){
     	  newsCategorySplitted = splitNewsName(newsCategory);
@@ -220,10 +219,8 @@ $(document).ready(function () {
     
     $("#gallerySpan").hover(function() {
     	//location.replace("http://www.di-vision.org/spedicato/superslide/examples/preserved-images.html#1");
-    	location.replace(galleryUrl);
+//    	location.replace(galleryUrl);
     });
-    
-    
     
     $('#close-image').hover(function() {
     	animHide($("#interaction"));

@@ -1,0 +1,29 @@
+.notturno{
+    background-color: darkgreen;
+    color: white !important;
+    text-align: center;
+    text-shadow: 2px 2px black;
+    font-size: 38px;
+}
+.descrizione img{
+    width: 80%;
+    height: auto;
+    padding: 3px;
+    float: right;
+}
+#close-image {
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+    margin: 5px;
+    display: none;
+}
+.close-image{
+    width: 160px;
+    height: auto;
+    float: right;
+}
+button{
+    width: 28%;;
+    margin: 5px;
+}
