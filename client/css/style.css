@@ -538,13 +538,13 @@ div#form-wrapper {
 	position: static;
 	margin-left: 100px;
 }
-#gallerySpan{
-    width: 800px;
+#gallerySpan {
+    width: 50%;
     position: absolute;
-    top: 0;
+    top: 10px;
     left: 50%;
-    margin-left: -400px;
-    //background-image: url('/common/img/b2.gif');
+    margin-left: -25%;
     cursor: wait;
     height: 50px;
+    border: 3px solid black;
 }
