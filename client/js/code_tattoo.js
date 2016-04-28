@@ -40,7 +40,7 @@ $(document).ready(function () {
     if ($(window).width() > 500) {
         $('<iframe>', {
             //src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
-            src: 'https://youtu.be/IWxWzIGFW6Q&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
+            src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9SfGb4dw2Z2Hh_5cI9_pEP-&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
             //src: 'https://www.youtube.com/embed/HXjq1O4s3c8?rel=0&autoplay=1&loop=1&amp;controls=0&amp;showinfo=0',
             id: 'myFrame',
             class: 'class',
@@ -51,7 +51,7 @@ $(document).ready(function () {
         }).prependTo('#iframeContainer');
 
         $('<iframe>', {
-            src: 'http://www.di-vision.org/news/',
+            src: 'http://www.di-vision.org/tattoo-news/',
             id: 'myFrame2',
             class: 'iframes',
             frameborder: 0,
@@ -239,44 +239,12 @@ $(document).ready(function () {
             });
         }
     
-    /*
-     * 
-     * <a href="javascript:window.open('','_self').close();">close</a>
-    
-    
-    
-    $('.left').on('click', function (e) {
-        //console.log('click on left! emit left');
-        //socket.emit('left', {action: this.id});
-    });
-
-    $('.right').on('click', function (e) {
-        //console.log('click on right! emit right');
-        //socket.emit('right', {action: this.id});
-    });
-    
-    $('.stop').on('click', function (e) {
-        //console.log('stop clicked!');
-        //socket.emit('stop', {action: this.id});
-    });
-    */
-    /*
-    $('#checkbox').change(function () {
-        setInterval(function () {
-            moveRight();
-        }, 6000);
-    });*/
-    
     (function (exports){
         var socket = io.connect(socketURI);
         
         socket.on('connect', function (data) {
             //socket.emit('storeClientInfo', { customId:"000_spedicatoJS_0000" });
         });
-        /*
-        socket.on('greeting', function (data) {
-            console.log('greeting '+data);
-        });*/
         socket.on(userID + '-left', function (data) {
             console.log('codejs client slide to left ' + data);
             oneLess();
@@ -293,29 +261,7 @@ $(document).ready(function () {
         	console.log('codejs client  slide to changeNews ' + data);
         	changeNewsCategory(data);
         });
-        /*
-        socket.on('news-calcio', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_CALCIO_URL);
-        });
         
-        socket.on('news-ultimora', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_ULTIMORA_URL);
-        });
-        
-        socket.on('news-gossip', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_GOSSIP_URL);
-        });
-        
-        socket.on('news-tech', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_TECH_URL);
-            console(_TECH_URL);
-        });*/
-        
-        // export
         exports.socket = socket;
     })(window);
 });
