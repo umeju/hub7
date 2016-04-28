@@ -98,6 +98,12 @@ app.get('/spedicato', function(req, res) {
 	res.sendfile(__dirname + '/spedicato/index.html');
 });
 
+app.get('/tattoo', function(req, res) {
+	res.sendfile(__dirname + '/tattoo/index.html');
+});
+
+
+
 // Our express application functions as our main listener for HTTP requests
 // in this example which is why we don't just invoke listen on the app object.
 server = require('http').createServer(app);
