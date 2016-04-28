@@ -1,0 +1,17 @@
+.radial {
+  background-size: cover;
+  background-image: url('../images/bg1.jpg');
+  background-position-y: -60px;
+  overflow: hidden;
+  cursor: url("/common/img/up.png") 0 0, default !important;   
+}
+#banner {
+    width: 40%;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -20%;
+    cursor: wait;
+    height: 50px;
+    border: 3px solid black;
+}
