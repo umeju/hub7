@@ -37,8 +37,9 @@
                 </div>
             </div>
             
+                <!-- START REMOTE CODE-->
             <div class="row">
-
+                
                 <div class="hidden-lg">
                     <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
                     <h4 class="text-center"> basta un click!</h4>
@@ -104,15 +105,6 @@
              */
             // orlando tattoo
         var userID = "00011";
-            /*
-        var d = new Date();
-        var month = d.getMonth() + 1;
-        var day = d.getDate();
-
-        var output = (('' + day).length < 2 ? '0' : '') + day + ' - ' +
-                (('' + month).length < 2 ? '0' : '') + month + ' - ' +
-                d.getFullYear();
-        $('.js-date').html(output);*/
         
     var i = 9;
         var items = [];
@@ -121,15 +113,12 @@
        
         
         function jsonCallback(data) {
-            //console.log(data);
             count = 0;
             $.each(data.sites, function (key, val) {
-                //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
                 if(val.titolo !== ''){ // avoid empty news
                     items.push(
                         "<div class='notizia'>"
                         + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
-                        // + val.descrizione to use html as text...
                         + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
                         + "<div class='arr_2'>" + val.note + "</div>"
                         + "</div>");
@@ -141,7 +130,7 @@
             //nascondo tutto e mostro la prima notizia
             $('.my_inner > *').hide();
             // use eq(count-2) coz the first element is empty
-            $('.my_inner > *').eq(count-2).show();
+            $('.my_inner > *').eq(count).show();
         }
         //url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
         function getNews(url) {

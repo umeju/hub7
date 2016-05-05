@@ -29,3 +29,7 @@
 .js-date {
     color: #9d0709 !important;
 }
+button{
+    width: 28%;;
+    margin: 5px;
+}

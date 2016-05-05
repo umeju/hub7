@@ -1,10 +1,8 @@
 $(document).ready(function () {
     //$('#prev').contents().find('body').html('<div> blah </div>');
-    //
-    //
+
     //get userid val from last div in the html page
     var userID = $('#userID').text();
-//    var galleryUrl = "http://localhost/~roberto/progetti-copia/spedicato/superslide/examples/preserved-images.html";
     var galleryUrl = "http://www.di-vision.org/tattoo/venobox/";
     
     var directions = ['left','refresh','right'];
@@ -127,9 +125,6 @@ $(document).ready(function () {
     });
     
     function myEmit(actionToDo, clickedTagID){
-    	//socket.emit(userID+'-'+actionToDo, {action: clickedTagID, dataVal: "esempio-data"});
-    	//socket.emit(userID+'-'+actionToDo, {action: clickedTagID, dataVal: actionToDo});
-    	//socket.emit(actionToDo, {action: actionToDo, dataVal: actionToDo});
     	socket.emit(actionToDo, {action: actionToDo, dataVal: userID});
     	
         /*
@@ -201,11 +196,6 @@ $(document).ready(function () {
     function refresh(){
         location.reload();
     }
-    
-    
-    $('.infoleft').on('click', function (e) {
-    	window.open("http://192.168.1.126:8080/spedicato");
-    });
     
     $('.newsCategory').on('click', function (e) {
     	window.close();
