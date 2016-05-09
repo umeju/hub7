@@ -104,7 +104,7 @@
              * data top right
              * userID per recuperare le news giuste dal DB
              */
-            //  spedicato
+            //  ***********************************************************************  spedicato 00010
         var userID = "00010";
             
         var d = new Date();
@@ -178,15 +178,14 @@
                 jsonpCallback: 'jsonCallback',
                 dataType: 'jsonp',
                 success: function (json) {
-                    //$('.my_inner').append(items);
-                    console.log('1');
+                    
                 },
                 error: function (e) {
                     console.log(e.message);
                 }
             });
         };
-        //refresh page each 622 sec.
+        //refresh page each 625 sec.
         (function(time) {
             setInterval(
                     function(){ 

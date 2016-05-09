@@ -9,6 +9,8 @@
 
         <link href="../client/css/bootstrap.min.css" rel="stylesheet">
         <link href="../client/css/style.css" rel="stylesheet">
+        <link href="../client/css/special.css" rel="stylesheet">
+        
         
         <script src="/socket.io/socket.io.js"></script>
         
@@ -18,6 +20,7 @@
         <!--<script src="/common/models.js"></script>-->
         <script src="/varSocketURI.js"></script>
         <script src="../client/js/code-ws-new.js"></script>
+        <script src="../client/js/audio.js"></script>
 
     </head>
     <body class="radial">
@@ -35,30 +38,32 @@
                 </div>
             </div>
             
+                <!-- START REMOTE CODE-->
             <div class="row">
-
+                
                 <div class="hidden-lg">
                     <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
                     <h4 class="text-center"> basta un click!</h4>
                     <hr class="hidden-lg">
-                    <select class="form-control col-sm-offset-2 btn btn-default dropdown-toggle my-select">
-                        <option>ULTIM'ORA</option>
-                        <option>SPORT</option>
-                        <option>HI-TECH</option>
-                        <option>OROSCOPO</option>
-                        <option>GOSSIP</option>
-                    </select>
-
+                    
+                    <button type="button" data-category="ULTIM'ORA" class="btn btn-warning">Ultim'ora</button>
+                    <button type="button" data-category="SPORT" class="btn btn-warning">Sport</button>
+                    <button type="button" data-category="HI TECH" class="btn btn-warning">Hi-tech</button>
+                    <button type="button" data-category="OROSCOPO" class="btn btn-warning">Oroscopo</button>
+                    <button type="button" data-category="GOSSIP" class="btn btn-warning">Gossip</button>
+                    <button type="button" data-category="CALCIO" class="btn btn-default">Calcio</button>
+                    
                     <hr class="hidden-lg">
+                    
                 </div>
                 
                 <div class="col-md-6" id="iframeContainer">
                     
-                    <h4 class="text-center hidden-lg"> Con la tecnologia 
+                    <h4 class="text-center hidden-md hidden-lg"> Con la tecnologia 
                         <span class="bg-warning text-danger">hubanero</span> il tuo smartphone 
                     diventa un telecomando. Usa le frecce per navigare tra gli annunci
                     </h4>
-                    <hr class="hidden-lg">
+                    <hr class="visible-md visible-sm">
                     <div class="row" id="nav-arrows">
                         
                         <div class="col-md-4" id="for-left"></div>
@@ -99,7 +104,7 @@
              * data top right
              * userID per recuperare le news giuste dal DB
              */
-            //  spedicato
+            //  ***********************************************************************  spedicato 00010
         var userID = "00010";
             
         var d = new Date();
@@ -173,8 +178,7 @@
                 jsonpCallback: 'jsonCallback',
                 dataType: 'jsonp',
                 success: function (json) {
-                    //$('.my_inner').append(items);
-                    console.log('1');
+                    
                 },
                 error: function (e) {
                     console.log(e.message);
