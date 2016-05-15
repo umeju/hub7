@@ -1,7 +1,7 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.105' || '127.0.0.1';
+		|| process.env.OPENSHIFT_NODEJS_IP || '10.0.200.40' || '127.0.0.1';
 var express = require('express');
 var server;
 var io;
@@ -52,6 +52,7 @@ app.use('/client', express.static(__dirname + '/client'));
 // The common path is for shared code: used by both client and server.
 app.use('/common', express.static(__dirname + '/common'));
 app.use('/audio', express.static(__dirname + '/audio'));
+app.use('/verardi', express.static(__dirname + '/verardi'));
 
 // The root path should serve the client HTML.
 app.get('/', function(req, res) {
@@ -97,6 +98,12 @@ app.get('/licignano', function(req, res) {
 app.get('/spedicato', function(req, res) {
 	res.sendfile(__dirname + '/spedicato/index.html');
 });
+
+//HOLTANNA
+app.get('/holtanna', function(req, res) {
+	res.sendfile(__dirname + '/holtanna/index.html');
+});
+
 
 app.get('/tattoo', function(req, res) {
 	res.sendfile(__dirname + '/tattoo/index.html');
@@ -155,23 +162,18 @@ io.sockets.on('connection',
 				},
 				/************ FLASH MESSAGES PER GARZIA *********/
 				"showFlashMsg" : function(data) {
-
 					msgText = splitMsg(testData);
-
-					console.log('msgText 188*******************' + msgText);
-
-					//console.log('garzia-showFlashMsg data:' + "testData");
 					socket.broadcast.emit('garzia-showFlashMsg', msgText);
 				},
 			}
 
-			//magic happensss:
+			//***********************   magic happensss:  ************************
 			for ( var method in events) {
 				var dynamicHandler = function(realMethod) {
 					socket.on(realMethod, function(data) {
-
+						/*
 						console.log('CONTROL: received realMethod -->'
-								+ realMethod);
+								+ realMethod);*/
 						//console.log('DATA: received -->'+data.dataVal);
 						testData = data.dataVal;
 						//console.log('DATA: received '+JSON.stringify(data));
