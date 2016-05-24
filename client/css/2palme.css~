@@ -1,0 +1,10 @@
+.radial {
+    background-size: cover;
+    background-image: url('http://www.hubanero.it/images/2p.jpg');
+    background-position-y: -2px;
+    background-position-x: -38px;
+    
+    overflow: hidden;
+    cursor: url("/common/img/up.png") 0 32, default !important;
+}
+.descrizione {background-color:rgba(255,255,255,0.3);}

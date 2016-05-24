@@ -6,7 +6,7 @@
     font-size: 38px;
 }
 .descrizione img{
-    /* width: 80%; */
+    width: 80%;
     height: auto;
     padding: 3px;
     float: right;
