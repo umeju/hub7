@@ -241,33 +241,6 @@ $(document).ready(function () {
             });
         }
     
-    /*
-     * 
-     * <a href="javascript:window.open('','_self').close();">close</a>
-    
-    
-    
-    $('.left').on('click', function (e) {
-        //console.log('click on left! emit left');
-        //socket.emit('left', {action: this.id});
-    });
-
-    $('.right').on('click', function (e) {
-        //console.log('click on right! emit right');
-        //socket.emit('right', {action: this.id});
-    });
-    
-    $('.stop').on('click', function (e) {
-        //console.log('stop clicked!');
-        //socket.emit('stop', {action: this.id});
-    });
-    */
-    /*
-    $('#checkbox').change(function () {
-        setInterval(function () {
-            moveRight();
-        }, 6000);
-    });*/
     
     (function (exports){
         var socket = io.connect(socketURI);
