@@ -1,8 +1,8 @@
 .radial {
     background-size: cover;
-    background-image: url('http://www.hubanero.it/images/2p.jpg');
+    background-image: url('/common/img/bg1.png');
     background-position-y: -2px;
-    background-position-x: -38px;
+    background-position-x: -12px;
     
     overflow: hidden;
     cursor: url("/common/img/up.png") 0 32, default !important;

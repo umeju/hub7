@@ -41,15 +41,18 @@ $(document).ready(function () {
      
      
      */
+     var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RgbrzuM6cXr9JiU5gjFrM_";//cantine 2 palme
+     var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9T7abW8PGKOF8RKj8LXGrZf";//sfilate
+     
     if ($(window).width() > 500) {
         $('<iframe>', {
-            src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RgbrzuM6cXr9JiU5gjFrM_&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
+            src: playlist + '&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
             id: 'myFrame',
             class: 'class',
             frameborder: 0,
             scrolling: 'no',
-            width: 600,
-            height: 450
+            width: 800,
+            height: 600
         }).prependTo('#iframeContainer');
 
         $('<iframe>', {
