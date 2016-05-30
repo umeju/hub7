@@ -1,7 +1,7 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
+		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.105' || '127.0.0.1';
 var express = require('express');
 var server;
 var io;
