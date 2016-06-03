@@ -8,3 +8,7 @@
     cursor: url("/common/img/up.png") 0 32, default !important;
 }
 .descrizione {background-color:rgba(255,255,255,0.3);}
+.my_inner{
+right: -171px;
+    position: relative;
+}

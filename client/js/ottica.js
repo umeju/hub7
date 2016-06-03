@@ -38,11 +38,7 @@ $(document).ready(function () {
      */
     if ($(window).width() > 500) {
         $('<iframe>', {
-            src: 'https://youtu.be/w0NXHaDs2-U?list=RDw0NXHaDs2-U&autoplay=0&loop=1',
-            //src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9QnW8ZOtAIGG7XAsxTMb7zs&amp;controls=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
-
-//https://youtu.be/e80qhyovOnA?list=PLWn1TEaIbN6i655_H_oMc3I6SSfXObLii
-            //src: 'https://www.youtube.com/embed/HXjq1O4s3c8?rel=0&autoplay=1&loop=1&amp;controls=0&amp;showinfo=0',
+            src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RJq3MvTFD_TkPmA_nUmDZZ&amp;controls=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
             id: 'myFrame',
             class: 'class',
             frameborder: 0,
