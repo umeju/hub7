@@ -18,7 +18,7 @@
         <!--script src="/common/handlebars.js"></script-->
         <!--<script src="/common/models.js"></script>-->
         <script src="/varSocketURI.js"></script>
-        <script src="../client/js/code_verardi.js"></script>
+        <script src="../client/js/code_tattoo.js"></script>
         <script src="../client/js/audio.js"></script>
 
     </head>
@@ -30,16 +30,16 @@
                     <div class="js-date visible-lg"></div>
 
                     <div class="logoframe">
-                        <div class="hublogo">
-                        </div>
+                        
                     </div>
                     <img width="559" height="50" alt="" class="visible-lg" id="banner" src="http://www.orlandotattoo.it/images/1-top-page.jpg" />
                     
                 </div>
             </div>
             
+                <!-- START REMOTE CODE-->
             <div class="row">
-
+                
                 <div class="hidden-lg">
                     <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
                     <h4 class="text-center"> basta un click!</h4>
@@ -54,15 +54,6 @@
                     
                     <hr class="hidden-lg">
                     
-                    <!--select class="hidden-md hidden-lg form-control col-sm-offset-2 btn btn-default dropdown-toggle my-select">
-                        <option>ULTIM'ORA</option>
-                        <option>SPORT</option>
-                        <option>HI TECH</option>
-                        <option>OROSCOPO</option>
-                        <option>GOSSIP</option>
-                    </select>
-
-                    <hr class="hidden-lg"-->
                 </div>
                 
                 <div class="col-md-6" id="iframeContainer">
@@ -114,54 +105,20 @@
              */
             // orlando tattoo
         var userID = "00011";
-            
-        var d = new Date();
-        var month = d.getMonth() + 1;
-        var day = d.getDate();
-
-        var output = (('' + day).length < 2 ? '0' : '') + day + ' - ' +
-                (('' + month).length < 2 ? '0' : '') + month + ' - ' +
-                d.getFullYear();
-        $('.js-date').html(output);
-        var i = 9;
+        
+    var i = 9;
         var items = [];
         var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
         getNews(url);
-        
-    /*var json = "json.json";
-        var obj = $.getJSON(json, function(data){
-            count = 0;
-            $.each(data.sites, function (key, val) {
-                //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                if(val.title != ''){ // avoid empty news
-                    items.push(
-                        "<div class='notizia'>"
-                        + "<div class='red_background shadow titolo'>" + val.title + "</div>"
-                        // + val.descrizione to use html as text...
-                        + "<div class='scroll_text descrizione'>" + val.content + "</div>"
-                        + "<div class='arr_2'>" + val.note + "</div>"
-                        + "</div>");
-                }
-                count++;
-            });
-            $('.my_inner').append(items);
-            //nascondo tutto e mostro la prima notizia
-            $('.my_inner > *').hide();
-            // use eq(count-2) coz the first element is empty
-            $('.my_inner > *').eq(count-2).show();
-        });
-        */
+       
         
         function jsonCallback(data) {
-            //console.log(data);
             count = 0;
             $.each(data.sites, function (key, val) {
-                //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
                 if(val.titolo !== ''){ // avoid empty news
                     items.push(
                         "<div class='notizia'>"
                         + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
-                        // + val.descrizione to use html as text...
                         + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
                         + "<div class='arr_2'>" + val.note + "</div>"
                         + "</div>");
@@ -173,7 +130,7 @@
             //nascondo tutto e mostro la prima notizia
             $('.my_inner > *').hide();
             // use eq(count-2) coz the first element is empty
-            $('.my_inner > *').eq(count-2).show();
+            $('.my_inner > *').eq(count).show();
         }
         //url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
         function getNews(url) {

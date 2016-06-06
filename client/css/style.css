@@ -437,7 +437,7 @@ a.control_next {
     padding-right: 2% !important;
     width: 102%;
     position: fixed;
-    bottom: -5%;
+    bottom: 0;
     left: -1%;
     overflow-y: hidden;
 }

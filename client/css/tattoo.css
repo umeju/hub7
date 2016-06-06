@@ -17,7 +17,6 @@
 }
 .red_background {
     background-color: #9d0709 !important;
-
 }
 .myrss {
     color: white;
@@ -32,4 +31,7 @@
 button{
     width: 28%;;
     margin: 5px;
+}
+.notizia {
+max-height: 100% !important;
 }
