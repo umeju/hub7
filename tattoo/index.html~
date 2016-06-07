@@ -40,7 +40,7 @@
                 <!-- START REMOTE CODE-->
             <div class="row">
                 
-                <div class="hidden-lg">
+                <!--div class="hidden-lg">
                     <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
                     <h4 class="text-center"> basta un click!</h4>
                     <hr class="hidden-lg">
@@ -54,7 +54,7 @@
                     
                     <hr class="hidden-lg">
                     
-                </div>
+                </div-->
                 
                 <div class="col-md-6" id="iframeContainer">
                     
@@ -89,7 +89,7 @@
                 
                 <div class="col-md-12 visible-lg">
                     <!-- use class allNews to visualize news from the web -->
-                    <div class="iframe-wrapper">
+                    <div class="iframe-wrapper_______________">
                        
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                 if(val.titolo !== ''){ // avoid empty news
                     items.push(
                         "<div class='notizia'>"
-                        + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
+                        //+ "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
                         + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
                         + "<div class='arr_2'>" + val.note + "</div>"
                         + "</div>");

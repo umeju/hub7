@@ -35,7 +35,10 @@ $(document).ready(function () {
      *  frameborder="0" allowfullscreen>
      * </iframe>
      */
+
+     
     if ($(window).width() > 500) {
+    	/*  hide video top left iframe
         $('<iframe>', {
             //src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
             src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9SfGb4dw2Z2Hh_5cI9_pEP-&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
@@ -47,7 +50,10 @@ $(document).ready(function () {
             width: 600,
             height: 450
         }).prependTo('#iframeContainer');
-
+       */
+       
+        
+        /* hide news per orlando tattoo
         $('<iframe>', {
             src: 'http://www.di-vision.org/tattoo-news/',
             id: 'myFrame2',
@@ -55,16 +61,12 @@ $(document).ready(function () {
             frameborder: 0,
             scrolling: 'no'
         }).prependTo('.iframe-wrapper');
+        */
     }
     
     var _AGGIORNAMENTO_NEWS = 18000;
     var _TIMEOUT_TIME = 12000;
-    /*
-    var _ULTIMORA_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=ultimora';
-    var _TECH_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=tech';
-    var _GOSSIP_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=gossip';
-    var _CALCIO_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=calcio';
-    */
+    
     var _ULTIMORA_URL = 'http://www.di-vision.org/news/index.php?news=ultimora';
     var _TECH_URL = 'http://www.di-vision.org/news/index.php?news=tech';
     var _GOSSIP_URL = 'http://www.di-vision.org/news/index.php?news=gossip';
