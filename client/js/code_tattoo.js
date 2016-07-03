@@ -125,6 +125,13 @@ $(document).ready(function () {
         clickedTagID = this.id;
         myEmit('refresh', clickedTagID);
     });
+    $('.tabs').click(function (){
+        console.log('p1 p2!');
+        clickedTagID = this.id;
+        
+        myEmit(clickedTagID, clickedTagID);
+    });
+    
     
     function myEmit(actionToDo, clickedTagID){
     	socket.emit(actionToDo, {action: actionToDo, dataVal: userID});
@@ -245,6 +252,7 @@ $(document).ready(function () {
             console.log('codejs client  slide to right ' + data);
             oneMore();
         });
+        
         socket.on(userID + '-refresh', function (data) {
             console.log('client code l-92: refresh/start ' + data);
             refresh();
@@ -253,6 +261,20 @@ $(document).ready(function () {
         	console.log('codejs client  slide to changeNews ' + data);
         	changeNewsCategory(data);
         });
+        
+        
+        socket.on(userID + '-tab1', function (data) {
+            console.log('tab1 ' + data);
+            $("#panel-1").trigger('click');
+        });
+        
+        
+        socket.on(userID + '-tab2', function (data) {
+            console.log('tab2 ' + data);
+            $("#panel-2").trigger('click');
+        });
+        
+        
         
         exports.socket = socket;
     })(window);

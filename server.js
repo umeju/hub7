@@ -162,11 +162,24 @@ io.sockets.on('connection',
 					socket.broadcast.emit(testData + '-refresh', testData
 							+ '-refresh');
 				},
+				"tab1" : function(data) {
+					console.log('tab1, testData: ' + testData);
+					socket.broadcast.emit(testData + '-tab1', testData
+							+ '-tab1');
+				},
+				"tab2" : function(data) {
+					console.log('tab2, testData: ' + testData);
+					socket.broadcast.emit(testData + '-tab2', testData
+							+ '-tab2');
+				},
+				
+				
 				/************ FLASH MESSAGES PER GARZIA *********/
 				"showFlashMsg" : function(data) {
 					msgText = splitMsg(testData);
 					socket.broadcast.emit('garzia-showFlashMsg', msgText);
 				},
+				
 			}
 
 			//***********************   magic happensss:  ************************
@@ -178,7 +191,7 @@ io.sockets.on('connection',
 								+ realMethod);*/
 						//console.log('DATA: received -->'+data.dataVal);
 						testData = data.dataVal;
-						//console.log('DATA: received '+JSON.stringify(data));
+						console.log('DATA: received '+JSON.stringify(data));
 						events[realMethod].apply(this, data);
 					});
 				};
