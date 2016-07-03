@@ -70,7 +70,7 @@
 * {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    cursor: url("/common/img/up.png") 0 32, crosshair;
+    /*cursor: url("/common/img/up.png") 0 32, crosshair;*/
     
 }
 
@@ -83,9 +83,6 @@ body, html {
 body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.5em;
-}
-body > *{
-    cursor: url("/common/img/up.png") 0 32, crosshair;
 }
 #header > h1 {
     margin: 0;
@@ -189,31 +186,24 @@ a.control_prev, a.control_next {
   font-weight: 600;
   font-size: 18px;
   opacity: 0.8;
-  /*
-  cursor: pointer;*/
 }
-
 a.control_prev:hover, a.control_next:hover {
   opacity: 1;
   -webkit-transition: all 0.2s ease;
 }
-
 a.control_prev {
   border-radius: 0 2px 2px 0;
 }
-
 a.control_next {
   right: 0;
   border-radius: 2px 0 0 2px;
 }
-
 .slider_option {
   position: relative;
   margin: 10px auto;
   width: 160px;
   font-size: 18px;
 }
-
 .allNews {
     bottom: 0;
     height: 220px;
@@ -314,7 +304,7 @@ a.control_next {
   background-image: url('http://www.hubanero.it/images/bg1.jpg');
   background-position-y: -60px;
   overflow: hidden;
-  cursor: url("/common/img/up.png") 0 32, default !important;
+  /*cursor: url("/common/img/up.png") 0 32, default !important;*/
     
 }
 .invisible{

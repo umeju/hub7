@@ -37,10 +37,11 @@ $(document).ready(function () {
      *  frameborder="0" allowfullscreen>
      * </iframe>
      
-     <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RgbrzuM6cXr9JiU5gjFrM_" frameborder="0" allowfullscreen></iframe>
-     
-     
+     <iframe width="560" height="315" 
+     src="https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RgbrzuM6cXr9JiU5gjFrM_" frameborder="0" allowfullscreen></iframe>
+    
      */
+     
      var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RgbrzuM6cXr9JiU5gjFrM_";//cantine 2 palme
      var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9T7abW8PGKOF8RKj8LXGrZf";//sfilate
      

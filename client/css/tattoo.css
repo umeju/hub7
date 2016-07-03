@@ -3,7 +3,7 @@
   background-image: url('../images/bg3.jpg');
   background-position-y: -60px;
   overflow: hidden;
-  cursor: url("/common/img/up.png") 0 0, default !important;   
+/*  cursor: url("") 0 0, default !important;   */
 }
 #banner {
     width: 40%;
@@ -34,4 +34,12 @@ button{
 }
 .notizia {
 max-height: 100% !important;
+width: 96%;
 }
+.testi{
+font-size: xx-large;
+    line-height: 1.4;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px red;
+    }

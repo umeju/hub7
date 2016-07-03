@@ -13,7 +13,7 @@
         
         <script src="/socket.io/socket.io.js"></script>
         
-        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script src="../client/js/jquery.min.js" type="text/javascript"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <!--script src="/common/handlebars.js"></script-->
         <!--<script src="/common/models.js"></script>-->
@@ -23,21 +23,79 @@
 
     </head>
     <body class="radial">
-        <div class="container-fluid">
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="js-date visible-lg"></div>
+        <div class="container-fluid hidden-md hidden-sm hidden-xs">
+	<div class="row">
+		<div class="col-md-6">
+			
+			<div class="carousel slide" id="carousel-600440">
+				
+				<div class="carousel-inner">
+					
+					
+					
+					<!-- GENERATED NEWS CODE -->
+                            <div class="my_inner"></div>
+                            
+                            
+                            
+				</div> 
+				<a class="left carousel-control" href="#carousel-600440" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span></a> 
+					<a class="right carousel-control" href="#carousel-600440" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="tabbable" id="tabs-751940">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="#panel-972199" data-toggle="tab">I COSTI DI UN TATUAGGIO</a>
+					</li>
+					<li>
+						<a href="#panel-446387" data-toggle="tab">PREPARAZIONE ALL'APPUNTAMENTO</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="panel-972199">
+						<p class="testi">
+							E’ molto difficile fare un preventivo prima di accordare la bozza del tatuaggio,
+							e neanche dopo la realzzazione di questa si può conoscere la spesa precisa di quel
+							che sarà,
+							bisogna tener conto di alcune variabili del prezzo finale.
+							Il prezzo che noi attribuiamo al tatuaggio nasce dal rapporto tra due variabili:
+							-la dimensione del tatuaggio
+							-il tempo impiegato per realizzarlo;
+							dunque durante la realizzazione il prezzo potrebbe essere sottoposto a cambiamen-
+							ti, ci potrebbe volere più o meno tempo del previsto,
+							il progetto potrebbe evolversi o sintetizzarsi strada facendo
+							...consigliamo quindi di esser flessibili sul prezzo stabilito.
+						</p>
+					</div>
+					<div class="tab-pane" id="panel-446387">
+						<p class="testi">
+							In primo luogo occorre, già nel momento stesso della prenotazione,che il cliente ab-
+bia una forte motivazione prima di procedere alla scelta e l'esecuzione del tatuaggio.
+Il tatuatore deve trovare di fronte a se una persona convinta delle proprie scelte e
+delle proprie idee, che non si faccia condizionare da decisioni altrui onde, evitare
+pentimenti a lavoro compiuto, inoltre la sicurezza consentirà all'artista di esprimere
+al meglio la vostra richiesta.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-                    <div class="logoframe">
-                        
-                    </div>
-                    <img width="559" height="50" alt="" class="visible-lg" id="banner" src="http://www.orlandotattoo.it/images/1-top-page.jpg" />
-                    
-                </div>
-            </div>
-            
-                <!-- START REMOTE CODE-->
+
+        
+    
+    
+    
+    
+    
+    
+        <!-- START REMOTE CODE-->
             <div class="row">
                 
                 <!--div class="hidden-lg">
@@ -56,12 +114,20 @@
                     
                 </div-->
                 
-                <div class="col-md-6" id="iframeContainer">
+                <div class="col-md-6 hidden-lg" id="iframeContainer">
+					
+					<hr />
                     
-                    <h4 class="text-center hidden-md hidden-lg"> Con la tecnologia 
-                        <span class="bg-warning text-danger">hubanero</span> il tuo smartphone 
-                    diventa un telecomando. Usa le frecce per navigare tra gli annunci
+                    <img src="http://www.orlandotattoo.it/images/1-top-page.jpg" width="100%" />
+                    
+                    <hr />
+                    
+                    <h4 class="text-center hidden-md hidden-lg"> 
+						Con la tecnologia 
+							<span class="bg-warning text-danger">hubanero</span>                        
+                        il tuo smartphone diventa un telecomando. Usa le frecce per navigare tra gli annunci
                     </h4>
+                    
                     <hr class="visible-md visible-sm">
                     <div class="row" id="nav-arrows">
                         
@@ -69,34 +135,38 @@
                         <div class="col-md-4" id="for-refresh"></div>
                         <div class="col-md-4" id="for-right"></div>
                         
-                    </div>                    
-
+                    </div>
+                    
+                    
+                    <ul>
+						<li>
+							<a href="#">I COSTI DEL TATUAGGIO</a>
+							</li>
+						<li><a href="#">PREPARAZIONE ALL'APPUNTAMENTO</a>
+						</li>
+						
+                    </ul>
                 </div>
                 <div class="col-md-6 visible-lg">
                     <div class="my_carousel">
                         <div class="" id="carousel-859806">
-                            <!-- GENERATED NEWS CODE -->
-                            <div class="my_inner"></div>
+                            
+                            
                             
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row visible-lg" id="id3">
-                <!--div class="newsCategory">
-                    NEWS: ULTIMORA
-                </div-->
-                
-                <div class="col-md-12 visible-lg">
-                    <!-- use class allNews to visualize news from the web -->
-                    <div class="iframe-wrapper_______________">
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script src="../client/js/bootstrap.min.js"></script>
+            
+            
+            
+            
+            
+            
+            
+    <!-- SET USERID VAL -->
+    <div id="userID" style="display: none;">tattoo</div>
+    <script src="../client/js/bootstrap.min.js"></script>
         <!-- DATE JS-->
         <script>
             /*
@@ -180,7 +250,5 @@
         }(625 * 1000));
         
     </script>
-    <!-- SET USERID VAL -->
-    <div id="userID" style="display: none;">tattoo</div>
     </body>
 </html>
