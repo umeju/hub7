@@ -43,7 +43,11 @@ font-size: xx-large;
     font-weight: bold;
     text-shadow: 2px 2px 4px red;
     }
-img{
-width: 100%;
-height: auto;
+img {
+    width: 775px;
+    height: auto;
+    float: left !important;
+    padding-right: 92px;
+    margin-left: 102px;
+    margin-top: -18px;
 }
