@@ -1,7 +1,7 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '192.168.1.105' || '127.0.0.1';
+		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
 var express = require('express');
 var server;
 var io;
@@ -113,8 +113,6 @@ app.get('/2palme', function(req, res) {
 	res.sendfile(__dirname + '/2palme/index.html');
 });
 
-
-
 // Our express application functions as our main listener for HTTP requests
 // in this example which is why we don't just invoke listen on the app object.
 server = require('http').createServer(app);
@@ -164,11 +162,24 @@ io.sockets.on('connection',
 					socket.broadcast.emit(testData + '-refresh', testData
 							+ '-refresh');
 				},
+				"tab1" : function(data) {
+					console.log('tab1, testData: ' + testData);
+					socket.broadcast.emit(testData + '-tab1', testData
+							+ '-tab1');
+				},
+				"tab2" : function(data) {
+					console.log('tab2, testData: ' + testData);
+					socket.broadcast.emit(testData + '-tab2', testData
+							+ '-tab2');
+				},
+				
+				
 				/************ FLASH MESSAGES PER GARZIA *********/
 				"showFlashMsg" : function(data) {
 					msgText = splitMsg(testData);
 					socket.broadcast.emit('garzia-showFlashMsg', msgText);
 				},
+				
 			}
 
 			//***********************   magic happensss:  ************************
@@ -180,7 +191,7 @@ io.sockets.on('connection',
 								+ realMethod);*/
 						//console.log('DATA: received -->'+data.dataVal);
 						testData = data.dataVal;
-						//console.log('DATA: received '+JSON.stringify(data));
+						console.log('DATA: received '+JSON.stringify(data));
 						events[realMethod].apply(this, data);
 					});
 				};
