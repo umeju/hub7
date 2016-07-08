@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+        <title>hubanero chatty client</title>
+
+    </head>
+    <body class="radial">
+        <div class="container-fluid">
+            
+            <div class="row">
+                <div class="col-md-12">
+						<p></p>
+                </div>
+            </div>
+            
+            <div class="row">
+
+                <div class="hidden-lg">
+                    <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
+                    <h4 class="text-center"> basta un click!</h4>
+                    <hr class="hidden-lg">
+                    
+                    <button type="button" data-category="ULTIM'ORA" class="btn btn-warning">Ultim'ora</button>
+                    <button type="button" data-category="SPORT" class="btn btn-warning">Sport</button>
+                    <button type="button" data-category="HI TECH" class="btn btn-warning">Hi-tech</button>
+                    <button type="button" data-category="OROSCOPO" class="btn btn-warning">Oroscopo</button>
+                    <button type="button" data-category="GOSSIP" class="btn btn-warning">Gossip</button>
+                    <button type="button" data-category="CALCIO" class="btn btn-default">Calcio</button>
+                    
+                    <hr class="hidden-lg">
+                    
+                    <!--select class="hidden-md hidden-lg form-control col-sm-offset-2 btn btn-default dropdown-toggle my-select">
+                        <option>ULTIM'ORA</option>
+                        <option>SPORT</option>
+                        <option>HI TECH</option>
+                        <option>OROSCOPO</option>
+                        <option>GOSSIP</option>
+                    </select>
+
+                    <hr class="hidden-lg"-->
+                </div>
+                
+                <div class="col-md-6" id="iframeContainer">
+                    
+                    <h4 class="text-center hidden-md hidden-lg"> Con la tecnologia 
+                        <span class="bg-warning text-danger">hubanero</span> il tuo smartphone 
+                    diventa un telecomando. Usa le frecce per navigare tra gli annunci
+                    </h4>
+                    <hr class="visible-md visible-sm">
+                    <div class="row" id="nav-arrows">
+                        
+                        <div class="col-md-4" id="for-left"></div>
+                        <div class="col-md-4" id="for-refresh"></div>
+                        <div class="col-md-4" id="for-right"></div>
+                        
+                    </div>                    
+
+                </div>
+                <div class="col-md-6 visible-lg">
+                    <div class="my_carousel">
+                        <div class="" id="carousel-859806">
+                            <!-- GENERATED NEWS CODE -->
+                            <div class="my_inner"></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row visible-lg" id="id3">
+                <div class="newsCategory">
+                    NEWS: ULTIMORA
+                </div>
+                
+                <div class="col-md-12 visible-lg">
+                    <!-- use class allNews to visualize news from the web -->
+                    <div class="iframe-wrapper">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../client/js/bootstrap.min.js"></script>
+        <!-- DATE JS-->
+        <script>
+            
+        var i = 9;
+        var items = [];
+        var url = 'http://www.hubanero.it/big_sun/frontend/web/index.php/get-menu/bm001';
+        var url = 'http://www.hubanero.it/big_sun/sun.php';        
+        getNews(url);
+
+        
+        function jsonCallback(miodata) {
+            
+            count = 0;
+            $.each(miodata.categorie, function (key, val) {
+                if(val.titolo !== ''){ // avoid empty news
+                    items.push(
+                        "<div class='notizia'>"
+                        + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
+                        
+                        + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
+                        + "<div class='arr_2'>" + val.note + "</div>"
+                        + "</div>");
+                }
+                count++;
+            });
+            
+            $('.my_inner').append(items);
+            //nascondo tutto e mostro la prima notizia
+            $('.my_inner > *').hide();
+            // use eq(count-2) coz the first element is empty
+            $('.my_inner > *').eq(count-2).show();
+        }
+
+        function getNews(url) {
+            $.ajax({
+                type: 'GET',
+                url: url,
+                crossDomain: true,
+                jsonp : false,
+                cache:true,
+                jsonpCallback: 'jsonCallback',
+                dataType: 'jsonp',
+                success: function (json) {
+                    console.log('get news success!');
+                },
+                error: function (e) {
+                }
+            });
+        };
+        
+        var miodata = 'jsonCallback({"categorie":[{"nomeCategoria":"Antipasti","idCategoria":13,"prodotti":[{"id":"22","idCategoria":"13","nome":"BRESAOLA GRANA E RUCOLA","ingredienti":null,"note":null,"prezzo":"12","fotoURL":""},{"id":"25","idCategoria":"13","nome":"CAPRESE","ingredienti":null,"note":null,"prezzo":"12","fotoURL":""},{"id":"21","idCategoria":"13","nome":"INSALATA DI POLPO","ingredienti":null,"note":null,"prezzo":"15","fotoURL":""},{"id":"26","idCategoria":"13","nome":"PROSCIUTTO E MELONE","ingredienti":null,"note":null,"prezzo":"12","fotoURL":""}]},{"nomeCategoria":"Birre in Bottiglia","idCategoria":11,"prodotti":[{"id":"2","idCategoria":"11","nome":"BECKS","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"8","idCategoria":"11","nome":"CERES","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"4","idCategoria":"11","nome":"CORONA","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"3","idCategoria":"11","nome":"HEINEKEN","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"1","idCategoria":"11","nome":"NASTRO AZZURRO","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"7","idCategoria":"11","nome":"TENNENTS","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""}]},{"nomeCategoria":"Cocktails Alcolici","idCategoria":8,"prodotti":[{"id":"80","idCategoria":"8","nome":"CAIPIRINHA","ingredienti":"cachaça, mezzo lime, zucchero di canna o in alternativa bianco, ghiaccio tritato","note":null,"prezzo":"0","fotoURL":""},{"id":"81","idCategoria":"8","nome":"CAJPIRISSIMA","ingredienti":"","note":null,"prezzo":"0","fotoURL":""},{"id":"82","idCategoria":"8","nome":"CAJPIROSKA","ingredienti":"vodka, lime, zucchero di canna","note":null,"prezzo":"0","fotoURL":""},{"id":"61","idCategoria":"8","nome":"CAMPARI GIN","ingredienti":"Campari, Vermouth rosso, selz","note":null,"prezzo":"0","fotoURL":""},{"id":"62","idCategoria":"8","nome":"CAMPARI ORANGE","ingredienti":"Campari, succo d’arancia","note":null,"prezzo":"0","fotoURL":""},{"id":"63","idCategoria":"8","nome":"CAMPARI TONIC","ingredienti":"Campari, acqua tonica","note":null,"prezzo":"0","fotoURL":""},{"id":"64","idCategoria":"8","nome":"COSMOPOLITAN","ingredienti":"Vodka, Triple sec, Succo di lime, succo di cranberry","note":null,"prezzo":"0","fotoURL":""},{"id":"65","idCategoria":"8","nome":"CUBA LIBRE","ingredienti":"Rum chiaro, Cola, Succo di lime","note":null,"prezzo":"0","fotoURL":""},{"id":"86","idCategoria":"8","nome":"FRAGOLOSKA","ingredienti":"","note":null,"prezzo":"0","fotoURL":""},{"id":"66","idCategoria":"8","nome":"GIN COLA","ingredienti":"Gin, Cola","note":null,"prezzo":"0","fotoURL":""},{"id":"67","idCategoria":"8","nome":"GIN LEMON","ingredienti":"gin, acqua tonica, gocce d’Angostura","note":null,"prezzo":"0","fotoURL":""},{"id":"68","idCategoria":"8","nome":"LONG ISLAND","ingredienti":"Tequila, Gin, Whiskey, White Rum, Vodka, Cola, Succo d’arancia","note":null,"prezzo":"0","fotoURL":""},{"id":"83","idCategoria":"8","nome":"MOJITO","ingredienti":"Ron bianco cubano Havana Club Silver Dry, succo di lime, zucchero di canna, menta marocchina, ghiaccio, acqua gasata","note":null,"prezzo":"0","fotoURL":""},{"id":"85","idCategoria":"8","nome":"NEGRONI","ingredienti":"gin, bitter Campari, vermut rosso dolce, arancia","note":null,"prezzo":"0","fotoURL":""},{"id":"84","idCategoria":"8","nome":"NEGRONI SBAGLIATO","ingredienti":"ghiaccio, spumante brut, Vermouth Rosso, Campari, arancia, angostura","note":null,"prezzo":"0","fotoURL":""},{"id":"74","idCategoria":"8","nome":"NEGROSKY","ingredienti":"Vermouth rosso, Campari bitter, Vodka, Arancia","note":null,"prezzo":"0","fotoURL":""},{"id":"76","idCategoria":"8","nome":"PESCHITO","ingredienti":"","note":null,"prezzo":"0","fotoURL":""},{"id":"75","idCategoria":"8","nome":"PINA COLADA","ingredienti":"rum, noce di cocco e ananas","note":null,"prezzo":"0","fotoURL":""},{"id":"77","idCategoria":"8","nome":"SEX ON THE BEACH","ingredienti":"Vodka, liquore di pesche, succo d’arancia, succo di cranberry","note":null,"prezzo":"0","fotoURL":""},{"id":"78","idCategoria":"8","nome":"SPRITZ","ingredienti":"tequila, succo d’arancia , granatina","note":null,"prezzo":"0","fotoURL":""},{"id":"79","idCategoria":"8","nome":"TEQUILA SUNRISE","ingredienti":"tequila, succo d’arancia , granatina","note":null,"prezzo":"0","fotoURL":""},{"id":"70","idCategoria":"8","nome":"VODKA LEMON","ingredienti":"Vodka, lemonsoda","note":null,"prezzo":"0","fotoURL":""},{"id":"71","idCategoria":"8","nome":"VODKA ORANGE","ingredienti":"","note":null,"prezzo":"0","fotoURL":""},{"id":"73","idCategoria":"8","nome":"VODKA RED BULL","ingredienti":"Vodka, Red Bull","note":null,"prezzo":"0","fotoURL":""},{"id":"72","idCategoria":"8","nome":"VODKA TONIC","ingredienti":"","note":null,"prezzo":"0","fotoURL":""},{"id":"69","idCategoria":"8","nome":"WHISKY COLA","ingredienti":"","note":null,"prezzo":"0","fotoURL":""}]},{"nomeCategoria":"Drinks","idCategoria":7,"prodotti":[{"id":"59","idCategoria":"7","nome":"AMERICANO","ingredienti":"Bitter, Vermut rosso, soda","note":null,"prezzo":"0","fotoURL":""},{"id":"56","idCategoria":"7","nome":"APERITIVO","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"60","idCategoria":"7","nome":"BELLINI","ingredienti":"Prosecco, polpa di pesca","note":null,"prezzo":"0","fotoURL":""},{"id":"58","idCategoria":"7","nome":"CEDRATA TASSONI","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"39","idCategoria":"7","nome":"FRULLATO FRUTTA DI STAGIONE","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"54","idCategoria":"7","nome":"GRANITA (LIMONE/MENTA)","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"53","idCategoria":"7","nome":"LATTE DI MANDORLA","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"34","idCategoria":"7","nome":"RED BULL","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"55","idCategoria":"7","nome":"SCIROPPO DI ORZATA - MENTA","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"38","idCategoria":"7","nome":"SPREMUTA DI ARANCE ","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"57","idCategoria":"7","nome":"STUZZICHINI DELLO CHEF","ingredienti":null,"note":null,"prezzo":"10","fotoURL":""},{"id":"35","idCategoria":"7","nome":"SUCCO DI FRUTTA","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"52","idCategoria":"7","nome":"YOGURT DA BERE ","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""}]},{"nomeCategoria":"Frutta, Dolci & Gelati","idCategoria":12,"prodotti":[{"id":"17","idCategoria":"12","nome":"COPPETTA ARTIGIANALE","ingredienti":"cassata e pistacchio","note":null,"prezzo":"8","fotoURL":""},{"id":"15","idCategoria":"12","nome":"PIATTO DI FRUTTA","ingredienti":null,"note":null,"prezzo":"7","fotoURL":""},{"id":"18","idCategoria":"12","nome":"SORBETTO AL LIMONE","ingredienti":null,"note":null,"prezzo":"7","fotoURL":""},{"id":"16","idCategoria":"12","nome":"SPUMONE","ingredienti":"crema, cioccolato e meringa","note":null,"prezzo":"8","fotoURL":""}]},{"nomeCategoria":"I Contorni","idCategoria":19,"prodotti":[{"id":"47","idCategoria":"19","nome":"INSALATA  MISTA*","ingredienti":null,"note":null,"prezzo":"6","fotoURL":""},{"id":"46","idCategoria":"19","nome":"PANZEROTTI LECCESI","ingredienti":null,"note":"8 pezzi","prezzo":"9","fotoURL":""},{"id":"45","idCategoria":"19","nome":"PATATINE FRITTE*","ingredienti":null,"note":null,"prezzo":"6","fotoURL":""},{"id":"48","idCategoria":"19","nome":"VERDURE MISTE GRIGLIATE","ingredienti":null,"note":"","prezzo":"6","fotoURL":""}]},{"nomeCategoria":"I Primi","idCategoria":15,"prodotti":[{"id":"33","idCategoria":"15","nome":"MEZZISCIALATELLI ALLA MENTA CON SCORFANO  E POMODORINI","ingredienti":null,"note":null,"prezzo":"18","fotoURL":""},{"id":"27","idCategoria":"15","nome":"ORECCHIETTE POMODORO FRESCO E BASILICO","ingredienti":null,"note":null,"prezzo":"15","fotoURL":""},{"id":"28","idCategoria":"15","nome":"SPAGHETTI COZZE  E POMODORINI","ingredienti":null,"note":null,"prezzo":"15","fotoURL":""}]},{"nomeCategoria":"La Caffetteria","idCategoria":6,"prodotti":[{"id":"9","idCategoria":"6","nome":"CAFFÈ AL GINSENG illy","ingredienti":null,"note":null,"prezzo":"3","fotoURL":""},{"id":"6","idCategoria":"6","nome":"CAFFÈ DECAFFEINATO illy","ingredienti":null,"note":null,"prezzo":"3","fotoURL":""},{"id":"10","idCategoria":"6","nome":"CAFFÈ DI ORZO illy","ingredienti":null,"note":null,"prezzo":"3","fotoURL":""},{"id":"5","idCategoria":"6","nome":"CAFFÈ ESPRESSO illy","ingredienti":null,"note":null,"prezzo":"3","fotoURL":""},{"id":"32","idCategoria":"6","nome":"CAPPUCCINO","ingredienti":null,"note":null,"prezzo":"3","fotoURL":""},{"id":"13","idCategoria":"6","nome":"CORRETTO","ingredienti":null,"note":null,"prezzo":"3","fotoURL":""},{"id":"31","idCategoria":"6","nome":"CREMA CAFFÈ illy","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""},{"id":"14","idCategoria":"6","nome":"ESPRESSINO","ingredienti":null,"note":null,"prezzo":"3","fotoURL":""},{"id":"23","idCategoria":"6","nome":"ESPRESSINO DECAFFEINATO ","ingredienti":null,"note":null,"prezzo":"3","fotoURL":""},{"id":"24","idCategoria":"6","nome":"ESPRESSINO FREDDO","ingredienti":null,"note":null,"prezzo":"5","fotoURL":""}]},{"nomeCategoria":"Le Friseddhe","idCategoria":16,"prodotti":[{"id":"19","idCategoria":"16","nome":"CLASSICA","ingredienti":"pomodoro e basilico","note":null,"prezzo":"9","fotoURL":""},{"id":"11","idCategoria":"16","nome":"DELICATA","ingredienti":"pomodoro, rucola & mozzarella","note":null,"prezzo":"9","fotoURL":""},{"id":"20","idCategoria":"16","nome":"GRECA","ingredienti":"pomodoro, cipolla, cocomeri, peperoni, olive kalamata","note":null,"prezzo":"9","fotoURL":""},{"id":"12","idCategoria":"16","nome":"RICCA","ingredienti":"pomodoro, cipolla, tonno & capperi","note":null,"prezzo":"9","fotoURL":""}]},{"nomeCategoria":"Le insalatone","idCategoria":14,"prodotti":[{"id":"43","idCategoria":"14","nome":"GRECA","ingredienti":"cipolla rossa, peperone, feta, cocomero, pomodoro e origano, olive calamata","note":null,"prezzo":"10","fotoURL":""},{"id":"44","idCategoria":"14","nome":"GRECA","ingredienti":"cipolla rossa, peperone, feta, cocomero, pomodoro e origano, olive calamata","note":null,"prezzo":"10","fotoURL":""},{"id":"40","idCategoria":"14","nome":"MARINELLI","ingredienti":"insalata mista, mozzarella, pomodoro e rucola","note":null,"prezzo":"10","fotoURL":""},{"id":"41","idCategoria":"14","nome":"SANTAMARIA","ingredienti":"insalata mista, mandorle in scaglie, petto di pollo, cocomero e pomodori","note":null,"prezzo":"12","fotoURL":""}]},{"nomeCategoria":"Menu Baby","idCategoria":18,"prodotti":[{"id":"51","idCategoria":"18","nome":"COTOLETTA CON PATATINE","ingredienti":null,"note":null,"prezzo":"15","fotoURL":""},{"id":"50","idCategoria":"18","nome":"HAMBURGER CON PATATINE","ingredienti":null,"note":null,"prezzo":"15","fotoURL":""},{"id":"49","idCategoria":"18","nome":"PETTO DI POLLO ALLA GRIGLIA CON PATATINE","ingredienti":null,"note":null,"prezzo":"15","fotoURL":""}]},{"nomeCategoria":"Secondi","idCategoria":17,"prodotti":[{"id":"30","idCategoria":"17","nome":"ENTRECOTE","ingredienti":null,"note":null,"prezzo":"17","fotoURL":""},{"id":"37","idCategoria":"17","nome":"FRITTO MISTO","ingredienti":"gamberi e calamari","note":null,"prezzo":"16","fotoURL":""},{"id":"42","idCategoria":"17","nome":"PESCATO DEL GIORNO","ingredienti":null,"note":null,"prezzo":"12","fotoURL":""},{"id":"36","idCategoria":"17","nome":"SALSICCIA AL LIMONE","ingredienti":null,"note":null,"prezzo":"12","fotoURL":""},{"id":"29","idCategoria":"17","nome":"TAGLIATA DI MANZO","ingredienti":"glassa balsamica, grana e rucola","note":null,"prezzo":"17","fotoURL":""}]}]})';
+
+    </script>
+    <script type="text/javascript">
+		$(function() {
+
+		});        
+    </script>
+
+    </body>
+</html>
