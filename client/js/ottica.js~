@@ -1,10 +1,32 @@
 $(document).ready(function () {
-    //$('#prev').contents().find('body').html('<div> blah </div>');
-    //
-    //
+
+/* get params form url in html page */
+var QueryString = function () {
+  // This function is anonymous, is executed immediately and 
+  // the return value is assigned to QueryString!
+  var query_string = {};
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+        // If first entry with this name
+    if (typeof query_string[pair[0]] === "undefined") {
+      query_string[pair[0]] = decodeURIComponent(pair[1]);
+        // If second entry with this name
+    } else if (typeof query_string[pair[0]] === "string") {
+      var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+      query_string[pair[0]] = arr;
+        // If third or later entry with this name
+    } else {
+      query_string[pair[0]].push(decodeURIComponent(pair[1]));
+    }
+  } 
+  return query_string;
+}();
+/***************************/
+
     //get userid val from last div in the html page
     var userID = $('#userID').text();
-    var galleryUrl = "http://www.di-vision.org/verardi/venobox/";
     
     var directions = ['left','refresh','right'];
     
@@ -27,15 +49,7 @@ $(document).ready(function () {
         var category = $(this).data('category');
         socket.emit('changeNews', {dataVal: userID + '-' + category});
     });
-    
-    /* cambiare src iframe al click da cell:
-     * $('iframe').attr('src','http://192.168.1.8/~division/testv/testvv/index2.php')
-     * 
-     * <iframe width="560" height="315" 
-     *  src="https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H" 
-     *  frameborder="0" allowfullscreen>
-     * </iframe>
-     */
+/*    
     if ($(window).width() > 500) {
         $('<iframe>', {
             src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RJq3MvTFD_TkPmA_nUmDZZ&amp;controls=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
@@ -43,8 +57,8 @@ $(document).ready(function () {
             class: 'class',
             frameborder: 0,
             scrolling: 'no',
-            width: 800,
-            height: 600
+            width: 600,
+            height: 450
         }).prependTo('#iframeContainer');
 
         $('<iframe>', {
@@ -55,15 +69,10 @@ $(document).ready(function () {
             scrolling: 'no'
         }).prependTo('.iframe-wrapper');
     }
-    
+  */  
     var _AGGIORNAMENTO_NEWS = 18000;
     var _TIMEOUT_TIME = 12000;
-    /*
-    var _ULTIMORA_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=ultimora';
-    var _TECH_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=tech';
-    var _GOSSIP_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=gossip';
-    var _CALCIO_URL = 'http://www.di-vision.org/getFeedUltimora.php?newsType=calcio';
-    */
+
     var _ULTIMORA_URL = 'http://www.di-vision.org/news/index.php?news=ultimora';
     var _TECH_URL = 'http://www.di-vision.org/news/index.php?news=tech';
     var _GOSSIP_URL = 'http://www.di-vision.org/news/index.php?news=gossip';
@@ -111,14 +120,12 @@ $(document).ready(function () {
     });
     
     $('.left').click(function (){
-        console.log('click on left! emit left');
         clickedTagID = this.id;
         myEmit('left', clickedTagID);
         oneLess();
     });
     
     $('.refresh').click(function (){
-        console.log('refresh clicked!');
         clickedTagID = this.id;
         myEmit('refresh', clickedTagID);
     });
@@ -141,7 +148,7 @@ $(document).ready(function () {
     	newsName = data.split('-');
     	return newsName;
     }    
-    
+    /* change News Category */
     function changeNewsCategory(newsCategory){
     	  newsCategorySplitted = splitNewsName(newsCategory);
     	  
@@ -199,10 +206,7 @@ $(document).ready(function () {
         location.reload();
     }
     
-    
-    $('.infoleft').on('click', function (e) {
-    	window.open("http://192.168.1.126:8080/spedicato");
-    });
+    $('.infoleft').on('click', function (e) {});
     
     $('.newsCategory').on('click', function (e) {
     	window.close();
@@ -214,14 +218,8 @@ $(document).ready(function () {
     	//$('#close-image').slideDown();
     });
     
-    $("#gallerySpan").hover(function() {
-    	//location.replace("http://www.di-vision.org/spedicato/superslide/examples/preserved-images.html#1");
-//    	location.replace(galleryUrl);
-    });
-    
     $('#close-image').hover(function() {
     	animHide($("#interaction"));
-		//$('#close-image').slideUp();
     });
 
     function animShow(obj) {
@@ -236,44 +234,12 @@ $(document).ready(function () {
             });
         }
     
-    /*
-     * 
-     * <a href="javascript:window.open('','_self').close();">close</a>
-    
-    
-    
-    $('.left').on('click', function (e) {
-        //console.log('click on left! emit left');
-        //socket.emit('left', {action: this.id});
-    });
-
-    $('.right').on('click', function (e) {
-        //console.log('click on right! emit right');
-        //socket.emit('right', {action: this.id});
-    });
-    
-    $('.stop').on('click', function (e) {
-        //console.log('stop clicked!');
-        //socket.emit('stop', {action: this.id});
-    });
-    */
-    /*
-    $('#checkbox').change(function () {
-        setInterval(function () {
-            moveRight();
-        }, 6000);
-    });*/
-    
     (function (exports){
         var socket = io.connect(socketURI);
         
         socket.on('connect', function (data) {
             //socket.emit('storeClientInfo', { customId:"000_spedicatoJS_0000" });
         });
-        /*
-        socket.on('greeting', function (data) {
-            console.log('greeting '+data);
-        });*/
         socket.on(userID + '-left', function (data) {
             console.log('codejs client slide to left ' + data);
             oneLess();
@@ -290,29 +256,6 @@ $(document).ready(function () {
         	console.log('codejs client  slide to changeNews ' + data);
         	changeNewsCategory(data);
         });
-        /*
-        socket.on('news-calcio', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_CALCIO_URL);
-        });
-        
-        socket.on('news-ultimora', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_ULTIMORA_URL);
-        });
-        
-        socket.on('news-gossip', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_GOSSIP_URL);
-        });
-        
-        socket.on('news-tech', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_TECH_URL);
-            console(_TECH_URL);
-        });*/
-        
-        // export
         exports.socket = socket;
     })(window);
 });
