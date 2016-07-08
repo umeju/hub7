@@ -23,7 +23,7 @@ var QueryString = function () {
   } 
   return query_string;
 }();
-alert(QueryString.ID + "asd");
+//alert(QueryString.ID + "asd");
 /***************************/
 
     //get userid val from last div in the html page
