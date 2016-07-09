@@ -19,8 +19,6 @@
         <!--script src="/common/handlebars.js"></script-->
         <!--<script src="/common/models.js"></script>-->
         <script src="/varSocketURI.js"></script>
-        <script src="../client/js/generic.js"></script>
-        <script src="../client/js/audio.js"></script>
 
     </head>
     <body class="radial">
@@ -101,8 +99,8 @@
 
         <script src="../client/js/bootstrap.min.js"></script>
         <script>
-            
-        var i = 9;
+			userID = '00012';
+			var i = 9;
         var items = [];
         var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
         getNews(url);
@@ -175,5 +173,8 @@
         }(625 * 1000));
         
     </script>
+    <script src="../client/js/generic.js"></script>
+    <script src="../client/js/audio.js"></script>
+    
     </body>
 </html>
