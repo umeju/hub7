@@ -92,13 +92,13 @@
                 </div>
             </div>
             <div class="row visible-lg" id="id3">
-                <div class="newsCategory">
+                <div class="newsCategory hidden">
                     NEWS: ULTIMORA
                 </div>
                 
                 <div class="col-md-12 visible-lg">
                     <!-- use class allNews to visualize news from the web -->
-                    <div class="iframe-wrapper">
+                    <div class="***********iframe-wrapper">
                        
                     </div>
                 </div>
@@ -127,30 +127,6 @@
         var items = [];
         var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
         getNews(url);
-        
-    /*var json = "json.json";
-        var obj = $.getJSON(json, function(data){
-            count = 0;
-            $.each(data.sites, function (key, val) {
-                //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                if(val.title != ''){ // avoid empty news
-                    items.push(
-                        "<div class='notizia'>"
-                        + "<div class='red_background shadow titolo'>" + val.title + "</div>"
-                        // + val.descrizione to use html as text...
-                        + "<div class='scroll_text descrizione'>" + val.content + "</div>"
-                        + "<div class='arr_2'>" + val.note + "</div>"
-                        + "</div>");
-                }
-                count++;
-            });
-            $('.my_inner').append(items);
-            //nascondo tutto e mostro la prima notizia
-            $('.my_inner > *').hide();
-            // use eq(count-2) coz the first element is empty
-            $('.my_inner > *').eq(count-2).show();
-        });
-        */
         
         function jsonCallback(data) {
             //console.log(data);
@@ -220,7 +196,7 @@
                     function(){ 
                         location.reload(); 
                     }, time);
-        }(625 * 1000));
+        }(1625 * 1000));
         
     </script>
     <script type="text/javascript">

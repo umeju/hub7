@@ -9,6 +9,16 @@
 }
 .descrizione {background-color:rgba(255,255,255,0.3);}
 .my_inner{
-right: -171px;
     position: relative;
+}
+.red_background{
+background-color: darkblue;
+}
+.arr_2 > p{
+color: white;
+
+}
+h1 > span > strong {
+color: white;
+
 }

@@ -11,3 +11,18 @@
 .my_inner{
     position: relative;
 }
+.red_background{
+background-color: darkblue;
+}
+.arr_2 > p{
+color: white;
+
+}
+h1 > span > strong {
+color: white;
+
+}
+.myrss{
+background-color: darkblue !important;
+color: white !important;
+}

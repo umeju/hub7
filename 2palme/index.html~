@@ -16,7 +16,11 @@
         
         <script src="../client/js/jquery.min.js" type="text/javascript"></script>
         <script src="../client/js/jquery-ui.js"></script>
+        <!--script src="/common/handlebars.js"></script-->
+        <!--<script src="/common/models.js"></script>-->
         <script src="/varSocketURI.js"></script>
+        <script src="../client/js/code_2palme.js"></script>
+        <script src="../client/js/audio.js"></script>
 
     </head>
     <body class="radial">
@@ -94,7 +98,7 @@
                 
                 <div class="col-md-12 visible-lg">
                     <!-- use class allNews to visualize news from the web -->
-                    <div class="iframe-wrapper">
+                    <div class="***********iframe-wrapper">
                        
                     </div>
                 </div>
@@ -102,48 +106,38 @@
         </div>
 
         <script src="../client/js/bootstrap.min.js"></script>
+        <!-- DATE JS-->
         <script>
+            /*
+             * data top right
+             * userID per recuperare le news giuste dal DB
+             */
+            // due palme
+        var userID = "00023";
             
+        var d = new Date();
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+
+        var output = (('' + day).length < 2 ? '0' : '') + day + ' - ' +
+                (('' + month).length < 2 ? '0' : '') + month + ' - ' +
+                d.getFullYear();
+        $('.js-date').html(output);
         var i = 9;
         var items = [];
         var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
-        url = 'http://www.hubanero.it/big_sun/frontend/web/index.php/get-menu/bm001';
         getNews(url);
-        
-    /*var json = "json.json";
-        var obj = $.getJSON(json, function(data){
-            count = 0;
-            $.each(data.sites, function (key, val) {
-                //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                if(val.title != ''){ // avoid empty news
-                    items.push(
-                        "<div class='notizia'>"
-                        + "<div class='red_background shadow titolo'>" + val.title + "</div>"
-                        // + val.descrizione to use html as text...
-                        + "<div class='scroll_text descrizione'>" + val.content + "</div>"
-                        + "<div class='arr_2'>" + val.note + "</div>"
-                        + "</div>");
-                }
-                count++;
-            });
-            $('.my_inner').append(items);
-            //nascondo tutto e mostro la prima notizia
-            $('.my_inner > *').hide();
-            // use eq(count-2) coz the first element is empty
-            $('.my_inner > *').eq(count-2).show();
-        });
-        */
         
         function jsonCallback(data) {
             //console.log(data);
             count = 0;
             $.each(data.sites, function (key, val) {
-                
+                //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
                 if(val.titolo !== ''){ // avoid empty news
                     items.push(
                         "<div class='notizia'>"
                         + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
-                    
+                        // + val.descrizione to use html as text...
                         + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
                         + "<div class='arr_2'>" + val.note + "</div>"
                         + "</div>");
@@ -152,12 +146,12 @@
             });
             
             $('.my_inner').append(items);
-            
+            //nascondo tutto e mostro la prima notizia
             $('.my_inner > *').hide();
-            
+            // use eq(count-2) coz the first element is empty
             $('.my_inner > *').eq(count-2).show();
         }
-
+        //url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
         function getNews(url) {
             $.ajax({
                 type: 'GET',
@@ -168,16 +162,18 @@
                 jsonpCallback: 'jsonCallback',
                 dataType: 'jsonp',
                 success: function (json) {
+                    //$('.my_inner').append(items);
                     console.log('get news success!');
                 },
                 error: function (e) {
                     //console.log(e.message);
-                    
+                    postError(e.message);
                 }
             });
         };
         function postError(msg){
             var  formData = "hubanero_id=ERROR&hubanero_name=2PALME&ip=192.168.1.18&note="+msg;
+//http://www.di-vision.org/saveUrls.php?
 
             $.ajax({
                 url : "http://www.di-vision.org/saveUrls.php",
@@ -200,16 +196,38 @@
                     function(){ 
                         location.reload(); 
                     }, time);
-        }(625 * 1000));
+        }(1625 * 1000));
         
     </script>
     <script type="text/javascript">
 
 $(function() {
-    
+    var galleryUrl = "http://www.di-vision.org/2palme/venobox/";
+    var timeoutId;
+    $("#gallerySpan").hover(function() {
+        
+        $('body').addClass('waitcursor');
+        if (!timeoutId) {
+            timeoutId = window.setTimeout(function() {
+                timeoutId = null;
+                location.replace(galleryUrl);
+           }, 2000);
+        }
+    },
+    function () {
+        if (timeoutId) {
+//            $('body').removeClass('waitcursor');
+            window.clearTimeout(timeoutId);
+            timeoutId = null;
+        }
+        else {
+
+        }
+    });
 });
         
     </script>
-    
+    <!-- SET USERID VAL -->
+    <div id="userID" style="display: none;">2palme</div>
     </body>
 </html>
