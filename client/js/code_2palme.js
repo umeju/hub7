@@ -44,7 +44,7 @@ $(document).ready(function () {
      
      var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RgbrzuM6cXr9JiU5gjFrM_";//cantine 2 palme
      var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9T7abW8PGKOF8RKj8LXGrZf";//sfilate
-     var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9QncaxkPdn2xu7wIAntbEHe"; marinelli playlist
+     var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9QncaxkPdn2xu7wIAntbEHe"; //marinelli playlist
      
 
     if ($(window).width() > 500) {
