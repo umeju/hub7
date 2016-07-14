@@ -44,9 +44,11 @@ $(document).ready(function () {
      
      var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RgbrzuM6cXr9JiU5gjFrM_";//cantine 2 palme
      var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9T7abW8PGKOF8RKj8LXGrZf";//sfilate
+     var playlist = "https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9QncaxkPdn2xu7wIAntbEHe"; marinelli playlist
      
+
     if ($(window).width() > 500) {
-        $('<iframe>', {
+       /* $('<iframe>', {
             src: playlist + '&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
             id: 'myFrame',
             class: 'class',
@@ -54,7 +56,7 @@ $(document).ready(function () {
             scrolling: 'no',
             width: 800,
             height: 600
-        }).prependTo('#iframeContainer');
+        }).prependTo('#iframeContainer');*/
 
         $('<iframe>', {
             src: 'http://www.di-vision.org/news/',
