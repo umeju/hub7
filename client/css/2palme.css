@@ -52,4 +52,6 @@ max-height: 1200px !important;
     line-height: 1.5 !important;
     list-style-type: square;
     padding: 5px;
+    color: white;
+    text-shadow: 2px 2px 4px darkblue;
 }
