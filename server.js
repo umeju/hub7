@@ -109,8 +109,8 @@ app.get('/tattoo', function(req, res) {
 	res.sendfile(__dirname + '/tattoo/index.html');
 });
 
-app.get('/2palme', function(req, res) {
-	res.sendfile(__dirname + '/2palme/index.html');
+app.get('/marinelli', function(req, res) {
+	res.sendfile(__dirname + '/marinelli/index.html');
 });
 
 // Our express application functions as our main listener for HTTP requests
