@@ -55,3 +55,11 @@ max-height: 1200px !important;
     color: white;
     text-shadow: 2px 2px 4px darkblue;
 }
+
+#freccia {
+    position: fixed;
+    width: 800px;
+    height: auto;
+    bottom: 18px;
+    left: 56px;
+}
