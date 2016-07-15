@@ -132,6 +132,7 @@ $(document).ready(function () {
         console.log('refresh clicked!');
         clickedTagID = this.id;
         myEmit('refresh', clickedTagID);
+        alert('cliccando sulle frecce cambi le notizie sul display!');
     });
     
     function myEmit(actionToDo, clickedTagID){
@@ -207,7 +208,8 @@ $(document).ready(function () {
     }
     
     function refresh(){
-        location.reload();
+        //location.reload();
+        
     }
     
     
