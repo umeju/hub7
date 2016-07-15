@@ -7,12 +7,16 @@
     overflow: hidden;
     /*cursor: url("/common/img/up.png") 0 32, default !important;*/
 }
-.descrizione {background-color:rgba(255,255,255,0.3);}
+.descrizione {
+/*
+ * background-color:rgba(255,255,255,0.3);
+ **/
+}
 .my_inner{
     position: relative;
 }
 .red_background{
-background-color: darkblue;
+background-color: darkblue !important;
 }
 .arr_2 > p{
 color: white;
@@ -23,15 +27,21 @@ color: white;
 
 }
 .myrss{
-background-color: darkblue !important;
+/*
+ * background-color: darkblue !important;
+ * */
+ 
 color: white !important;
 }
 .notizia{
 width: 85% !important;
 float: right;
+max-height: 1200px !important;
 }
 .scroll_text > * {
-font-size: 35px;
+	font-size: 45px;
+    line-height: 1.5 !important;
+    
 }
 .scroll_text {
     font-family: "Tahoma", Geneva, sans-serif;
@@ -39,8 +49,7 @@ font-size: 35px;
     list-style-type: none;
     text-align: left;
     margin-top: 15px;
-    line-height: 1.5;
+    line-height: 1.5 !important;
     list-style-type: square;
-    color: darkblue;
     padding: 5px;
 }
