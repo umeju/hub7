@@ -26,3 +26,7 @@ color: white;
 background-color: darkblue !important;
 color: white !important;
 }
+.notizia{
+width: 85% !important;
+float: right;
+}
