@@ -1,9 +1,9 @@
 .radial {
-/*    background-size: cover;
-    background-image: url('/common/img/bg1.png');
+    background-size: cover;
+    background-image: url('/common/img/bg1.jpg');
     background-position-y: -2px;
     background-position-x: -12px;
-    */
+    
     overflow: hidden;
     /*cursor: url("/common/img/up.png") 0 32, default !important;*/
 }
@@ -29,4 +29,18 @@ color: white !important;
 .notizia{
 width: 85% !important;
 float: right;
+}
+.scroll_text > * {
+font-size: 35px;
+}
+.scroll_text {
+    font-family: "Tahoma", Geneva, sans-serif;
+    font-size: 35px;
+    list-style-type: none;
+    text-align: left;
+    margin-top: 15px;
+    line-height: 1.5;
+    list-style-type: square;
+    color: darkblue;
+    padding: 5px;
 }
