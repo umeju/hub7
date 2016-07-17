@@ -1,7 +1,7 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.74' || '127.0.0.1';
+		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.105' || '127.0.0.1';
 var express = require('express');
 var server;
 var io;
@@ -111,6 +111,9 @@ app.get('/tattoo', function(req, res) {
 
 app.get('/marinelli', function(req, res) {
 	res.sendfile(__dirname + '/marinelli/index.html');
+});
+app.get('/2palme', function(req, res) {
+	res.sendfile(__dirname + '/2palme/index.html');
 });
 
 // Our express application functions as our main listener for HTTP requests
