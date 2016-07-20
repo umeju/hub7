@@ -58,9 +58,9 @@ max-height: 1200px !important;
 
 #freccia {
     position: fixed;
-    width: 545px;
+    width: 49%;
     height: auto;
-    bottom: 18px;
-    /*left: 130px;*/
-    right: 100px;
+    bottom: 15%;
+    /* left: 130px; */
+    right: -12%;
 }
