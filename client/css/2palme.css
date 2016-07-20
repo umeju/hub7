@@ -1,6 +1,6 @@
 .radial {
     background-size: cover;
-    background-image: url('/common/img/bg1.jpg');
+    background-image: url('');
     background-position-y: -2px;
     background-position-x: -12px;
     
@@ -19,7 +19,7 @@
 background-color: darkblue !important;
 }
 .arr_2 > p{
-color: white;
+color: darkblue;
 
 }
 h1 > span > strong {
@@ -34,7 +34,7 @@ color: white;
 color: white !important;
 }
 .notizia{
-width: 85% !important;
+width: 65% !important;
 float: right;
 max-height: 1200px !important;
 }
@@ -61,5 +61,6 @@ max-height: 1200px !important;
     width: 545px;
     height: auto;
     bottom: 18px;
-    left: 130px;
+    /*left: 130px;*/
+    right: 100px;
 }
