@@ -19,24 +19,21 @@
 background-color: darkblue !important;
 }
 .arr_2 > p{
-color: darkblue;
-
+	color: darkblue;
 }
 h1 > span > strong {
-color: white;
-
+	color: white;
 }
 .myrss{
 /*
  * background-color: darkblue !important;
  * */
- 
 color: white !important;
 }
 .notizia{
-width: 65% !important;
-float: right;
-max-height: 1200px !important;
+	width: 65% !important;
+	float: right;
+	max-height: 1200px !important;
 }
 .scroll_text > * {
 	font-size: 45px;
@@ -60,7 +57,7 @@ max-height: 1200px !important;
     position: fixed;
     width: 49%;
     height: auto;
-    bottom: 15%;
+    bottom: 1%;
     /* left: 130px; */
     right: -12%;
 }
