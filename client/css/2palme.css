@@ -1,6 +1,6 @@
 .radial {
     background-size: cover;
-    background-image: url('');
+    background-image: url('http://www.di-vision.org/marinelli/images/bg1.jpg');
     background-position-y: -2px;
     background-position-x: -12px;
     
@@ -17,6 +17,7 @@
 }
 .red_background{
 background-color: darkblue !important;
+display: none;
 }
 .arr_2 > p{
 	color: darkblue;
@@ -62,17 +63,16 @@ color: white !important;
     right: -11%;
 }
 #logo-qr {
-        position: fixed;
-    width: 15%;
+position: fixed;
+    width: 10%;
     height: auto;
-    bottom: 31%;
-    right: 9.5%;
+    bottom: 28%;
+    right: 12%;
 }
 #indirizzo-qr {
 position: fixed;
-    width: 45%;
-    height: auto;
+    width: 59%;
+    height: 12%;
     bottom: -1%;
-    left: 3%;
+    left: 5%;
 }
-
