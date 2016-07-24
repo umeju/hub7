@@ -41,11 +41,14 @@
             <div class="row">
 
                 <div class="hidden-lg">
-                    <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
-                    <h4 class="text-center"> basta un click!</h4>
+                    <!--h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
+                    <h4 class="text-center"> basta un click!</h4-->
+                    
+                    <h2 class="text-center"> Marinelli </h2>
+                    <h2 class="text-center"> Luxury Villas</h2>
                     <hr class="hidden-lg">
                     
-                    <button type="button" data-category="ULTIM'ORA" class="btn btn-warning">Ultim'ora</button>
+                    <!--button type="button" data-category="ULTIM'ORA" class="btn btn-warning">Ultim'ora</button>
                     <button type="button" data-category="SPORT" class="btn btn-warning">Sport</button>
                     <button type="button" data-category="HI TECH" class="btn btn-warning">Hi-tech</button>
                     <button type="button" data-category="OROSCOPO" class="btn btn-warning">Oroscopo</button>
@@ -67,9 +70,14 @@
                 
                 <div class="col-md-6" id="iframeContainer">
                     
-                    <h4 class="text-center hidden-md hidden-lg"> Con la tecnologia 
-                        <span class="bg-warning text-danger">hubanero</span> il tuo smartphone 
-                    diventa un telecomando. Usa le frecce per navigare tra gli annunci
+                    <h4 class="text-center hidden-md hidden-lg">
+						Bagni Marinelli usa la tecnologia 
+							<span class="bg-warning text-danger">hubanero</span> 
+                        per farti scoprire i suoi appartamenti da favola. </h4>
+                    
+                    <h4 class="text-center hidden-md hidden-lg">
+						Ora puoi navigare tra le foto per scoprire i nostri appartamenti
+                    da sogno. Basta un semplice tocco sul tuo smartphone!
                     </h4>
                     <hr class="visible-md visible-sm">
                     <div class="row" id="nav-arrows">
@@ -78,7 +86,11 @@
                         <div class="col-md-4" id="for-refresh"></div>
                         <div class="col-md-4" id="for-right"></div>
                         
-                    </div>                    
+                    </div>
+                    <hr class="hidden-lg">
+                    <h3 class="text-center hidden-md hidden-lg"> Vi auguriamo una splendida vacanza nel </h3>
+                    <h1 class="text-center hidden-md hidden-lg"> Salento</h1>
+                    
 
                 </div>
                 <div class="col-md-6 visible-lg">
@@ -92,7 +104,11 @@
                 </div>
             </div>
             <div class="row visible-lg" id="id3">
-                <div class="newsCategory">
+				<div id="indicazioni">
+					<img id="indirizzo-logo" src="http://www.di-vision.org/client/images/logo.png" />
+					<img id="freccia" src="http://www.di-vision.org/marinelli/images/freccia-marinelli.png" />
+				</div>
+                <div class="newsCategory hidden">
                     NEWS: ULTIMORA
                 </div>
                 
@@ -194,16 +210,17 @@
         (function(time) {
             setInterval(
                     function(){ 
-                        location.reload(); 
+                        //location.reload(); 
                     }, time);
-        }(1625 * 1000));
+        }(60*60*6 * 1000));
         
     </script>
     <script type="text/javascript">
-
+/*
 $(function() {
     var galleryUrl = "http://www.di-vision.org/2palme/venobox/";
     var timeoutId;
+    
     $("#gallerySpan").hover(function() {
         
         $('body').addClass('waitcursor');
@@ -225,7 +242,7 @@ $(function() {
         }
     });
 });
-        
+*/
     </script>
     <!-- SET USERID VAL -->
     <div id="userID" style="display: none;">2palme</div>

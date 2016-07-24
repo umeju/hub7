@@ -59,5 +59,20 @@ color: white !important;
     height: auto;
     bottom: 1%;
     /* left: 130px; */
-    right: -12%;
+    right: -11%;
 }
+#logo-qr {
+        position: fixed;
+    width: 15%;
+    height: auto;
+    bottom: 31%;
+    right: 9.5%;
+}
+#indirizzo-qr {
+position: fixed;
+    width: 45%;
+    height: auto;
+    bottom: -1%;
+    left: 3%;
+}
+
