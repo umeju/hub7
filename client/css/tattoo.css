@@ -51,3 +51,31 @@ font-size: xx-large;
     margin-left: 107px;
     margin-top: -18px;
 }
+#lightbox {
+    position: absolute;
+}
+#lightbox img {
+    width: 510px;
+    height: 779px;
+    overflow: hidden;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: black url('loader.gif') no-repeat scroll center center;
+}
+
+#container{
+    
+}
+    
+
+
+
+
+
