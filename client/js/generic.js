@@ -191,10 +191,6 @@ $(document).ready(function () {
     // move 1 pic ahead
     function oneMore() {
 
-
-        removeLightBoxImage();
-
-
         clearInterval(countFunc);
         countFunc = null;
         runInterval("stop");
@@ -212,17 +208,12 @@ $(document).ready(function () {
     }
 
     function refresh() {
-        //location.reload();
-        $('#overlay, #lightbox')
-                .fadeIn('slow', function () {
-                    //$(this).remove();
+        $('.overlay, #lightbox')
+            .fadeIn('slow', function () {
+                //$(this).remove();
                 });
-        slideShow();
         zoom();
     }
-
-    $('.infoleft').on('click', function (e) {
-    });
 
     $('.newsCategory').on('click', function (e) {
         window.close();
@@ -234,50 +225,48 @@ $(document).ready(function () {
         });
     }
 
-
-
     function removeLightBoxImage() {
         //console.log('00');
-        $('#overlay, #lightbox')
+        $('.overlay, #lightbox')
                 .fadeOut('slow', function () {
                     $(this).remove();
                 });
     }
 
     function positionLightBoxImage() {
-        var top = ($(window).height() - $('#lightbox').height()) / 2;
-        var left = ($(window).width() - $('#lightbox').height()) / 2;
-        
-        top = 0;
-        left = left - 260;
-        $('#lightbox > img')
-                .css({
-                    'top': top + $(document).scrollTop(),
-                    'left': left
-                }).fadeIn();
+        //var top = ($(window).height() - $('#lightbox').height()) / 2;
+        var left = ($(window).width() - $('#lightbox').height()) / 2 - 260;
+        var top = 0;
                 
         $('#lightbox > img')
                 .css({
                     'left': left,
                     'top': top
-                }).fadeIn();
+                }).show();
 
         $('#lightbox').fadeIn();
     }
-
+    
+    var zoom = function () {
+//        removeLightBoxImage();
+        var cur = $("[style*='inline-block']");
+        if (cur.length)
+            createAndAppend(cur, zoom);
+    };
+    
     function createAndAppend(current, callback) {
                 
         var imageSrc = current.find('img')[0].src;
 
-    //CREA DIV ID OVERLAY
-        $('<div id="overlay"></div>')
+        //CREA DIV ID OVERLAY
+        $('<div class="overlay"></div>')
                 .css('top', $(document).scrollTop())
                 .css('opacity', '0')
                 .animate({'opacity': '1'}, 'slow')
                 .appendTo('body');
 
         $('<div id="lightbox"></div>')
-                .hide().appendTo('#overlay');
+                .hide().appendTo('.overlay');
 
         $('<img />', {
             src: imageSrc,
@@ -288,64 +277,11 @@ $(document).ready(function () {
                 'position': "absolute"
             },
             click: function () {
-                removeLightBoxImage();
+              //  removeLightBoxImage();
             },
-            /*
-            load: function() {
-                positionLightBoxImage();
-            },*/
         }).appendTo('#lightbox').fadeIn();
-
         positionLightBoxImage();
-        
-
-        /*
-         $('<img />')
-         .attr({
-         'src': $(c).attr('src'),
-         'class': 'addedClass'
-         })
-         .load(function() {
-         positionLightBoxImage();
-         })
-         .click(function(){
-         removeLightBox();
-         }).appendTo('#lightbox');
-         */
-
-        /*
-         $('<img />', {
-         src: current.attr('src'),
-         class: 'generic',
-         load: function () {
-         positionLightBoxImage();
-         },
-         click: function () {
-         removeLightBoxImage();
-         },
-         }).appendTo('#lightbox');
-         //removeLightBoxImage();
-         callback(current);
-         */
     }
-
-    var zoom2 = function (current) {
-
-        setTimeout(function () {
-
-            var cur = $("[style*='inline-block']");
-
-            if (cur.length)
-                createAndAppend(cur, zoom);
-        }, 8000);
-
-    };
-
-    var zoom = function () {
-        var cur = $("[style*='inline-block']");
-        if (cur.length)
-            createAndAppend(cur, zoom);
-    };
 
     zoom();
 
@@ -362,40 +298,14 @@ $(document).ready(function () {
                 src: val.src,
                 class: 'show',
                 click: function () {
-                    removeLightBoxImage();
+                 //   removeLightBoxImage();
                 }
-            }).appendTo('#overlay');
+            }).appendTo('.overlay');
         });
 
         $(immagini[0]).addClass('show');
     };
 
-    setTimeout(function () {
-        /*
-         createAndAppend();
-         loadImgs();
-         slideShow();
-         */
-    }, 2000);
-
-    function slideShow() {
-        /*
-        var current2 = $('#overlay .show');
-        var current2 = $('.notizia:visible').find("[style:'display=inline-block']");
-
-        var next = current2.next().length ? current2.next() : current2.parent().children(':first');
-
-        //console.log("next: " + next);
-
-        current2.hide().removeClass('show');
-        next.fadeIn().addClass('show');
-
-        /*
-         setTimeout(function () {
-         slideShow();
-         }, 3000);
-         */
-    }
     (function (exports) {
         var socket = io.connect(socketURI);
 
@@ -421,3 +331,52 @@ $(document).ready(function () {
         exports.socket = socket;
     })(window);
 });
+
+/*
+
+    $('<img />')
+    .attr({
+    'src': $(c).attr('src'),
+    'class': 'addedClass'
+    })
+    .load(function() {
+    positionLightBoxImage();
+    })
+    .click(function(){
+    removeLightBox();
+    }).appendTo('#lightbox');
+
+
+    $('<img />', {
+    src: current.attr('src'),
+    class: 'generic',
+    load: function () {
+    positionLightBoxImage();
+    },
+    click: function () {
+    removeLightBoxImage();
+    },
+    }).appendTo('#lightbox');
+    //removeLightBoxImage();
+    callback(current);
+
+
+       function slideShow() {
+
+   var current2 = $('#overlay .show');
+   var current2 = $('.notizia:visible').find("[style:'display=inline-block']");
+
+   var next = current2.next().length ? current2.next() : current2.parent().children(':first');
+
+   //console.log("next: " + next);
+
+   current2.hide().removeClass('show');
+   next.fadeIn().addClass('show');
+
+
+    setTimeout(function () {
+    slideShow();
+    }, 3000);
+
+}  
+*/ 
