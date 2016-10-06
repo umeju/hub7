@@ -2,7 +2,10 @@ var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
 		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.105' || '127.0.0.1';
+		//|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
+
 var express = require('express');
+var reload = require('reload');
 var server;
 var io;
 var app;
@@ -19,6 +22,12 @@ var clients = [];
  */
 var testData = '';
 
+
+
+var socket = this;
+
+
+
 // Setup a very simple express application.
 app = express();
 // Allow cross origin requests.
@@ -31,8 +40,12 @@ app.use(function(req, res, next) {
 		if (parts.length >= 2) {
 			origin = parts[0] + '//' + parts[1];
 		}
-	} catch (e) {
-	}
+		/*console.log(parts[0]); //--> http:
+		console.log(parts[1]); //--> 192.168.xxx.xxx
+		console.log(parts[2]); //--> tattoo*/
+		testData = parts[2];
+		
+	} catch (e) {}
 
 	res.setHeader('Access-Control-Allow-Origin', origin);
 	res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -58,6 +71,10 @@ app.use('/pages', express.static(__dirname + '/pages'));
 app.get('/', function(req, res) {
 	res.sendfile(__dirname + '/client/index.html');
 });
+
+
+
+// The root path should serve the client HTML.
 
 // ROMANO
 app.get('/romano', function(req, res) {
@@ -119,6 +136,7 @@ app.get('/2palme', function(req, res) {
 // Our express application functions as our main listener for HTTP requests
 // in this example which is why we don't just invoke listen on the app object.
 server = require('http').createServer(app);
+
 server.listen(PORT, IPADDRESS);
 
 // socket.io augments our existing HTTP server instance.
@@ -130,111 +148,131 @@ io.configure(function() {
 	io.set("log level", logLevel);
 });
 
-var socket = this;
+
+
+
 io.sockets.on('connection',
-		function(socket) {
-			// The username for this socket.
-			console.log("connection!");
-			console.log(socket.id);
 
-			//save the first user
-			//clients.push(socket.id);
-			for (var i = 0; i < clients.length; i++) {
-				console.log(clients[i]);
-			}
-			//io.sockets.socket(clients[0]).emit("greeting", "user0");
+function(socket) {
+    
+    
+socket.broadcast.emit('00011-right', '00011-right');
 
-			var events = {
-				"left" : function(data) {
-					console.log('new-left, testData: ' + testData);
-					socket.broadcast.emit(testData + '-left', testData
-							+ '-left');
-				},
-				"right" : function(data) {
-					console.log('new-right, testData: ' + testData);
-					socket.broadcast.emit(testData + '-right', testData
-							+ '-right');
-				},
-				"changeNews" : function(data) {
-					console.log('new-changeNews, testData: ' + testData);
-					socket.broadcast.emit('changeNews', testData
-							+ '-changeNews');
-				},
-				"refresh" : function(data) {
-					console.log('new-refresh, testData: ' + testData);
-					socket.broadcast.emit(testData + '-refresh', testData
-							+ '-refresh');
-				},
-				"tab1" : function(data) {
-					console.log('tab1, testData: ' + testData);
-					socket.broadcast.emit(testData + '-tab1', testData
-							+ '-tab1');
-				},
-				"tab2" : function(data) {
-					console.log('tab2, testData: ' + testData);
-					socket.broadcast.emit(testData + '-tab2', testData
-							+ '-tab2');
-				},
-				
-				
-				/************ FLASH MESSAGES PER GARZIA *********/
-				"showFlashMsg" : function(data) {
-					msgText = splitMsg(testData);
-					socket.broadcast.emit('garzia-showFlashMsg', msgText);
-				},
-				
-			}
 
-			//***********************   magic happensss:  ************************
-			for ( var method in events) {
-				var dynamicHandler = function(realMethod) {
-					socket.on(realMethod, function(data) {
-						/*
-						console.log('CONTROL: received realMethod -->'
-								+ realMethod);*/
-						//console.log('DATA: received -->'+data.dataVal);
-						testData = data.dataVal;
-						console.log('DATA: received '+JSON.stringify(data));
-						events[realMethod].apply(this, data);
-					});
-				};
-				dynamicHandler(method);
-			}
 
-			function splitMsg(testData) {
+            function lkj() {
+                app.param('name', function(req, res, next, name) {
+                    // save name to the request
+                    req.name = modified;
+                    next();
+                });
 
-				var array = testData.split(':');
-				var lowerCaseString = array[0].toLowerCase();
-				console.log('testData: *******************' + lowerCaseString);
-				if (lowerCaseString == "seroga2") {
-					return array[1];
-				} else {
-					console.log('Error: *******************' + testData);
-					return "error";
-				}
-			}
+                app.get('/api/users/:name', function(req, res) {
+                    // the user was found and is available in req.user
+                    socket.broadcast.emit('00011-right', '00011-right');
+                });
+            }
+            
 
-			socket.on('storeClientInfo', function(data) {
-				/*
-				var clientInfo = new Object();
-				clientInfo.customId = data.customId;
-				clientInfo.clientId = socket.id;
-				console.log('clients push: ' + socket.id +' '+data.customId);
-				clients.push(clientInfo);
-				 */
-			});
+        //save the first user
+        //clients.push(socket.id);
+        /*
+         * for (var i = 0; i < clients.length; i++) {
+                console.log(clients[i]);
+            }
+         */
+        //io.sockets.socket(clients[0]).emit("greeting", "user0");
 
-			socket.on('disconnect', function(data) {
-				console.log('disconnect!');
-				/*
-				for( var i=0, len=clients.length; i<len; ++i ){
-				    var c = clients[i];
-				    if(c.clientId == socket.id){
-				        clients.splice(i,1);
-				        console.log('clients splice: ' + c.clientId +' _ '+i);
-				        break;
-				    }
-				}
-				 */
-			});
-		});
+        var events = {
+                "left" : function(data) {
+                        console.log('new-left, testData: ' + testData);
+                        socket.broadcast.emit(testData + '-left', testData
+                                        + '-left');
+                },
+                "right" : function(data) {
+                        console.log('new-right, testData: ' + testData);
+                        socket.broadcast.emit(testData + '-right', testData
+                                        + '-right');
+                },
+                "changeNews" : function(data) {
+                        console.log('new-changeNews, testData: ' + testData);
+                        socket.broadcast.emit('changeNews', testData
+                                        + '-changeNews');
+                },
+                "refresh" : function(data) {
+                        console.log('new-refresh, testData: ' + testData);
+                        socket.broadcast.emit(testData + '-refresh', testData
+                                        + '-refresh');
+                },
+                "tab1" : function(data) {
+                        console.log('tab1, testData: ' + testData);
+                        socket.broadcast.emit(testData + '-tab1', testData
+                                        + '-tab1');
+                },
+                "tab2" : function(data) {
+                        console.log('tab2, testData: ' + testData);
+                        socket.broadcast.emit(testData + '-tab2', testData
+                                        + '-tab2');
+                },
+
+                /************ FLASH MESSAGES PER GARZIA *********/
+                "showFlashMsg" : function(data) {
+                        msgText = splitMsg(testData);
+                        socket.broadcast.emit('garzia-showFlashMsg', msgText);
+                },
+
+        }
+
+        //***********************   magic happensss:  ************************
+        for ( var method in events) {
+                var dynamicHandler = function(realMethod) {
+                        socket.on(realMethod, function(data) {
+                                /*
+                                console.log('CONTROL: received realMethod -->'
+                                                + realMethod);*/
+                                //console.log('DATA: received -->'+data.dataVal);
+                                testData = data.dataVal;
+                                console.log('DATA: received '+JSON.stringify(data));
+                                events[realMethod].apply(this, data);
+                        });
+                };
+                dynamicHandler(method);
+        }
+
+        function splitMsg(testData) {
+
+                var array = testData.split(':');
+                var lowerCaseString = array[0].toLowerCase();
+                console.log('testData: *******************' + lowerCaseString);
+                if (lowerCaseString == "seroga2") {
+                        return array[1];
+                } else {
+                        console.log('Error: *******************' + testData);
+                        return "error";
+                }
+        }
+
+        socket.on('storeClientInfo', function(data) {
+                /*
+                var clientInfo = new Object();
+                clientInfo.customId = data.customId;
+                clientInfo.clientId = socket.id;
+                console.log('clients push: ' + socket.id +' '+data.customId);
+                clients.push(clientInfo);
+                 */
+        });
+
+        socket.on('disconnect', function(data) {
+                console.log('disconnect!');
+                /*
+                for( var i=0, len=clients.length; i<len; ++i ){
+                    var c = clients[i];
+                    if(c.clientId == socket.id){
+                        clients.splice(i,1);
+                        console.log('clients splice: ' + c.clientId +' _ '+i);
+                        break;
+                    }
+                }
+                 */
+        });
+});

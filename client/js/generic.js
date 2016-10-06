@@ -46,6 +46,7 @@ $(document).ready(function () {
         //changeNewsCategory(category);
         socket.emit('changeNews', {dataVal: userID + '-' + category});
     });
+
     $('.btn-warning').on('click', function () {
         var category = $(this).data('category');
         socket.emit('changeNews', {dataVal: userID + '-' + category});
@@ -72,17 +73,17 @@ $(document).ready(function () {
         }).prependTo('.iframe-wrapper');
     }
 
-    var _AGGIORNAMENTO_NEWS = 18000;
-    var _TIMEOUT_TIME = 12000;
+    var
+            _AGGIORNAMENTO_NEWS = 18000,
+            _TIMEOUT_TIME = 12000,
+            _ULTIMORA_URL = 'http://www.di-vision.org/news/index.php?news=ultimora',
+            _TECH_URL = 'http://www.di-vision.org/news/index.php?news=tech',
+            _GOSSIP_URL = 'http://www.di-vision.org/news/index.php?news=gossip',
+            _SPORT_URL = 'http://www.di-vision.org/news/index.php?news=sport',
+            count = 0,
+            countFunc = null,
+            clickedTagID = '';
 
-    var _ULTIMORA_URL = 'http://www.di-vision.org/news/index.php?news=ultimora';
-    var _TECH_URL = 'http://www.di-vision.org/news/index.php?news=tech';
-    var _GOSSIP_URL = 'http://www.di-vision.org/news/index.php?news=gossip';
-    var _SPORT_URL = 'http://www.di-vision.org/news/index.php?news=sport';
-
-    var count = 0;
-    var countFunc = null;
-    var clickedTagID = '';
     function runInterval(cmd) {
         if (countFunc !== null)
             return;
@@ -209,8 +210,8 @@ $(document).ready(function () {
 
     function refresh() {
         $('.overlay, #lightbox')
-            .fadeIn('slow', function () {
-                //$(this).remove();
+                .fadeIn('slow', function () {
+                    $(this).remove();
                 });
         zoom();
     }
@@ -226,7 +227,6 @@ $(document).ready(function () {
     }
 
     function removeLightBoxImage() {
-        //console.log('00');
         $('.overlay, #lightbox')
                 .fadeOut('slow', function () {
                     $(this).remove();
@@ -237,7 +237,7 @@ $(document).ready(function () {
         //var top = ($(window).height() - $('#lightbox').height()) / 2;
         var left = ($(window).width() - $('#lightbox').height()) / 2 - 260;
         var top = 0;
-                
+
         $('#lightbox > img')
                 .css({
                     'left': left,
@@ -246,22 +246,29 @@ $(document).ready(function () {
 
         $('#lightbox').fadeIn();
     }
-    
+
     var zoom = function () {
 //        removeLightBoxImage();
         var cur = $("[style*='inline-block']");
         if (cur.length)
             createAndAppend(cur, zoom);
     };
-    
+
     function createAndAppend(current, callback) {
-                
+
         var imageSrc = current.find('img')[0].src;
 
         //CREA DIV ID OVERLAY
         $('<div class="overlay"></div>')
                 .css('top', $(document).scrollTop())
-                .css('opacity', '0')
+                .css({
+                    'position': 'absolute',
+                    'top': '0',
+                    'left': '0',
+                    'height': '100%',
+                    'width': '100%',
+                    'background': 'black url("loader.gif") no-repeat scroll center center'
+                })
                 .animate({'opacity': '1'}, 'slow')
                 .appendTo('body');
 
@@ -277,7 +284,7 @@ $(document).ready(function () {
                 'position': "absolute"
             },
             click: function () {
-              //  removeLightBoxImage();
+                removeLightBoxImage();
             },
         }).appendTo('#lightbox').fadeIn();
         positionLightBoxImage();
@@ -298,7 +305,7 @@ $(document).ready(function () {
                 src: val.src,
                 class: 'show',
                 click: function () {
-                 //   removeLightBoxImage();
+                    //   removeLightBoxImage();
                 }
             }).appendTo('.overlay');
         });
@@ -333,50 +340,50 @@ $(document).ready(function () {
 });
 
 /*
-
-    $('<img />')
-    .attr({
-    'src': $(c).attr('src'),
-    'class': 'addedClass'
-    })
-    .load(function() {
-    positionLightBoxImage();
-    })
-    .click(function(){
-    removeLightBox();
-    }).appendTo('#lightbox');
-
-
-    $('<img />', {
-    src: current.attr('src'),
-    class: 'generic',
-    load: function () {
-    positionLightBoxImage();
-    },
-    click: function () {
-    removeLightBoxImage();
-    },
-    }).appendTo('#lightbox');
-    //removeLightBoxImage();
-    callback(current);
-
-
-       function slideShow() {
-
-   var current2 = $('#overlay .show');
-   var current2 = $('.notizia:visible').find("[style:'display=inline-block']");
-
-   var next = current2.next().length ? current2.next() : current2.parent().children(':first');
-
-   //console.log("next: " + next);
-
-   current2.hide().removeClass('show');
-   next.fadeIn().addClass('show');
-
-
-    setTimeout(function () {
-    slideShow();
-    }, 3000);
-
-}  
-*/ 
+ 
+ $('<img />')
+ .attr({
+ 'src': $(c).attr('src'),
+ 'class': 'addedClass'
+ })
+ .load(function() {
+ positionLightBoxImage();
+ })
+ .click(function(){
+ removeLightBox();
+ }).appendTo('#lightbox');
+ 
+ 
+ $('<img />', {
+ src: current.attr('src'),
+ class: 'generic',
+ load: function () {
+ positionLightBoxImage();
+ },
+ click: function () {
+ removeLightBoxImage();
+ },
+ }).appendTo('#lightbox');
+ //removeLightBoxImage();
+ callback(current);
+ 
+ 
+ function slideShow() {
+ 
+ var current2 = $('#overlay .show');
+ var current2 = $('.notizia:visible').find("[style:'display=inline-block']");
+ 
+ var next = current2.next().length ? current2.next() : current2.parent().children(':first');
+ 
+ //console.log("next: " + next);
+ 
+ current2.hide().removeClass('show');
+ next.fadeIn().addClass('show');
+ 
+ 
+ setTimeout(function () {
+ slideShow();
+ }, 3000);
+ 
+ }  
+ */ 

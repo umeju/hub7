@@ -537,3 +537,12 @@ div#form-wrapper {
     height: 50px;
     border: 3px solid black;
 }
+#fader {
+    position: relative;
+}
+
+#fader .to {
+    display: none;
+    position: absolute;
+    left: 0;
+}

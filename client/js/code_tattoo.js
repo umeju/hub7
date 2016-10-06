@@ -36,7 +36,6 @@ $(document).ready(function () {
      * </iframe>
      */
 
-     
     if ($(window).width() > 500) {
     	/*  hide video top left iframe
         $('<iframe>', {
@@ -51,7 +50,6 @@ $(document).ready(function () {
             height: 450
         }).prependTo('#iframeContainer');
        */
-       
         
         /* hide news per orlando tattoo
         $('<iframe>', {
@@ -132,7 +130,6 @@ $(document).ready(function () {
         myEmit(clickedTagID, clickedTagID);
     });
     
-    
     function myEmit(actionToDo, clickedTagID){
     	socket.emit(actionToDo, {action: actionToDo, dataVal: userID});
     	
@@ -150,24 +147,22 @@ $(document).ready(function () {
     }    
     
     function changeNewsCategory(newsCategory){
-    	  newsCategorySplitted = splitNewsName(newsCategory);
-    	  
-    	  //gestire hi tech con spazio o trattino
-    	  switch(newsCategorySplitted[1]) {
-    	  	case "HI TECH":
-    	  	console.log('poi' + newsCategorySplitted[1]);
-    	  	newsCategorySplitted[1] = "HI-TECH";
-    	  	default:    	  	
-    	  }    	  
+        newsCategorySplitted = splitNewsName(newsCategory);
+        //gestire hi tech con spazio o trattino
+        switch(newsCategorySplitted[1]) {
+            case "HI TECH":
+            console.log('poi' + newsCategorySplitted[1]);
+            newsCategorySplitted[1] = "HI-TECH";
+            default:
+        }
     	  
         $('#myFrame2').attr('src','http://www.di-vision.org/news/index.php?news=' +
-                newsCategorySplitted[1]);
+            newsCategorySplitted[1]);
 
         $('.newsCategory').text("NEWS: " + newsCategorySplitted[1]);
         $('.actualNews').text(newsCategory);
         $('.actualNews').show();
     }
-    
     // move 1 pic back
     function oneLess(){
         clearInterval(countFunc);
@@ -198,7 +193,6 @@ $(document).ready(function () {
         if(count == -1){
             count = $('.notizia').length-1;
         }
-        
         loopNews();
     }
     
@@ -223,26 +217,26 @@ $(document).ready(function () {
     
     $('#close-image').hover(function() {
     	animHide($("#interaction"));
-		//$('#close-image').slideUp();
+        //$('#close-image').slideUp();
     });
 
     function animShow(obj) {
     	obj.fadeIn('slow', function(){
-    		$('#close-image').fadeIn('slow');
+            $('#close-image').fadeIn('slow');
     	});
     }
     
     function animHide(obj) {
-            obj.fadeOut('slow', function(){
-                    $('#close-image').fadeOut('slow');
-            });
-        }
+        obj.fadeOut('slow', function(){
+            $('#close-image').fadeOut('slow');
+        });
+    }
     
     (function (exports){
         var socket = io.connect(socketURI);
         
-        socket.on('connect', function (data) {
-            //socket.emit('storeClientInfo', { customId:"000_spedicatoJS_0000" });
+        socket.on('connection', function (data) {
+            socket.emit('connect', { customId:"000_spedicatoJS_0000" });
         });
         socket.on(userID + '-left', function (data) {
             console.log('codejs client slide to left ' + data);
@@ -258,25 +252,19 @@ $(document).ready(function () {
             refresh();
         });
         socket.on('changeNews', function (data) {
-        	console.log('codejs client  slide to changeNews ' + data);
-        	changeNewsCategory(data);
+            console.log('codejs client  slide to changeNews ' + data);
+            changeNewsCategory(data);
         });
-        
         
         socket.on(userID + '-tab1', function (data) {
             console.log('tab1 ' + data);
             $("#panel-1").trigger('click');
         });
         
-        
         socket.on(userID + '-tab2', function (data) {
             console.log('tab2 ' + data);
             $("#panel-2").trigger('click');
         });
-        
-        
-        
         exports.socket = socket;
     })(window);
 });
-
