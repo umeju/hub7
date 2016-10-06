@@ -1,0 +1,66 @@
+.radial {
+  background-size: cover;
+/*  background-image: url('../images/bg3.jpg');*/
+  background-position-y: -60px;
+  overflow: hidden;
+/*  cursor: url("") 0 0, default !important;   */
+}
+#banner {
+    width: 40%;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -20%;
+    cursor: wait;
+    height: 50px;
+    border: 3px solid black;
+}
+.red_background {
+    
+    display: none;
+    
+}
+.myrss {
+    color: white;
+    padding: 7px;
+    text-align: left;
+    background-color: #9d0709 !important;
+    border-radius: 10px;
+}
+.js-date {
+    color: #9d0709 !important;
+}
+button{
+    width: 28%;;
+    margin: 5px;
+}
+.notizia {
+max-height: 100% !important;
+width: 96%;
+}
+.testi{
+font-size: xx-large;
+    line-height: 1.4;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px red;
+    }
+.descrizione > p > img {
+    width: 775px;
+    height: auto;
+    float: left !important;
+    padding-right: 67px;
+    margin-left: 107px;
+    margin-top: -18px;
+}
+#lightbox {
+    position: absolute;
+}
+#lightbox img {
+    width: 510px;
+    height: 779px;
+    overflow: hidden;
+    position: relative;
+}
+#total{
+display: none;}

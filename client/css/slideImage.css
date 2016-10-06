@@ -1,0 +1,26 @@
+
+#overlay img {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: black url('loader.gif') no-repeat scroll center center;
+}
+
+#container{
+    position: absolute;
+}
+    
+
+
+
+
+
