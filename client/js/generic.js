@@ -1,9 +1,9 @@
 $(document).ready(function () {
-
     /* get params form url in html page */
     var QueryString = function () {
-        // This function is anonymous, is executed immediately and 
-        // the return value is assigned to QueryString!
+        /* This function is anonymous, is executed immediately and 
+         the return value is assigned to QueryString!
+         */
         var query_string = {};
         var query = window.location.search.substring(1);
         var vars = query.split("&");
@@ -22,16 +22,12 @@ $(document).ready(function () {
             }
         }
         return query_string;
-    }();
-//alert(QueryString.ID + "asd");
-    /***************************/
-
+    }();//alert(QueryString.ID + "asd");
     //get userid val from last div in the html page
     var userID = QueryString.ID;//$('#userID').text();
-
     var directions = ['left', 'refresh', 'right'];
-
-    // generate images to slide top right news
+    
+    // GENERATE images to slide top right news
     for (var x in directions) {
         $('<img>', {
             id: userID + "-" + directions[x],
@@ -42,13 +38,12 @@ $(document).ready(function () {
 
     $("select.my-select").change(function () {
         var category = $(".my-select option:selected").val();
-        console.log("select.my-select - " + category);
-        //changeNewsCategory(category);
         socket.emit('changeNews', {dataVal: userID + '-' + category});
     });
 
     $('.btn-warning').on('click', function () {
         var category = $(this).data('category');
+        console.log("emit changeNews, userID:" + userID +', category:'+category);
         socket.emit('changeNews', {dataVal: userID + '-' + category});
     });
 
@@ -72,17 +67,15 @@ $(document).ready(function () {
             scrolling: 'no'
         }).prependTo('.iframe-wrapper');
     }
-
-    var
-            _AGGIORNAMENTO_NEWS = 18000,
-            _TIMEOUT_TIME = 12000,
-            _ULTIMORA_URL = 'http://www.di-vision.org/news/index.php?news=ultimora',
-            _TECH_URL = 'http://www.di-vision.org/news/index.php?news=tech',
-            _GOSSIP_URL = 'http://www.di-vision.org/news/index.php?news=gossip',
-            _SPORT_URL = 'http://www.di-vision.org/news/index.php?news=sport',
-            count = 0,
-            countFunc = null,
-            clickedTagID = '';
+    var _AGGIORNAMENTO_NEWS = 18000,
+        _TIMEOUT_TIME = 12000,
+        _ULTIMORA_URL = 'http://www.di-vision.org/news/index.php?news=ultimora',
+        _TECH_URL = 'http://www.di-vision.org/news/index.php?news=tech',
+        _GOSSIP_URL = 'http://www.di-vision.org/news/index.php?news=gossip',
+        _SPORT_URL = 'http://www.di-vision.org/news/index.php?news=sport',
+        count = 0,
+        countFunc = null,
+        clickedTagID = '';
 
     function runInterval(cmd) {
         if (countFunc !== null)
@@ -102,7 +95,6 @@ $(document).ready(function () {
             }, _TIMEOUT_TIME);
         }
     }
-
     runInterval("start");
 
     function loopNews() {
@@ -128,35 +120,41 @@ $(document).ready(function () {
         myEmit('left', clickedTagID);
         oneLess();
     });
-
+    
     $('.refresh').click(function () {
         clickedTagID = this.id;
+        $('#tab3').removeClass('hidden');
         myEmit('refresh', clickedTagID);
     });
-
+    
+    $('.tabs').click(function (){
+        clickedTagID = this.id;
+        myEmit(clickedTagID, clickedTagID);
+    });
+    
+    $('#tab3').click(function (){
+        $('#tab3').addClass('hidden');
+        removeLightBoxImage();
+        myEmit('zoomOut', "zoomOut");
+    });
+    
     function myEmit(actionToDo, clickedTagID) {
-        /*socket.emit(userID+'-'+actionToDo, {action: clickedTagID, dataVal: "esempio-data"});
-         socket.emit(userID+'-'+actionToDo, {action: clickedTagID, dataVal: actionToDo});
-         socket.emit(actionToDo, {action: actionToDo, dataVal: actionToDo});*/
         socket.emit(actionToDo, {action: actionToDo, dataVal: userID});
-
-        /*
-         * esempio:
+        /*  esempio:
          * userID: 99999
          * actionToDo: left
          * clickedTagID: 99999-left
          */
     }
-
+    
     function splitNewsName(data) {
         newsName = data.split('-');
         return newsName;
     }
-
+    
     /* change News Category */
     function changeNewsCategory(newsCategory) {
         newsCategorySplitted = splitNewsName(newsCategory);
-
         //gestire hi tech con spazio o trattino
         switch (newsCategorySplitted[1]) {
             case "HI TECH":
@@ -164,62 +162,55 @@ $(document).ready(function () {
                 newsCategorySplitted[1] = "HI-TECH";
             default:
         }
-
         $('#myFrame2').attr('src', 'http://www.di-vision.org/news/index.php?news=' +
                 newsCategorySplitted[1]);
-
+        console.log(newsCategorySplitted[1]);
         $('.newsCategory').text("NEWS: " + newsCategorySplitted[1]);
         $('.actualNews').text(newsCategory);
         $('.actualNews').show();
     }
-
     // move 1 pic back
-    function oneLess() {
+    function oneLess(){
         clearInterval(countFunc);
         countFunc = null;
         runInterval("stop");
-
+        // -1 pic
         count -= 1;
         if (count > $('.notizia').length - 1) {
             count = 0;
         }
-
         if (count == -1) {
             count = $('.notizia').length - 1;
         }
         loopNews();
     }
     // move 1 pic ahead
-    function oneMore() {
-
+    function oneMore(){
         clearInterval(countFunc);
         countFunc = null;
         runInterval("stop");
-
+        // +1 pic
         count += 1;
         if (count > $('.notizia').length - 1) {
             count = 0;
         }
-
         if (count == -1) {
             count = $('.notizia').length - 1;
         }
-
         loopNews();
     }
-
     function refresh() {
         $('.overlay, #lightbox')
-                .fadeIn('slow', function () {
-                    $(this).remove();
-                });
+            .fadeIn('slow', function () {
+                $(this).remove();
+            });
         zoom();
     }
-
+    
     $('.newsCategory').on('click', function (e) {
         window.close();
     });
-
+    
     function animHide(obj) {
         obj.fadeOut('slow', function () {
             $('#close-image').fadeOut('slow');
@@ -228,22 +219,22 @@ $(document).ready(function () {
 
     function removeLightBoxImage() {
         $('.overlay, #lightbox')
-                .fadeOut('slow', function () {
-                    $(this).remove();
-                });
+            .fadeOut('slow', function () {
+                $(this).remove();
+            });
     }
 
     function positionLightBoxImage() {
         //var top = ($(window).height() - $('#lightbox').height()) / 2;
-        var left = ($(window).width() - $('#lightbox').height()) / 2 - 260;
+        var left = ($(window).width() - $('#lightbox > img').width()) / 2 ;
+        var wTot = $(window).width();
         var top = 0;
+        //var left = 0;
 
         $('#lightbox > img')
-                .css({
-                    'left': left,
-                    'top': top
-                }).show();
-
+            .css({
+                'top': top,
+            }).show();
         $('#lightbox').fadeIn();
     }
 
@@ -252,35 +243,48 @@ $(document).ready(function () {
         var cur = $("[style*='inline-block']");
         if (cur.length)
             createAndAppend(cur, zoom);
+        oneMore();
     };
-
+    
     function createAndAppend(current, callback) {
-
         var imageSrc = current.find('img')[0].src;
 
         //CREA DIV ID OVERLAY
         $('<div class="overlay"></div>')
-                .css('top', $(document).scrollTop())
-                .css({
-                    'position': 'absolute',
-                    'top': '0',
-                    'left': '0',
-                    'height': '100%',
-                    'width': '100%',
-                    'background': 'black url("loader.gif") no-repeat scroll center center'
-                })
-                .animate({'opacity': '1'}, 'slow')
-                .appendTo('body');
-
-        $('<div id="lightbox"></div>')
-                .hide().appendTo('.overlay');
-
+            .css('top', $(document).scrollTop())
+            .css({
+                'position': 'absolute',
+                'top': '0',
+                'left': '0',
+                'height': '100%',
+                'width': '100%',
+                'zIndex': '4',
+                'background': 'black url("loader.gif") no-repeat scroll center center'
+            })
+            .animate({'opacity': '1'}, 'slow')
+            .appendTo('body');
+    
+        $('<div id="lightbox"></div>', {
+            css: {
+                'top'       : "0",
+                'width'     : "100%",
+                'height'     : "100%",
+                'position'  : "relative"
+            },
+            click: function () {
+                removeLightBoxImage();
+            },
+        }).hide().appendTo('.overlay');
+        
         $('<img />', {
             src: imageSrc,
-            class: "newClass",
+            class: "-newClass",
             css: {
-                //'top': top + $(document).scrollTop(),
-                //'left': left
+                'top': "0",
+                'left': "0",
+                'right': "0",
+                'bottom': "0",
+                'margin': "auto",
                 'position': "absolute"
             },
             click: function () {
@@ -289,18 +293,12 @@ $(document).ready(function () {
         }).appendTo('#lightbox').fadeIn();
         positionLightBoxImage();
     }
-
     zoom();
 
     var loadImgs = function () {
         var immagini = $('.notizia > .descrizione > p > img');
         var current = $('.descrizione').find('img.show');
-
-        //console.log(current);
-
         $.each(immagini, function (key, val) {
-            //console.log(key);
-//        console.log(val);
             $('<img />', {
                 src: val.src,
                 class: 'show',
@@ -315,30 +313,56 @@ $(document).ready(function () {
 
     (function (exports) {
         var socket = io.connect(socketURI);
-
         socket.on('connect', function (data) {
-            //socket.emit('storeClientInfo', { customId:"000_spedicatoJS_0000" });
+            console.log('connect!');
+            //socket.emit('welcome', { customId:"000_spedicatoJS_0000" });
         });
         socket.on(userID + '-left', function (data) {
-            console.log('codejs client slide to left ' + data);
             oneLess();
+            $("#lightbox").trigger('click');
         });
         socket.on(userID + '-right', function (data) {
-            console.log('codejs client  slide to right ' + data);
             oneMore();
+            $("#lightbox").trigger('click');
         });
         socket.on(userID + '-refresh', function (data) {
-            console.log('client code l-92: refresh/start ' + data);
             refresh();
         });
-        socket.on('changeNews', function (data) {
-            console.log('codejs client  slide to changeNews ' + data);
+        socket.on(userID+'-OROSCOPO-changeNews', function (data) {
             changeNewsCategory(data);
         });
+        
+        socket.on(userID+'-SPORT-changeNews', function (data) {
+            changeNewsCategory(data);
+        });
+        
+        socket.on(userID+'-HI TECH-changeNews', function (data) {
+            changeNewsCategory(data);
+        });
+        
+        socket.on(userID+'-GOSSIP-changeNews', function (data) {
+            changeNewsCategory(data);
+        });
+        
+        socket.on(userID+"-ULTIM'ORA-changeNews", function (data) {
+            changeNewsCategory(data);
+        });
+        
+        socket.on(userID+'-tab1', function (data) {
+            $("#panel-1").trigger('click');
+        });
+        
+        socket.on(userID+'-tab2', function (data) {
+            $("#panel-2").trigger('click');
+        });
+        socket.on(userID+'-zoomOut', function (data) {
+            removeLightBoxImage();
+        });
+        
+
         exports.socket = socket;
     })(window);
 });
-
 /*
  
  $('<img />')
