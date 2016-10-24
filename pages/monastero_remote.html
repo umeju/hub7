@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Farmacia Monastero Remote Control</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../client/css/bootstrap.min.css" rel="stylesheet">
@@ -19,18 +19,8 @@ and open the template in the editor.
                 <div class="hidden-lg">
                     <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
                     <h4 class="text-center"> basta un click!</h4>
-                    <hr class="hidden-lg">
-                    
-                    <button type="button" data-category="ULTIM'ORA" class="btn btn-warning">Ultim'ora</button>
-                    <button type="button" data-category="SPORT" class="btn btn-warning">Sport</button>
-                    <button type="button" data-category="HI TECH" class="btn btn-warning">Hi-tech</button>
-                    <button type="button" data-category="OROSCOPO" class="btn btn-warning">Oroscopo</button>
-                    <button type="button" data-category="GOSSIP" class="btn btn-warning">Gossip</button>
-                    <button type="button" data-category="CALCIO" class="btn btn-default">Calcio</button>
-                    
-                    <hr class="hidden-lg">
-
                 </div>
+                    <hr class="hidden-lg" />
                 
                 <div class="col-md-6" id="iframeContainer">
                     
@@ -39,14 +29,36 @@ and open the template in the editor.
                     diventa un telecomando. Usa le frecce per navigare tra gli annunci
                     </h4>
                     <hr class="visible-md visible-sm">
+                    <hr class="hidden-lg" />
                     <div class="row" id="nav-arrows">
+                        <!-- *** controlli *** -->
+                        <div class="col-md-4" id="for-left">
+                            <img id="00012-left" 
+                                 src="/common/img/left_arrow_sign.png" 
+                                 class="img-circle left">
+                        </div>
                         
-                        <div class="col-md-4" id="for-left"><img id="00012-left" src="/common/img/left_arrow_sign.png" class="img-circle left"></div>
-                        <div class="col-md-4" id="for-refresh"><img id="00012-refresh" src="/common/img/refresh_arrow_sign.png" class="img-circle refresh"></div>
-                        <div class="col-md-4" id="for-right"><img id="00012-right" src="/common/img/right_arrow_sign.png" class="img-circle right"></div>
+                        <div class="col-md-4" id="for-refresh">
+                            <img id="00012-refresh" 
+                                 src="/common/img/refresh_arrow_sign.png" 
+                                 class="img-circle refresh">
+                        </div>
                         
-                    </div>                
-
+                        <div class="col-md-4" id="for-right">
+                            <img id="00012-right" 
+                                 src="/common/img/right_arrow_sign.png" 
+                                 class="img-circle right">
+                        </div>
+                    </div>
+                    <hr class="hidden-lg" />
+                        <p>
+                            <a id="tab3" class="btn btn-warning btn-block hidden" href="#" 
+                               role="button" >ZOOM OUT</a>
+                        </p>
+                    <hr class="hidden-lg" />
+                    <p>
+                        <img class="text-center" src="" />
+                    </p>
                 </div>
             </div>
     <script src="../client/js/jquery.min.js"></script>
@@ -55,15 +67,21 @@ and open the template in the editor.
     <script type="text/javascript">
         $(function() {
                 $(".right").click(function() {
-                    $.get("/pages/right/00012", { message: $("input").val() });
+                    $.get("/pages/right/00012", {});
                 });
                 
                 $(".left").click(function() {
-                    $.get("/pages/left/00012", { message: $("input").val() });
+                    $.get("/pages/left/00012", {});
                 });
                 
                 $(".refresh").click(function() {
-                    $.get("/pages/refresh/00012", { message: $("input").val() });
+                    $.get("/pages/refresh/00012", {});
+                    $('#tab3').removeClass('hidden');
+                });
+                
+                $('#tab3').click(function (){
+                    $('#tab3').addClass('hidden');
+                    $.get("/pages/zoomOut/00012", {});
                 });
                 
             });

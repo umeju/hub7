@@ -1,7 +1,4 @@
 $(document).ready(function () {
-    //$('#prev').contents().find('body').html('<div> blah </div>');
-    //
-    //
     //get userid val from last div in the html page
     var userID = $('#userID').text();
 //    var galleryUrl = "http://localhost/~roberto/progetti-copia/spedicato/superslide/examples/preserved-images.html";
@@ -238,28 +235,7 @@ $(document).ready(function () {
                     $('#close-image').fadeOut('slow');
             });
         }
-    
-    /*
-     * 
-     * <a href="javascript:window.open('','_self').close();">close</a>
-    
-    
-    
-    $('.left').on('click', function (e) {
-        //console.log('click on left! emit left');
-        //socket.emit('left', {action: this.id});
-    });
 
-    $('.right').on('click', function (e) {
-        //console.log('click on right! emit right');
-        //socket.emit('right', {action: this.id});
-    });
-    
-    $('.stop').on('click', function (e) {
-        //console.log('stop clicked!');
-        //socket.emit('stop', {action: this.id});
-    });
-    */
     /*
     $('#checkbox').change(function () {
         setInterval(function () {
@@ -293,28 +269,30 @@ $(document).ready(function () {
         	console.log('codejs client  slide to changeNews ' + data);
         	changeNewsCategory(data);
         });
-        /*
-        socket.on('news-calcio', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_CALCIO_URL);
+        
+        socket.on(userID+'-OROSCOPO-changeNews', function (data) {
+            changeNewsCategory(data);
         });
         
-        socket.on('news-ultimora', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_ULTIMORA_URL);
+        socket.on(userID+'-SPORT-changeNews', function (data) {
+            changeNewsCategory(data);
         });
         
-        socket.on('news-gossip', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_GOSSIP_URL);
+        socket.on(userID+'-HI TECH-changeNews', function (data) {
+            changeNewsCategory(data);
         });
         
-        socket.on('news-tech', function (data) {
-            console.log('news calcio clicked');
-            $('#myFrame2').attr('src',_TECH_URL);
-            console(_TECH_URL);
-        });*/
+        socket.on(userID+'-GOSSIP-changeNews', function (data) {
+            changeNewsCategory(data);
+        });
         
+        socket.on(userID+"-ULTIM'ORA-changeNews", function (data) {
+            changeNewsCategory(data);
+        });
+        
+        socket.on(userID+"-RPI-changeNews", function (data) {
+            changeNewsCategory(data);
+        });
         // export
         exports.socket = socket;
     })(window);

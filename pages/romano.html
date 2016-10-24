@@ -4,11 +4,11 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>hubanero - farmacia monastero</title>
+        <title>hubanero - Dott. Romano</title>
         <link href="../client/css/bootstrap.min.css" rel="stylesheet">
         <link href="../client/css/style.css" rel="stylesheet">
         
-        <link href="../client/css/monastero.css" rel="stylesheet">
+        <link href="../client/css/romano.css" rel="stylesheet">
         <link href="../client/css/special.css" rel="stylesheet">
     </head>
     <body class="radial">
@@ -69,7 +69,7 @@
         <script src="/varSocketURI.js"></script>
         <script src="../client/js/bootstrap.min.js"></script>
         <script>
-            userID = '00012';
+            userID = '00001';
             var i = 9;
         var items = [];
         var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
@@ -117,7 +117,7 @@
             });
         };
         function postError(msg){
-            var  formData = "hubanero_id=ERROR&hubanero_name=2PALME&ip=192.168.1.18&note="+msg;
+            var  formData = "hubanero_id=ERROR&hubanero_name=ROMANO_PEDIATRA&ip=192.168.1.18&note="+msg;
 				//http://www.di-vision.org/saveUrls.php?
             $.ajax({
                 url : "http://www.di-vision.org/saveUrls.php",

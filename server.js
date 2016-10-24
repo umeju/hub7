@@ -1,7 +1,7 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
+		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.104' || '127.0.0.1';
 		//|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.111' || '127.0.0.1';
 
 var express = require('express');
@@ -180,13 +180,12 @@ io.sockets.on('connection',
             'tab1',
             'tab2',
             'showFlashMsg',
-            'zoomOut'
+            'zoomOut',
 
         ];
         // love to have all events here:
         var events = ev.reduce(function(result, item) {
             result[item] = function(data) {
-                
                 console.log("emit: "+testData + '-'+item+"data: "+testData + '-'+item);
                 //socket.broadcast.emit(testData + '-'+item, testData + '-'+item);
                 socket.broadcast.emit(testData + '-'+item, testData + '-'+item);
@@ -284,4 +283,5 @@ io.sockets.on('connection',
                 }
                  */
         });
+        
 });

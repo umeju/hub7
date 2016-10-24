@@ -47,7 +47,7 @@ $(document).ready(function () {
         socket.emit('changeNews', {dataVal: userID + '-' + category});
     });
 
-    if ($(window).width() > 500) {
+    if ($(window).width() > 500 && $('.iframe-wrapper').length) {
         /*
          $('<iframe>', {
          src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RJq3MvTFD_TkPmA_nUmDZZ&amp;controls=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
@@ -73,6 +73,7 @@ $(document).ready(function () {
         _TECH_URL = 'http://www.di-vision.org/news/index.php?news=tech',
         _GOSSIP_URL = 'http://www.di-vision.org/news/index.php?news=gossip',
         _SPORT_URL = 'http://www.di-vision.org/news/index.php?news=sport',
+        _CALCIO_URL = 'http://www.di-vision.org/news/index.php?news=calcio',
         count = 0,
         countFunc = null,
         clickedTagID = '';
@@ -199,6 +200,7 @@ $(document).ready(function () {
         }
         loopNews();
     }
+    
     function refresh() {
         $('.overlay, #lightbox')
             .fadeIn('slow', function () {
@@ -206,11 +208,11 @@ $(document).ready(function () {
             });
         zoom();
     }
-    
+    /*
     $('.newsCategory').on('click', function (e) {
         window.close();
     });
-    
+    */
     function animHide(obj) {
         obj.fadeOut('slow', function () {
             $('#close-image').fadeOut('slow');
@@ -261,7 +263,7 @@ $(document).ready(function () {
                 'zIndex': '4',
                 'background': 'black url("loader.gif") no-repeat scroll center center'
             })
-            .animate({'opacity': '1'}, 'slow')
+            .animate({'opacity': '0.9'}, 'slow')
             .appendTo('body');
     
         $('<div id="lightbox"></div>', {
@@ -278,7 +280,7 @@ $(document).ready(function () {
         
         $('<img />', {
             src: imageSrc,
-            class: "-newClass",
+            class: "_newClass",
             css: {
                 'top': "0",
                 'left': "0",
@@ -294,7 +296,54 @@ $(document).ready(function () {
         positionLightBoxImage();
     }
     zoom();
-
+    
+    function welcome() {
+        
+        //CREA DIV ID OVERLAY
+        $('<div class="overlay"></div>')
+            .css('top', $(document).scrollTop())
+            .css({
+                'position': 'absolute',
+                'top': '0',
+                'left': '0',
+                'height': '100%',
+                'width': '100%',
+                'zIndex': '4',
+                'background': 'black url("loader.gif") no-repeat scroll center center'
+            })
+            .animate({'opacity': '0.9'}, 'slow')
+            .appendTo('body').hide();
+            
+        $('<div id="lightbox"></div>', {
+            css: {
+                'top'       : "0",
+                'width'     : "100%",
+                'height'     : "100%",
+                'position'  : "relative"
+            },
+            click: function () {
+                removeLightBoxImage();
+            },
+        }).hide().appendTo('.overlay');
+        
+        $('.tubo').append('#lightbox').removeClass('hidden');
+        
+        /*
+        $('<iframe>', {
+            //src: 'https://youtu.be/kgK3Hx7VWfQ',
+            src: 'https://www.youtube.com/embed/kgK3Hx7VWfQ',
+            
+            id: 'myFrame2',
+            class: 'iframes',
+            frameborder: 0,
+            scrolling: 'no',
+            click: function () {
+                removeLightBoxImage();
+            },
+        }).prependTo('#lightbox');
+        */
+        
+    }
     var loadImgs = function () {
         var immagini = $('.notizia > .descrizione > p > img');
         var current = $('.descrizione').find('img.show');
@@ -313,8 +362,10 @@ $(document).ready(function () {
 
     (function (exports) {
         var socket = io.connect(socketURI);
-        socket.on('connect', function (data) {
+        
+        socket.on('connection', function (data) {
             console.log('connect!');
+            //welcome();
             //socket.emit('welcome', { customId:"000_spedicatoJS_0000" });
         });
         socket.on(userID + '-left', function (data) {
@@ -345,6 +396,10 @@ $(document).ready(function () {
         });
         
         socket.on(userID+"-ULTIM'ORA-changeNews", function (data) {
+            changeNewsCategory(data);
+        });
+        
+        socket.on(userID+"-RPI-changeNews", function (data) {
             changeNewsCategory(data);
         });
         

@@ -11,9 +11,9 @@
         <link href="../client/css/style.css" rel="stylesheet">
         <link href="../client/css/special.css" rel="stylesheet">
         <link href="../client/css/2palme.css" rel="stylesheet">
-        
+
         <script src="/socket.io/socket.io.js"></script>
-        
+
         <script src="../client/js/jquery.min.js" type="text/javascript"></script>
         <script src="../client/js/jquery-ui.js"></script>
         <!--script src="/common/handlebars.js"></script-->
@@ -25,10 +25,10 @@
     </head>
     <body class="radial">
         <div class="container-fluid">
-            
+
             <div class="row">
                 <div class="col-md-12">
-						<p></p>
+                    <p></p>
                 </div>
             </div>
 
@@ -37,17 +37,17 @@
   <source src="mov_bbb.ogg" type="video/ogg">
   Your browser does not support HTML5 video.
 </video-->
-            
+
             <div class="row">
 
                 <div class="hidden-lg">
                     <!--h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
                     <h4 class="text-center"> basta un click!</h4-->
-                    
+
                     <h2 class="text-center"> Marinelli </h2>
                     <h2 class="text-center"> Luxury Villas</h2>
                     <hr class="hidden-lg">
-                    
+
                     <!--button type="button" data-category="ULTIM'ORA" class="btn btn-warning">Ultim'ora</button>
                     <button type="button" data-category="SPORT" class="btn btn-warning">Sport</button>
                     <button type="button" data-category="HI TECH" class="btn btn-warning">Hi-tech</button>
@@ -67,30 +67,30 @@
 
                     <hr class="hidden-lg"-->
                 </div>
-                
+
                 <div class="col-md-6" id="iframeContainer">
-                    
+
                     <h4 class="text-center hidden-md hidden-lg">
-						Bagni Marinelli usa la tecnologia 
-							<span class="bg-warning text-danger">hubanero</span> 
+                        Bagni Marinelli usa la tecnologia 
+                        <span class="bg-warning text-danger">hubanero</span> 
                         per farti scoprire i suoi appartamenti da favola. </h4>
-                    
+
                     <h4 class="text-center hidden-md hidden-lg">
-						Ora puoi navigare tra le foto per scoprire i nostri appartamenti
-                    da sogno. Basta un semplice tocco sul tuo smartphone!
+                        Ora puoi navigare tra le foto per scoprire i nostri appartamenti
+                        da sogno. Basta un semplice tocco sul tuo smartphone!
                     </h4>
                     <hr class="visible-md visible-sm">
                     <div class="row" id="nav-arrows">
-                        
+
                         <div class="col-md-4" id="for-left"></div>
                         <div class="col-md-4" id="for-refresh"></div>
                         <div class="col-md-4" id="for-right"></div>
-                        
+
                     </div>
                     <hr class="hidden-lg">
                     <h3 class="text-center hidden-md hidden-lg"> Vi auguriamo una splendida vacanza nel </h3>
                     <h1 class="text-center hidden-md hidden-lg"> Salento</h1>
-                    
+
 
                 </div>
                 <div class="col-md-6 visible-lg">
@@ -98,26 +98,26 @@
                         <div class="" id="carousel-859806">
                             <!-- GENERATED NEWS CODE -->
                             <div class="my_inner"></div>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row visible-lg" id="id3">
-				<div id="indicazioni">
-					<img id="logo-qr" src="http://www.di-vision.org/marinelli/images/logo.png" />
-					<img id="freccia" src="http://www.di-vision.org/marinelli/images/freccia-marinelli.png" />
-					<img id="indirizzo-qr" src="http://www.di-vision.org/marinelli/images/marinelli-bg.jpg" />
-					
-				</div>
+                <div id="indicazioni">
+                    <img id="logo-qr" src="http://www.di-vision.org/marinelli/images/logo.png" />
+                    <img id="freccia" src="http://www.di-vision.org/marinelli/images/freccia-marinelli.png" />
+                    <img id="indirizzo-qr" src="http://www.di-vision.org/marinelli/images/marinelli-bg.jpg" />
+
+                </div>
                 <div class="newsCategory hidden">
                     NEWS: ULTIMORA
                 </div>
-                
+
                 <div class="col-md-12 visible-lg">
                     <!-- use class allNews to visualize news from the web -->
                     <div class="***********iframe-wrapper">
-                       
+
                     </div>
                 </div>
             </div>
@@ -131,122 +131,123 @@
              * userID per recuperare le news giuste dal DB
              */
             // due palme
-        var userID = "00023";
-            
-        var d = new Date();
-        var month = d.getMonth() + 1;
-        var day = d.getDate();
+            var userID = "00023";
 
-        var output = (('' + day).length < 2 ? '0' : '') + day + ' - ' +
-                (('' + month).length < 2 ? '0' : '') + month + ' - ' +
-                d.getFullYear();
-        $('.js-date').html(output);
-        var i = 9;
-        var items = [];
-        var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
-        getNews(url);
-        
-        function jsonCallback(data) {
-            //console.log(data);
-            count = 0;
-            $.each(data.sites, function (key, val) {
-                //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
-                if(val.titolo !== ''){ // avoid empty news
-                    items.push(
-                        "<div class='notizia'>"
-                        + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
-                        // + val.descrizione to use html as text...
-                        + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
-                        + "<div class='arr_2'>" + val.note + "</div>"
-                        + "</div>");
-                }
-                count++;
-            });
-            
-            $('.my_inner').append(items);
-            //nascondo tutto e mostro la prima notizia
-            $('.my_inner > *').hide();
-            // use eq(count-2) coz the first element is empty
-            $('.my_inner > *').eq(count-2).show();
-        }
-        //url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
-        function getNews(url) {
-            $.ajax({
-                type: 'GET',
-                url: url,
-                crossDomain: true,
-                jsonp : false,
-                cache:true,
-                jsonpCallback: 'jsonCallback',
-                dataType: 'jsonp',
-                success: function (json) {
-                    //$('.my_inner').append(items);
-                    console.log('get news success!');
-                },
-                error: function (e) {
-                    //console.log(e.message);
-                    postError(e.message);
-                }
-            });
-        };
-        function postError(msg){
-            var  formData = "hubanero_id=ERROR&hubanero_name=2PALME&ip=192.168.1.18&note="+msg;
+            var d = new Date();
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+
+            var output = (('' + day).length < 2 ? '0' : '') + day + ' - ' +
+                    (('' + month).length < 2 ? '0' : '') + month + ' - ' +
+                    d.getFullYear();
+            $('.js-date').html(output);
+            var i = 9;
+            var items = [];
+            var url = 'http://www.di-vision.org/getNews.php?userID=' + userID + '&content_type=my_news&callback=?';
+            getNews(url);
+
+            function jsonCallback(data) {
+                //console.log(data);
+                count = 0;
+                $.each(data.sites, function (key, val) {
+                    //items.push("<li>" + val.titolo + "<br/>" + val.descrizione + "</li>");
+                    if (val.titolo !== '') { // avoid empty news
+                        items.push(
+                                "<div class='notizia'>"
+                                + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
+                                // + val.descrizione to use html as text...
+                                + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
+                                + "<div class='arr_2'>" + val.note + "</div>"
+                                + "</div>");
+                    }
+                    count++;
+                });
+
+                $('.my_inner').append(items);
+                //nascondo tutto e mostro la prima notizia
+                $('.my_inner > *').hide();
+                // use eq(count-2) coz the first element is empty
+                $('.my_inner > *').eq(count - 2).show();
+            }
+            //url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
+            function getNews(url) {
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    crossDomain: true,
+                    jsonp: false,
+                    cache: true,
+                    jsonpCallback: 'jsonCallback',
+                    dataType: 'jsonp',
+                    success: function (json) {
+                        //$('.my_inner').append(items);
+                        console.log('get news success!');
+                    },
+                    error: function (e) {
+                        //console.log(e.message);
+                        postError(e.message);
+                    }
+                });
+            }
+            ;
+            function postError(msg) {
+                var formData = "hubanero_id=ERROR&hubanero_name=2PALME&ip=192.168.1.18&note=" + msg;
 //http://www.di-vision.org/saveUrls.php?
 
-            $.ajax({
-                url : "http://www.di-vision.org/saveUrls.php",
-                type: "POST",
-                data : formData,
-                success: function(data, textStatus, jqXHR)
-                {
-                    //data - response from server
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
+                $.ajax({
+                    url: "http://www.di-vision.org/saveUrls.php",
+                    type: "POST",
+                    data: formData,
+                    success: function (data, textStatus, jqXHR)
+                    {
+                        //data - response from server
+                    },
+                    error: function (jqXHR, textStatus, errorThrown)
+                    {
 
-                }
-            });
+                    }
+                });
 
-        }
-        //refresh page each 622 sec.
-        (function(time) {
-            setInterval(
-                    function(){ 
-                        //location.reload(); 
-                    }, time);
-        }(60*60*6 * 1000));
-        
-    </script>
-    <script type="text/javascript">
-/*
-$(function() {
-    var galleryUrl = "http://www.di-vision.org/2palme/venobox/";
-    var timeoutId;
-    
-    $("#gallerySpan").hover(function() {
-        
-        $('body').addClass('waitcursor');
-        if (!timeoutId) {
-            timeoutId = window.setTimeout(function() {
-                timeoutId = null;
-                location.replace(galleryUrl);
-           }, 2000);
-        }
-    },
-    function () {
-        if (timeoutId) {
-//            $('body').removeClass('waitcursor');
-            window.clearTimeout(timeoutId);
-            timeoutId = null;
-        }
-        else {
+            }
+            //refresh page each 622 sec.
+            (function (time) {
+                setInterval(
+                        function () {
+                            //location.reload(); 
+                        }, time);
+            }(60 * 60 * 6 * 1000));
 
-        }
-    });
-});
-*/
-    </script>
-    <!-- SET USERID VAL -->
-    <div id="userID" style="display: none;">2palme</div>
+        </script>
+        <script type="text/javascript">
+            /*
+             $(function() {
+             var galleryUrl = "http://www.di-vision.org/2palme/venobox/";
+             var timeoutId;
+         
+             $("#gallerySpan").hover(function() {
+         
+             $('body').addClass('waitcursor');
+             if (!timeoutId) {
+             timeoutId = window.setTimeout(function() {
+             timeoutId = null;
+             location.replace(galleryUrl);
+             }, 2000);
+             }
+             },
+             function () {
+             if (timeoutId) {
+             //            $('body').removeClass('waitcursor');
+             window.clearTimeout(timeoutId);
+             timeoutId = null;
+             }
+             else {
+         
+             }
+             });
+             });
+             */
+        </script>
+        <!-- SET USERID VAL -->
+        <div id="userID" style="display: none;">2palme</div>
     </body>
 </html>
