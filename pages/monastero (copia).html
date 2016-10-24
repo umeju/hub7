@@ -31,7 +31,8 @@
                     <button type="button" data-category="GOSSIP" class="btn btn-warning">Gossip</button>
                     <button type="button" data-category="CALCIO" class="btn btn-default">Calcio</button>
                     
-                    <hr class="hidden-lg" />
+                    <hr class="hidden-lg">
+                    
                     <!--select class="hidden-md hidden-lg form-control col-sm-offset-2 btn btn-default dropdown-toggle my-select">
                         <option>ULTIM'ORA</option>
                         <option>SPORT</option>
@@ -56,14 +57,7 @@
                         <div class="col-md-4" id="for-refresh"></div>
                         <div class="col-md-4" id="for-right"></div>
                         
-                    </div>
-                    <hr class="hidden-lg" />
-                    
-                    <p> </p>
-                    <p>
-                        <a id="tab3" class="btn btn-warning btn-block hidden" href="#" 
-                           role="button" >ZOOM OUT</a>
-                    </p>
+                    </div>                    
 
                 </div>
                 <div class="col-md-6 visible-lg">
@@ -122,7 +116,7 @@
             //nascondo tutto e mostro la prima notizia
             $('.my_inner > *').hide();
             // use eq(count-2) coz the first element is empty
-            $('.my_inner > *').eq(count-1).show();
+            $('.my_inner > *').eq(count-2).show();
         }
         //url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
         function getNews(url) {

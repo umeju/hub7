@@ -27,19 +27,12 @@
         <div class="container-fluid hidden-md hidden-sm hidden-xs">
             <div class="row">
                 <div class="col-md-6">
-
                     <div class="carousel slide" id="carousel-600440">
-
                         <div class="carousel-inner">
-
                             <!-- GENERATED NEWS CODE -->
                             <div class="my_inner"></div>
-                            
                             <span id="fader" class="fader hidden-md hidden-sm hidden-xs visible-lg">
-                                
                             </span>
-
-
                         </div> 
                         <a class="left carousel-control" href="#carousel-600440" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left"></span></a> 
@@ -59,6 +52,7 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="panel-972199">
+								        
                                 <p class="testi">
                                     E’ molto difficile fare un preventivo prima di accordare la bozza del tatuaggio
                                     e neanche dopo la realzzazione di questa si può conoscere il costo preciso.
@@ -87,7 +81,6 @@
 
         <!-- START REMOTE CODE-->
         <div class="row">
-
             <!--div class="hidden-lg">
                 <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
                 <h4 class="text-center"> basta un click!</h4>
@@ -103,54 +96,52 @@
                 <hr class="hidden-lg">
                 
             </div-->
-
             <div class="col-md-6 hidden-lg" id="iframeContainer">
 
                 <hr />
-
                 <img src="http://www.orlandotattoo.it/images/1-top-page.jpg" width="100%" />
 
                 <hr />
-
                 <h4 class="text-center hidden-md hidden-lg"> 
                     Con la tecnologia 
                     <span class="bg-warning text-danger">hubanero</span>                        
                     il tuo smartphone diventa un telecomando. Usa le frecce per navigare tra gli annunci
                 </h4>
-
                 <hr class="visible-md visible-sm">
                 <div class="row" id="nav-arrows">
-
                     <div class="col-md-4" id="for-left"></div>
                     <div class="col-md-4" id="for-refresh"></div>
                     <div class="col-md-4" id="for-right"></div>
 
                 </div>
                 <hr />
-                <p><a id="tab1" class="tabs btn btn-primary btn-block" href="#" 
+                <p>
+                    <a id="tab1" class="tabs btn btn-primary btn-block" href="#" 
                       role="button" >I COSTI DEL TATUAGGIO</a>
                 </p>
                 <p>
                     <a id="tab2" class="tabs btn btn-primary btn-block" href="#" 
                        role="button" >PREPARAZIONE ALL'APPUNTAMENTO</a>
                 </p>
+                
+                <p> </p>
+                
+                <p>
+                    <a id="tab3" class="btn btn-warning btn-block hidden" href="#" 
+                       role="button" >ZOOM OUT</a>
+                </p>
             </div>
 
             <div class="col-md-6 visible-lg">
                 <div class="my_carousel">
                     <div class="" id="carousel-859806">
-
                     </div>
                 </div>
             </div>
         </div>
-
-
-
         <!-- SET USERID VAL -->
         <div id="userID" style="display: none;">tattoo</div>
         <script src="../client/js/bootstrap.min.js"></script>
-
         <!-- DATE JS-->
         <script>
             /*
@@ -164,22 +155,19 @@
             var items = [];
             var url = 'http://www.di-vision.org/getNews.php?userID=' + userID + '&content_type=my_news&callback=?';
             getNews(url);
-
-
             function jsonCallback(data) {
                 count = 0;
                 $.each(data.sites, function (key, val) {
                     if (val.titolo !== '') { // avoid empty news
                         items.push(
-                                "<div class='notizia'>"
-                                //+ "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
-                                + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
-                                + "<div class='arr_2'>" + val.note + "</div>"
-                                + "</div>");
+                            "<div class='notizia'>"
+                            //+ "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
+                            + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
+                            + "<div class='arr_2'>" + val.note + "</div>"
+                            + "</div>");
                     }
                     count++;
                 });
-
                 $('.my_inner').append(items);
                 //nascondo tutto e mostro la prima notizia
                 $('.my_inner > *').hide();
@@ -205,35 +193,61 @@
                         postError(e.message);
                     }
                 });
-            }
-            ;
+            };
             function postError(msg) {
                 var formData = "hubanero_id=ERROR&hubanero_name=TATTOOip=192.168.1.18&note=" + msg;
-//http://www.di-vision.org/saveUrls.php?
-
+                //http://www.di-vision.org/saveUrls.php?
                 $.ajax({
                     url: "http://www.di-vision.org/saveUrls.php",
                     type: "POST",
                     data: formData,
                     success: function (data, textStatus, jqXHR)
-                    {
-                        //data - response from server
+                    {//data - response from server
                     },
                     error: function (jqXHR, textStatus, errorThrown)
-                    {
-
-                    }
+                    {}
                 });
-
             }
             //refresh page each 622 sec.
             (function (time) {
-                setInterval(
-                        function () {
-                            location.reload();
-                        }, time);
+                setInterval(function(){
+                    location.reload();
+                }, time);
             }(60 * 60 * 4 * 1000));
+            
+            $(function() {
+                //button 1
+                $("button").click(function() {
+                    $.post("/foo", { message: $("input").val() });
+                });
+                /*button 2
+                $('<button />', {
+                    class: "newClass",
+                    width: "100px",
+                    height: "100px",
 
+                    click: function () {
+                        $.get( "http://192.168.1.111:8080/pages/tattoo/left", function( data ) {
+                            $( "body" ).append( data );
+                        });
+                    },
+                }).appendTo('body').fadeIn();
+                
+                //button 2
+                $('<button />', {
+                    class: "newClass",
+                    width: "100px",
+                    height: "100px",
+
+                    click: function () {
+                        $.get( "http://192.168.1.111:8080/pages/tattoo/right", function( data ) {
+                            $( "body" ).append( data );
+                        });
+                    },
+                }).appendTo('body').fadeIn();*/
+
+            });
+        
         </script>
         <script src="../client/js/generic.js"></script>
         <script src="../client/js/slideImage.js"></script>

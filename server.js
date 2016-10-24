@@ -1,8 +1,8 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.105' || '127.0.0.1';
-		//|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
+		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
+		//|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.111' || '127.0.0.1';
 
 var express = require('express');
 //var reload = require('reload');
@@ -21,36 +21,29 @@ var clients = [];
  * WE SAVE IT EACH TIME TO USE IN THE event{a:function(testData)}
  */
 var testData = '';
-
-
-
 var socket = this;
-
-
-
 // Setup a very simple express application.
 app = express();
 // Allow cross origin requests.
 app.use(function(req, res, next) {
-	var origin = '*';
-	try {
-		var parts = req.headers.referer.split('/').filter(function(n) {
-			return n;
-		});
-		if (parts.length >= 2) {
-			origin = parts[0] + '//' + parts[1];
-		}
-		/*console.log(parts[0]); //--> http:
-		console.log(parts[1]); //--> 192.168.xxx.xxx
-		console.log(parts[2]); //--> tattoo*/
-		testData = parts[2];
-		
-	} catch (e) {}
+    var origin = '*';
+    try {
+        var parts = req.headers.referer.split('/').filter(function(n) {
+                return n;
+        });
+        if (parts.length >= 2) {
+                origin = parts[0] + '//' + parts[1];
+        }
+        /*	console.log(parts[0]); //--> http:
+                console.log(parts[1]); //--> 192.168.xxx.xxx
+                console.log(parts[2]); //--> tattoo
+        * */
+        testData = parts[2];
+    } catch (e) {}
 
-	res.setHeader('Access-Control-Allow-Origin', origin);
-	res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-	next();
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
 });
 // How we pass our websocket URL to the client.
 app.use('/varSocketURI.js', function(req, res) {
@@ -71,11 +64,7 @@ app.use('/pages', express.static(__dirname + '/pages'));
 app.get('/', function(req, res) {
 	res.sendfile(__dirname + '/client/index.html');
 });
-
-
-
 // The root path should serve the client HTML.
-
 // ROMANO
 app.get('/romano', function(req, res) {
 	res.sendfile(__dirname + '/romano/index.html');
@@ -89,7 +78,6 @@ app.get('/verardi/remote', function(req, res) {
 app.get('/verardi/2', function(req, res) {
 	res.sendfile(__dirname + '/verardi/index2.html');
 });
-
 //  MUCCA 
 app.get('/frisenda', function(req, res) {
 	res.sendfile(__dirname + '/frisenda/index.html');
@@ -110,35 +98,27 @@ app.get('/marini', function(req, res) {
 app.get('/licignano', function(req, res) {
 	res.sendfile(__dirname + '/licignano/index.html');
 });
-
 //SPEDICATO
 app.get('/spedicato', function(req, res) {
 	res.sendfile(__dirname + '/spedicato/index.html');
 });
-
 //HOLTANNA
 app.get('/holtanna', function(req, res) {
 	res.sendfile(__dirname + '/holtanna/index.html');
 });
-
-
 app.get('/tattoo', function(req, res) {
 	res.sendfile(__dirname + '/tattoo/index.html');
 });
-
 app.get('/marinelli', function(req, res) {
 	res.sendfile(__dirname + '/marinelli/index.html');
 });
 app.get('/2palme', function(req, res) {
 	res.sendfile(__dirname + '/2palme/index.html');
 });
-
 // Our express application functions as our main listener for HTTP requests
 // in this example which is why we don't just invoke listen on the app object.
 server = require('http').createServer(app);
-
 server.listen(PORT, IPADDRESS);
-
 // socket.io augments our existing HTTP server instance.
 io = require('socket.io').listen(server);
 io.configure(function() {
@@ -148,41 +128,73 @@ io.configure(function() {
 	io.set("log level", logLevel);
 });
 
-
-
-
 io.sockets.on('connection',
-
-function(socket) {
-    
-    
-socket.broadcast.emit('00011-right', '00011-right');
-
-
-
-            function lkj() {
-                app.param('name', function(req, res, next, name) {
-                    // save name to the request
-                    req.name = modified;
-                    next();
-                });
-
-                app.get('/api/users/:name', function(req, res) {
-                    // the user was found and is available in req.user
-                    socket.broadcast.emit('00011-right', '00011-right');
-                });
-            }
+    function(socket) {
+        //TELECOMANDO ESTERNO ALLA PAGINA
+        app.get("/pages/:action/:ID", function(req, res) {
+                    //var event = req.params.event;
+            var data = {
+                "pages": {
+                        "action": req.params.action,
+                        "ID": req.params.ID
+                }
+            };
+            var referID = data.pages.ID;
+            var referAction = data.pages.action;
             
-
-        //save the first user
-        //clients.push(socket.id);
-        /*
-         * for (var i = 0; i < clients.length; i++) {
-                console.log(clients[i]);
+            // the user was found and is available in req.user
+            socket.broadcast.emit(referID+'-'+data.pages.action, referID+'-right');
+            //socket.broadcast.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
+            console.log("data.pages.ID: "+data.pages.ID);
+            console.log("data.pages.action: "+data.pages.action);
+            res.send(data);
+        });
+    /*
+    function lkj() {
+        app.param('name', function(req, res, next, name) {
+                // save name to the request
+                req.name = modified;
+                next();
+        });
+    }  
+    //	************	save the first user
+    //clients.push(socket.id);
+    
+     * for (var i = 0; i < clients.length; i++) {
+                    console.log(clients[i]);
             }
+    
+    io.sockets.socket(clients[0]).emit("greeting", "user0");
+    
+    var obj = arr.reduce(function(o, v, i) {
+            o[i] = v;
+            return o;
+    }, {});
          */
-        //io.sockets.socket(clients[0]).emit("greeting", "user0");
+        //mapping all the possible events
+        ev = [
+            'right',
+            'left',
+            'changeNews',
+            'refresh',
+            'tab1',
+            'tab2',
+            'showFlashMsg',
+            'zoomOut'
 
+        ];
+        // love to have all events here:
+        var events = ev.reduce(function(result, item) {
+            result[item] = function(data) {
+                
+                console.log("emit: "+testData + '-'+item+"data: "+testData + '-'+item);
+                //socket.broadcast.emit(testData + '-'+item, testData + '-'+item);
+                socket.broadcast.emit(testData + '-'+item, testData + '-'+item);
+            }
+            return result;
+        }, {});
+        //console.log(events);
+        /*old events obj
         var events = {
                 "left" : function(data) {
                         console.log('new-left, testData: ' + testData);
@@ -215,55 +227,52 @@ socket.broadcast.emit('00011-right', '00011-right');
                                         + '-tab2');
                 },
 
-                /************ FLASH MESSAGES PER GARZIA *********/
+                //************ FLASH MESSAGES PER GARZIA *********
                 "showFlashMsg" : function(data) {
                         msgText = splitMsg(testData);
                         socket.broadcast.emit('garzia-showFlashMsg', msgText);
                 },
-
-        }
-
+        }*/
         //***********************   magic happensss:  ************************
         for ( var method in events) {
-                var dynamicHandler = function(realMethod) {
-                        socket.on(realMethod, function(data) {
-                                /*
-                                console.log('CONTROL: received realMethod -->'
-                                                + realMethod);*/
-                                //console.log('DATA: received -->'+data.dataVal);
-                                testData = data.dataVal;
-                                console.log('DATA: received '+JSON.stringify(data));
-                                events[realMethod].apply(this, data);
-                        });
-                };
-                dynamicHandler(method);
+            var dynamicHandler = function(realMethod) {
+                socket.on(realMethod, function(data) {
+                    /*
+                     * console.log('CONTROL: received realMethod -->'
+                     * + realMethod);*/
+                    console.log('DATA: received -->'+data.dataVal);
+                    testData = data.dataVal;
+                    console.log('DATA: received '+JSON.stringify(data));
+                    events[realMethod].apply(this, data);
+                });
+            };
+            dynamicHandler(method);
         }
-
+        //split message per messaggio sergio garzia tempo reale
         function splitMsg(testData) {
-
-                var array = testData.split(':');
-                var lowerCaseString = array[0].toLowerCase();
-                console.log('testData: *******************' + lowerCaseString);
-                if (lowerCaseString == "seroga2") {
-                        return array[1];
-                } else {
-                        console.log('Error: *******************' + testData);
-                        return "error";
-                }
+            var array = testData.split(':');
+            var lowerCaseString = array[0].toLowerCase();
+            console.log('testData: *******************' + lowerCaseString);
+            if (lowerCaseString == "seroga2") {
+                return array[1];
+            } else {
+                console.log('Error: *******************' + testData);
+                return "error";
+            }
         }
 
         socket.on('storeClientInfo', function(data) {
-                /*
-                var clientInfo = new Object();
-                clientInfo.customId = data.customId;
-                clientInfo.clientId = socket.id;
-                console.log('clients push: ' + socket.id +' '+data.customId);
-                clients.push(clientInfo);
-                 */
+            /*
+            var clientInfo = new Object();
+            clientInfo.customId = data.customId;
+            clientInfo.clientId = socket.id;
+            console.log('clients push: ' + socket.id +' '+data.customId);
+            clients.push(clientInfo);
+             */
         });
 
         socket.on('disconnect', function(data) {
-                console.log('disconnect!');
+                console.log('qualcuno si è disconnesso!');
                 /*
                 for( var i=0, len=clients.length; i<len; ++i ){
                     var c = clients[i];
