@@ -4,17 +4,13 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Orlando Tattoo - hubanero</title>
-
         <link href="../client/css/bootstrap.min.css" rel="stylesheet">
         <link href="../client/css/style.css" rel="stylesheet">
         <!--link href="../client/css/tattoo.css" rel="stylesheet"-->
-        <link href="../client/css/slideImage.css" rel="stylesheet">
         <link href="http://www.di-vision.org/cdn/tattoo.css" rel="stylesheet">
 
         <script src="/socket.io/socket.io.js"></script>
-
 
         <script src="../client/js/jquery.min.js" type="text/javascript"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -40,31 +36,67 @@
                             <span class="glyphicon glyphicon-chevron-right"></span></a>
                     </div>
                 </div>
+                <!-- TABS DIV -->
                 <div class="col-md-6">
                     <div class="tabbable" id="tabs-751940">
+                        <!-- TABS -->
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a href="#panel-972199" id="panel-1" class="tabs" data-toggle="tab">I COSTI DI UN TATUAGGIO</a>
+                                <a href="#panel-972199" id="panel-0" class="tabs" data-toggle="tab">NOVITÀ !</a>
                             </li>
                             <li>
-                                <a href="#panel-446387" id="panel-2" class="tabs" data-toggle="tab">PREPARAZIONE ALL'APPUNTAMENTO</a>
+                                <a href="#panel-446387" id="panel-1" class="tabs" data-toggle="tab">PREPARAZIONE ALL'APPUNTAMENTO</a>
                             </li>
+                            
+                            <li>
+                                <a href="#panel-446388" id="panel-2" class="tabs" data-toggle="tab">PREPARAZIONE ALL'APPUNTAMENTO</a>
+                            </li>
+                            
                         </ul>
+                        <!-- TABS CONTENT -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="panel-972199">
-								        
-                                <p class="testi">
-                                    E’ molto difficile fare un preventivo prima di accordare la bozza del tatuaggio
-                                    e neanche dopo la realzzazione di questa si può conoscere il costo preciso.
-                                    Riguardo al prezzo finale bisogna tener conto di alcune variabili importanti poichè
-                                    il valore che attribuiamo al tatuaggio nasce da due variabili importanti:
-                                    la dimensione del tatuaggio e il tempo impiegato per realizzarlo.
-                                    A causa di queste valutazioni il costo potrebbe essere sottoposto a delle variazioni
-                                    quindi Vi preghiamo di non essere categorici.
-
+                                <br />
+                                <p class="testi text-center">
+                                    QUESTO DISPLAY SI CONTROLLA A DISTANZA CON 
+                                    QUALSIASI CELLULARE
+                                </p>
+                                <br />
+                                <p class="testi text-center">
+                                    PER SFOGLIARE LA TATTOO GALLERY 
+                                    <br /> BASTA UN TAP
+                                </p>
+                                <br />
+                                <p class="testi text-center">
+                                    NIENTE DA INSTALLARE !
+                                </p>
+                                <br />
+                                <p class="testi text-center">
+                                     OPPURE SCANSIONA IL QR-CODE
+                                </p>
+                                
+                                <br />
+                                <p class="testi text-center">
+                                    VISITA <span class="red"> bit.ly/tattoobest </span>
+                                </p>
+                                
+                                <p class="testi text-center">
+                                    <img class="qrcode" src="http://www.di-vision.org/cdn/qr-orlandotatto.png" />
                                 </p>
                             </div>
                             <div class="tab-pane" id="panel-446387">
+                                <p class="testi">
+                                    E’ molto difficile fare un preventivo prima di accordare la bozza del tatuaggio
+                                    e, anche dopo la realzzazione della stessa, non si può conoscere il costo preciso.
+                                    Riguardo al prezzo finale bisogna tener conto di alcune variabili importanti poichè
+                                    il valore che attribuiamo al tatuaggio nasce da due fattori:
+                                    la dimensione del tatuaggio e il tempo impiegato per realizzarlo.
+                                    A causa di queste valutazioni il costo potrebbe essere sottoposto a delle variazioni
+                                    quindi Vi preghiamo di non essere categorici.
+                                </p>
+                            </div>
+                            
+                            <div class="tab-pane" id="panel-446388">
                                 <p class="testi">
                                     In primo luogo occorre, già nel momento stesso della prenotazione,che il cliente abbia una forte motivazione prima di procedere alla scelta e l'esecuzione del tatuaggio.
                                     Il tatuatore deve trovare di fronte a se una persona convinta delle proprie scelte e
@@ -73,6 +105,7 @@
                                     al meglio la vostra richiesta.
                                 </p>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -97,24 +130,34 @@
                 
             </div-->
             <div class="col-md-6 hidden-lg" id="iframeContainer">
-
-                <hr />
-                <img src="http://www.orlandotattoo.it/images/1-top-page.jpg" width="100%" />
-
-                <hr />
-                <h4 class="text-center hidden-md hidden-lg"> 
-                    Con la tecnologia 
-                    <span class="bg-warning text-danger">hubanero</span>                        
-                    il tuo smartphone diventa un telecomando. Usa le frecce per navigare tra gli annunci
-                </h4>
-                <hr class="visible-md visible-sm">
+                <p class="text-center">
+                    <img src="http://www.orlandotattoo.it/images/1-top-page.jpg" 
+                         id="remote-header" class="head-image" />
+                </p>
+                <hr class="hidden-lg">
+                
+                <h3 class="text-center darkblue hidden-md hidden-lg">
+                    ADESSO HAI TU IL CONTROLLO!
+                </h3>
+                <h3 class="text-center darkblue hidden-md hidden-lg">
+                    Scegli cosa vedere sullo schermo 
+                </h3>
+                <h3 class="text-center darkblue hidden-md hidden-lg">
+                    Basta un "TAP" !
+                </h3>
+                
+                <hr class="hidden-lg">
                 <div class="row" id="nav-arrows">
                     <div class="col-md-4" id="for-left"></div>
                     <div class="col-md-4" id="for-refresh"></div>
                     <div class="col-md-4" id="for-right"></div>
 
                 </div>
-                <hr />
+                <hr class="hidden-lg">
+                <p>
+                    <a id="tab0" class="tabs btn btn-primary btn-block" href="#" 
+                      role="button" >NOVITÀ!</a>
+                </p>
                 <p>
                     <a id="tab1" class="tabs btn btn-primary btn-block" href="#" 
                       role="button" >I COSTI DEL TATUAGGIO</a>
@@ -123,9 +166,7 @@
                     <a id="tab2" class="tabs btn btn-primary btn-block" href="#" 
                        role="button" >PREPARAZIONE ALL'APPUNTAMENTO</a>
                 </p>
-                
-                <p> </p>
-                
+                <br />
                 <p>
                     <a id="tab3" class="btn btn-warning btn-block hidden" href="#" 
                        role="button" >ZOOM OUT</a>

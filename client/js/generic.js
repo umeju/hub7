@@ -121,12 +121,29 @@ $(document).ready(function () {
         myEmit('left', clickedTagID);
         oneLess();
     });
-    
+    // zoom function
     $('.refresh').click(function () {
+//        $('.flagged').length !== 0 ? dontChangeIT(this) : changeIT(this);
+        
         clickedTagID = this.id;
         $('#tab3').removeClass('hidden');
         myEmit('refresh', clickedTagID);
+        
     });
+    
+    function changeIT(obj){
+        var Src = '/common/img/zoom-out.png';
+        $(obj).attr('src',Src);
+        $(obj).addClass('flagged');
+        //myEmit('zoomOut', "zoomOut");
+    }
+    
+    function dontChangeIT(obj){
+        var Src = '/common/img/refresh_arrow_sign.png';
+        $(obj).attr('src',Src);
+        $(obj).removeClass('flagged');
+        
+    }
     
     $('.tabs').click(function (){
         clickedTagID = this.id;
@@ -134,7 +151,7 @@ $(document).ready(function () {
     });
     
     $('#tab3').click(function (){
-        $('#tab3').addClass('hidden');
+        $(this).addClass('hidden');
         removeLightBoxImage();
         myEmit('zoomOut', "zoomOut");
     });
@@ -172,6 +189,7 @@ $(document).ready(function () {
     }
     // move 1 pic back
     function oneLess(){
+        removeLightBoxImage();
         clearInterval(countFunc);
         countFunc = null;
         runInterval("stop");
@@ -187,6 +205,7 @@ $(document).ready(function () {
     }
     // move 1 pic ahead
     function oneMore(){
+        removeLightBoxImage();
         clearInterval(countFunc);
         countFunc = null;
         runInterval("stop");
@@ -241,16 +260,31 @@ $(document).ready(function () {
     }
 
     var zoom = function () {
-//        removeLightBoxImage();
         var cur = $("[style*='inline-block']");
-        if (cur.length)
+        if (cur.length){
             createAndAppend(cur, zoom);
-        oneMore();
+        }else{
+            removeLightBoxImage();
+        }
     };
     
     function createAndAppend(current, callback) {
         var imageSrc = current.find('img')[0].src;
-
+        var percentage;
+        switch (userID){
+            case '00011': 
+                percentage = '137';
+                break;
+                
+            case '00012':
+                percentage = '100';
+                break;
+                
+            default:
+                percentage = '100';
+                break;
+                
+        }
         //CREA DIV ID OVERLAY
         $('<div class="overlay"></div>')
             .css('top', $(document).scrollTop())
@@ -263,7 +297,7 @@ $(document).ready(function () {
                 'zIndex': '4',
                 'background': 'black url("loader.gif") no-repeat scroll center center'
             })
-            .animate({'opacity': '0.9'}, 'slow')
+            .animate({'opacity': '1'}, 'slow')
             .appendTo('body');
     
         $('<div id="lightbox"></div>', {
@@ -287,18 +321,19 @@ $(document).ready(function () {
                 'right': "0",
                 'bottom': "0",
                 'margin': "auto",
-                'position': "absolute"
+                'position': "absolute",
+                'height': percentage+"%"
             },
             click: function () {
                 removeLightBoxImage();
-            },
+            }
         }).appendTo('#lightbox').fadeIn();
         positionLightBoxImage();
     }
-    zoom();
+    
+    //zoom();
     
     function welcome() {
-        
         //CREA DIV ID OVERLAY
         $('<div class="overlay"></div>')
             .css('top', $(document).scrollTop())
@@ -342,8 +377,8 @@ $(document).ready(function () {
             },
         }).prependTo('#lightbox');
         */
-        
     }
+    
     var loadImgs = function () {
         var immagini = $('.notizia > .descrizione > p > img');
         var current = $('.descrizione').find('img.show');
@@ -356,7 +391,6 @@ $(document).ready(function () {
                 }
             }).appendTo('.overlay');
         });
-
         $(immagini[0]).addClass('show');
     };
 
@@ -401,6 +435,10 @@ $(document).ready(function () {
         
         socket.on(userID+"-RPI-changeNews", function (data) {
             changeNewsCategory(data);
+        });
+        
+        socket.on(userID+'-tab0', function (data) {
+            $("#panel-0").trigger('click');
         });
         
         socket.on(userID+'-tab1', function (data) {

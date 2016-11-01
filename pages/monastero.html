@@ -16,18 +16,25 @@
             
             <div class="row">
                 <div class="hidden-lg">
-                    <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
-                    <h4 class="text-center"> basta un click!</h4>
+                    <p class="text-center">
+                        <img src="http://www.orlandotattoo.it/images/1-top-page.jpg" 
+                             width="100%" />                        
+                    </p>
+                    
+                    <hr class="hidden-lg">
+                    <h3 class="text-center"> Scegli tu le notizie che vuoi leggere:</h3>
+                    <h3 class="text-center"> basta un click!</h3>
                     <hr class="hidden-lg">
                 </div>
                 
                 <div class="col-md-6" id="iframeContainer">
-                    <h4 class="text-center hidden-md hidden-lg">
+                    
+                    <h3 class="text-center hidden-md hidden-lg">
                         Con la tecnologia 
-                        <span class="bg-warning text-danger">hubanero</span> 
+                        <span class="bg-warning text-danger">hub</span>anero 
                         il tuo smartphone diventa un telecomando. 
                         Usa le frecce per navigare tra gli annunci
-                    </h4>
+                    </h3>
                     <hr class="visible-md visible-sm">
                     <div class="row" id="nav-arrows">
                         <div class="col-md-4" id="for-left"></div>
@@ -55,19 +62,18 @@
                 <div class="newsCategory"></div>
                 <div class="col-md-12 visible-lg">
                     <!-- use class allNews to visualize news from the web -->
-                    
                 </div>
             </div>
-                
         </div>
         <script src="/socket.io/socket.io.js"></script>
         <script src="../client/js/jquery.min.js" type="text/javascript"></script>
         <script src="../client/js/jquery-ui.js"></script>
         <script src="/varSocketURI.js"></script>
         <script src="../client/js/bootstrap.min.js"></script>
+        
         <script>
-            userID = '00012';
-            var i = 9;
+        userID = '00012';
+        var i = 9;
         var items = [];
         var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
         getNews(url);

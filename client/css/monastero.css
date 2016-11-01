@@ -3,42 +3,31 @@
     background-image: url('http://www.di-vision.org/monastero/images/bg1.jpg');
     background-position-y: -2px;
     background-position-x: -12px;
-    
     overflow: hidden;
-    /*cursor: url("/common/img/up.png") 0 32, default !important;*/
-}
-.descrizione {
-/*
- * background-color:rgba(255,255,255,0.3);
- **/
 }
 .my_inner{
     position: relative;
 }
 .red_background{
-background-color: darkblue !important;
+    background-color: darkgreen !important;
 }
 .arr_2 > p{
-	color: darkblue;
+    color: darkgreen;
 }
 h1 > span > strong {
-	color: white;
+    color: white;
 }
 .myrss{
-/*
- * background-color: darkblue !important;
- * */
-color: white !important;
+    color: white !important;
 }
 .notizia{
-	width: 100% !important;
-	float: right;
-	max-height: 1200px !important;
+    width: 100% !important;
+    float: right;
+    max-height: 1200px !important;
 }
 .scroll_text > * {
-	font-size: 45px;
+    font-size: 45px;
     line-height: 1.5 !important;
-    
 }
 .scroll_text {
     font-family: "Tahoma", Geneva, sans-serif;
@@ -52,27 +41,3 @@ color: white !important;
     color: white;
     text-shadow: 2px 2px 4px darkblue;
 }
-
-#freccia {
-    position: fixed;
-    width: 49%;
-    height: auto;
-    bottom: 1%;
-    /* left: 130px; */
-    right: -11%;
-}
-#logo-qr {
-position: fixed;
-    width: 10%;
-    height: auto;
-    bottom: 28%;
-    right: 12%;
-}
-#indirizzo-qr {
-position: fixed;
-    width: 59%;
-    height: 12%;
-    bottom: -1%;
-    left: 5%;
-}
-

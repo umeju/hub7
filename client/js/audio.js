@@ -6,7 +6,7 @@
         var audioElement = document.createElement('audio');
             if (audioElement.canPlayType('/audio/mpeg') == '')
             {
-            soundSrc = soundSrc.replace('.mp3','.ogg');
+                soundSrc = soundSrc.replace('.mp3','.ogg');
             }
         audioElement.setAttribute('src', soundSrc);
         audioElement.play();
@@ -14,8 +14,6 @@
     })
     }
 })( jQuery );
-
-
 // Images must be preloaded before they are used to draw into canvas
 function preloadImages( images, callback ) {
 
@@ -100,7 +98,6 @@ function _initWebAudio( AudioContext, format, audios, callback ) {
     audios.forEach(function(asset) {
         _preload( asset );
     });
-
 }
 
 function _initHTML5Audio( format, audios, callback ) {
@@ -139,7 +136,6 @@ function _initHTML5Audio( format, audios, callback ) {
         _preload( asset );
     });
 }
-
 // Initializes audio and loads audio files
 function initAudio( audios, callback ) {
 
@@ -171,12 +167,8 @@ function initAudio( audios, callback ) {
         callback();
     }
 }
-
-
 function SlotGame() {
-    
     var game = new Game();
-
     // Audio file names
     var audios = [
         {id: 'roll'}, // Played on roll tart
@@ -186,7 +178,6 @@ function SlotGame() {
     ];
 
     game.audios = audios;
-    
     initAudio(audios, function() {
             // audio is initialized and loaded
             game.audios[0].play();
@@ -201,11 +192,10 @@ function SlotGame() {
         
         $('.img-circle').attachSound(game.audios[3]);
     });
-    
 }
-
 function Game() {
-    console.log('Game obj');
+    /* need this for new SlotGame()
+     */console.log('*** Start! ***');
 }
 var t = new SlotGame();
 //t.game.audios[0].play();

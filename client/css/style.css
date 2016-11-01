@@ -1,329 +1,331 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
-
-@media only screen and (max-width: 499px) {
-    
-    html,body {
+@media only screen and (max-width:499px) {
+    body,
+    html {
         min-height: 500px;
         min-width: 270px;
-        overflow: auto !important;
+        overflow: auto!important
     }
-    
-    iframe, .carousel-caption, .iframe-wrapper {
-        display: none;
+    .carousel-caption,
+    .iframe-wrapper,
+    iframe {
+        display: none
     }
-
-    .red_background{
-        font-size: medium;
+    .red_background {
+        font-size: medium
     }
     .scroll_text {
-        font-size: medium !important;
-        overflow: auto;
+        overflow: auto
     }
-    .allNews{
+    .allNews {
         height: 170px;
         position: relative;
-        margin-top: 5px;
+        margin-top: 5px
     }
-    .right.img-circle{
+    .left.img-circle,
+    .refresh.img-circle,
+    .right.img-circle {
         width: 33%;
         float: left;
-        display: inline-block;
+        display: inline-block
     }
-
-    .left.img-circle{
-        width: 33%;
-        float: left;
-        display: inline-block;
+    #gallerySpan,
+    .glyphicon,
+    .newsCategory {
+        display: none
     }
-    
-    .refresh.img-circle{
-        width: 33%;
-        float: left;
-        display: inline-block;
-    }
-    
-    .newsCategory, .glyphicon{
-        display: none;
-    }
-    
-    .logoframe{
+    .logoframe {
         position: fixed;
-        left: 0;
+        left: 0
     }
-    .hublogo{
-        margin: 0 auto;
+    .hublogo {
+        margin: 0 auto
     }
-    .radial{
-        background-color: lightgrey;
-        background-image: url('') !important;
+    .radial {
+        background-color: #d3d3d3;
+        background-image: url()!important
     }
-
-    .scroll_text, .arr_2{
-        font-size: 20px !important;
-    }
-    #gallerySpan{
-        display: none;
+    .arr_2,
+    .scroll_text {
+        font-size: 20px!important
     }
 }
-/* Colors picked from: http://colorschemedesigner.com/#2V41Tk4jzxQq3 */
+
+#overlay img,
+#scroll_text,
+#slider,
+.iframe-wrapper,
+.jumbotron,
+.my_image,
+.notizia,
+.radial {
+    overflow: hidden
+}
 
 * {
     -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    /*cursor: url("/common/img/up.png") 0 32, crosshair;*/
-    
+    box-sizing: border-box
 }
 
-body, html {
+body,
+html {
     height: 100%;
     margin: 0;
     padding: 0;
-    color: #6394A1;
+    color: #6394A1
 }
+
 body {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 1.5em;
+    font-size: 1.5em
 }
-#header > h1 {
+
+#header>h1 {
     margin: 0;
-    padding: 0.2em;
+    padding: .2em;
     text-align: right;
-    background-color: #0B323D;
+    background-color: #0B323D
+}
+
+#slider ul,
+#slider ul li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 500px
 }
 
 #main {
     width: 90%;
     height: 100%;
     margin: 0 auto;
-
-    background-color: black;
+    background-color: #000
 }
 
 #status-update-form {
-    padding: 0.5em;
+    padding: .5em
 }
-#status-update-form input[type='text'] {
-    padding: 0.3em;
+
+#status-update-form input[type=text] {
+    padding: .3em;
     width: 50em;
+    outline: 0;
+    -moz-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    -webkit-transition: all .5s linear;
+    transition: all .5s linear
 }
-#status-update-form input[type='text'] {
-    outline: none;
-    -moz-transition: all 0.5s linear;
-    -o-transition: all 0.5s linear;
-    -webkit-transition: all 0.5s linear;
-    transition: all 0.5s linear;
-}
-#status-update-form input[type='text']:invalid {
+
+#status-update-form input[type=text]:invalid {
     border: 3px solid #9C473A;
-    /* for mozilla */
-    box-shadow: 0 0 0 transparent;
+    box-shadow: 0 0 0 transparent
 }
-#status-update-form input[type='text']:valid {
-    border: 3px solid #2B7341;
+
+#status-update-form input[type=text]:valid {
+    border: 3px solid #2B7341
 }
+
 #status-update-form button {
     -webkit-appearance: none;
     color: #6394A1;
     background-color: #0B323D;
-    border: 0.2em solid #6394A1;
-
-    border-radius: 0.1em;
-    padding: 0.5em;
-    text-align: center;
+    border: .2em solid #6394A1;
+    border-radius: .1em;
+    padding: .5em;
+    text-align: center
 }
+
 #status-update-form button:disabled {
     color: #888;
     border-color: #888;
-    background-color: black;
+    background-color: #000
 }
 
-
-
-
-
 #slider {
-  position: relative;
-  overflow: hidden;
-  margin: 20px auto 0 auto;
-  border-radius: 4px;
-  float: left;
-  margin-left: 30px;
+    position: relative;
+    margin: 20px auto 0 30px;
+    border-radius: 4px;
+    float: left
 }
 
 #slider ul {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  height: 500px;
-  list-style: none;
+    list-style: none
 }
 
 #slider ul li {
-  position: relative;
-  display: block;
-  float: left;
-  margin: 0;
-  padding: 0;
-  width: 500px;
-  height: 500px;
-  background: #ccc;
-  text-align: center;
-  line-height: 500px;
-  /*transform: rotate(7deg);*/
+    display: block;
+    float: left;
+    width: 500px;
+    background: #ccc;
+    text-align: center;
+    line-height: 500px
 }
 
-a.control_prev, a.control_next {
-  position: absolute;
-  top: 40%;
-  z-index: 999;
-  display: block;
-  padding: 4% 3%;
-  width: auto;
-  height: auto;
-  background: #2a2a2a;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 18px;
-  opacity: 0.8;
-}
-a.control_prev:hover, a.control_next:hover {
-  opacity: 1;
-  -webkit-transition: all 0.2s ease;
-}
+a.control_next,
 a.control_prev {
-  border-radius: 0 2px 2px 0;
+    position: absolute;
+    top: 40%;
+    z-index: 999;
+    display: block;
+    padding: 4% 3%;
+    width: auto;
+    height: auto;
+    background: #2a2a2a;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    opacity: .8
 }
+
+.hublogo,
+.radial {
+    background-size: cover
+}
+
+a.control_next:hover,
+a.control_prev:hover {
+    opacity: 1;
+    -webkit-transition: all .2s ease
+}
+
+a.control_prev {
+    border-radius: 0 2px 2px 0
+}
+
 a.control_next {
-  right: 0;
-  border-radius: 2px 0 0 2px;
+    right: 0;
+    border-radius: 2px 0 0 2px
 }
+
 .slider_option {
-  position: relative;
-  margin: 10px auto;
-  width: 160px;
-  font-size: 18px;
+    position: relative;
+    margin: 10px auto;
+    width: 160px;
+    font-size: 18px
 }
+
 .allNews {
     bottom: 0;
     height: 220px;
     left: -1%;
     position: fixed;
     width: 101%;
-    line-height: 1.2;
+    line-height: 1.2
 }
+
+.logoframe,
+.red_background {
+    width: 100%;
+    position: relative
+}
+
 .scroll_text {
-    font-family: "Tahoma", Geneva, sans-serif;
+    font-family: Tahoma, Geneva, sans-serif;
     font-size: 35px;
-    list-style-type: none;
     text-align: left;
     margin-top: 15px;
     line-height: 1;
     list-style-type: square;
-    color: black;
+    color: #000
+}
+
+.hubanero,
+.red_background {
+    font-family: Helvetica;
+    font-size: 25px;
+    font-weight: bolder!important;
+    font-stretch: expanded
 }
 
 #scroll_text {
-    bottom: 0px;
-    overflow: hidden;
+    bottom: 0;
     position: relative;
-    line-height: 1;
+    line-height: 1
 }
 
-.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
-    height: 700px !important;
+.carousel-inner>.item>a>img,
+.carousel-inner>.item>img,
+.img-responsive,
+.thumbnail a>img,
+.thumbnail>img {
+    height: 700px!important
 }
 
 .red_background {
     background-color: #dd4814;
     text-align: left;
-    color: white;
+    color: #fff;
     display: inline-block;
-    font-family: Helvetica;
-    font-size: 25px;
-    font-stretch: expanded;
-    font-weight: bolder !important;
     padding: 5px;
-    margin-top: 0 !important;
-    border-radius: 10px;
-    position: relative;
-    width: 100%;
+    margin-top: 0!important;
+    border-radius: 10px
 }
 
-.hubanero{
-    font-family: Helvetica;
-    font-size: 25px;
-    font-stretch: expanded;
-    font-weight: bolder !important;
-    padding: 10px;    
+.hubanero {
+    padding: 10px
 }
 
-.float_right{ 
-    float: right; 
+.float_right {
+    float: right
 }
 
-.jumbotron{
-    overflow: hidden;
-    padding-top: 0 !important;
-    margin-bottom: 0 !important;
+.jumbotron {
+    padding-top: 0!important;
+    margin-bottom: 0!important
 }
 
 .logoframe {
     display: block;
-    height: 70px;
-    position: relative;
-    width: 100%;
+    height: 70px
 }
 
 .hublogo {
-    background-image: url('http://www.hubanero.it/hubanero-logo.png');
+    background-image: url(http://www.hubanero.it/hubanero-logo.png);
     width: 254px;
-    height: 70px;
-    background-size: cover;
+    height: 70px
 }
+
 .js-date {
     float: right;
     font-size: xx-large;
     font-style: oblique;
-    font-weight: bold;
-    font-family: "Verdana", sans-serif, serif;
-    color: #dd4814;
+    font-weight: 700;
+    font-family: Verdana, sans-serif, serif;
+    color: #dd4814
 }
 
-.spicy{
-    float: right;
+.spicy {
+    float: right
 }
 
 .container-fluid {
-    min-height: 500px;
+    min-height: 500px
 }
 
 .radial {
+    background-image: url(http://www.hubanero.it/images/bg1.jpg);
+    background-position-y: -60px
+}
 
-  background-size: cover;
-  background-image: url('http://www.hubanero.it/images/bg1.jpg');
-  background-position-y: -60px;
-  overflow: hidden;
-  /*cursor: url("/common/img/up.png") 0 32, default !important;*/
-    
+.invisible {
+    display: none
 }
-.invisible{
-    display: none;
-}
+
 .notizia {
     position: relative;
     width: 100%;
-    max-height: 600px;
-    overflow: hidden;
+    max-height: 600px
 }
+
 .arr_2 {
     color: #5A047B;
     font-size: 31px;
     font-style: oblique;
-    text-shadow: 1px 1px 2px white;
-    /* text-transform: uppercase; */
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    text-shadow: 1px 1px 2px #fff;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
 }
+
 .newsCategory {
     position: absolute;
     width: 307px;
@@ -331,126 +333,124 @@ a.control_next {
     float: right;
     padding: 0;
     font-size: 28px;
-    font-weight: bold;
+    font-weight: 700;
     bottom: 130px;
     right: 19px;
-    color: white;
+    color: #fff;
     z-index: 3;
-    text-shadow: 1px 1px 2px #dd4814;
+    text-shadow: 1px 1px 2px #dd4814
 }
-
-
 
 .my_carousel {
     position: relative;
-    display: block;
+    display: block
 }
+
 .my_image {
-    overflow: hidden;
     width: 100%;
-    display: none;
+    display: none
 }
 
-.carousel_img{
+.carousel_img {
     position: relative;
-    width: 100%;
-}
-.shown{
-    display: block;
+    width: 100%
 }
 
+.shown {
+    display: block
+}
 
 .img-circle:active {
     vertical-align: top;
-    padding: 8px 13px 6px;
+    padding: 8px 13px 6px
 }
 
-.img-circle{
-    display: none;
+.glyphicon,
+.img-circle {
+    display: none
 }
 
-.glyphicon{
-    display: none;
+.modal-content {
+    background-color: rgba(255, 255, 255, .8)
 }
 
-.modal-content{
-    background-color: rgba(255,255,255,0.8);
+.modal-dialog {
+    width: 95%
 }
-.modal-dialog{
-    width: 95%;
+
+.mymodal-inner-logo {
+    width: 15%
 }
-.mymodal-inner-logo{
-    width: 15%;
+
+.ubu-orange {
+    background-color: #dd4814
 }
-.ubu-orange{
-    background-color: #dd4814;
-}
-.box-msg-1, .box-msg-2 {
+
+.box-msg-1,
+.box-msg-2 {
     display: block;
     width: 350px;
     height: 350px;
     border-radius: 15px;
-    border: 1px solid white;
+    border: 1px solid #fff;
     left: 0;
     position: absolute;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 10px
+}
+
+#total,
+.box-msg-2,
+.my-frame {
+    position: relative
 }
 
 .box-msg-2 {
-    float: right !important;
-    position: relative;
-    background-image: url('http://www.hubanero.it/images/giochi.jpg');
-}
-.box-msg-1 {
-    background-image: url('http://www.hubanero.e it/images/giochi.jpg');
+    float: right!important;
+    background-image: url(http://www.hubanero.it/images/giochi.jpg)
 }
 
+.box-msg-1 {
+    background-image: url('http://www.hubanero.e it/images/giochi.jpg')
+}
 
 .my-frame {
-    border: 1x solid red !important;
+    border: solid red!important;
     width: 92%;
     height: 350px;
-    position: relative;
-    border: 1px solid red;
     margin: 0 auto;
-    top: 13%;
+    top: 13%
 }
 
-#total{
-    position: relative;
-}
-
-.iframes{
-    position: relative;
-    padding-left: 2% !important;
-    padding-right: 2% !important;
-    width: 102%;
+.iframe-wrapper,
+.iframes {
     position: fixed;
     bottom: 0;
-    left: -1%;
-    overflow-y: hidden;
+    left: -1%
 }
 
-.iframe-wrapper{
+.iframes {
+    padding-left: 2%!important;
+    padding-right: 2%!important;
+    width: 102%;
+    overflow-y: hidden
+}
+
+.iframe-wrapper {
     height: 154px;
     z-index: 2;
     width: 101%;
-    margin: 0 auto;
-    position: fixed;
-    bottom: 0;
-    left: -1%;
-    overflow: hidden;
+    margin: 0 auto
 }
-
 
 .for-border {
     border: 10px solid grey;
     position: relative;
     height: 90%;
     width: 90%;
-    margin: 3% auto;
+    margin: 3% auto
 }
+
 .exit-all {
     border-radius: 50%;
     position: absolute;
@@ -458,41 +458,56 @@ a.control_next {
     right: -2%;
     width: 6%;
     height: 12%;
-    color: black;
-    border: 3px solid red;
+    color: #000;
     padding-top: 1.6%;
     font-size: 34px;
-    font-weight: bold;
+    font-weight: 700;
     padding-left: 2%;
-    background-color: rgba(255,0,0,.6);
-    border: 5px solid black;
+    background-color: rgba(255, 0, 0, .6);
+    border: 5px solid #000
 }
+
+#overlay,
+.flash {
+    left: 0;
+    height: 100%;
+    width: 100%
+}
+
+#flash>*,
+div#form-wrapper {
+    color: #dd4814;
+    text-align: center
+}
+
 .flash {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     border: 35px solid #dd4814;
-    background-color: rgba(0,0,76, .7);
-    z-index: 999;
+    background-color: rgba(0, 0, 76, .7);
+    z-index: 999
 }
-#flash > * {
-    text-align: center;
-    color: #dd4814;
+
+#flash>*,
+#flashID>*,
+#my-form>input,
+.textarea {
+    position: relative
+}
+
+#flash>* {
     font-stretch: expanded;
     font-weight: bolder;
     top: 5%;
-    position: relative;
-    font-size: 75px;
+    font-size: 75px
 }
+
 div#form-wrapper {
-    color: #dd4814;
-    text-align: center;
     font-size: medium;
-    font-weight: bold;
-    padding: 6%;
+    font-weight: 700;
+    padding: 6%
 }
+
 .textarea {
     text-align: center;
     font-family: inherit;
@@ -501,48 +516,65 @@ div#form-wrapper {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    top: 40px;
-    position: relative;
+    top: 40px
 }
-#my-form > input {
-    margin: 0 auto;
-    position: relative;
+
+#my-form>input {
     top: 55px;
     display: block;
     float: right;
-    margin: 2%;
+    margin: 2%
 }
-#flashID > *{
+
+#flashID>* {
     text-align: center;
     top: 10%;
-    position: relative;
     font-size: 125px;
     margin-left: 50px;
     margin-right: 50px;
-    color: white;
-    z-index: 999;
+    color: #fff;
+    z-index: 999
 }
-.infoleft{
-	float: left !important;
-	position: static;
-	margin-left: 100px;
+
+.infoleft {
+    float: left!important;
+    position: static;
+    margin-left: 100px
 }
+
+#container,
+#fader .to,
+#gallerySpan,
+#overlay {
+    position: absolute
+}
+
 #gallerySpan {
     width: 50%;
-    position: absolute;
     top: 10px;
     left: 50%;
     margin-left: -25%;
     cursor: wait;
     height: 50px;
-    border: 3px solid black;
+    border: 3px solid #000
 }
+
 #fader {
-    position: relative;
+    position: relative
 }
 
 #fader .to {
     display: none;
-    position: absolute;
-    left: 0;
+    left: 0
+}
+
+#overlay img {
+    width: auto;
+    height: auto;
+    margin: 0 auto
+}
+
+#overlay {
+    top: 0;
+    background: url(loader.gif) center center no-repeat #000
 }
