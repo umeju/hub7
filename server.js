@@ -143,7 +143,7 @@ io.sockets.on('connection',
             var referAction = data.pages.action;
             
             // the user was found and is available in req.user
-            socket.broadcast.emit(referID+'-'+data.pages.action, referID+'-right');
+            socket.volatile.emit(referID+'-'+data.pages.action, referID+'-right');
             //socket.broadcast.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
             console.log("data.pages.ID: "+data.pages.ID);
             console.log("data.pages.action: "+data.pages.action);
@@ -189,10 +189,11 @@ io.sockets.on('connection',
             result[item] = function(data) {
                 console.log("emit: "+testData + '-'+item+"data: "+testData + '-'+item);
                 //socket.broadcast.emit(testData + '-'+item, testData + '-'+item);
-                socket.broadcast.emit(testData + '-'+item, testData + '-'+item);
+                socket.volatile.emit(testData + '-'+item, testData + '-'+item);
             }
             return result;
         }, {});
+        
         //console.log(events);
         /*old events obj
         var events = {
@@ -272,7 +273,7 @@ io.sockets.on('connection',
         });
 
         socket.on('disconnect', function(data) {
-                console.log('qualcuno si è disconnesso!');
+                console.log('client disconnected');
                 /*
                 for( var i=0, len=clients.length; i<len; ++i ){
                     var c = clients[i];
