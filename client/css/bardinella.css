@@ -16,7 +16,8 @@
     position: relative;
 }
 .red_background{
-	background-color: #dd4814 !important;
+background-color: darkblue !important;
+display: none;
 }
 .arr_2 > p{
 	color: darkblue;

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Farmacia Monastero Remote Control</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../client/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../client/css/style.css" rel="stylesheet">
+        <link href="../client/css/special.css" rel="stylesheet">
+        <link href="../client/css/monastero.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="row">
+                <div class="hidden-lg">
+                    <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
+                    <h4 class="text-center"> basta un click!</h4>
+                </div>
+                    <hr class="hidden-lg" />
+                
+                <div class="col-md-6" id="iframeContainer">
+                    
+                    <h4 class="text-center hidden-md hidden-lg"> Con la tecnologia 
+                        <span class="bg-warning text-danger">hubanero</span> il tuo smartphone 
+                    diventa un telecomando. Usa le frecce per navigare tra gli annunci
+                    </h4>
+                    <hr class="visible-md visible-sm">
+                    <hr class="hidden-lg" />
+                    <div class="row" id="nav-arrows">
+                        <!-- *** controlli *** -->
+                        <div class="col-md-4" id="for-left">
+                            <img id="00017-left" 
+                                 src="/common/img/left_arrow_sign.png" 
+                                 class="img-circle left">
+                        </div>
+                        
+                        <div class="col-md-4" id="for-refresh">
+                            <img id="00017-refresh" 
+                                 src="/common/img/refresh_arrow_sign.png" 
+                                 class="img-circle refresh">
+                        </div>
+                        
+                        <div class="col-md-4" id="for-right">
+                            <img id="00017-right" 
+                                 src="/common/img/right_arrow_sign.png" 
+                                 class="img-circle right">
+                        </div>
+                    </div>
+                    <hr class="hidden-lg" />
+                        <p>
+                            <a id="tab3" class="btn btn-warning btn-block hidden" href="#" 
+                               role="button" >ZOOM OUT</a>
+                        </p>
+                    <hr class="hidden-lg" />
+                    <p>
+                        <img class="text-center" src="" />
+                    </p>
+                </div>
+            </div>
+    <script src="../client/js/jquery.min.js"></script>
+    <script src="../client/js/jquery-ui.js"></script>
+    <script src="../client/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+                $(".right").click(function() {
+                    $.get("/pages/right/00017", {});
+                });
+                
+                $(".left").click(function() {
+                    $.get("/pages/left/00017", {});
+                });
+                
+                $(".refresh").click(function() {
+                    $.get("/pages/refresh/00017", {});
+                    $('#tab3').removeClass('hidden');
+                });
+                
+                $('#tab3').click(function (){
+                    $('#tab3').addClass('hidden');
+                    $.get("/pages/zoomOut/00017", {});
+                });
+                
+            });
+    </script>
+    
+    </body>
+    
+</html>

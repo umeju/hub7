@@ -403,10 +403,12 @@ $(document).ready(function () {
             //socket.emit('welcome', { customId:"000_spedicatoJS_0000" });
         });
         socket.on(userID + '-left', function (data) {
+            console.log(userID + 'left connect!');
             oneLess();
             $("#lightbox").trigger('click');
         });
         socket.on(userID + '-right', function (data) {
+            console.log(userID + 'right connect!');
             oneMore();
             $("#lightbox").trigger('click');
         });

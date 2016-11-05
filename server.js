@@ -143,8 +143,8 @@ io.sockets.on('connection',
             var referAction = data.pages.action;
             
             // the user was found and is available in req.user
-            socket.volatile.emit(referID+'-'+data.pages.action, referID+'-right');
-            //socket.broadcast.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
+            //socket.volatile.emit(referID+'-'+data.pages.action, referID+'-right');
+            socket.broadcast.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
             console.log("data.pages.ID: "+data.pages.ID);
             console.log("data.pages.action: "+data.pages.action);
             res.send(data);
@@ -188,8 +188,8 @@ io.sockets.on('connection',
         var events = ev.reduce(function(result, item) {
             result[item] = function(data) {
                 console.log("emit: "+testData + '-'+item+"data: "+testData + '-'+item);
-                //socket.broadcast.emit(testData + '-'+item, testData + '-'+item);
-                socket.volatile.emit(testData + '-'+item, testData + '-'+item);
+                socket.broadcast.emit(testData + '-'+item, testData + '-'+item);
+                //socket.volatile.emit(testData + '-'+item, testData + '-'+item);
             }
             return result;
         }, {});
@@ -285,5 +285,4 @@ io.sockets.on('connection',
                 }
                  */
         });
-        
 });
