@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    
+    var test = $('.my_inner');
+    
+    
     /* get params form url in html page */
     var QueryString = function () {
         /* This function is anonymous, is executed immediately and 
@@ -65,18 +69,34 @@ $(document).ready(function () {
     
     function changePicUp()
     {
+        nascondi(test);
         tempo < items.length ? ++tempo : tempo = 0;
-        $('.my_inner').html(items[tempo]).hide();
-        setDimPic();
-        $('.my_inner').show();
+        
+        $('.my_inner').html(items[tempo]);
+        setDimPic(mostra, test);
+        //mostra($('.my_inner'));
     }
     
     function changePicDown()
     {
+        nascondi($('.my_inner'));
         tempo < 1 ? tempo = items.length : --tempo;
+        
         $('.my_inner').html(items[tempo]);
-        setDimPic();
+        setDimPic(mostra, test);
+        
     }
+    
+    function mostra(obj)
+    {
+        obj.fadeIn();
+    }
+    
+    function nascondi(obj)
+    {
+        obj.hide();
+    }
+    
     
     $('.right').click(function () {
         console.log('click on right! emit right');
@@ -162,7 +182,7 @@ $(document).ready(function () {
         }
     };
     
-    function setDimPic()
+    function setDimPic(callback, obj)
     {
         h = $(window).height();
         w = $(window).width();
@@ -181,16 +201,20 @@ $(document).ready(function () {
                 'float': 'right',
                 'top':'8%',
                 'right': '1%',
-        });/*
+        });
+        /*
         border: 8px solid red;
-    width: 22%;
-    height: 90%;
-    position: absolute;
-    top: 9%;
-    right: 1%;
+        width: 22%;
+        height: 90%;
+        position: absolute;
+        top: 9%;
+        right: 1%;
         */
+       
+        callback(obj);
     }
-    setDimPic();
+    
+    setDimPic(mostra, test);
     
     function createAndAppend(current, callback) {
         var imageSrc = current.find('img')[0].src;
