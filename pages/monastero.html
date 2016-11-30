@@ -16,10 +16,6 @@
             
             <div class="row">
                 <div class="hidden-lg">
-                    <p class="text-center">
-                        <img src="" 
-                             width="100%" />                        
-                    </p>
                     
                     <hr class="hidden-lg">
                     <h3 class="text-center"> Scegli tu le notizie che vuoi leggere:</h3>
@@ -35,7 +31,7 @@
                         il tuo smartphone diventa un telecomando. 
                         Usa le frecce per navigare tra gli annunci
                     </h3>
-                    <hr class="visible-md visible-sm">
+                <hr class="visible-md visible-sm">
                     <div class="row" id="nav-arrows">
                         <div class="col-md-4" id="for-left"></div>
                         <div class="col-md-4" id="for-refresh"></div>
@@ -50,14 +46,20 @@
                 
                 <div class="col-md-12 visible-lg">
                     <div class="my_carousel">
+                        
                         <div class="" id="carousel-859806">
-                            <!-- GENERATED NEWS CODE -->
-                            <div class="my_inner"></div>
-                            
+                            <div class="my_inner">
+                                <!-- GENERATED NEWS CODE -->
+                            </div>
                         </div>
+                        
+                    </div>
+                    <div id="right-side-info">
+                        
                     </div>
                 </div>
-            </div>
+            </div> <!-- end class row -->
+            
             <div class="row visible-lg" id="id3">
                 <div class="newsCategory"></div>
                 <div class="col-md-12 visible-lg">
@@ -73,9 +75,12 @@
         
         <script>
         userID = '00012';
-        var i = 9;
+        //var i = 9;
         var items = [];
-        var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
+        //var url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
+        var url = 'http://www.di-vision.org/monastero/admin/last.php';
+        
+        // call for user's content
         getNews(url);
         
         function jsonCallback(data) {
@@ -85,21 +90,21 @@
                 if(val.titolo !== ''){ // avoid empty news
                     items.push(
                         "<div class='notizia'>"
-                        + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
-                        + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
+                        + "<div class='red_background shadow titolo'>" + val.title + "</div>"
+                        + "<div class='scroll_text descrizione'>" + val.content + "</div>"
                         + "<div class='arr_2'>" + val.note + "</div>"
                         + "</div>");
                 }
                 count++;
             });
             
-            $('.my_inner').append(items);
+            $('.my_inner').append(items[0]);
             //nascondo tutto e mostro la prima notizia
             $('.my_inner > *').hide();
             // use eq(count-2) coz the first element is empty
-            $('.my_inner > *').eq(count-1).show();
+            $('.my_inner > *').eq(0).show();
         }
-        //url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
+        
         function getNews(url) {
             $.ajax({
                 type: 'GET',
@@ -109,18 +114,15 @@
                 cache:true,
                 jsonpCallback: 'jsonCallback',
                 dataType: 'jsonp',
-                success: function (json) {
-                    //$('.my_inner').append(items);
-                    console.log('get news success!');
-                },
+                success: function (json) {},
                 error: function (e) {
-                    //console.log(e.message);
                     postError(e.message);
                 }
             });
         };
+        
         function postError(msg){
-            var  formData = "hubanero_id=ERROR&hubanero_name=2PALME&ip=192.168.1.18&note="+msg;
+            var  formData = "hubanero_id=ERROR&hubanero_name=MONASTERO&ip=192.168.1.1&note="+msg;
 				//http://www.di-vision.org/saveUrls.php?
             $.ajax({
                 url : "http://www.di-vision.org/saveUrls.php",
@@ -140,8 +142,10 @@
                     }, time);
         }(2*60*60*1000));
         
+        //var tt = $('.descrizione img').height();
+        //alert(tt);
     </script>
-    <script src="../client/js/generic.js"></script>
+    <script src="../client/js/generic2.js"></script>
     <script src="../client/js/audio.js"></script>
     
     </body>
