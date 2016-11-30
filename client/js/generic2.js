@@ -89,7 +89,7 @@ $(document).ready(function () {
     
     function mostra(obj)
     {
-        obj.fadeIn();
+        obj.delay(1000).fadeIn();
     }
     
     function nascondi(obj)
