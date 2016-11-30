@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+    //TODO change var name if it works
     var test = $('.my_inner');
     
     
