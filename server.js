@@ -132,7 +132,7 @@ io.configure(function() {
 
 io.sockets.on('connection',
     function(socket) {
-        //TELECOMANDO ESTERNO ALLA PAGINA
+        //*************************************TELECOMANDO ESTERNO ALLA PAGINA
         app.get("/pages/:action/:ID", function(req, res) {
                     //var event = req.params.event;
             var data = {

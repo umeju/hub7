@@ -1,7 +1,6 @@
 $(document).ready(function () {
     //TODO change var name if it works
-    var test = $('.my_inner');
-    
+    var myInnerObj = $('.my_inner');
     
     /* get params form url in html page */
     var QueryString = function () {
@@ -38,7 +37,9 @@ $(document).ready(function () {
         count = 0,
         countFunc = null,
         clickedTagID = '';
-    
+        
+    var h = $(window).height();
+    var w = $(window).width();
     // GENERATE images to slide top right news
     for (var x in directions) {
         $('<img>', {
@@ -69,22 +70,29 @@ $(document).ready(function () {
     
     function changePicUp()
     {
-        nascondi(test);
+        $('.cambio-pagina').removeClass('sinistra');
+        $('.cambio-pagina').addClass('destra');
+        $('.cambio-pagina').css({
+           //'background-position': h*0.9,
+           'top': h*0.9,
+        });
+        nascondi(myInnerObj);
         tempo < items.length ? ++tempo : tempo = 0;
         
         $('.my_inner').html(items[tempo]);
-        setDimPic(mostra, test);
+        setDimPic(mostra, myInnerObj);
         //mostra($('.my_inner'));
     }
     
     function changePicDown()
     {
+        $('.cambio-pagina').addClass('sinistra');
+        
         nascondi($('.my_inner'));
         tempo < 1 ? tempo = items.length : --tempo;
         
         $('.my_inner').html(items[tempo]);
-        setDimPic(mostra, test);
-        
+        setDimPic(mostra, myInnerObj);
     }
     
     function mostra(obj)
@@ -161,8 +169,8 @@ $(document).ready(function () {
 
     function positionLightBoxImage() {
         //var top = ($(window).height() - $('#lightbox').height()) / 2;
-        var left = ($(window).width() - $('#lightbox > img').width()) / 2 ;
-        var wTot = $(window).width();
+        //var left = ($(window).width() - $('#lightbox > img').width()) / 2 ;
+        //var wTot = $(window).width();
         var top = 0;
         //var left = 0;
 
@@ -184,37 +192,34 @@ $(document).ready(function () {
     
     function setDimPic(callback, obj)
     {
-        h = $(window).height();
-        w = $(window).width();
+        //h = $(window).height();
+        //w = $(window).width();
         
         $('.descrizione img')
             .css({
-                'height': h/100*90,
-                'width': w/100*75,
-                'float': 'left',
+                'height': h*0.9,
+                'width': w*0.75,
+                'float': 'left'
         });
         
         $('#right-side-info')
             .css({
-                'height': h/100*90,
-                'width': w/100*22,
+                'height': h*0.9,
+                'width': w*0.22,
                 'float': 'right',
                 'top':'8%',
-                'right': '1%',
+                'right': '1%'
         });
-        /*
-        border: 8px solid red;
-        width: 22%;
-        height: 90%;
-        position: absolute;
-        top: 9%;
-        right: 1%;
-        */
-       
+        
+        $('.cambio-pagina')
+                .css({
+                    'top': h*0.42,
+                    'left': w/3,
+                });
         callback(obj);
     }
     
-    setDimPic(mostra, test);
+    setDimPic(mostra, myInnerObj);
     
     function createAndAppend(current, callback) {
         var imageSrc = current.find('img')[0].src;
