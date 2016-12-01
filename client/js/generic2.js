@@ -32,7 +32,7 @@ $(document).ready(function () {
     var directions = ['left', 'refresh', 'right'];
     
     var _AGGIORNAMENTO_NEWS = 18000,
-        _TIMEOUT_TIME = 12000,
+        _TIMEOUT_TIME = 15000,
         tempo = 1,
         count = 0,
         countFunc = null,
@@ -129,13 +129,13 @@ $(document).ready(function () {
         clickedTagID = this.id;
         myEmit(clickedTagID, clickedTagID);
     });
-    
+    /*
     $('#tab3').click(function (){
         $(this).addClass('hidden');
         removeLightBoxImage();
         myEmit('zoomOut', "zoomOut");
     });
-    
+    */
     function myEmit(actionToDo, clickedTagID)
     {
         socket.emit(actionToDo, {action: actionToDo, dataVal: userID});
@@ -145,13 +145,36 @@ $(document).ready(function () {
          * clickedTagID: 99999-left
          */
     }
-        
+    
+    function createOverlay(callback)
+    {
+        $('<div id="overlay-x" class="asd"></div>')
+                .css({
+                    'position': 'fixed',
+                    'top': '0',
+                    'left': '0',
+                    'height': '100%',
+                    'width': '100%',
+                    'background-image': 'url("http://www.di-vision.org/cdn/monastero/ciao.jpg")',
+                    'background-position': 'center',
+                    'background-repeat': 'no-repeat',
+                    'background-size': 'cover',
+                    'z-index': '999',
+                    'border': '1px solid red'
+                }).appendTo('body').fadeIn().delay('1800').fadeOut('slow', function(){
+                    $(this).remove();
+                })
+                
+    }
     function refresh() {
-        $('.overlay, #lightbox')
+        createOverlay();
+        /*
+         $('.overlay, #lightbox')
             .fadeIn('slow', function () {
                 $(this).remove();
             });
         zoom();
+        */
     }
 
     function animHide(obj) {
