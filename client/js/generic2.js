@@ -208,7 +208,7 @@ $(document).ready(function () {
                 'width': w*0.22,
                 'float': 'right',
                 'top':'8%',
-                'right': '1%'
+                //'right': '1%'
         });
         
         $('.cambio-pagina')
