@@ -58,26 +58,26 @@
                             <div class="tab-pane active" id="panel-972199">
                                 <br />
                                 <p class="testi text-center">
-                                    QUESTO DISPLAY SI CONTROLLA A DISTANZA CON 
-                                    QUALSIASI CELLULARE
+                                    SFOGLIA LA GALLERY O CONSULTA LE DOMANDE PIÙ FREQUENTI
                                 </p>
                                 <br />
                                 <p class="testi text-center">
-                                    PER SFOGLIARE LA TATTOO GALLERY 
-                                    <br /> BASTA UN TAP
+                                    QUESTO È UN DISPLAY INTERATTIVO:
+                                    <br /> BASTA UN "TAP"!
                                 </p>
                                 <br />
                                 <p class="testi text-center">
                                     NIENTE DA INSTALLARE !
                                 </p>
-                                <br />
-                                <p class="testi text-center">
-                                     OPPURE SCANSIONA IL QR-CODE
-                                </p>
                                 
                                 <br />
                                 <p class="testi text-center">
-                                    VISITA <span class="red"> bit.ly/tattoobest </span>
+                                    DIGITAL L'INDIRIZZO <span class="red"> bit.ly/tattoobest </span>
+                                    SUL TUO CELLULARE
+                                </p>
+                                <br />
+                                <p class="testi text-center">
+                                     OPPURE SCANSIONA IL QR-CODE
                                 </p>
                                 
                                 <p class="testi text-center">
@@ -86,13 +86,14 @@
                             </div>
                             <div class="tab-pane" id="panel-446387">
                                 <p class="testi">
-                                    E’ molto difficile fare un preventivo prima di accordare la bozza del tatuaggio
-                                    e, anche dopo la realzzazione della stessa, non si può conoscere il costo preciso.
-                                    Riguardo al prezzo finale bisogna tener conto di alcune variabili importanti poichè
-                                    il valore che attribuiamo al tatuaggio nasce da due fattori:
-                                    la dimensione del tatuaggio e il tempo impiegato per realizzarlo.
-                                    A causa di queste valutazioni il costo potrebbe essere sottoposto a delle variazioni
-                                    quindi Vi preghiamo di non essere categorici.
+                                    Il costo di un tatuaggio è legato alle dimensioni e al tempo impiegato per eseguirlo.
+                                    La durata dell'esecuzione dipende anche
+                                    dal tipo di tatuaggio e dalla quantità di dettagli e caratteristiche contenuti nel
+                                    soggetto. In genere sarebbe opportuno concordare col proprio tatuatore un soggetto in
+                                    base alla zona che si vuole tatuare e in base al tipo di tatuaggio (es.Orientale,
+                                    Biomeccanico, Fantasy etc.) approssimativamente un tatuaggio di circa 10-12 cm in
+                                    altezza e 6-8 cm di base richiede un tempo di esecuzione di
+                                    circa , 1,5 - 2 ore.
                                 </p>
                             </div>
                             
@@ -114,21 +115,6 @@
 
         <!-- START REMOTE CODE-->
         <div class="row">
-            <!--div class="hidden-lg">
-                <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
-                <h4 class="text-center"> basta un click!</h4>
-                <hr class="hidden-lg">
-                
-                <button type="button" data-category="ULTIM'ORA" class="btn btn-warning">Ultim'ora</button>
-                <button type="button" data-category="SPORT" class="btn btn-warning">Sport</button>
-                <button type="button" data-category="HI TECH" class="btn btn-warning">Hi-tech</button>
-                <button type="button" data-category="OROSCOPO" class="btn btn-warning">Oroscopo</button>
-                <button type="button" data-category="GOSSIP" class="btn btn-warning">Gossip</button>
-                <button type="button" data-category="CALCIO" class="btn btn-default">Calcio</button>
-                
-                <hr class="hidden-lg">
-                
-            </div-->
             <div class="col-md-6 hidden-lg" id="iframeContainer">
                 <p class="text-center">
                     <img src="http://www.orlandotattoo.it/images/1-top-page.jpg" 
@@ -192,9 +178,9 @@
             // orlando tattoo
             var userID = "00011";
 
-            var i = 9;
             var items = [];
-            var url = 'http://www.di-vision.org/getNews.php?userID=' + userID + '&content_type=my_news&callback=?';
+            //var url = 'http://www.di-vision.org/getNews.php?userID=' + userID + '&content_type=my_news&callback=?';
+            var url = 'http://www.di-vision.org/tattoo/admin/last.php';
             getNews(url);
             function jsonCallback(data) {
                 count = 0;
@@ -257,36 +243,10 @@
             }(60 * 60 * 4 * 1000));
             
             $(function() {
-                //button 1
+                /*button 1
                 $("button").click(function() {
                     $.post("/foo", { message: $("input").val() });
-                });
-                /*button 2
-                $('<button />', {
-                    class: "newClass",
-                    width: "100px",
-                    height: "100px",
-
-                    click: function () {
-                        $.get( "http://192.168.1.111:8080/pages/tattoo/left", function( data ) {
-                            $( "body" ).append( data );
-                        });
-                    },
-                }).appendTo('body').fadeIn();
-                
-                //button 2
-                $('<button />', {
-                    class: "newClass",
-                    width: "100px",
-                    height: "100px",
-
-                    click: function () {
-                        $.get( "http://192.168.1.111:8080/pages/tattoo/right", function( data ) {
-                            $( "body" ).append( data );
-                        });
-                    },
-                }).appendTo('body').fadeIn();*/
-
+                });*/
             });
         
         </script>

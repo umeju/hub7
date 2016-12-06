@@ -25,7 +25,8 @@ $(document).ready(function () {
     }();//alert(QueryString.ID + "asd");
     //get userid val from last div in the html page
     var userID = QueryString.ID;//$('#userID').text();
-    
+    var h = $(window).height();
+    var w = $(window).width();
     var directions = ['left', 'refresh', 'right'];
     
     var _AGGIORNAMENTO_NEWS = 18000,
@@ -92,6 +93,7 @@ $(document).ready(function () {
                     count = 0;
                 }
                 loopNews();
+                setDimImg();
             }, _AGGIORNAMENTO_NEWS);
 
         } else { // stop
@@ -174,6 +176,18 @@ $(document).ready(function () {
         $('.actualNews').text(newsCategory);
         $('.actualNews').show();
     }
+    
+    function setDimImg()
+    {
+        if($('.tattoo-img').length){
+            $('.tattoo-img')
+            .css({
+                'height': h,
+                'width': h*0.65,
+                'left': '12%'
+            });
+        }
+    }
     // move 1 pic back
     function oneLess(){
         removeLightBoxImage();
@@ -189,7 +203,9 @@ $(document).ready(function () {
             count = $('.notizia').length - 1;
         }
         loopNews();
+        setDimImg();
     }
+    
     // move 1 pic ahead
     function oneMore(){
         removeLightBoxImage();
@@ -205,6 +221,7 @@ $(document).ready(function () {
             count = $('.notizia').length - 1;
         }
         loopNews();
+        setDimImg();
     }
     
     function refresh() {
