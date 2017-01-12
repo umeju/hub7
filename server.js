@@ -1,10 +1,10 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.104' || '127.0.0.1';
+	//	|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.104' || '127.0.0.1';
 	//	|| process.env.OPENSHIFT_NODEJS_IP || '192.168.43.74' || '127.0.0.1';
         //      || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.111' || '127.0.0.1';
-	//      || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
+	      || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
 
 var express = require('express');
 //var reload = require('reload');
@@ -132,7 +132,9 @@ io.configure(function() {
 
 io.sockets.on('connection',
     function(socket) {
-        //*************************************TELECOMANDO ESTERNO ALLA PAGINA
+            
+        console.log('c  lient connected');
+        //*******  PARAMETRICO !!!  ********* TELECOMANDO ESTERNO ALLA PAGINA
         app.get("/pages/:action/:ID", function(req, res) {
                     //var event = req.params.event;
             var data = {
@@ -145,8 +147,10 @@ io.sockets.on('connection',
             var referAction = data.pages.action;
             
             // the user was found and is available in req.user
-            //socket.volatile.emit(referID+'-'+data.pages.action, referID+'-right');
-            socket.broadcast.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
+            console.log(req.user);
+          //socket.broadcast.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
+            socket.volatile.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
+            
             console.log("data.pages.ID: "+data.pages.ID);
             console.log("data.pages.action: "+data.pages.action);
             res.send(data);
@@ -287,4 +291,7 @@ io.sockets.on('connection',
                 }
                  */
         });
-});
+        socket.on('connect', function(data) {
+                console.log('c  lient connected');
+        });
+    });

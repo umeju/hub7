@@ -33,7 +33,7 @@ color: green;
 font-weight: bold;
 }
 .scroll_text > * {
-text-align: center;
+/*text-align: center;*/
 }
 .text-center {
 color: darkred;
