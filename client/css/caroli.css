@@ -1,0 +1,41 @@
+.notturno{
+background-color: darkgreen;
+color: white !important;
+text-align: center;
+text-shadow: 2px 2px black;
+font-size: 38px;
+}
+.descrizione img {
+
+width: 80%;
+height: auto;
+}
+#close-image {
+position: absolute;
+right: 0;
+z-index: 1000;
+margin: 5px;
+display: none;
+}
+.close-image{
+width: 160px;
+height: auto;
+float: right;
+}
+button{
+width: 28%;;
+margin: 5px;
+}
+.arr_2 > p {
+text-align: center;
+font-size: 53px;
+color: green;
+font-weight: bold;
+}
+.scroll_text > * {
+/*text-align: center;*/
+}
+.text-center {
+color: darkred;
+font-family: cursive;
+}

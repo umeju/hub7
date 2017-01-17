@@ -21,6 +21,7 @@ $(document).ready(function () {
         //changeNewsCategory(category);
         socket.emit('changeNews', {dataVal: userID + '-' + category});
     });
+    
     $('.btn-warning').on('click', function(){
         var category = $(this).data('category');
         socket.emit('changeNews', {dataVal: userID + '-' + category});
@@ -37,7 +38,11 @@ $(document).ready(function () {
     if ($(window).width() > 500) {
         $('<iframe>', {
             //src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9RmObuh2zatbiSNKCUAxr8H&autoplay=0&loop=1',
-            src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9QnW8ZOtAIGG7XAsxTMb7zs&amp;controls=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
+            // 
+            // verardi --->
+            // src: 'https://www.youtube.com/embed/videoseries?list=PLZX9Y6fsfm9QnW8ZOtAIGG7XAsxTMb7zs&amp;controls=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
+            src: 'https://www.youtube.com/embed/2kaz0kWbjVA?list=PLZX9Y6fsfm9TawlJq_KMpOybhrn1QoVwM&amp;controls=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1',
+            
             //src: 'https://www.youtube.com/embed/HXjq1O4s3c8?rel=0&autoplay=1&loop=1&amp;controls=0&amp;showinfo=0',
             id: 'myFrame',
             class: 'class',
