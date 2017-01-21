@@ -9,6 +9,7 @@
 
         <link href="../client/css/bootstrap.min.css" rel="stylesheet">
         <link href="../client/css/style.css" rel="stylesheet">
+        <link href="../client/css/special.css" rel="stylesheet">
         
         <script src="/socket.io/socket.io.js"></script>
         
@@ -17,21 +18,13 @@
         <!--script src="/common/handlebars.js"></script-->
         <!--<script src="/common/models.js"></script>-->
         <script src="/varSocketURI.js"></script>
-        <script src="../client/js/code-ws-new.js"></script>
+        <script src="../client/js/code_verardi.js"></script>
+        <script src="../client/js/audio.js"></script>
 
     </head>
     <body class="radial">
-    <div id="interaction">
-    	<span id="gallerySpan">
-    		GALLERY
-    	</span>
-    </div>
-    
-    <div id='close-image'>
-    	<img alt="close-image" class="close-image" src="http://www.idrosolart.it/img/chiudi.png" />
-    </div>
-        
         <div class="container-fluid">
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="js-date visible-lg"></div>
@@ -40,6 +33,7 @@
                         <div class="hublogo">
                         </div>
                     </div>
+                    <img alt="" class="visible-lg" id="gallerySpan" src="/common/img/b2.gif" />
                     
                 </div>
             </div>
@@ -50,7 +44,17 @@
                     <h4 class="text-center"> Scegli tu le notizie che vuoi leggere:</h4>
                     <h4 class="text-center"> basta un click!</h4>
                     <hr class="hidden-lg">
-                    <select class="form-control col-sm-offset-2 btn btn-default dropdown-toggle my-select">
+                    
+                    <button type="button" data-category="ULTIM'ORA" class="btn btn-warning">Ultim'ora</button>
+                    <button type="button" data-category="SPORT" class="btn btn-warning">Sport</button>
+                    <button type="button" data-category="HI TECH" class="btn btn-warning">Hi-tech</button>
+                    <button type="button" data-category="OROSCOPO" class="btn btn-warning">Oroscopo</button>
+                    <button type="button" data-category="GOSSIP" class="btn btn-warning">Gossip</button>
+                    <button type="button" data-category="RPI" class="btn btn-warning    ">RPI</button>
+                    
+                    <hr class="hidden-lg">
+                    
+                    <!--select class="hidden-md hidden-lg form-control col-sm-offset-2 btn btn-default dropdown-toggle my-select">
                         <option>ULTIM'ORA</option>
                         <option>SPORT</option>
                         <option>HI TECH</option>
@@ -58,16 +62,16 @@
                         <option>GOSSIP</option>
                     </select>
 
-                    <hr class="hidden-lg">
+                    <hr class="hidden-lg"-->
                 </div>
                 
                 <div class="col-md-6" id="iframeContainer">
                     
-                    <h4 class="text-center hidden-lg"> Con la tecnologia 
+                    <h4 class="text-center hidden-md hidden-lg"> Con la tecnologia 
                         <span class="bg-warning text-danger">hubanero</span> il tuo smartphone 
                     diventa un telecomando. Usa le frecce per navigare tra gli annunci
                     </h4>
-                    <hr class="hidden-lg">
+                    <hr class="visible-md visible-sm">
                     <div class="row" id="nav-arrows">
                         
                         <div class="col-md-4" id="for-left"></div>
@@ -183,20 +187,69 @@
                 dataType: 'jsonp',
                 success: function (json) {
                     //$('.my_inner').append(items);
-                    console.log('1');
+                    console.log('get news success!');
                 },
                 error: function (e) {
-                    console.log(e.message);
+                    //console.log(e.message);
+                    postError(e.message);
                 }
             });
         };
+        function postError(msg){
+            var  formData = "hubanero_id=ERROR&hubanero_name=VERARDI&ip=192.168.1.18&note="+msg;
+//http://www.di-vision.org/saveUrls.php?
+
+            $.ajax({
+                url : "http://www.di-vision.org/saveUrls.php",
+                type: "POST",
+                data : formData,
+                success: function(data, textStatus, jqXHR)
+                {
+                    //data - response from server
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+
+                }
+            });
+
+        }
         //refresh page each 622 sec.
         (function(time) {
             setInterval(
                     function(){ 
                         location.reload(); 
                     }, time);
-        }(625 * 1000));
+        }(1*60*60 * 1000));
+        
+    </script>
+    <script type="text/javascript">
+
+$(function() {
+    var galleryUrl = "http://www.di-vision.org/verardi/venobox/";
+    var timeoutId;
+    $("#gallerySpan").hover(function() {
+        
+        $('body').addClass('waitcursor');
+        if (!timeoutId) {
+            timeoutId = window.setTimeout(function() {
+                timeoutId = null;
+                location.replace(galleryUrl);
+           }, 2000);
+        }
+    },
+    function () {
+        if (timeoutId) {
+//            $('body').removeClass('waitcursor');
+            window.clearTimeout(timeoutId);
+            timeoutId = null;
+        }
+        else {
+
+        }
+    });
+});
+        
     </script>
     <!-- SET USERID VAL -->
     <div id="userID" style="display: none;">verardi</div>
