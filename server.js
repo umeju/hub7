@@ -148,8 +148,8 @@ io.sockets.on('connection',
             
             // the user was found and is available in req.user
             console.log(req.user);
-          //socket.broadcast.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
-            socket.volatile.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
+          socket.broadcast.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
+          //  socket.volatile.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
             
             console.log("data.pages.ID: "+data.pages.ID);
             console.log("data.pages.action: "+data.pages.action);
