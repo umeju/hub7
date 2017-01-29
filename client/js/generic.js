@@ -231,6 +231,11 @@ $(document).ready(function () {
             });
         zoom();
     }
+    
+    function refresh2() {
+        location.reload();
+    }
+    
     /*
     $('.newsCategory').on('click', function (e) {
         window.close();
@@ -417,6 +422,11 @@ $(document).ready(function () {
         socket.on(userID + '-refresh', function (data) {
             refresh();
         });
+        
+        socket.on(userID + '-refresh2', function (data) {
+            refresh2();
+        });
+        
         socket.on(userID+'-OROSCOPO-changeNews', function (data) {
             changeNewsCategory(data);
         });

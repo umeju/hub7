@@ -133,7 +133,7 @@ io.configure(function() {
 io.sockets.on('connection',
     function(socket) {
             
-        console.log('c  lient connected');
+        console.log('client connected');
         //*******  PARAMETRICO !!!  ********* TELECOMANDO ESTERNO ALLA PAGINA
         app.get("/pages/:action/:ID", function(req, res) {
                     //var event = req.params.event;
