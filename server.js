@@ -3,8 +3,8 @@ var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
 	//	|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.104' || '127.0.0.1';
 	//	|| process.env.OPENSHIFT_NODEJS_IP || '192.168.43.74' || '127.0.0.1';
-        //      || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.111' || '127.0.0.1';
-	      || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
+              || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.104' || '127.0.0.1';
+//	      || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
 
 var express = require('express');
 //var reload = require('reload');
