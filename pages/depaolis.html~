@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            
+            /*
             .cover {
                 width: 100%; height: 100%; top: 0; left: 0;
                 background: url("../common/img/bg1.jpg") no-repeat center top; position: fixed; z-index: -1;
@@ -26,7 +26,7 @@ and open the template in the editor.
                 left: -50%; 
                 width: 200%; 
                 height: 200%;
-            }
+            }*/
             #bg img {
                 position: absolute; 
                 top: 0; 
@@ -36,8 +36,11 @@ and open the template in the editor.
                 margin: auto; 
                 min-width: 50%;
                 min-height: 50%;
+		width: 1366px;
+		height: 778px;
             }
-            */
+
+
         </style>
     </head>
     <body>
