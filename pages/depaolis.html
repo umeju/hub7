@@ -11,20 +11,22 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             /*
-            html { 
-                background: url('../common/img/bg1.jpg') no-repeat center center fixed; 
+            .cover {
+                width: 100%; height: 100%; top: 0; left: 0;
+                background: url("../common/img/bg1.jpg") no-repeat center top; position: fixed; z-index: -1;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
                 background-size: cover;
-            }*/
+            }
+            /*
             #bg {
                 position: fixed; 
                 top: -50%; 
                 left: -50%; 
                 width: 200%; 
                 height: 200%;
-            }
+            }*/
             #bg img {
                 position: absolute; 
                 top: 0; 
@@ -34,12 +36,16 @@ and open the template in the editor.
                 margin: auto; 
                 min-width: 50%;
                 min-height: 50%;
+		width: 1366px;
+		height: 778px;
             }
+
+
         </style>
     </head>
     <body>
-        <div id="bg">
-            <img src="../common/img/bg1.jpg" alt="">
+        <div id="bg" class="cover">
+
         </div>
     </body>
 </html>
