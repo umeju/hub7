@@ -1,45 +1,132 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
+
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <link href="http://jqmdesigner.appspot.com/gk/lib/jquery.mobile/1.4.5/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <style>
-            /*
-            html { 
-                background: url('../common/img/bg1.jpg') no-repeat center center fixed; 
-                -webkit-background-size: cover;
-                -moz-background-size: cover;
-                -o-background-size: cover;
-                background-size: cover;
-            }*/
-            #bg {
-                position: fixed; 
-                top: -50%; 
-                left: -50%; 
-                width: 200%; 
-                height: 200%;
+            body {
+                overflow: hidden;
             }
-            #bg img {
-                position: absolute; 
-                top: 0; 
-                left: 0; 
-                right: 0; 
-                bottom: 0; 
-                margin: auto; 
-                min-width: 50%;
-                min-height: 50%;
+            .notizia {
+                display: none;
+                position: relative;
+                float: right;
+                width: 40% !important;
+                font-size: xx-large;
+                font-family: sans-serif;
+            }
+            .titolo{
+                color: white;
+                padding: 7px;
+                text-align: left;
+                background-color: #dd4814;
+                border-radius: 10px;
+            }
+            .ui-footer-fixed {
+                bottom: -5% !important;
+            }
+            .arr_2 {
+                font-size: x-large;
+                color: #dd4814;
+            }
+            h1 {
+                font-size: 1em !important;
             }
         </style>
+            
+        <title>hubanero interactive display</title>
     </head>
+
     <body>
-        <div id="bg">
-            <img src="../common/img/bg1.jpg" alt="">
+        <!-- Page: home  -->
+        <div id="home" data-role="page">
+            <div data-role="header" data-position="fixed">
+                <h3> Interagisci con il tuo smartphone all'indirizzo <blink> http://bit.ly/calasso </blink> </h3>
+            </div>
+
+            <div role="main" class="ui-content">
+                <div class="my_inner"></div>
+            </div>
+
+            <div data-role="footer" data-position="fixed" id="bottomInside">
+
+                <iframe src="http://www.di-vision.org/news/" 
+                        id="myFrame2" class="iframes visible-sm-iframes" 
+                        frameborder="0" 
+                        style="width:100%;" scrolling="no">
+
+                </iframe>
+            </div>
         </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="../client/js/jquery.min.js" type="text/javascript"></script>
+        <script src="../client/js/jquery-ui.js"></script>
+        <script src="/varSocketURI.js"></script>
+        <script src="../client/js/bootstrap.min.js"></script>
+        <!-- DATE JS-->
+        <script>
+            /*
+             * data top right
+             * userID
+             */
+            // orlando tattoo
+            var userID = "00019";
+
+            var i = 9;
+            var items = [];
+            var url = 'http://www.di-vision.org/getNews.php?userID=' + userID + '&content_type=my_news&callback=?';
+            getNews(url);
+            function jsonCallback(data) {
+                count = 0;
+                $.each(data.sites, function (key, val) {
+                    if (val.titolo !== '') { // avoid empty news
+                        items.push(
+                                "<div class='notizia'>"
+                                + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
+                                + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
+                                + "<div class='arr_2'>" + val.note + "</div>"
+                                + "</div>");
+                    }
+                    count++;
+                });
+                $('.my_inner').append(items);
+                //nascondo tutto e mostro la prima notizia
+                $('.my_inner > *').hide();
+                // use eq(count-2) coz the first element is empty
+                $('.my_inner > *').eq(count).show();
+            }
+            //url = 'http://www.di-vision.org/getNews.php?userID='+userID+'&content_type=my_news&callback=?';
+            function getNews(url) {
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    crossDomain: true,
+                    jsonp: false,
+                    cache: true,
+                    jsonpCallback: 'jsonCallback',
+                    dataType: 'jsonp',
+                    success: function (json) {
+                        //console.log('get news success!');
+                    },
+                    error: function (e) {
+                        //postError(e.message);
+                    }
+                });
+            }
+            ;
+
+            (function (time) {
+                setInterval(function () {
+                    location.reload();
+                }, time);
+            }(60 * 60 * 4 * 1000));
+
+        </script>
+        <script src="../client/js/generic.js"></script>
+        <script src="../client/js/audio.js"></script>
     </body>
 </html>
