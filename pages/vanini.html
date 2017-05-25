@@ -49,6 +49,19 @@
                 font-size: x-large;
                 margin: 0 3% !important;
             }
+            .bigImg{
+                position: relative;
+                top: 0;
+                right: 0;
+                clear: both;
+                display: inline-block;
+                padding: 21px;
+                border: 2px solid white;
+                margin: 10px;
+                width: 150px;
+                float: right;
+            }
+            
         </style>
             
         <title>hubanero interactive display</title>
@@ -92,6 +105,8 @@
             var i = 9;
             var items = [];
             var url = 'http://www.di-vision.org/getNews.php?userID=' + userID + '&content_type=my_news&callback=?';
+            var url = 'www.ugentocasa.it/lista/index/vendita/1/1/json/?callback=?';
+            
             getNews(url);
             function jsonCallback(data) {
                 count = 0;
@@ -99,9 +114,22 @@
                     if (val.titolo !== '') { // avoid empty news
                         items.push(
                                 "<div class='notizia'>"
-                                + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
-                                + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
-                                + "<div class='arr_2'>" + val.note + "</div>"
+                                    + "<div class='red_background shadow titolo'>" + val.titolo 
+                                    + "</div>"
+                            + "<img class='bigImg' src='" + val.foto[0]
+                                    + "' />"
+                            
+                                    + "<img class='bigImg' src='" + val.foto[1]
+                                    + "' />"
+                            
+                                    + "<img class='bigImg' src='" + val.foto[2]
+                                    + "' />"
+                            
+                                    + "<div class='scroll_text descrizione'>" + val.descrizione 
+                                        
+                                    + "</div>"
+                                    + "<div class='arr_2'>" + val.codice 
+                                    + "</div>"
                                 + "</div>");
                     }
                     count++;

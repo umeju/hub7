@@ -20,7 +20,12 @@ $(document).ready(function () {
     $("select.my-select").change(function(){
         var category = $(".my-select option:selected").val();
         console.log("select.my-select - " + category);
+        console.log("USERID- " + userID);
         //changeNewsCategory(category);
+        socket.emit('changeNews', {dataVal: userID + '-' + category});
+    });
+    $('.btn-warning').on('click', function(){
+        var category = $(this).data('category');
         socket.emit('changeNews', {dataVal: userID + '-' + category});
     });
     
@@ -266,7 +271,29 @@ $(document).ready(function () {
         	console.log('codejs client  slide to changeNews ' + data);
         	changeNewsCategory(data);
         });
+        socket.on(userID+'-OROSCOPO-changeNews', function (data) {
+            changeNewsCategory(data);
+        });
         
+        socket.on(userID+'-SPORT-changeNews', function (data) {
+            changeNewsCategory(data);
+        });
+        
+        socket.on(userID+'-HI TECH-changeNews', function (data) {
+            changeNewsCategory(data);
+        });
+        
+        socket.on(userID+'-GOSSIP-changeNews', function (data) {
+            changeNewsCategory(data);
+        });
+        
+        socket.on(userID+"-ULTIM'ORA-changeNews", function (data) {
+            changeNewsCategory(data);
+        });
+        
+        socket.on(userID+"-RPI-changeNews", function (data) {
+            changeNewsCategory(data);
+        });
         // export
         exports.socket = socket;
     })(window);
