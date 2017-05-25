@@ -1,43 +1,390 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="hubanero - Spicy Technologies">
+    <meta name="author" content="hubanero Red Savina">
+    
+    <title>Ugento casa</title>
+    <link href="../client/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../client/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../common/css/ugentocasa.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" 
+        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    
+</head>
+<body class="full">
+
+    <!--template content-placeholder-->
+<script id="example-template" type="text/x-handlebars-template">
+{{#each sites}}
+    <div class="flex-row notizia blocco-news-{{@index}}">
+        <div class="col-md-5"></div>
+        <div class="col-md-7 bg-primary {{#if @first}}visualizza{{else}} hidden{{/if}}">
+            <h1 class="display-1">
+                <span class="codice">{{codice}}</span> - {{titolo}}
+            </h1>
+            <h2 class="text-justify display-2">
+                {{{descrizione}}}
+            </h2>
+    <p class="imageGroup">
+        <img class="slide" src="{{foto.[0]}}" alt="slide" data-pin-nopin="true">
+        <img class="slide" src="{{foto.[1]}}" alt="slide" data-pin-nopin="true">
+        <img class="slide" src="{{foto.[2]}}" alt="slide" data-pin-nopin="true">
+    </p>
+    
+        </div>
+    </div>
+{{/each}}
+</script>
+
+<script id="example-template2" type="text/x-handlebars-template">
+    {{#each this.sites}}
+        {{#each foto}}
+                <div class='item{{#if @first}} primaFoto{{else}} {{/if}}foto-class-{{@index}}'>
+                <div data-src="{{this}}" data-index="foto-class-{{@index}}"> </div>
+                    <!--img class="slide" src="" alt="slide" data-pin-nopin="true"-->
+
+                    <div class="carousel-caption">
+                        <h3> hubanero - Spicy Technologies </h3>
+                    </div>                
+                </div>
+        {{/each}}
+    {{/each}}
+</script>
+
+<script id="example-template3" type="text/x-handlebars-template">
+                            
+    {{#each this.sites}}
+        <div class="hidden caratteristiche-{{@index}}">
+        
+            {{#each caratteristiche}}
+                <div class="hidden caratteristiche">
+                    {{this}}
+                </div>
+            {{/each}}
+
+        </div>
+    {{/each}}
+            
+</script>
+
+        <!--START TEMPLATE TEST-->
+
+<div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-fixed-top" role="navigation">
+            <div class="navbar-header logobg bordered">
+                <h1 class="bg-primary titolo"> agenzia immobiliare </h1>
+                <div id="logo" class="logobg bordered"></div>
+            </div>
+        </nav>
+        
+        
+        
+        <!-- Page Content -->
+        <div class="container-fluid">
+            <br />
+
+            <div class="flex-row">
+                <div class="col-md-5"></div>
+
+                <div class="col-md-7 bottom10">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!--                        
+                         Indicators 
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>-->
+                        
+                        <div class="carousel-inner" role="listbox">
+                            
+                            <div class="item active">
+                                <img class="first-slide" 
+                                     src="https://www.w3schools.com/bootstrap/paris.jpg" alt="First slide" data-pin-nopin="true">
+                                <div class="container"></div>
+                            </div>
+                            
+<!--                            <div class="content-placeholder2 "></div>-->
+
+
+
+
+
+                        </div>
+                        
+                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        
+                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        
+                    </div> <!-- END #myCarousel --> 
+                </div>
+            </div>
+
+            
+            <div class="content-placeholder"></div>
+            
+<!--            <div class="flex-row">
+
+                <div class="col-md-5"></div>
+
+                <div class="col-md-7 bg-primary ">
+                    <h1 class="display-1">Codice: IMM1077</h1>
+
+                    <h2 class="text-justify display-2">
+                        TORRE MOZZA: Immersa totalmente nel verde, sulla Litoranea T.S.G.- Leuca, 
+                        con piscina, sei vani sviluppati su due livelli e 
+                        doppi servizi; Circondata da terreno di 5900mq; Vista panoramica.
+                    </h2>
+                </div>
+            </div>-->
+            
+
+        </div>
+        <div class="container-fluid panel-transparent">
+
+            <nav class=" navbar navbar-right navbar-fixed-bottom">
+                
+                <h2 class="col-md-12 text-danger bg-success offset text-center">
+                    
+                    <span class="caratteristiche-wrapper">
+                        
+                    </span>
+                    
+                </h2>
+            </nav>
+            
+        </div>
+</div>
+
+
+
+
+
+
+
+
+                <!--END TEMPLATE TEST--> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../client/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" 
+          src='//code.jquery.com/ui/1.11.3/jquery-ui.min.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+        crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script>
+                            
+$(function(){
+    urlJson = 'http://www.ugentocasa.it/lista/index/vendita/1/2/json/';
+    //TODO: delete this page:
+    //urlJson = 'http://www.di-vision.org/99999/admin/testUgento.php?jsonCallback=?';
+
+    returnData = '';
+    that = this;
+    returnData = getNews(urlJson);    
+    var theTemplateScript = $("#example-template").html();
+    var theTemplateScript2 = $("#example-template2").html();
+    var theTemplateScript3 = $("#example-template3").html();
+    var theTemplate = Handlebars.compile(theTemplateScript);
+    
+    // limit an array to a maximum of elements (from the start)
+    Handlebars.registerHelper('limit', function (arr, limit) {
+    // remove this line if you don't want the lodash/underscore dependency
+//  if (!_.isArray(arr)) { return []; }
+  return arr.slice(0, limit);
+});
+
+    Handlebars.registerHelper('eachProperty', function(context, options) {
+    var ret = "";
+    for(var prop in context)
+    {
+        ret = ret + options.fn({property:prop,value:context[prop]});
+    }
+    return ret;
+});
+
+//        var url = 'http://www.ugentocasa.it/lista/index/vendita/1/2/json/';
+    function jsonCallback(data) {
+        //count = 0;
+        $.each(data.sites, function (key, val) {
+            console.log(data);
+            if (val.titolo !== '') { // avoid empty news
+                items.push(
+                    "<div class='notizia'>"
+                    + "<div class='red_background shadow titolo'>" + val.titolo + "</div>"
+                    + "<div class='scroll_text descrizione'>" + val.descrizione + "</div>"
+                    + "<div class='arr_2'>" + val.note + "</div>"
+                    + "</div>");
+            }
+            count++;
+        });
+        $('.my_inner').append(items);
+        //nascondo tutto e mostro la prima notizia
+        $('.my_inner > *').hide();
+        // use eq(count-2) coz the first element is empty
+        $('.my_inner > *').eq(count).show();
+    }
+    
+    function getNews(urlJson) {
+        $.ajax({
+            type: 'GET',
+            url: urlJson,
+            crossDomain: true,
+            jsonp: false,
+            cache: true,
+            jsonpCallback: 'jsonCallback',
+            dataType: 'jsonp',
+            success: function (json) {
+                console.log('get news success!');
+                that.returnData = json;
+                goCompile(that.returnData)
+//                return json;
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    };
+
+    function goCompile(returnData){
+        asd = returnData;
+//            $.getJSON(returnedData, function (data){
+//               c = data;
+        var theCompiledHtml = theTemplate(returnData);
+        $('.content-placeholder').html(theCompiledHtml);
+        goCompile2(asd);
+        goCompile3(asd);
+        showByIndex(1);
+    }
+    
+    function goCompile2(jsonData){
+        // Compile the template again
+        var theTemplate2 = Handlebars.compile(theTemplateScript2);
+        var theCompiledHtml2 = theTemplate2(jsonData);
+        $('.carousel-inner').html(theCompiledHtml2);
+//            data = $.parseJSON(jsonData);
+//            var data = jQuery.parseJSON(jsonData);
+            var items = [];
+            
+            $.each( jsonData.sites, function( key, val ) {
+                $.each( val, function( k, v ) {
+                    items.push( "<li id='" + k + "'>" + v + "</li>" );
+                });
+            });
+            startCarousel();
+            /*
+             * $( "<ul/>", {
+              "class": "my-new-list",
+              html: items.join( "" )
+            }).appendTo( "body" );
+             */
+        }
+    
+    function goCompile3(jsonData){
+        // Compile the template again
+        var theTemplate3 = Handlebars.compile(theTemplateScript3);
+        var theCompiledHtml3 = theTemplate3(jsonData);
+        $('.caratteristiche-wrapper').html(theCompiledHtml3);
+    }
+    
+    function startCarousel(){
+        $('.primaFoto:first').addClass("active");
+    }
+    
+    function showByIndex(index){
+        
+        $('.caratteristiche-'+index+' > .caratteristiche').removeClass('hidden').fadeIn();
+        $('.caratteristiche-'+index).removeClass('hidden').fadeIn();
+        $('.blocco-news-'+index).removeClass('hidden').fadeIn();
+    }
+    
+});
+
+</script>
+</body>
+</html>
+
+<!--<!DOCTYPE html>
 <html>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../common/css/style.css" type="text/css" rel="stylesheet" />
+        
+        <style>
+            #div {
+                border: 1px solid red;
+                font-size: 24px;
+                width: 200px;
+                font-size: 34px;
+            }
+        </style>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div id="ugentocasa">UGENTO CASA IMMOBILIARE</div>
+        <p></p>
+        <div class="wrapper"></div>
+        
+        
+        <div id="div" class="wrapper">
+            <p>testo testo testo testo testo testo testo testo testo testo testo testo 
+            testo testo testo testo testo testo 
+            </p>
+        </div>
 
         
-        <script 
-            src="https://code.jquery.com/jquery-3.2.1.min.js">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js">
         </script>
-  
-  
+        
+        <script src="../common/js/immobiliare.js">
+        </script>
         <script>
-            $.getJSON("test.json", function (data) {
-                var items = [];
-                $.each(data, function (key, val) {
-                    console.log(key);
-                    console.log(val);
-                    
-                    
-                    items.push("<li id='" + key + "'>" + val + "</li>");
-                });
-
-                $("<ul/>", {
-                    "class": "my-new-list",
-                    html: items.join("")
-                }).appendTo("body");
-                
-                console.log(data[1][0]);
-            });
             
+//            
+//        $(document).ready(function() {
+//            var size = parseInt($("#div").css('font-size'));
+//            var h = $( "#div" ).height();
+//            
+//            function f(h, size){
+//                while(h>300){
+//                    size-=1;
+//                    $("#div").css({'font-size': size});
+//                    size = parseInt($("#div").css('font-size'));
+//                    h = $( "#div" ).height();
+//                }
+//            }
+//            f(h, size);
+//        });
+
         </script>
+        
     </body>
-</html>
+</html>-->
