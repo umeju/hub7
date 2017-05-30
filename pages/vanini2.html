@@ -4,10 +4,26 @@
         <title>vanini2</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+              rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+              crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
         <link href="../common/css/vanini2.css" rel="stylesheet" type="text/css"/>
-        
+        <style>
+            .full {
+                /*background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Casa_Giulio_Cesare_Vanini_Taurisano.jpg/1280px-Casa_Giulio_Cesare_Vanini_Taurisano.jpg) no-repeat center center fixed;*/
+                background: url(http://www.leccenews24.it/immagini/politica/casagiuliocesarevaninitaurisano.jpg) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                margin: 0 auto;
+            }
+            
+            h2 {
+                font-size: 3em;
+            }
+        </style>
     </head>
     <body>
 <!--        {{#if sites.length}}
@@ -165,6 +181,14 @@
             urlJson = 'http://www.di-vision.org/getNews.php?userID=' + userID + '&content_type=my_news&callback=?';
             returnedData = '';
             that = this;
+            var srcImages = [
+                "http://www.leccenews24.it/immagini/attualita/13361017img0670.jpg",
+                "http://static.salento.com/upload/models/original/i-comuni/taurisano-22.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Chiesa_Santa_Maria_della_Strada_Taurisano.jpg/1200px-Chiesa_Santa_Maria_della_Strada_Taurisano.jpg",
+                "https://www.puglia.com/wp-content/uploads/2017/01/taurisano-lecce_-10.jpg",
+                "http://rete.comuni-italiani.it/foto/2012/wp-content/uploads/2012/01/10513-800x535.jpg",
+                "http://www.piazzasalento.it/wp-content/uploads/2015/06/municipio-di-taurisano-visto-dalle-spalle.jpg"
+            ];
             
         function jsonCallback(data) {
             //count = 0;
@@ -233,7 +257,7 @@
         
         var to2 = function(){
             setInterval(function(){
-                asdasd();
+                goSlide();
                 var o = $(".items").eq(count).removeClass("mostra").addClass("hide");
 //                o.removeClass("mostra");
 //                o.addClass("hide");
@@ -253,7 +277,7 @@
             test();
         }
         
-        function asdasd(){
+        function goSlide(){
             
             var a = $( ".items h1" );
             var b = $( ".desc" );
@@ -262,10 +286,8 @@
                 sdf = $(this).text().toString().replace(/(\r\n|\n|\r)/gm, '');
                 
                 if(jQuery.trim( sdf) == ""){
-                
                     $(this).remove();
                 }
-                
             });
             
             $( ".items h1" ).each(function() {
@@ -283,8 +305,19 @@
             var a = $( ".items h1" );
         }
         
-        
-        
+        var i = 0;
+        setInterval(function(){
+            
+            i == 5 ? i = 0 : i += 1;
+            $('.full').css({
+                "background" : 'url('+srcImages[i]+') no-repeat center center fixed',
+                "-webkit-background-size" : "cover",
+                "-moz-background-size" : "cover",
+                "-o-background-size" : "cover",
+                "background-size" : "cover",
+                "margin" : "0 auto"
+            });
+        }, 20 * 1000);
         
 });
     </script>
