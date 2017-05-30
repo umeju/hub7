@@ -9,15 +9,11 @@
 
         <link href="/client/css/bootstrap.min.css" rel="stylesheet">
         <link href="/client/css/style.css" rel="stylesheet">
-        
-        <script src="/socket.io/socket.io.js"></script>
-        
-        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-        <!--script src="/common/handlebars.js"></script-->
-        <!--<script src="/common/models.js"></script>-->
-        <script src="/varSocketURI.js"></script>
-        <script src="/client/js/code-ws-new.js"></script>
-
+        <style>
+            .iframe-wrapper, .iframes {
+                bottom: 0 !important;
+            }
+        </style>
     </head>
     <body class="radial">
         
@@ -92,7 +88,10 @@
                 </div>
             </div>
         </div>
-
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script src="/varSocketURI.js"></script>
+        <script src="/client/js/code-ws-new.js"></script>
         <script src="/client/js/bootstrap.min.js"></script>
         <!-- DATE JS-->
         <script>

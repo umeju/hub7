@@ -335,6 +335,7 @@ a.control_next {
     font-size: 28px;
     font-weight: 700;
     bottom: 130px;
+    /*bottom: 11%;*/
     right: 19px;
     color: #fff;
     z-index: 3;
@@ -425,7 +426,7 @@ a.control_next {
 .iframe-wrapper,
 .iframes {
     position: fixed;
-    bottom: 0;
+    bottom: -7%;
     left: -1%
 }
 
