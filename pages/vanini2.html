@@ -35,7 +35,7 @@
         <script id="example-template" type="text/x-handlebars-template">
             
             {{#each sites}}
-            <div class='{{#if @last}}mostra{{else}}hide{{/if}} items'>
+            <div class='{{#if @last}}mostra{{else}}hide{{/if}} items notizia'>
                 <div class="col-md-5"></div>
                 <div class="col-md-7 bg-primary ">
                 
@@ -53,8 +53,6 @@
             {{/each}}
         
     </script>
-
-
 
         <!--<nav class="navbar navbar-fixed-top" role="navigation">-->
         <!-- <div class="navbar-header logobg bordered"> <div id="logo" class="logobg bordered"></div> </div>-->
@@ -126,38 +124,30 @@
                     </div>
                 </div>
             </div>
-
             <div class="flex-row">
-
-                
                 <div class="content-placeholder"></div>
-
             </div>
-
         </div>
         <div class="container-fluid panel-transparent">
-
             <nav class=" navbar navbar-right navbar-fixed-bottom">
                 <!--<div class="col-md-10 text-danger bg-warning">-->
                     <div class="col col-md-4 text-danger bg-success offset">
                         <h2 class="text-center text-uppercase">
                             Scuola Primaria "G.C. Vanini" - taurisano
                         </h2>
+                        <span  id="title-box-right"></span>
+                        <span  id="title-box-left"></span>
                     </div>
                 <ul class="offset2">
 
                     
                 </ul>
             </nav>
-
         </div>
-
-
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" >
-        </script>
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" >
-        </script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/varSocketURI.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
         
         <script>
             $('.carousel').carousel({
@@ -172,23 +162,22 @@
         </script>
         
         <script>
-        
         $(function(){
-            
-            var userID = "00018";
-            var items = [];
-            var test = [];
-            urlJson = 'http://www.di-vision.org/getNews.php?userID=' + userID + '&content_type=my_news&callback=?';
-            returnedData = '';
-            that = this;
-            var srcImages = [
-                "http://www.leccenews24.it/immagini/attualita/13361017img0670.jpg",
-                "http://static.salento.com/upload/models/original/i-comuni/taurisano-22.jpg",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Chiesa_Santa_Maria_della_Strada_Taurisano.jpg/1200px-Chiesa_Santa_Maria_della_Strada_Taurisano.jpg",
-                "https://www.puglia.com/wp-content/uploads/2017/01/taurisano-lecce_-10.jpg",
-                "http://rete.comuni-italiani.it/foto/2012/wp-content/uploads/2012/01/10513-800x535.jpg",
-                "http://www.piazzasalento.it/wp-content/uploads/2015/06/municipio-di-taurisano-visto-dalle-spalle.jpg"
-            ];
+        var timeToSlideNews = 19000;
+        var userID = "00018";
+        var items = [];
+        var test = [];
+        urlJson = 'http://www.di-vision.org/getNews.php?userID=' + userID + '&content_type=my_news&callback=?';
+        returnedData = '';
+        that = this;
+        var srcImages = [
+            "http://www.leccenews24.it/immagini/attualita/13361017img0670.jpg",
+            "http://static.salento.com/upload/models/original/i-comuni/taurisano-22.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Chiesa_Santa_Maria_della_Strada_Taurisano.jpg/1200px-Chiesa_Santa_Maria_della_Strada_Taurisano.jpg",
+            "https://www.puglia.com/wp-content/uploads/2017/01/taurisano-lecce_-10.jpg",
+            "http://rete.comuni-italiani.it/foto/2012/wp-content/uploads/2012/01/10513-800x535.jpg",
+            "http://www.piazzasalento.it/wp-content/uploads/2015/06/municipio-di-taurisano-visto-dalle-spalle.jpg"
+        ];
             
         function jsonCallback(data) {
             //count = 0;
@@ -216,7 +205,7 @@
                 success: function (json) {
                     console.log('get news success!');
                     that.returnedData = json;
-                    aaa(that.returnedData, to)
+                    succ(that.returnedData, to) //to = timeout
                 },
                 error: function (e) {
                     console.log(e.message);
@@ -230,21 +219,36 @@
 
         var theTemplate = Handlebars.compile(theTemplateScript);
         
-        function aaa(returnedData, callback){
+        function succ(returnedData, callback){
+            returnedData.sites.splice(0,1);
+//            returnedData.sites.splice(29,1);
+//            returnedData.sites.splice(28,1);
                var theCompiledHtml = theTemplate(returnedData);
                $('.content-placeholder').html(theCompiledHtml);
                callback();
         }
-        count = 4;
+        
+        count = 4; // random point to start:
+        /*
+         * remove empty titles
+         * first op. to hide elements and start slider
+         */
         var to = function(){
+            
+            $('.title').each(function (){
+//                console.log(this);
+                if($(this).text().trim() === ""){
+                    $(this).parent().parent().remove();
+                }
+            });
             setTimeout(function(){
                 var items = $(".items");
                 itemsCount = items.length;
-                items.fadeOut(3000);
+                items.fadeOut(1000);
                 item = $(".items").eq(count);
                 
 //                item.removeClass('hide')
-                item.fadeIn(5000);
+                item.fadeIn(3000);
                 item.removeClass('hide');
                 
 //                all.fadeOut();
@@ -256,19 +260,40 @@
         };
         
         var to2 = function(){
-            setInterval(function(){
-                goSlide();
-                var o = $(".items").eq(count).removeClass("mostra").addClass("hide");
-//                o.removeClass("mostra");
-//                o.addClass("hide");
-                count == $(".items").length ? count = 0 : count +=1;
-//                o.addClass("mostra");
-//                var o = $(".items").eq(count).removeClass("hide").addClass("mostra").css("display", "inline-block");
-                var o = $(".items").eq(count).fadeIn();
-                o.removeClass('hide');
+            var si1 = setInterval(function(){
+                
+                nextNews();
             
-            }, 1800);
+            }, timeToSlideNews);
         };
+        
+        
+        $("#title-box-right").click(function(){
+            nextNews();
+        });
+        $("#title-box-left").click(function(){
+            prevNews();
+        });
+
+        
+        function nextNews(){
+            console.log('ricevuto');
+            goSlide();
+            var o = $(".items").eq(count).removeClass("mostra").addClass("hide");
+            count == $(".items").length ? count = 0 : count +=1;
+            o = $(".items").eq(count).fadeIn();
+            o.removeClass('hide');
+        }
+        
+        function prevNews(){
+            console.log('ricevuto');
+            goSlide();
+            var o = $(".items").eq(count).removeClass("mostra").addClass("hide");
+            count == 0 ? count = $(".items").length : count -=1;
+            o = $(".items").eq(count).fadeIn();
+            o.removeClass('hide');
+        }
+        
         
         
         function startLoop(){
@@ -279,7 +304,7 @@
         
         function goSlide(){
             
-            var a = $( ".items h1" );
+            var a = $( ".notizia h1" );
             var b = $( ".desc" );
             
             b.each(function(x ,y ){
@@ -304,10 +329,9 @@
             });
             var a = $( ".items h1" );
         }
-        
+        // slide background images
         var i = 0;
         setInterval(function(){
-            
             i == 5 ? i = 0 : i += 1;
             $('.full').css({
                 "background" : 'url('+srcImages[i]+') no-repeat center center fixed',
@@ -321,5 +345,7 @@
         
 });
     </script>
+    <script src="../client/js/generic.js"></script>
+    <script src="../client/js/audio.js"></script>
     </body>
 </html>

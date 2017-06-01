@@ -5,8 +5,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <link href="http://jqmdesigner.appspot.com/gk/lib/jquery.mobile/1.4.5/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        
         <style>
             body {
                 overflow: hidden;
@@ -88,6 +87,8 @@
                 </iframe>
             </div>
         </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="../client/js/jquery.min.js" type="text/javascript"></script>
         <script src="../client/js/jquery-ui.js"></script>
@@ -111,29 +112,29 @@
             function jsonCallback(data) {
                 count = 0;
                 $.each(data.sites, function (key, val) {
-                    if (val.titolo !== '') { // avoid empty news
-                        items.push(
-                                "<div class='notizia'>"
-                                    + "<div class='red_background shadow titolo'>" + val.titolo 
-                                    + "</div>"
-                            + "<img class='bigImg' src='" + val.foto[0]
-                                    + "' />"
-                            
-                                    + "<img class='bigImg' src='" + val.foto[1]
-                                    + "' />"
-                            
-                                    + "<img class='bigImg' src='" + val.foto[2]
-                                    + "' />"
-                            
-                                    + "<div class='scroll_text descrizione'>" + val.descrizione 
-                                        
-                                    + "</div>"
-                                    + "<div class='arr_2'>" + val.codice 
-                                    + "</div>"
-                                + "</div>");
+                    var itemToAdd = '';
+                    itemToAdd = "<div class='notizia'>";
+                    
+                    val.titolo !== '' ? itemToAdd += "<div class='red_background shadow titolo'>" + val.titolo + "</div>" :
+                                        itemToAdd += "<div class='red_background shadow titolo'>DISPLAY INTERATTIVI hubanero</div>";
+                    
+                    
+                    val.descrizione !== '' ? itemToAdd += "<div class='scroll_text descrizione'>" + val.descrizione + "</div>" :
+                                             itemToAdd += "<div class='scroll_text descrizione'> descrizione </div>" ;
+                    
+                    val.note !== '' ? itemToAdd += "<div class='arr_2'>" + val.note + "</div>" :
+                                      itemToAdd += "<div class='arr_2'> note </div>" ;
+                    if (val.foto) {
+                        itemToAdd += "<img class='bigImg' src='" + val.foto[0] + "' />"                            
+                                    + "<img class='bigImg' src='" + val.foto[1] + "' />"
+                                    + "<img class='bigImg' src='" + val.foto[2] + "' />"
                     }
+                    itemToAdd += "</div>";
+                    items.push(itemToAdd);
+                    
                     count++;
                 });
+                
                 $('.my_inner').append(items);
                 //nascondo tutto e mostro la prima notizia
                 $('.my_inner > *').hide();

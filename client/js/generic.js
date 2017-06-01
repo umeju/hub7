@@ -409,15 +409,20 @@ $(document).ready(function () {
             //welcome();
             //socket.emit('welcome', { customId:"000_spedicatoJS_0000" });
         });
+        
         socket.on(userID + '-left', function (data) {
             console.log(userID + 'left connect!');
             oneLess();
             $("#lightbox").trigger('click');
+            $("#title-box-left").trigger('click');
         });
+        
         socket.on(userID + '-right', function (data) {
             console.log(userID + 'right connect!');
             oneMore();
             $("#lightbox").trigger('click');
+            $("#title-box-right").trigger('click');
+            
         });
         socket.on(userID + '-refresh', function (data) {
             refresh();
