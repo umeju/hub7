@@ -415,14 +415,14 @@ $(document).ready(function () {
             console.log(userID + 'left connect!');
             oneLess();
             $("#lightbox").trigger('click');
-            $("#title-box-left").trigger('click');
+            $("#left").trigger('click');
         });
         
         socket.on(userID + '-right', function (data) {
             console.log(userID + 'right connect!');
             oneMore();
             $("#lightbox").trigger('click');
-            $("#title-box-right").trigger('click');
+            $("#right").trigger('click');
             
         });
         socket.on(userID + '-refresh', function (data) {
