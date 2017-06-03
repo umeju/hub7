@@ -163,13 +163,14 @@
         
         <script>
         $(function(){
-        var timeToSlideNews = 19000;
+        var timeToSlideNews = 5000;
         var userID = "00018";
         var items = [];
         var test = [];
         urlJson = 'http://www.di-vision.org/getNews.php?userID=' + userID + '&content_type=my_news&callback=?';
         returnedData = '';
         that = this;
+        count = 0; // random point to start:
         var srcImages = [
             "http://www.leccenews24.it/immagini/attualita/13361017img0670.jpg",
             "http://static.salento.com/upload/models/original/i-comuni/taurisano-22.jpg",
@@ -178,7 +179,8 @@
             "http://rete.comuni-italiani.it/foto/2012/wp-content/uploads/2012/01/10513-800x535.jpg",
             "http://www.piazzasalento.it/wp-content/uploads/2015/06/municipio-di-taurisano-visto-dalle-spalle.jpg"
         ];
-            
+        
+        getNews(urlJson);
         function jsonCallback(data) {
             //count = 0;
             $.each(data.sites, function (key, val) {
@@ -192,7 +194,6 @@
                 count++;
             });
         }
-
         function getNews(urlJson) {
             $.ajax({
                 type: 'GET',
@@ -213,12 +214,8 @@
             });
         };
         
-        getNews(urlJson);
-            
         var theTemplateScript = $("#example-template").html();
-
         var theTemplate = Handlebars.compile(theTemplateScript);
-        
         function succ(returnedData, callback){
             returnedData.sites.splice(0,1);
 //            returnedData.sites.splice(29,1);
@@ -228,12 +225,12 @@
                callback();
         }
         
-        count = 4; // random point to start:
         /*
          * remove empty titles
          * first op. to hide elements and start slider
          */
-        var to = function(){
+//        var to = function(){
+        function to(){
             
             $('.title').each(function (){
 //                console.log(this);
@@ -241,32 +238,38 @@
                     $(this).parent().parent().remove();
                 }
             });
+            
             setTimeout(function(){
                 var items = $(".items");
                 itemsCount = items.length;
-                items.fadeOut(1000);
-                item = $(".items").eq(count);
                 
+                items.fadeOut(1000, function (){
+                    console.log('0');
+                });
+                
+                item = $(".items").eq(count);
 //                item.removeClass('hide')
-                item.fadeIn(3000);
-                item.removeClass('hide');
+                item.fadeIn(500, function (){
+                    item.removeClass('hide');
+                    console.log('0');
+                    
+                });
                 
 //                all.fadeOut();
 //                first.fadeIn();
-                
-                to2();
+                //to2();
             
             }, 2000);
-        };
+        }; // end to()
         
+        var si1;
         var to2 = function(){
-            var si1 = setInterval(function(){
-                
+            si1 = setInterval(function(){
+//            var si1 = setTimeout(function(){
                 nextNews();
-            
+                console.log('0');
             }, timeToSlideNews);
         };
-        
         
         $("#title-box-right").click(function(){
             nextNews();
@@ -275,26 +278,28 @@
             prevNews();
         });
 
-        
         function nextNews(){
-            console.log('ricevuto');
-            goSlide();
+            
+//            clearInterval(si1);
+//            goSlide();
             var o = $(".items").eq(count).removeClass("mostra").addClass("hide");
+            console.log('0');
             count == $(".items").length ? count = 0 : count +=1;
             o = $(".items").eq(count).fadeIn();
             o.removeClass('hide');
+            
+//            to2();
         }
         
         function prevNews(){
-            console.log('ricevuto');
-            goSlide();
+//            goSlide();
             var o = $(".items").eq(count).removeClass("mostra").addClass("hide");
+            console.log('0');
             count == 0 ? count = $(".items").length : count -=1;
             o = $(".items").eq(count).fadeIn();
             o.removeClass('hide');
+            console.log('0');
         }
-        
-        
         
         function startLoop(){
             var items = $('.items');

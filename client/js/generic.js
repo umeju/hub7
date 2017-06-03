@@ -29,7 +29,7 @@ $(document).ready(function () {
     var w = $(window).width();
     var directions = ['left', 'refresh', 'right'];
     
-    var _AGGIORNAMENTO_NEWS = 18000,
+    var _AGGIORNAMENTO_NEWS = 20000,
         _TIMEOUT_TIME = 12000,
         _ULTIMORA_URL = 'http://www.di-vision.org/news/index.php?news=ultimora',
         _TECH_URL = 'http://www.di-vision.org/news/index.php?news=tech',
@@ -109,6 +109,7 @@ $(document).ready(function () {
         notizie.hide();
         notizia = $('.notizia').eq(count);
         notizia.css('display', 'inline-block');
+        notizia.removeClass('hide');
     }
 
     $('.right').click(function () {

@@ -28,6 +28,7 @@
                 <h3>hubanero</h3>
             </div>
             <p></p>
+            
             <div id="remote-header">
                 <!--img src="" /-->
             </div>
@@ -60,7 +61,6 @@
 
         <script type="text/javascript">
             $(function () {
-
                     /* get params form url in html page */
                 var QueryString = function () {
                     /* This function is anonymous, is executed immediately and 
@@ -87,9 +87,7 @@
                 }(); //alert(QueryString.ID + "asd");
                 //get userid val from last div in the html page
         //                var userID = QueryString.ID;//$('#userID').text();
-
                 var ID = QueryString.ID;//$('#userID').text();
-
         //                var ID = '00020';
 
                 $(".right").click(function () {
@@ -109,7 +107,6 @@
                     $.get("/pages/zoomOut/" + ID, {});
                     $.get("/pages/refresh2/" + ID, {});
                 });
-
             });
         </script>
 
