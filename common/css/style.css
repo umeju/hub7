@@ -1,0 +1,113 @@
+*{
+    /* border: 1px solid red;*/
+}
+
+body {
+    background-color: deepskyblue;
+    /*overflow: hidden;*/
+}
+.bordered {
+    /*border: 1px solid red;*/
+}
+.bg-colored{
+    background-color: navajowhite;
+}
+.image{
+    padding: 4px;
+    width: 50px;
+    height: 50px;
+    display: none;
+}
+.first-image {
+    width: 250px;
+    height: 250px;
+    top: 138px;
+    display: block !important;
+
+}
+
+.block{
+    border: 1px solid red;
+    padding: 5px;
+    display: block;
+    margin: 12px;
+    border-radius: 6px;
+}
+
+.titolo {
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 46px;
+    background-color: rgba(255, 255, 255, 0.6);
+    color: darkblue;
+    margin: 16px;
+    position: relative;
+    top: -40px;
+    left: -40px;
+    padding: 2px 30px 6px 30px;
+    border-radius: 51px;
+    width: 45%;
+    clear: both;
+}
+
+.codice {
+    background-color: darkblue;
+    background-color: crimson;
+    font-family: sans-serif;
+    
+    float: left;
+    /*margin: -77px -42px 0px 0;*/
+    margin: 20px;
+    padding: 20px 20px 20px 20px;
+    border-radius: 50px;
+    color: white;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+.descrizione{
+    background-color: powderblue;
+    margin: 6px;
+}
+
+.descrizione {
+    background-color: rgba(255, 255, 255, .6);
+    margin: 2% -15% 0 0;
+    width: 69%;
+    height: auto;
+    font-size: 1.9em;
+    text-transform: uppercase;
+    float: right;
+}
+
+
+.caratteristiche {
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 6px;
+    padding: 10px 26px 10px 26px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.inside-block{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 1px solid;
+}
+
+#ugentocasa {
+    background-color: darkblue;
+    font-family: sans-serif;
+    width: 100%;
+    /* margin: -77px -42px 0px 0; */
+    margin: -10px;
+    padding: 20px 20px 20px 20px;
+    
+    color: white;
+    font-weight: bolder;
+    font-size: xx-large;
+    display: block;
+    
+}

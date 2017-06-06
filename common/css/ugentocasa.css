@@ -1,0 +1,89 @@
+
+body {
+    margin-top: 0px;
+    margin-bottom: 50px;
+
+    background: none;
+}
+
+.full {
+    /*background: url(https://i.ytimg.com/vi/9oAd9J8vpRA/maxresdefault.jpg) no-repeat center center fixed;*/
+    background: url(http://www.residencelepalmesalento.it/lepalme/Itinerari/Repository/1114cocoloco2.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 0 auto;
+}
+.carousel-inner {
+    /*padding-left: 55px;*/
+    margin: 0 auto;
+    /*margin-top: -15px;*/
+    /*width: 100%;*/
+}
+
+h2 {
+    /*text-transform: uppercase;*/
+    /*border: 4px solid;*/
+    padding: 9px;
+    font-size: 2.5em;
+}
+
+#myCarousel {
+    width: 90%;
+    margin: 0 auto;
+    /*                margin-top: 40px;*/
+    margin-bottom: 40px;
+}
+.opabg {
+    background-color: rgba(0, 0, 0, .6);
+}
+.titolo {
+    font-size: 56px;
+    margin-left: 56px;
+    text-transform: uppercase;
+}
+.bg-primary {
+    background-color: rgba(51, 122, 183, .5);
+}
+.bg-success {
+    background-color: rgba(223, 240, 216, .5);
+}
+.offset{
+    margin-left: 0px;
+}
+
+.offset2{
+    margin-right: 16px;
+}
+#logo {
+    position: relative;
+    top: 0;
+    left: 0px;
+    width: 356px;
+    height: 85px;
+    background-image: url(http://www.ugentocasa.it/assets/front/images/ugentocasa_menu_b.png);
+    background-size: cover;
+    margin: 0 auto;
+}
+.slide{
+    
+}
+.imageGroup {
+    text-align: center;
+    
+}
+.imageGroup > .slide {
+    border-radius: 141px;
+    border: 2px solid deepskyblue;
+    width: 256px;
+    height: 256px;
+    margin: 3%;
+    
+}
+.caratteristiche{
+    display: inline-block;
+    border: 1px solid;
+    padding: 4px;
+    margin: 2px;
+}
