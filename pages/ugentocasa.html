@@ -168,23 +168,7 @@
         </div>
 </div>
 
-
-
-
-
-
-
-
                 <!--END TEMPLATE TEST--> 
-
-
-
-
-
-
-
-
-
 
 
 
@@ -218,8 +202,8 @@ $(function(){
     Handlebars.registerHelper('limit', function (arr, limit) {
     // remove this line if you don't want the lodash/underscore dependency
 //  if (!_.isArray(arr)) { return []; }
-  return arr.slice(0, limit);
-});
+        return arr.slice(0, limit);
+    });
 
     Handlebars.registerHelper('eachProperty', function(context, options) {
     var ret = "";
