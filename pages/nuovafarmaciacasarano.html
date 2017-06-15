@@ -9,61 +9,76 @@
               rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
               crossorigin="anonymous">
         <link href="http://www.di-vision.org/cdn/nuovafarmacia.css" rel="stylesheet">
+        <style>
+            #servizi {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 75%;
+    height: 15%;
+    font-size: 9em;
+    color: white;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.7);
+    padding: 53px;
+    text-align: center;
+}
+        </style>
     </head>
     <body>
         <div id="hubNumber"></div>
 
         <div id="mycarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
-            <ol class="carousel-indicators">
+<!--            <ol class="carousel-indicators">
                 <li data-target="#mycarousel" data-slide-to="0" class=""></li>
                 <li data-target="#mycarousel" data-slide-to="1"></li>
 
-            </ol>
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-      
-    <div class="item">
-        <img src="https://s5.postimg.org/tdy2z31rb/alex-knight-204446.jpg" data-color="lightblue" alt="First Image">
-        <!--<div class="carousel-caption"><h3>First Image</h3></div>-->
-    </div>
-      
-    <div class="item">
-        <img src="https://s5.postimg.org/5bluhyahz/andres-de-armas-103880.jpg" data-color="firebrick" alt="Second Image">
-        <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
-    </div>
-    
-    <div class="item">
-        <img src="https://s5.postimg.org/her65ilk7/ciprian-boiciuc-66195.jpg" data-color="firebrick" alt="Second Image">
-        <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
-    </div>
-    
-    <div class="item">
-        <img src="https://s5.postimg.org/ow0dkqb3b/elizabeth-misner-207528.jpg" data-color="firebrick" alt="Second Image">
-        <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
-    </div>
-      
-    <div class="item">
-        <img src="https://s5.postimg.org/ahwzszp9j/jesse-orrico-60373.jpg" data-color="firebrick" alt="Second Image">
-        <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
-    </div>
-      
-    <div class="item">
-        <img src="https://s5.postimg.org/5hzjl1jmv/freestocks-org-126848.jpg" data-color="firebrick" alt="Second Image">
-        <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
-    </div>
-      
-    <div class="item">
-        <img src="https://s5.postimg.org/41o12wgpz/forest-alu-247542.jpg" data-color="firebrick" alt="Second Image">
-        <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
-    </div>
-      
-    <div class="item">
-        <img src="https://s5.postimg.org/fcqor9nl3/elly-filho-65831.jpg" data-color="firebrick" alt="Second Image">
-        <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
-    </div>
-      
-  </div> <!--end wrapper items gallery-->
+            </ol>-->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+
+                <div class="item">
+                    <img src="https://s5.postimg.org/tdy2z31rb/alex-knight-204446.jpg" data-color="lightblue" alt="First Image">
+                    <!--<div class="carousel-caption"><h3>First Image</h3></div>-->
+                </div>
+
+                <div class="item">
+                    <img src="https://s5.postimg.org/5bluhyahz/andres-de-armas-103880.jpg" data-color="firebrick" alt="Second Image">
+                    <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
+                </div>
+
+                <div class="item">
+                    <img src="https://s5.postimg.org/her65ilk7/ciprian-boiciuc-66195.jpg" data-color="firebrick" alt="Second Image">
+                    <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
+                </div>
+
+                <div class="item">
+                    <img src="https://s5.postimg.org/ow0dkqb3b/elizabeth-misner-207528.jpg" data-color="firebrick" alt="Second Image">
+                    <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
+                </div>
+
+                <div class="item">
+                    <img src="https://s5.postimg.org/ahwzszp9j/jesse-orrico-60373.jpg" data-color="firebrick" alt="Second Image">
+                    <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
+                </div>
+
+                <div class="item">
+                    <img src="https://s5.postimg.org/5hzjl1jmv/freestocks-org-126848.jpg" data-color="firebrick" alt="Second Image">
+                    <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
+                </div>
+
+                <div class="item">
+                    <img src="https://s5.postimg.org/41o12wgpz/forest-alu-247542.jpg" data-color="firebrick" alt="Second Image">
+                    <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
+                </div>
+
+                <div class="item">
+                    <img src="https://s5.postimg.org/fcqor9nl3/elly-filho-65831.jpg" data-color="firebrick" alt="Second Image">
+                    <!--<div class="carousel-caption"><h3>Second Image</h3></div>-->
+                </div>
+
+            </div> <!--end wrapper items gallery-->
 
             <!-- Controls -->
             <a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
@@ -76,8 +91,9 @@
             </a>
 
 
-        </div>
-
+        </div> <!-- end mycarousel-->
+        
+        <div id="servizi"></div>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
                 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
                 crossorigin="anonymous">
@@ -91,7 +107,6 @@
         </script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/varSocketURI.js"></script>
-
         <!-- GET SCRIPT FOR AUDIO
             <script src="../client/js/audio.js"></script>
         -->
@@ -133,8 +148,23 @@
                         }
                     });
         </script>
-
         <script>
+            
+            var servizi = [
+                "DERMOCOSMESI",
+                "IGIENE E CURA PERSONA",
+                "PRIMA INFANZIA",
+                "ALIMENTAZIONE SPECIALE",
+                "OMEOPATIA",
+                "FITOTERAPIA",
+                "INTEGRATORI",
+                "SANITARIA",
+                "ELETTROCARDIOGRAMMA",
+                "HOLTER PRESSORIO E CARDIACO",
+                "PRENOTAZIONE CUP",
+                "MISURAZIONE PRESSIONE"
+            ];
+            
             $(document).ready(function () {
                 /* code to get params form url in html page */
                 var QueryString = function () {
@@ -169,6 +199,7 @@
                 });
                 $('.left').click(function () {
                     console.log('left');
+                    animation();
                 });
 
                 (function (exports) {
@@ -235,7 +266,6 @@
                 var randomN = Math.floor((Math.random() * 1000000) + 100000);
 
                 if (!userID) {
-                    
 //               var r = confirm("Press a button!");
 //               window.location.href = window.location.hostname+ "/pages/nuovafarmaciacasarano_remote.html?ID="+randomN;                
 //                var randomN = prompt("INSERISCI IL CODICE CHE VEDI SUL MONITOR INTERATTIVO");
@@ -243,7 +273,28 @@
                 }
                 $('#hubNumber').html(userID);
                 // + "Digita www.bit.ly/telecomandofarmacia e scopri cosa succede!"
-
+                var i = 0;
+                var animation = function () {
+                    
+                    i > servizi.length ? i = 0 : ++i;
+                    $('#servizi').html(servizi[i]).hide().slideDown('slow').delay(2*1000).fadeOut('slow', animation);
+                    
+//                    for(i=0; i<servizi.length; i++){
+                        $('#servizi').animate({
+                            backgroundColor: 'green',
+                            color: 'red',
+                        },
+                        {
+                            duration: '1000',
+                            easing: 'swing',
+                            complete: function(){
+                            
+                            },
+                            queue: false,
+                        });
+//                    }
+                }
+                $('#servizi').html(servizi[0]).hide().slideDown('slow').delay(2*1000).fadeOut('slow', animation);
             });
         </script>
         <!--script>
