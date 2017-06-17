@@ -277,7 +277,7 @@
                 var animation = function () {
                     
                     i > servizi.length ? i = 0 : ++i;
-                    $('#servizi').html(servizi[i]).hide().slideDown('slow').delay(2*1000).fadeOut('slow', animation);
+                    $('#servizi').html(servizi[i]).hide().slideDown('slow').delay(4*1000).fadeOut('slow', animation);
                     
 //                    for(i=0; i<servizi.length; i++){
                         $('#servizi').animate({
@@ -285,7 +285,7 @@
                             color: 'red',
                         },
                         {
-                            duration: '1000',
+                            duration: '1500',
                             easing: 'swing',
                             complete: function(){
                             
