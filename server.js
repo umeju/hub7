@@ -6,8 +6,6 @@ var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
 
 //                || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.215' || '127.0.0.1';
 	      || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.103' || '127.0.0.1';
-
-
 var express = require('express');
 //var reload = require('reload');
 var server;
