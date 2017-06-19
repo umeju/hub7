@@ -20,7 +20,7 @@
 
     <!--template content-placeholder-->
 <script id="example-template" type="text/x-handlebars-template">
-{{#each sites}}
+{{#sites}}
     <div class="flex-row notizia blocco-news-{{@index}}">
         <div class="col-md-5"></div>
         <div class="col-md-7 bg-primary {{#if @first}}visualizza{{else}} hidden{{/if}}">
@@ -36,10 +36,20 @@
         <img class="slide" src="{{foto.[2]}}" alt="slide" data-pin-nopin="true">
     </p>
     
+    <ul class="ul-caratteristiche">
+    {{#caratteristiche}}
+        <li class="caratteristiche">
+            {{this}}
+        </li>
+    {{/caratteristiche}}
+    </ul>
+    
         </div>
     </div>
-{{/each}}
+{{/sites}}
+            
 </script>
+
 
 <script id="example-template2" type="text/x-handlebars-template">
     {{#each this.sites}}
@@ -56,21 +66,17 @@
     {{/each}}
 </script>
 
-<script id="example-template3" type="text/x-handlebars-template">
-                            
-    {{#each this.sites}}
-        <div class="hidden caratteristiche-{{@index}}">
-        
+<!--<script id="example-template3" type="text/x-handlebars-template">                            
+                {{#each this.sites}}
+        <div class="hidden custom-desc caratteristiche-{{@index}}">
             {{#each caratteristiche}}
                 <div class="hidden caratteristiche">
                     {{this}}
                 </div>
             {{/each}}
-
         </div>
     {{/each}}
-            
-</script>
+</script>-->
 
         <!--START TEMPLATE TEST-->
 
@@ -78,12 +84,10 @@
         <!-- Navigation -->
         <nav class="navbar navbar-fixed-top" role="navigation">
             <div class="navbar-header logobg bordered">
-                <h1 class="bg-primary titolo"> agenzia immobiliare </h1>
+                <!--<h1 class="bg-primary titolo"> agenzia immobiliare </h1>-->
                 <div id="logo" class="logobg bordered"></div>
             </div>
         </nav>
-        
-        
         
         <!-- Page Content -->
         <div class="container-fluid">
@@ -117,8 +121,8 @@
 
 
                         </div>
-                        
-                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <!--CAROUSEL CONTROL COMMENTATO !!!-->
+<!--                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
@@ -126,7 +130,7 @@
                         <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
-                        </a>
+                        </a>-->
                         
                     </div> <!-- END #myCarousel --> 
                 </div>
@@ -134,7 +138,6 @@
 
             
             <div class="content-placeholder"></div>
-            
 <!--            <div class="flex-row">
 
                 <div class="col-md-5"></div>
@@ -149,19 +152,14 @@
                     </h2>
                 </div>
             </div>-->
-            
-
         </div>
         <div class="container-fluid panel-transparent">
 
             <nav class=" navbar navbar-right navbar-fixed-bottom">
                 
-                <h2 class="col-md-12 text-danger bg-success offset text-center">
-                    
-                    <span class="caratteristiche-wrapper">
-                        
-                    </span>
-                    
+                <!--<h2 class="col-md-12 text-danger bg-success offset text-center">-->
+                <h2 class="col-md-12 offset text-center">
+                    <span class="caratteristiche-wrapper"></span>
                 </h2>
             </nav>
             
@@ -169,10 +167,6 @@
 </div>
 
                 <!--END TEMPLATE TEST--> 
-
-
-
-
 
 
 <script src="../client/js/jquery.min.js" type="text/javascript"></script>
@@ -303,12 +297,22 @@ $(function(){
     }
     
     function showByIndex(index){
-        
+//        inde = index -1;
+//        $('.caratteristiche-'+inde+' > .caratteristiche').addClass('hidden');
+//        $('.caratteristiche-'+inde).addClass('hidden');
+//        $('.blocco-news-'+inde).addClass('hidden');
+//        
+//        $('.custom-desc').addClass('hidden');
         $('.caratteristiche-'+index+' > .caratteristiche').removeClass('hidden').fadeIn();
         $('.caratteristiche-'+index).removeClass('hidden').fadeIn();
         $('.blocco-news-'+index).removeClass('hidden').fadeIn();
     }
     
+    var c = 2;
+    setInterval(function (){
+        c == 10 ? c = 0 : ++c;
+//        showByIndex(c);
+    }, 2000);
 });
 
 </script>
