@@ -5,9 +5,7 @@ var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
 	//	|| process.env.OPENSHIFT_NODEJS_IP || '192.168.43.74' || '127.0.0.1';
 
 //                || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.215' || '127.0.0.1';
-	      || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.103' || '127.0.0.1';
-
-
+	      || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.215' || '127.0.0.1';
 var express = require('express');
 //var reload = require('reload');
 var server;
@@ -19,6 +17,18 @@ var Message = require('./common/models').Message;
 var User = require('./common/models').User;
 // Grab any arguments that are passed in.
 var argv = require('optimist').argv;
+
+//
+//var testFolder = './common/img';
+//var fs = require('fs');
+//
+//fs.readdir(testFolder, function(err, files) {
+//  files.forEach(function(e,f) {
+//    console.log(f+e);
+//  });
+//});
+
+
 var clients = [];
 /*
  * VAR TO GET DATA FROM THE FRONT END 
@@ -61,6 +71,7 @@ app.use('/varSocketURI.js', function(req, res) {
 app.use('/client', express.static(__dirname + '/client'));
 // The common path is for shared code: used by both client and server.
 app.use('/common', express.static(__dirname + '/common'));
+app.use('/common/img', express.static(__dirname + '/common/img'));
 app.use('/audio', express.static(__dirname + '/audio'));
 app.use('/pages', express.static(__dirname + '/pages'));
 
@@ -132,9 +143,7 @@ io.configure(function() {
 	io.set("log level", logLevel);
 });
 
-io.sockets.on('connection',
-    function(socket) {
-            
+io.sockets.on('connection', function(socket) {
         console.log('client connected');
         //*******  PARAMETRICO !!!  ********* TELECOMANDO ESTERNO ALLA PAGINA
         app.get("/pages/:action/:ID", function(req, res) {
@@ -150,7 +159,9 @@ io.sockets.on('connection',
             
             // the user was found and is available in req.user
             console.log(req.user);
-          socket.broadcast.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
+          socket.broadcast.emit(
+                    data.pages.ID + '-' + data.pages.action, 
+                    data.pages.ID + '-' + data.pages.action);
           //  socket.volatile.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
             
             console.log("data.pages.ID: "+data.pages.ID);
@@ -293,7 +304,8 @@ io.sockets.on('connection',
                 }
                  */
         });
+        
         socket.on('connect', function(data) {
-                console.log('c  lient connected');
+                console.log('client connected');
         });
     });
