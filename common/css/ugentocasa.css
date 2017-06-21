@@ -74,9 +74,11 @@ h2 {
     top: 7px;
     left: 25px;
     width: 740px;
-    height: 170px;
-    background-image: url(http://www.ugentocasa.it/assets/front/images/ugentocasa_menu_b.png);
-    background-size: cover;
+    height: 150px;
+    /*background-image: url(http://www.ugentocasa.it/assets/front/images/ugentocasa_menu_b.png);*/
+    background-image: url(../../common/img/logo-immobiliare-ugento-casa.png);
+    /*background-size: cover;*/
+    background-size: contain;
     margin: 0 auto;
     /* border: 1px solid red; */
 }

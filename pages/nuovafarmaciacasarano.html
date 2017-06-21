@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="full">
     <head>
@@ -94,16 +93,15 @@
                 <span class="sr-only">Next</span>
             </a>
 
-
         </div> <!-- end mycarousel-->
         
         <div id="servizi"></div>
+        
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
                 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
                 crossorigin="anonymous">
 
         </script>
-
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
                 crossorigin="anonymous">
@@ -115,192 +113,240 @@
             <script src="../client/js/audio.js"></script>
         -->
         <script>
-                    var $item = $('.carousel .item');
-                    var $wHeight = $(window).height();
-                    $item.eq(0).addClass('active');
-                    $item.height($wHeight);
-                    $item.addClass('full-screen');
+            var $item = $('.carousel .item');
+            var $wHeight = $(window).height();
+            $item.eq(0).addClass('active');
+            $item.height($wHeight);
+            $item.addClass('full-screen');
 
-                    $('.carousel img').each(function () {
-                        var $src = $(this).attr('src');
-                        var $color = $(this).attr('data-color');
-
-                        $(this).parent().css({
-                            'background-image': 'url(' + $src + ')',
-                            'background-color': $color
-                        });
-
-                        $(this).remove();
-                    });
-
-                    $(window).on('resize', function () {
-                        $wHeight = $(window).height();
-                        $item.height($wHeight);
-                    });
-
-                    $('.carousel').carousel({
-                        interval: 10 * 1000,
-                        keyboard: true,
-                        pause: "false"
-                    });
-
-                    $(document).bind('keydown', function (e) {
-                        if (e.which == 39) {
-                            $('.carousel').carousel('next');
-                        } else if (e.which == 37) {
-                            $('.carousel').carousel('prev');
-                        }
-                    });
-        </script>
-        <script>
-            
-            var servizi = [
-                "DERMOCOSMESI",
-                "IGIENE E CURA PERSONA",
-                "PRIMA INFANZIA",
-                "ALIMENTAZIONE SPECIALE",
-                "OMEOPATIA",
-                "FITOTERAPIA",
-                "INTEGRATORI",
-                "SANITARIA",
-                "ELETTROCARDIOGRAMMA",
-                "HOLTER PRESSORIO E CARDIACO",
-                "PRENOTAZIONE CUP",
-                "MISURAZIONE PRESSIONE"
-            ];
-            
-            $(document).ready(function () {
-                /* code to get params form url in html page */
-                var QueryString = function () {
-                    /* This function is anonymous, is executed immediately and 
-                     the return value is assigned to QueryString!
-                     */
-                    var query_string = {};
-                    var query = window.location.search.substring(1);
-                    var vars = query.split("&");
-                    for (var i = 0; i < vars.length; i++) {
-                        var pair = vars[i].split("=");
-                        // If first entry with this name
-                        if (typeof query_string[pair[0]] === "undefined") {
-                            query_string[pair[0]] = decodeURIComponent(pair[1]);
-                            // If second entry with this name
-                        } else if (typeof query_string[pair[0]] === "string") {
-                            var arr = [query_string[pair[0]], decodeURIComponent(pair[1])];
-                            query_string[pair[0]] = arr;
-                            // If third or later entry with this name
-                        } else {
-                            query_string[pair[0]].push(decodeURIComponent(pair[1]));
-                        }
-                    }
-                    return query_string;
-                }();
-                // get id from URL
-                var userID = QueryString.ID;
-//                var h = $(window).height();
-//                var w = $(window).width();
-                $('.right').click(function () {
-                    console.log('right');
+            $('.carousel img').each(function () {
+                var $src = $(this).attr('src');
+                var $color = $(this).attr('data-color');
+                $(this).parent().css({
+                    'background-image': 'url(' + $src + ')',
+                    'background-color': $color
                 });
-                $('.left').click(function () {
-                    console.log('left');
-                    animation();
-                });
+                $(this).remove();
+            });
 
-                (function (exports) {
-                    var socket = io.connect(socketURI);
+            $(window).on('resize', function () {
+                $wHeight = $(window).height();
+                $item.height($wHeight);
+            });
 
-                    socket.on('connection', function (data) {
-                        console.log('socket connection on');
-                    });
-
-                    socket.on(userID + '-left', function (data) {
-                        console.log(userID + ' left connect!');
-                        $(".left").trigger('click');
-                    });
-
-                    socket.on(userID + '-right', function (data) {
-                        console.log(userID + ' right connect!');
-                        $(".right").trigger('click');
-                    });
-
-                    socket.on(userID + '-refresh', function (data) {
-                        console.log('refresh');
-                    });
-
-                    /*
-                     socket.on(userID + '-refresh2', function (data) {
-                     console.log('refresh2');
-                     });
-                     socket.on(userID+'-OROSCOPO-changeNews', function (data) {
-                     console.log('change news ch x');
-                     });
-                     socket.on(userID+'-SPORT-changeNews', function (data) {
-                     console.log('change news ch x');
-                     });
-                     socket.on(userID+'-HI TECH-changeNews', function (data) {
-                     console.log('change news ch x');
-                     });
-                     socket.on(userID+'-GOSSIP-changeNews', function (data) {
-                     console.log('change news ch x');
-                     });
-                     socket.on(userID+"-ULTIM'ORA-changeNews", function (data) {
-                     console.log('change news ch x');
-                     });
-                     socket.on(userID+"-RPI-changeNews", function (data) {
-                     console.log('change news ch x');
-                     });
-                     socket.on(userID+'-tab0', function (data) {
-                     $("#panel-0").trigger('click');
-                     });
-                     socket.on(userID+'-tab1', function (data) {
-                     $("#panel-1").trigger('click');
-                     });
-                     socket.on(userID+'-tab2', function (data) {
-                     $("#panel-2").trigger('click');
-                     });
-                     socket.on(userID+'-zoomOut', function (data) {
-                     console.log('zoomOut');
-                     });
-                     */
-                    exports.socket = socket;
-
-                })(window);
-
-//            Return a random number between 100000 and 1000000
-                var randomN = Math.floor((Math.random() * 1000000) + 100000);
-
-                if (!userID) {
-//               var r = confirm("Press a button!");
-//               window.location.href = window.location.hostname+ "/pages/nuovafarmaciacasarano_remote.html?ID="+randomN;                
-//                var randomN = prompt("INSERISCI IL CODICE CHE VEDI SUL MONITOR INTERATTIVO");
-                    window.location.href = "nuovafarmaciacasarano.html?ID=" + randomN;
+            $('.carousel').carousel({
+                interval: 10 * 1000,
+                keyboard: true,
+                pause: "false"
+            });
+//            gestione click da tastiera
+            $(document).bind('keydown', function (e) {
+                if (e.which == 39) {
+                    $('.carousel').carousel('next');
+                } else if (e.which == 37) {
+                    $('.carousel').carousel('prev');
                 }
-                $('#hubNumber').html(userID);
-                // + "Digita www.bit.ly/telecomandofarmacia e scopri cosa succede!"
-                var i = 0;
-                var animation = function () {
-                    
-                    i > servizi.length ? i = 0 : ++i;
-                    $('#servizi').html(servizi[i]).hide().slideDown('slow').delay(5*1000).fadeOut('slow', animation);
-                    
-//                    for(i=0; i<servizi.length; i++){
-                        $('#servizi').animate({
-                            backgroundColor: 'green',
-                            color: 'red',
-                        },
-                        {
-                            duration: '1500',
-                            easing: 'swing',
-                            complete: function(){
-                            
-                            },
-                            queue: false,
-                        });
-//                    }
-                }
-                $('#servizi').html(servizi[0]).hide().slideDown('slow').delay(5*1000).fadeOut('slow', animation);
             });
         </script>
+        
+<script>
+
+    var servizi = [
+        "DERMOCOSMESI",
+        "IGIENE E CURA PERSONA",
+        "PRIMA INFANZIA",
+        "ALIMENTAZIONE SPECIALE",
+        "OMEOPATIA",
+        "FITOTERAPIA",
+        "INTEGRATORI",
+        "SANITARIA",
+        "ELETTROCARDIOGRAMMA",
+        "HOLTER PRESSORIO E CARDIACO",
+        "PRENOTAZIONE CUP",
+        "MISURAZIONE PRESSIONE"
+    ];
+
+    $(document).ready(function () {
+        urlJson = 'http://www.di-vision.org/99999/admin/testUgento.php?jsonCallback=?';
+
+        returnData = '';
+        that = this;
+        returnData = getNews(urlJson);
+        /* code to get params form url in html page */
+        var QueryString = function () {
+            /* This function is anonymous, is executed immediately and 
+             the return value is assigned to QueryString!
+             */
+            var query_string = {};
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                // If first entry with this name
+                if (typeof query_string[pair[0]] === "undefined") {
+                    query_string[pair[0]] = decodeURIComponent(pair[1]);
+                    // If second entry with this name
+                } else if (typeof query_string[pair[0]] === "string") {
+                    var arr = [query_string[pair[0]], decodeURIComponent(pair[1])];
+                    query_string[pair[0]] = arr;
+                    // If third or later entry with this name
+                } else {
+                    query_string[pair[0]].push(decodeURIComponent(pair[1]));
+                }
+            }
+            return query_string;
+        }();
+        // get id from URL
+        var userID = QueryString.ID;
+        var ch = QueryString.ch;
+
+        url = 'http://www.di-vision.org/getNews.php?userID='+ch+'&content_type=my_news&callback=?';
+//                alert(url);
+
+//                var h = $(window).height();
+//                var w = $(window).width();
+        $('.right').click(function () {
+            console.log('right');
+        });
+        
+        $('.left').click(function () {
+            console.log('left');
+            animation();
+        });
+        
+        function getNews(url) {
+            $.ajax({
+                type: 'GET',
+                url: urlJson,
+                crossDomain: true,
+                jsonp: false,
+                cache: true,
+                jsonpCallback: 'jsonCallback',
+                dataType: 'jsonp',
+                success: function (json) {
+                    that.returnData = json;
+                },
+                error: function (e) {
+                    console.log(e.message);
+                }
+            });
+        };
+
+        function jsonCallback(data) {
+            console.log(data);
+            $.each(data.sites, function (key, val) {});
+        };
+
+//                
+//                function click(direction) {
+//                    $('.'+direction).click(function () {
+//                        console.log(direction + "clicked");
+//                        animation();
+//                    });
+//                }
+//                
+        (function (exports) {
+            var socket = io.connect(socketURI);
+//                    generic function for TRIGGER 
+//                    function myTrigger(action){
+//                        socket.on(userID + '-' + action, function (data) {
+//                            console.log("userID: " + userID + " action:" + action + ' | connect!');
+//                            $("."+action).trigger('click');
+//                        });
+//                    }
+
+            socket.on('connection', function (data) {
+                console.log('socket connection on');
+            });
+
+            socket.on(userID + '-left', function (data) {
+                console.log(userID + ' left connect!');
+                $(".left").trigger('click');
+            });
+
+            socket.on(userID + '-right', function (data) {
+                console.log(userID + ' right connect!');
+                $(".right").trigger('click');
+            });
+
+            socket.on(userID + '-refresh', function (data) {
+                console.log('refresh');
+            });
+
+            /*
+             socket.on(userID + '-refresh2', function (data) {
+             console.log('refresh2');
+             });
+             socket.on(userID+'-OROSCOPO-changeNews', function (data) {
+             console.log('change news ch x');
+             });
+             socket.on(userID+'-SPORT-changeNews', function (data) {
+             console.log('change news ch x');
+             });
+             socket.on(userID+'-HI TECH-changeNews', function (data) {
+             console.log('change news ch x');
+             });
+             socket.on(userID+'-GOSSIP-changeNews', function (data) {
+             console.log('change news ch x');
+             });
+             socket.on(userID+"-ULTIM'ORA-changeNews", function (data) {
+             console.log('change news ch x');
+             });
+             socket.on(userID+"-RPI-changeNews", function (data) {
+             console.log('change news ch x');
+             });
+             socket.on(userID+'-tab0', function (data) {
+             $("#panel-0").trigger('click');
+             });
+             socket.on(userID+'-tab1', function (data) {
+             $("#panel-1").trigger('click');
+             });
+             socket.on(userID+'-tab2', function (data) {
+             $("#panel-2").trigger('click');
+             });
+             socket.on(userID+'-zoomOut', function (data) {
+             console.log('zoomOut');
+             });
+             */
+            exports.socket = socket;
+
+        })(window);
+//            Return a random number between 100000 and 1000000
+        var randomN = Math.floor((Math.random() * 1000) + 100);
+
+        if (!userID) {
+            window.location.href = "nuovafarmaciacasarano.html?ch="+ch+"&ID=" + randomN;
+            getNews(url);
+        }        
+        $('#hubNumber').html(userID);
+        // + "Digita www.bit.ly/telecomandofarmacia e scopri cosa succede!"
+        var i = 0;
+        var animation = function () {
+            i > servizi.length ? i = 0 : ++i;
+            $('#servizi').html(servizi[i]).hide().slideDown('slow').delay(5*1000).fadeOut('slow', animation);
+
+            $('#servizi').animate({
+                backgroundColor: 'green',
+                color: 'red',
+            },
+            {
+                duration: '1500',
+                easing: 'swing',
+                complete: function(){
+
+                },
+                queue: false,
+            });
+        }
+        $('#servizi').html(servizi[0]).hide().slideDown('slow').delay(5*1000).fadeOut('slow', animation);
+
+//                    function jsonCallback(data) {
+//                        $.each(data.sites, function (key, val) {
+//                            console.log(data);
+//                        });
+//                    };
+    });
+</script>
         <!--script>
             $('.carousel').carousel({
                 interval: 5000,
