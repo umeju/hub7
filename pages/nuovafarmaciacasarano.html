@@ -19,16 +19,60 @@
                 color: white;
                 font-weight: bold;
                 background-color: rgba(0,158,64,0.9);
-                border: 1px solid #dd4814;
+                /*border: 1px solid #dd4814;*/
                 padding: 53px;
                 text-align: -6px -4px black;
             }
             #hubNumber {
                 background-color: rgba(0,158,64,0.9);
             }
+            .placeholder1 {
+                width: 45%;
+                height: auto;
+                z-index: 2;
+                position: absolute;
+                top: 12%;
+                right: 1%;
+                color: white;
+            }
+            h1 {
+                font-size: 9em;
+                text-align: center;
+                font: bolder;
+                font-family: "Arial Black", Gadget, sans-serif;
+                background-color: rgba(22,22,22,0.5);
+                padding: 2%;
+            }
+            .rgba {
+                border: 4px solid darkgreen;
+                background-color: rgba(22,22,22,0.5);
+            }
+            .descrizione{
+                font-size: 7em;
+                font-family: cursive;
+                padding: 2%;
+            }
         </style>
     </head>
     <body>
+        
+        <script id="news-template" type="text/x-handlebars-template">
+            <div id="placed-in" class="placeholder1">
+            {{#sites}}
+                {{#if titolo}}
+                    <div class="{{#if @first}}classed{{else}}collapse{{/if}} all">
+                        <h1 class="title rgba">{{titolo}}</h1>
+                        <p class="descrizione rgba">{{{descrizione}}}</p>
+                        <!--<img src="https://unsplash.it/300/300/?random" class="img"/>-->
+                    </div>
+                {{/if}}
+            {{/sites}}
+            </div>
+        </script>
+        
+        
+        <div id="content-placeholder" class=""></div>
+        
         <div id="hubNumber"></div>
 
         <div id="mycarousel" class="carousel slide" data-ride="carousel">
@@ -97,60 +141,61 @@
         
         <div id="servizi"></div>
         
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
-                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
-                crossorigin="anonymous">
+        <div id="news-template" class="news-template"></div>
 
-        </script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
-                crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+        crossorigin="anonymous">
 
-        </script>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/varSocketURI.js"></script>
-        <!-- GET SCRIPT FOR AUDIO
-            <script src="../client/js/audio.js"></script>
-        -->
-        <script>
-            var $item = $('.carousel .item');
-            var $wHeight = $(window).height();
-            $item.eq(0).addClass('active');
-            $item.height($wHeight);
-            $item.addClass('full-screen');
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+        crossorigin="anonymous">
 
-            $('.carousel img').each(function () {
-                var $src = $(this).attr('src');
-                var $color = $(this).attr('data-color');
-                $(this).parent().css({
-                    'background-image': 'url(' + $src + ')',
-                    'background-color': $color
-                });
-                $(this).remove();
-            });
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/varSocketURI.js"></script>
+<!-- GET SCRIPT FOR AUDIO
+    <script src="../client/js/audio.js"></script>
+-->
+<script>
+    var $item = $('.carousel .item');
+    var $wHeight = $(window).height();
+    $item.eq(0).addClass('active');
+    $item.height($wHeight);
+    $item.addClass('full-screen');
 
-            $(window).on('resize', function () {
-                $wHeight = $(window).height();
-                $item.height($wHeight);
-            });
+    $('.carousel img').each(function () {
+        var $src = $(this).attr('src');
+        var $color = $(this).attr('data-color');
+        $(this).parent().css({
+            'background-image': 'url(' + $src + ')',
+            'background-color': $color
+        });
+        $(this).remove();
+    });
 
-            $('.carousel').carousel({
-                interval: 10 * 1000,
-                keyboard: true,
-                pause: "false"
-            });
+    $(window).on('resize', function () {
+        $wHeight = $(window).height();
+        $item.height($wHeight);
+    });
+
+    $('.carousel').carousel({
+        interval: 11 * 1000,
+        keyboard: true,
+        pause: "false"
+    });
 //            gestione click da tastiera
-            $(document).bind('keydown', function (e) {
-                if (e.which == 39) {
-                    $('.carousel').carousel('next');
-                } else if (e.which == 37) {
-                    $('.carousel').carousel('prev');
-                }
-            });
-        </script>
+    $(document).bind('keydown', function (e) {
+        if (e.which == 39) {
+            $('.carousel').carousel('next');
+        } else if (e.which == 37) {
+            $('.carousel').carousel('prev');
+        }
+    });
+</script>
         
 <script>
-
     var servizi = [
         "DERMOCOSMESI",
         "IGIENE E CURA PERSONA",
@@ -165,13 +210,14 @@
         "PRENOTAZIONE CUP",
         "MISURAZIONE PRESSIONE"
     ];
-
+    
+    function jsonCallback(data) {
+            $.each(data.sites, function (key, val) {});
+        };
     $(document).ready(function () {
-        urlJson = 'http://www.di-vision.org/99999/admin/testUgento.php?jsonCallback=?';
-
         returnData = '';
         that = this;
-        returnData = getNews(urlJson);
+        urlJson = 'http://www.di-vision.org/getNews.php?userID='+ch+'&content_type=my_news&callback=?';
         /* code to get params form url in html page */
         var QueryString = function () {
             /* This function is anonymous, is executed immediately and 
@@ -198,21 +244,31 @@
         }();
         // get id from URL
         var userID = QueryString.ID;
+//        get info channell
         var ch = QueryString.ch;
-
-        url = 'http://www.di-vision.org/getNews.php?userID='+ch+'&content_type=my_news&callback=?';
-//                alert(url);
-
-//                var h = $(window).height();
-//                var w = $(window).width();
-        $('.right').click(function () {
-            console.log('right');
+        // templating
+        var theTemplateScript = $("#news-template").html();
+        var theTemplate = Handlebars.compile(theTemplateScript);
+        Handlebars.registerHelper('limit', function (arr, limit) {
+        // remove this line if you don't want the lodash/underscore dependency
+        //  if (!_.isArray(arr)) { return []; }
+            return arr.slice(0, limit);
+        });
+        Handlebars.registerHelper('eachProperty', function(context, options) {
+            var ret = "";
+            for(var prop in context)
+            {
+                ret = ret + options.fn({property:prop,value:context[prop]});
+            }
+            return ret;
         });
         
-        $('.left').click(function () {
-            console.log('left');
-            animation();
-        });
+        function goCompile(returnData){
+//            asd = returnData;
+            var theCompiledHtml = theTemplate(returnData);
+            $('#content-placeholder').html(theCompiledHtml);
+            test(0);
+        }
         
         function getNews(url) {
             $.ajax({
@@ -224,27 +280,55 @@
                 jsonpCallback: 'jsonCallback',
                 dataType: 'jsonp',
                 success: function (json) {
-                    that.returnData = json;
+                    goCompile(json);
+//                    $.each(json.sites, function(a,d){});
                 },
-                error: function (e) {
-                    console.log(e.message);
-                }
+                complete: function (){},
+                error: function (e) { console.log(e.message); }
             });
         };
-
-        function jsonCallback(data) {
-            console.log(data);
-            $.each(data.sites, function (key, val) {});
-        };
-
-//                
+        
+        var $all = $('.all');
+        
+        function test(count){
+            count = count % $('.all').length;
+            $('.all').addClass('collapse');
+//            $all.eq(0).toggleClass('hidden');
+//            $all.eq(0).fadeIn();
+            $('.all').eq(count).delay(1000).slideDown(2000, function(){
+                $('.all').delay(6000).fadeOut();
+                ++count;
+                setTimeout(test(count), 1000);
+//                sposta(count);
+            });
+        }
+        
+//        var initial = parseInt($('.all').css('left'));
+//        var initial = 50;
+        function sposta(count){
+//            $all.addClass('collapse');
+            
+            setTimeout(test(count), 2500);
+//            $('.placeholder1').css('right', initial-=20);
+        }
+//        sposta();
+        if(!userID && ch){
+            var randomN = Math.floor((Math.random() * 1000) + 100);
+            window.location.href = 'nuovafarmaciacasarano.html?ch='+ch+'&ID='+ randomN;
+            
+        } else {
+            $('#hubNumber').html(userID);
+            urlJson = 'http://www.di-vision.org/getNews.php?userID='+ch+'&content_type=my_news&callback=?';
+            returnData = getNews(urlJson);
+        }
+        
+        /*
 //                function click(direction) {
 //                    $('.'+direction).click(function () {
 //                        console.log(direction + "clicked");
 //                        animation();
 //                    });
-//                }
-//                
+//                } */
         (function (exports) {
             var socket = io.connect(socketURI);
 //                    generic function for TRIGGER 
@@ -311,15 +395,7 @@
             exports.socket = socket;
 
         })(window);
-//            Return a random number between 100000 and 1000000
-        var randomN = Math.floor((Math.random() * 1000) + 100);
 
-        if (!userID) {
-            window.location.href = "nuovafarmaciacasarano.html?ch="+ch+"&ID=" + randomN;
-            getNews(url);
-        }        
-        $('#hubNumber').html(userID);
-        // + "Digita www.bit.ly/telecomandofarmacia e scopri cosa succede!"
         var i = 0;
         var animation = function () {
             i > servizi.length ? i = 0 : ++i;
@@ -338,15 +414,30 @@
                 queue: false,
             });
         }
+        
         $('#servizi').html(servizi[0]).hide().slideDown('slow').delay(5*1000).fadeOut('slow', animation);
 
-//                    function jsonCallback(data) {
+        /*              function jsonCallback(data) {
 //                        $.each(data.sites, function (key, val) {
 //                            console.log(data);
 //                        });
-//                    };
+//                    };*/
+
+        $('.right').click(function () {
+            console.log('right');
+        });
+        $('.left').click(function () {
+            console.log('left');
+            animation();
+        });
+//        elimina titoli vuoti
+        $titles = $('h1');
+        $.each($titles, function(){
+            this.remove();
+        });        
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
         <!--script>
             $('.carousel').carousel({
                 interval: 5000,
