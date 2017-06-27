@@ -90,8 +90,8 @@ h2 {
     
 }
 .imageGroup > .slide {
-    /* border-radius: 141px; */
-    /* border: 2px solid deepskyblue; */
+    border-radius: 25px;
+    border: 1px solid darkgrey;
     width: 256px;
     height: auto;
     margin: 3%;
@@ -166,6 +166,7 @@ h2 {
     text-align: center;
 }
 .bigImage > * {
+    border-radius: 25px;
     width: 50%;
     height: auto;
     margin: 23px;
@@ -173,4 +174,35 @@ h2 {
     bottom: 1%;
     position: absolute;
     right: 22%;
+}
+.prezzo {
+    font-size: 10em;
+    position: absolute;
+    top: 35%;
+    left: -67%;
+    text-shadow: 5px 5px navajowhite;
+    /*text-shadow: 5px 5px #a8a8a8;*/
+    font-family: Georgia, Utopia, Palatino, ‘Palatino Linotype’, serif;
+    font-style: oblique;
+    font-weight: bold;
+    color: #cd3333;
+    -webkit-transform: rotate(-19deg); /*ok su midori*/
+    transform: rotate(-19deg);
+}
+
+#prevFoto {
+     width: 100px;
+    border: 1px solid red;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100px;   
+}
+#nextFoto {
+        width: 100px;
+    border: 1px solid red;
+    position: fixed;
+    bottom: 0;
+    left: 101px;
+    height: 100px;
 }
