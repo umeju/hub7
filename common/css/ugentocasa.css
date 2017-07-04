@@ -8,7 +8,8 @@ body {
 
 .full {
     /*background: url(https://i.ytimg.com/vi/9oAd9J8vpRA/maxresdefault.jpg) no-repeat center center fixed;*/
-    background: url(http://www.residencelepalmesalento.it/lepalme/Itinerari/Repository/1114cocoloco2.jpg) no-repeat center center fixed;
+    background: url(http://www.residencelepalmesalento.it/lepalme/Itinerari/Repository/1114cocoloco2.jpg) 
+        no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -192,7 +193,7 @@ h2 {
 
 #prevFoto {
      width: 100px;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     position: fixed;
     bottom: 0;
     left: 0;
@@ -200,9 +201,16 @@ h2 {
 }
 #nextFoto {
         width: 100px;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     position: fixed;
     bottom: 0;
     left: 101px;
     height: 100px;
+}
+#spinner{
+    height: 100%;
+    width: 100%;
+    background: transparent url("https://www.mnn.com/static/img/m-wait.gif") no-repeat center center;
+    position: absolute;
+    
 }
