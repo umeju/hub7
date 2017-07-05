@@ -212,5 +212,16 @@ h2 {
     width: 100%;
     background: transparent url("https://www.mnn.com/static/img/m-wait.gif") no-repeat center center;
     position: absolute;
-    
+}
+#successivo{
+    height: 100%;
+    width: 100%;
+    background: transparent url("../../common/img/dx.png") no-repeat center center;
+    position: absolute;
+}
+#precedente{
+    height: 100%;
+    width: 100%;
+    background: transparent url("../../common/img/sx.png") no-repeat center center;
+    position: absolute;
 }

@@ -233,17 +233,35 @@
 
             socket.on(userID + '-left', function (data) {
                 console.log(userID + ' left connect!');
+//                mostra feedback freccia a sx
+                $('<div></div>')
+                    .attr('id','precedente')
+                    .css('zIndex','100')
+                    .appendTo('body').delay('1000').fadeOut("fast", function(){this.remove()});
                 $(".prev").trigger('click');
             });
 
             socket.on(userID + '-right', function (data) {
                 console.log(userID + ' right connect!');
+//                mostra feedback freccia a dx
+                $('<div></div>')
+                    .attr('id','successivo')
+                    .css('zIndex','100')
+                    .appendTo('body').delay('1000').fadeOut("fast", function(){this.remove()});
                 $(".next").trigger('click');
             });
 
             socket.on(userID + '-refresh', function (data) {
                 console.log('refresh');
             });
+            
+            socket.on(userID + '-zoom', function (data) {
+                $('<div></div>')
+                    .attr('id','zoom')
+                    .css('zIndex','100')
+                    .appendTo('body').delay('1000').fadeOut("fast", function(){this.remove()});
+            });
+            
             exports.socket = socket;
         })(window);
 </script>
@@ -304,7 +322,7 @@ $(function(){
         $('<div></div>')
                 .attr('id','spinner')
 //                .hide()
-                .appendTo('body')
+                .appendTo('body');
             
         $.ajax({
             type: 'GET',
@@ -428,7 +446,7 @@ $(function(){
             nextLink: '.next'
         });
     }
-    
+/*    
 //    var c = 2;
 //    setInterval(function (){
 //        c == 10 ? c = 0 : ++c;
@@ -476,7 +494,7 @@ $(function(){
 //    });
     
     /// $('#news-hub').innerFadeTo(2);
-    
+    */
 });
 
 </script>
@@ -489,27 +507,26 @@ $(function(){
 // Mail: wes@wesbaker.com
 // Web: http://www.wesbaker.com
 // ========================================================= */
-
 (function($) {
 	var default_options = {
-		'animationType':			'fade',
-//		'animationType':			'fade',
-		'animate': 					true,
-		'first_slide': 				0,
-		'easing':					'linear',
-		'speed':					'normal',
-		'type':						'sequence',
-		'timeout':					2000,
-		'startDelay': 				0,
-		'loop': 					true,
-		'containerHeight':			'auto',
-		'runningClass':				'innerFade',
-		'children':					null,
-		'cancelLink':				null,
-		'pauseLink':				null,
-		'prevLink':					null,
-		'nextLink':					null,
-		'indexContainer': 			null,
+		'animationType':'fade',
+//		'animationType':'fade',
+		'animate': 	true,
+		'first_slide': 	0,
+		'easing':	'linear',
+		'speed':	'normal',
+		'type':		'sequence',
+		'timeout':	2000,
+		'startDelay': 	0,
+		'loop': 	true,
+		'containerHeight':'auto',
+		'runningClass':	'innerFade',
+		'children':	null,
+		'cancelLink':	null,
+		'pauseLink':	null,
+		'prevLink':	null,
+		'nextLink':	null,
+		'indexContainer':null,
 		'currentItemContainer': 	null,
 		'totalItemsContainer': 		null,
 		'callback_index_update': 	null
@@ -953,6 +970,7 @@ $(function(){
 	};
 })(jQuery);
 </script>
+
 </body>
 </html>
 
