@@ -225,3 +225,16 @@ h2 {
     background: transparent url("../../common/img/sx.png") no-repeat center center;
     position: absolute;
 }
+#zoom{
+    height: 100%;
+    width: 100%;
+    background: black url("../../common/img/refresh_arrow_sign.png") no-repeat center center;
+    position: absolute;
+}
+#imageBigSize{
+    height: 100%;
+    width: 100%;
+    background: black url("../../common/img/sx.png") no-repeat center center;
+    position: absolute;
+}
+
