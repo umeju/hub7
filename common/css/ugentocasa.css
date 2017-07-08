@@ -216,13 +216,13 @@ h2 {
 #successivo{
     height: 100%;
     width: 100%;
-    background: transparent url("../../common/img/dx.png") no-repeat center center;
+    background: transparent url("../../common/img/dx.png") no-repeat center right;
     position: absolute;
 }
 #precedente{
     height: 100%;
     width: 100%;
-    background: transparent url("../../common/img/sx.png") no-repeat center center;
+    background: transparent url("../../common/img/sx.png") no-repeat center left;
     position: absolute;
 }
 #zoom{
