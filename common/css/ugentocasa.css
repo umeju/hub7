@@ -228,10 +228,12 @@ h2 {
 #zoom{
     height: 100%;
     width: 100%;
-    background: transparent url("../../common/img/zoom.png") no-repeat center center;
+    background: black url("../../common/img/refresh_arrow_sign.png") no-repeat center center;
     position: absolute;
 }
-.allPics{
-    width: 5%;
-    height: auto;
+#imageBigSize{
+    height: 100%;
+    width: 100%;
+    background: black url("../../common/img/sx.png") no-repeat center center;
+    position: absolute;
 }
