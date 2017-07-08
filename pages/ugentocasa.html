@@ -256,10 +256,18 @@
             });
             
             socket.on(userID + '-zoom', function (data) {
+//                $('<div></div>')
+//                    .attr('id','zoom')
+//                    .css('zIndex','99')
+//                    .appendTo('body').delay('1000').fadeOut("fast", function(){this.remove()});
+                
                 $('<div></div>')
                     .attr('id','zoom')
-                    .css('zIndex','100')
-                    .appendTo('body').delay('1000').fadeOut("fast", function(){this.remove()});
+                    .css({
+                        'zIndex' : '100',
+                        'background' : "rgba(0,0,0,0.7) url('"+ that.darkBg.find('img').attr('src') +"') no-repeat center center",
+                    })
+                    .appendTo('body').delay('3000').fadeOut("fast", function(){this.remove()});
             });
             
             exports.socket = socket;
@@ -269,12 +277,12 @@
 <script>
 $(function(){
     var serviziSliderOn = false;
-    
+    var darkBg = "";
     var time = 3500;
     var _timeServizi = 6000;
-    
+    that = this;
     setTimeout(function (){
-        getNews(url2);
+//        getNews(url2);
     }, _timeServizi );
     
     urlJson = 'http://www.ugentocasa.it/lista/index/vendita/1/2/json/';
@@ -288,6 +296,7 @@ $(function(){
     returnData = '';
     that = this;
     returnData = getNews(urlJson);
+    
     var theTemplateScript = $("#example-template").html();
 //    var theTemplateScript2 = $("#example-template2").html();
 //    var theTemplateScript3 = $("#example-template3").html();
@@ -308,7 +317,8 @@ $(function(){
         }
         return ret;
     });
-
+    
+    
     function jsonCallback(data) {
         $.each(data.sites, function (key, val) {
             console.log(data);
@@ -351,6 +361,8 @@ $(function(){
             complete: function (jqXHR, textStatus ) {
                 $("#spinner").remove();
                 $('#news-hub2').removeClass('hidden');
+//                selectBigImage();
+//                slideShow();
             }
         });
     };
@@ -361,12 +373,24 @@ $(function(){
 //               c = data;
         var theCompiledHtml = theTemplate(returnData);
         $('.content-placeholder').html(theCompiledHtml);
-        startInnerFade();
+        startInnerFade(); // start slider immobili
+        
         if(serviziSliderOn == false){
             startSliderServizi();
             serviziSliderOn = true;
         }
     }
+//    
+//    function slideShow(){
+//        var current = $('.bigImage:visible');
+//    }
+    
+//    function selectBigImage(){
+//        setTimeout(function(){
+//            that.darkBg = $('.bigImage:visible');
+//        }, 3000);
+//    }
+    
 /*
 //    function goCompile2(jsonData){
 //        // Compile the template again
@@ -446,6 +470,7 @@ $(function(){
             nextLink: '.next'
         });
     }
+
 /*    
 //    var c = 2;
 //    setInterval(function (){
@@ -495,6 +520,7 @@ $(function(){
     
     /// $('#news-hub').innerFadeTo(2);
     */
+
 });
 
 </script>
