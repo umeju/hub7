@@ -240,6 +240,6 @@ h2 {
 #sorry{
     height: 100%;
     width: 100%;
-    background: transparent url("../../common/img/sorry.jpg") no-repeat center center;
+    background: transparent url("../../common/img/sorry.png") no-repeat center center;
     position: absolute;
 }

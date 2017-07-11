@@ -235,7 +235,8 @@
     
     var _timeServizi = 6100;
     var _timeout = 3000;
-    
+    var _speed = 3000;
+    var startMySlide;
     
     function jsonCallback(data)
     {
@@ -272,9 +273,10 @@
                         .attr('id','sorry')
                         .css('zIndex','100')
                         .appendTo('body')
-                        .delay('1000')
+                        .delay('2000')
                         .fadeOut("fast", function(){
-                            this.remove()
+                            this.remove();
+                            location.reload();
                         });
                     console.log("Non ci sono immobili. Seleziona un'altra localita`");
                 }
@@ -285,7 +287,7 @@
             complete: function (jqXHR, textStatus ) {
                 $("#spinner").remove();
                 $('#news-hub2').removeClass('hidden');
-                slideShow();
+                slideShow(true);
             }
         });
     };
@@ -327,17 +329,23 @@
         }
     }
     
-    function slideShow(){
-        speed = 3000;
-        var current = $('.bigImage:visible .show');
+    function slideShow(resetTimeout){
+        if(resetTimeout){
+            clearTimeout(startMySlide);
+        }
+        current = $('.bigImage:visible .show');
+//        current = $('.bigImage:visible .show').not('.collapse');
+//        current3 = $('.bigImage .show').not('.collapse');
+//        current2 = $('.bigImage:visible');
+        
         if(current.length == 0){
-            $('.bigImage:visible').eq(0).addClass('show').fadeIn();
+//            $('.bigImage:visible').eq(0).addClass('show').fadeIn();
         }
 //        current.fadeIn().delay(speed).die();
-        var next = current.next().length ? current.next().fadeIn() : current.parent().children(':first').fadeIn();
-        current.fadeOut().removeClass('show');
+        next = current.next().length ? current.next().fadeIn() : current.parent().children(':first').fadeIn();
+        current.fadeOut().removeClass('show').removeClass('collapse');
         next.fadeIn('slow').addClass('show');
-        setTimeout(slideShow, _timeout);
+        startMySlide = setTimeout(slideShow, _timeout);
     }
     
     function startInnerFade()
