@@ -268,7 +268,15 @@
                     that.returnData = json;
                     goCompile(that.returnData);
                 }else{
-                    console.log("Non ci sono immobili. Seleziona un'altra localita`")
+                    $('<div></div>')
+                        .attr('id','sorry')
+                        .css('zIndex','100')
+                        .appendTo('body')
+                        .delay('1000')
+                        .fadeOut("fast", function(){
+                            this.remove()
+                        });
+                    console.log("Non ci sono immobili. Seleziona un'altra localita`");
                 }
             },
             error: function (e) {
@@ -506,7 +514,7 @@ $(function(){
     returnData = getNews(indirizzi.ugento);
     
 });
-
+/* inner fade */
 (function($) {
     var default_options = {
         'animationType':'fade',

@@ -237,3 +237,9 @@ h2 {
     background: black url("../../common/img/sx.png") no-repeat center center;
     position: absolute;
 }
+#sorry{
+    height: 100%;
+    width: 100%;
+    background: transparent url("../../common/img/sorry.jpg") no-repeat center center;
+    position: absolute;
+}
