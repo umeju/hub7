@@ -47,12 +47,12 @@
                 {{/caratteristiche}}
             </ul>
             
-            <div class="ul-pics">
+            <!--div class="ul-pics">
                 {{#foto}}
-                    <div class="allPics collapse" data-src="{{this}}" 
-                            data-idenx="{{@index}}"> {{@index}} </div>
+                    <div class="allPics collapse" data-src="{{--------------this}}" 
+                            data-idenx="{{@---------index}}"> {{@-------index}} </div>
                 {{/foto}}
-            </div>
+            </div-->
             
             <p class="bigImage">
                 <img class="darkBg show" src="{{foto.[0]}}" />
@@ -65,33 +65,6 @@
     {{/sites}}
 </div>
 </script>
-    <!--example-template2 : template content-placeholder-->
-<!--<script id="example-template2" type="text/x-handlebars-template">
-    {{#each this.sites}}
-        {{#each foto}}
-                <div class='item{{#if @first}} primaFoto {{else}} {{/if}}foto-class-{{@index}}'>
-                <div data-src="{{this}}" data-index="foto-class-{{@index}}"> </div>
-                    img class="slide" src="" alt="slide" data-pin-nopin="true"
-
-                    <div class="carousel-caption">
-                        <h3> hubanero - Spicy Technologies </h3>
-                    </div>                
-                </div>
-        {{/each}}
-    {{/each}}
-</script>-->
-
-<!--<script id="example-template3" type="text/x-handlebars-template">
-                {{#each this.sites}}
-        <div class="hidden custom-desc caratteristiche-{{@index}}">
-            {{#each caratteristiche}}
-                <div class="hidden caratteristiche">
-                    {{this}}
-                </div>
-            {{/each}}
-        </div>
-    {{/each}}
-</script>-->
 
         <!--START TEMPLATE TEST-->
 <div>
@@ -237,164 +210,33 @@
     _TIME_T0_REFRESH = 2*60*1000;
     var time = 12100;
     var cdr;
-    function countDownReload()
-    {
-        cdr = setTimeout(
-                function() {
-                    location.reload();
-                }, _TIME_T0_REFRESH);
-    }
+    var indirizzi = {
+        ugento : 'http://www.ugentocasa.it/lista/index/vendita/1/1/json/',
+        salve : 'http://www.ugentocasa.it/lista/index/vendita/1/2/json/',
+        taurisano : 'http://www.ugentocasa.it/lista/index/vendita/1/3/json/',
+        presicce : 'http://www.ugentocasa.it/lista/index/vendita/1/4/json/',
+        casarano : 'http://www.ugentocasa.it/lista/index/vendita/1/5/json/',
+        acquarica : 'http://www.ugentocasa.it/lista/index/vendita/1/6/json/',
+        ruffano : 'http://www.ugentocasa.it/lista/index/vendita/1/7/json/',
+        supersano : 'http://www.ugentocasa.it/lista/index/vendita/1/8/json/',
+        racale : 'http://www.ugentocasa.it/lista/index/vendita/1/9/json/',
+        morciano : 'http://www.ugentocasa.it/lista/index/vendita/1/10/json/',
+        patu : 'http://www.ugentocasa.it/lista/index/vendita/1/11json/',
+        taviano : 'http://www.ugentocasa.it/lista/index/vendita/1/12/json/',
+        alliste : 'http://www.ugentocasa.it/lista/index/vendita/1/13/json/',
+        gallipoli : 'http://www.ugentocasa.it/lista/index/vendita/1/14/json/',
+        ruggiano : 'http://www.ugentocasa.it/lista/index/vendita/1/15/json/'
+        
+//        taurisano : 'http://www.ugentocasa.it/lista/index/vendita/1/3/json/',
+    };
     
-//    function restartInnerFade(){
-//        $('#news-hub').innerFade({
-////            animationtype: 'slide',
-//            animationtype: 'slideOver',
-//            speed: 'slow',
-//            timeout: time,
-//            type:'sequence',
-//            containerheight:'auto',
-//            prevLink: '.prev',
-//            nextLink: '.next'
-//// 	  runningclass: CSS-Class which the container getâs applied (Default: 'innerfade'),
-//// 	  children: optional children selector (Default: null)
-//        });
-//    }
-    function createDivBigImage(){
-//        get visible image
-        bigImage = $('.bigImage img:visible');
-        bigImage2 = $('.allPics:first-child');
-//        create div with #imageBigSize
-
-        if($('#imageBigSize').length){
-            $('#imageBigSize').remove();
-        }
-        $('<div></div>')
-        .attr('id','imageBigSize')
-        .css({
-            zIndex : 100,
-            background : 'rgba(0,0,0,0.8) url("'+ bigImage.attr('src') +'") no-repeat center center',
-            width : '100%', 
-            height : '100%',
-//            display : 'none'
-            })
-        .appendTo('body')
-        .fadeIn('slow')
-        .delay('1500').fadeOut('slow');
-//        end div creation
-        
-    }
     
-//    function test(count){
-//        count = count % $('.bigImage:visible').find('img').length;
-//        $('.darkBg').addClass('collapse');
-//        $('.all').eq(count).delay(500).slideDown(2000, function(){
-//            $('.all').delay(2000).fadeOut();
-//            ++count;
-//            setTimeout(test(count), 1000);
-////                sposta(count);
-//        });
-//    }
-        
-    (function (exports) {
-        var socket = io.connect(socketURI);
-        socket.on('connection', function (data)
-        {
-            console.log('socket connection on');
-        });
-        socket.on(userID + '-left', function (data)
-        {
-            console.log(userID + ' left connect!');
-            clearTimeout(cdr);
-//                mostra feedback freccia a sx
-            $('<div></div>')
-                .attr('id','precedente')
-                .css('zIndex','100')
-                .appendTo('body')
-                .delay('1000')
-                .fadeOut("fast", function(){
-                    this.remove()
-                });
-            $(".prev").trigger('click');
-//                restart in case of inactivity
-            countDownReload();
-//            restartInnerFade();
-        });
-        
-        socket.on(userID + '-right', function (data)
-        {
-            console.log(userID + ' right connect!');
-            clearTimeout(cdr);
-//                mostra feedback freccia a dx
-            $('<div></div>')
-                .attr('id','successivo')
-                .css('zIndex','100')
-                .appendTo('body')
-                .delay('1000')
-                .fadeOut("fast", function(){
-                    this.remove();
-                });
-            $(".next").trigger('click');
-//                restart in case of inactivity
-            countDownReload();
-//            restartInnerFade();
-        });
-        
-        socket.on(userID + '-refresh2', function (data)
-        {
-            console.log('refresh2');
-            location.reload();
-        });
-        
-        socket.on(userID + '-zoom', function (data)
-        {
-//                fermo il conto alla rovescia del refresh pag
-            clearTimeout(cdr);
-            createDivBigImage();
-            countDownReload();
-        });
-        exports.socket = socket;
-    })(window);
-
-$(function(){
     var serviziSliderOn = false;
     
     var _timeServizi = 6100;
     var _timeout = 3000;
     
-    var indirizzi = {
-        ugento : 'http://www.ugentocasa.it/lista/index/vendita/1/2/json/',
-        taurisano : 'http://www.ugentocasa.it/lista/index/vendita/1/3/json/',
-//        taurisano : 'http://www.ugentocasa.it/lista/index/vendita/1/3/json/',
-    };
     
-//    setTimeout(function (){
-//        //getNews(indirizzi.taurisano);
-//    }, _timeServizi );
-//    urlJson = 'http://www.ugentocasa.it/lista/index/vendita/1/2/json/';
-//    url2 = 'http://www.ugentocasa.it/lista/index/vendita/1/3/json/'; // taurisano
-    returnData = '';
-    that = this;
-    returnData = getNews(indirizzi.ugento);
-    
-    var theTemplateScript = $("#example-template").html();
-    var theTemplate = Handlebars.compile(theTemplateScript);
-    // limit an array to a maximum of elements (from the start)
-    Handlebars.registerHelper('limit', function (arr, limit)
-    {
-    // remove this line if you don't want the lodash/underscore dependency
-//  if (!_.isArray(arr)) { return []; }
-        return arr.slice(0, limit);
-    });
-    Handlebars.registerHelper('eachProperty', function(context, options)
-    {
-        var ret = "";
-        for(var prop in context)
-        {
-            ret = ret + options.fn({property:prop,value:context[prop]});
-        }
-        return ret;
-    });
-
     function jsonCallback(data)
     {
         $.each(data.sites, function (key, val) {
@@ -440,14 +282,30 @@ $(function(){
         });
     };
     
-    function slideShow(){
-        speed = 1000;
-        var current = $('.bigImage:visible .show');
-        var next = current.next().length ? current.next().fadeIn(speed) : current.parent().children(':first').fadeIn(speed);
-        current.fadeOut('1000').removeClass('show');
-        next.fadeIn(speed).addClass('show');
-        setTimeout(slideShow, _timeout);
-    }
+    
+    
+    var theTemplateScript = $("#example-template").html();
+    var theTemplate = Handlebars.compile(theTemplateScript);
+    // limit an array to a maximum of elements (from the start)
+    Handlebars.registerHelper('limit', function (arr, limit)
+    {
+    // remove this line if you don't want the lodash/underscore dependency
+//  if (!_.isArray(arr)) { return []; }
+        return arr.slice(0, limit);
+    });
+    
+    Handlebars.registerHelper('eachProperty', function(context, options)
+    {
+        var ret = "";
+        for(var prop in context)
+        {
+            ret = ret + options.fn({property:prop,value:context[prop]});
+        }
+        return ret;
+    });
+    
+    
+    
     
     function goCompile(returnData){
 //            $.getJSON(returnedData, function (data){
@@ -459,6 +317,19 @@ $(function(){
             startSliderServizi();
             serviziSliderOn = true;
         }
+    }
+    
+    function slideShow(){
+        speed = 3000;
+        var current = $('.bigImage:visible .show');
+        if(current.length == 0){
+            $('.bigImage:visible').eq(0).addClass('show').fadeIn();
+        }
+//        current.fadeIn().delay(speed).die();
+        var next = current.next().length ? current.next().fadeIn() : current.parent().children(':first').fadeIn();
+        current.fadeOut().removeClass('show');
+        next.fadeIn('slow').addClass('show');
+        setTimeout(slideShow, _timeout);
     }
     
     function startInnerFade()
@@ -491,6 +362,149 @@ $(function(){
             nextLink: '.next'
         });
     }
+    
+    
+    
+    
+    
+    
+    function countDownReload()
+    {
+        cdr = setTimeout(
+                function() {
+                    location.reload();
+                }, _TIME_T0_REFRESH);
+    }
+    
+    function createDivBigImage()
+    {
+//        get visible image
+        bigImage = $('.bigImage img:visible');
+        bigImage2 = $('.allPics:first-child');
+//        create div with #imageBigSize
+
+        if($('#imageBigSize').length){
+            $('#imageBigSize').remove();
+        }
+        $('<div></div>')
+        .attr('id','imageBigSize')
+        .css({
+            zIndex : 100,
+            background : 'rgba(0,0,0,0.8) url("'+ bigImage.attr('src') +'") no-repeat center center',
+            width : '100%', 
+            height : '100%',
+//            display : 'none'
+            })
+        .appendTo('body')
+        .fadeIn('slow')
+        .delay('1500').fadeOut('slow');
+//        end div creation
+        
+    }
+    
+    
+    
+    (function (exports) {
+        var socket = io.connect(socketURI);
+        socket.on('connection', function (data)
+        {
+            console.log('socket connection on');
+        });
+        socket.on(userID + '-left', function (data)
+        {
+            console.log(userID + ' left connect!');
+            clearTimeout(cdr);
+//                mostra feedback freccia a sx
+            $('<div></div>')
+                .attr('id','precedente')
+                .css('zIndex','100')
+                .appendTo('body')
+                .delay('1000')
+                .fadeOut("fast", function(){
+                    this.remove()
+                });
+            $(".prev").trigger('click');
+//                restart in case of inactivity
+            countDownReload();
+        });
+        
+        socket.on(userID + '-right', function (data)
+        {
+            console.log(userID + ' right connect!');
+            clearTimeout(cdr);
+//                mostra feedback freccia a dx
+            $('<div></div>')
+                .attr('id','successivo')
+                .css('zIndex','100')
+                .appendTo('body')
+                .delay('1000')
+                .fadeOut("fast", function(){
+                    this.remove();
+                });
+            $(".next").trigger('click');
+//                restart in case of inactivity
+            countDownReload();
+//            restartInnerFade();
+        });
+        
+        socket.on(userID + '-refresh2', function (data)
+        {
+            console.log('refresh2');
+            location.reload();
+        });
+        
+        socket.on(userID + '-zoom', function (data)
+        {
+//                fermo il conto alla rovescia del refresh pag
+            clearTimeout(cdr);
+            createDivBigImage();
+            countDownReload();
+        });
+                
+        socket.on(userID + '-find', function (data)
+        {
+            console.log(data.city);
+            selectedCity = data.city;
+            console.log(indirizzi[selectedCity]);
+//            getNews(indirizzi.selectedCity);
+            getNews(indirizzi[selectedCity]);
+//            getNews('http://www.ugentocasa.it/lista/index/vendita/1/15/json/');
+        });
+        
+        exports.socket = socket;
+    })(window);
+
+$(function(){
+    
+    /*
+    *  6 => ACQUARICA DEL CAPO
+       13 => LISTE
+       5 => CASARANO
+       14 => GALLIPOLI
+       10 => MORCIANO DI LEUCA
+       11 =>PATU'
+       4 => PRESICCE
+       9 => RACALE
+       7 => RUFFANO
+       15 => RUGGIANO
+       2 => SALVE
+       8 => SUPERSANO
+       3 => TAURISANO
+       12 => TAVIANO
+       1 => UGENTO
+     * 
+     * 
+     */
+    
+//    setTimeout(function (){
+//        //getNews(indirizzi.taurisano);
+//    }, _timeServizi );
+//    urlJson = 'http://www.ugentocasa.it/lista/index/vendita/1/2/json/';
+//    url2 = 'http://www.ugentocasa.it/lista/index/vendita/1/3/json/'; // taurisano
+    returnData = '';
+    that = this;
+    returnData = getNews(indirizzi.ugento);
+    
 });
 
 (function($) {
@@ -956,60 +970,3 @@ $(function(){
 
 </body>
 </html>
-
-<!--<!DOCTYPE html>
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../common/css/style.css" type="text/css" rel="stylesheet" />
-        
-        <style>
-            #div {
-                border: 1px solid red;
-                font-size: 24px;
-                width: 200px;
-                font-size: 34px;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="ugentocasa">UGENTO CASA IMMOBILIARE</div>
-        <p></p>
-        <div class="wrapper"></div>
-        
-        
-        <div id="div" class="wrapper">
-            <p>testo
-            </p>
-        </div>
-
-        
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js">
-        </script>
-        
-        <script src="../common/js/immobiliare.js">
-        </script>
-        <script>
-            
-//            
-//        $(document).ready(function() {
-//            var size = parseInt($("#div").css('font-size'));
-//            var h = $( "#div" ).height();
-//            
-//            function f(h, size){
-//                while(h>300){
-//                    size-=1;
-//                    $("#div").css({'font-size': size});
-//                    size = parseInt($("#div").css('font-size'));
-//                    h = $( "#div" ).height();
-//                }
-//            }
-//            f(h, size);
-//        });
-
-        </script>
-        
-    </body>
-</html>-->
