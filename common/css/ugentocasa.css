@@ -127,7 +127,7 @@ h2 {
 .ul-caratteristiche{
     color: white;
     font-weight: 100;
-    font-size: 23px;
+    font-size: 19px;
     text-align: center;
 }
 .notizia {
@@ -242,4 +242,9 @@ h2 {
     width: 100%;
     background: transparent url("../../common/img/sorry.png") no-repeat center center;
     position: absolute;
+}
+.giada{
+    text-decoration: underline;
+    margin-bottom: 47px;
+    font-size: 48px;
 }

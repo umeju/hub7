@@ -24,15 +24,16 @@
     <div data-id="{{@index}}" class="flex-row notizia blocco-news-{{@index}}">
         <div class="col-md-12 bg-primary {{#if @first}}mt-0 mr-1{{else}} {{/if}}">
             <h1 class="display-1">
-                <span class="codice">{{codice}}</span> - {{titolo}}
-            </h1>
+                <span class="codice">{{codice}}</span> - {{titolo}} 
+                <br /> <blink class="giada">{{price}} € </blink>
+            </h1> 
             <h2 class="text-justify display-2">
                 {{{descrizione}}}
             </h2>
             
-            <h2 class="prezzo">
+            <!--h2 class="prezzo">
                 {{price}} €
-            </h2>
+            </h2-->
             
             
             <p class="imageGroup">
@@ -207,7 +208,7 @@
 //        alert(userID);
 //        get info channell
     var ch = QueryString.ch;
-    _TIME_T0_REFRESH = 2*60*1000;
+    _TIME_T0_REFRESH = 3*60*1000;
     var time = 12100;
     var cdr;
     var indirizzi = {
