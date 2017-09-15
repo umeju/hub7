@@ -17,46 +17,82 @@
             color: darkgray;
             line-height: 1.6;
             overflow: hidden;
+            color: antiquewhite;
+            /*background-image: url('../common/img/leuca2.jpg');*/
         }
         #showcase {
             background-image: url('../common/img/leuca1.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
+            z-index: 3;
         }
+        
+        #showcase2 {
+            background-image: url('../common/img/leuca2.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            z-index: 4;
+        }
+        .my-content{
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            width: 70%;
+            height: 70%;
+            z-index: 100;
+            border: 1px solid;
+            background-color: rgba(0,0,0,0.5);
+            border: 1px solid;
+            border-radius: 116px 0;
+        }
+        h1 {
+            font-size: 3em;
+            text-align: right;
+            padding-right: 35px;
+        }
+        
+        h2 {
+            font-size: 2.3em;
+            text-align: right;
+            padding-right: 35px;
+        }
+        
     </style>
     <title>Full</title>
     
 </head>
 <body>
-    <header id="showcase">
-    <h1>welcome</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, 
-        magni omnis labore dolorum necessitatibus cupiditate, vitae dolores 
-        voluptate quae harum libero! Ea esse nisi aut voluptatibus amet sit 
-        ut fugit assumenda alias deserunt reprehenderit rerum, deleniti 
-        inventore vero minima provident soluta quas magnam sunt nihil quam? 
-        Nesciunt aspernatur odio, ea.</p>
+    <div class="my-content">
+        <h1>Farmacia Di Seclì</h1>
+        <h2>Santa Maria di Leuca</h2>
+        <h2> De Finibus Terrae </h2>
+    </div>
     
-    <a href="#" class="button">Read more</a>
+    <header id="showcase">
+        
+        <!--<a href="#" class="button">Read more</a>-->
     </header>
     
     <script id="news-template" type="text/x-handlebars-template">
+        
         <div id="placed-in" class="placeholder1">
-        {{#sites}}
-        {{#if titolo}}
-        <div class="{{#if @first}}classed{{else}}collapse{{/if}} all">
-        <h1 class="title rgba">{{titolo}}</h1>
-        <p class="descrizione rgba">{{{descrizione}}}</p>
-        <!--<img src="https://unsplash.it/300/300/?random" class="img"/>-->
+            {{#sites}}
+                {{#if titolo}}
+                <div class="{{#if @first}}classed{{else}}collapse{{/if}} all">
+                <h1 class="title rgba">{{titolo}}</h1>
+                <p class="descrizione rgba">{{{descrizione}}}</p>
+                <!--<img src="https://unsplash.it/300/300/?random" class="img"/>-->
+                </div>
+                {{/if}}
+            {{/sites}}
         </div>
-        {{/if}}
-        {{/sites}}
-        </div>
+
     </script>
         
     <div id="content-placeholder" class=""></div>
-
+    
     <div id="hubNumber"></div>
     
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -77,11 +113,20 @@
                         ];
         
         setInterval(function () {
+            var image = new Image();
+            image.src = '../common/img/' + images[count];
+            
             count === (images.length-1) ? count = 0 : count +=1;
-            $('#showcase').css({
-                    'background-image' : "url('../common/img/" +images[count]+"')"
+            
+            $('#showcase').fadeOut(800, function (){
+                $('#showcase').css({
+                    'background-image' : "url('"+image.src+"')"
                 });
-        }, 11 * 1000);
+                $('#showcase').fadeIn(1200);
+                
+            });
+            
+        }, 5 * 1000);
     </script>
     
     <script>
@@ -232,10 +277,10 @@
             console.log('left');
             animation();
         });
-//        elimina titoli vuoti
+        //TODO eliminare titoli vuoti
         $titles = $('h1');
         $.each($titles, function(){
-            this.remove();
+            //this.remove();
         });        
     });
 </script>
