@@ -1,9 +1,8 @@
 var PORT = process.env.OPENSHIFT_INTERNAL_PORT
 		|| process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.104' || '127.0.0.1';
-		|| process.env.OPENSHIFT_NODEJS_IP || '192.168.1.126' || '127.0.0.1';
-
+var IPADDRESS = process.env.OPENSHIFT_INTERNAL_IP 
+//                || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.215' || '127.0.0.1';
+	      || process.env.OPENSHIFT_NODEJS_IP || '192.168.1.110' || '127.0.0.1';
 var express = require('express');
 //var reload = require('reload');
 var server;
@@ -15,6 +14,18 @@ var Message = require('./common/models').Message;
 var User = require('./common/models').User;
 // Grab any arguments that are passed in.
 var argv = require('optimist').argv;
+
+//
+//var testFolder = './common/img';
+//var fs = require('fs');
+//
+//fs.readdir(testFolder, function(err, files) {
+//  files.forEach(function(e,f) {
+//    console.log(f+e);
+//  });
+//});
+
+
 var clients = [];
 /*
  * VAR TO GET DATA FROM THE FRONT END 
@@ -57,6 +68,7 @@ app.use('/varSocketURI.js', function(req, res) {
 app.use('/client', express.static(__dirname + '/client'));
 // The common path is for shared code: used by both client and server.
 app.use('/common', express.static(__dirname + '/common'));
+app.use('/common/img', express.static(__dirname + '/common/img'));
 app.use('/audio', express.static(__dirname + '/audio'));
 app.use('/pages', express.static(__dirname + '/pages'));
 
@@ -128,9 +140,9 @@ io.configure(function() {
 	io.set("log level", logLevel);
 });
 
-io.sockets.on('connection',
-    function(socket) {
-        //TELECOMANDO ESTERNO ALLA PAGINA
+io.sockets.on('connection', function(socket) {
+        console.log('client connected');
+        //*******  PARAMETRICO !!!  ********* TELECOMANDO ESTERNO ALLA PAGINA
         app.get("/pages/:action/:ID", function(req, res) {
                     //var event = req.params.event;
             var data = {
@@ -143,8 +155,18 @@ io.sockets.on('connection',
             var referAction = data.pages.action;
             
             // the user was found and is available in req.user
-            socket.broadcast.emit(referID+'-'+data.pages.action, referID+'-right');
-            //socket.broadcast.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
+            
+            
+          socket.broadcast.emit(
+                    data.pages.ID + '-' + data.pages.action, 
+//                    data.pages.ID + '-' + data.pages.action
+                    req.query
+                            );
+                    
+          //  socket.volatile.emit(data.pages.ID+'-'+data.pages.action, data.pages.ID+'-'+data.pages.action);
+            
+//            req.query = {"city" : selectedCity}
+            console.log(req.query);
             console.log("data.pages.ID: "+data.pages.ID);
             console.log("data.pages.action: "+data.pages.action);
             res.send(data);
@@ -177,6 +199,7 @@ io.sockets.on('connection',
             'left',
             'changeNews',
             'refresh',
+            'tab0',
             'tab1',
             'tab2',
             'showFlashMsg',
@@ -187,11 +210,12 @@ io.sockets.on('connection',
         var events = ev.reduce(function(result, item) {
             result[item] = function(data) {
                 console.log("emit: "+testData + '-'+item+"data: "+testData + '-'+item);
-                //socket.broadcast.emit(testData + '-'+item, testData + '-'+item);
                 socket.broadcast.emit(testData + '-'+item, testData + '-'+item);
+                //socket.volatile.emit(testData + '-'+item, testData + '-'+item);
             }
             return result;
         }, {});
+        
         //console.log(events);
         /*old events obj
         var events = {
@@ -271,7 +295,7 @@ io.sockets.on('connection',
         });
 
         socket.on('disconnect', function(data) {
-                console.log('qualcuno si è disconnesso!');
+                console.log('client disconnected');
                 /*
                 for( var i=0, len=clients.length; i<len; ++i ){
                     var c = clients[i];
@@ -284,4 +308,7 @@ io.sockets.on('connection',
                  */
         });
         
-});
+        socket.on('connect', function(data) {
+                console.log('client connected');
+        });
+    });
