@@ -245,6 +245,7 @@
                 }();
                 // get id from URL
                 var userID = QueryString.ID;
+                var ch = QueryString.ch;
 //                var h = $(window).height();
 //                var w = $(window).width();
                 $('.right').click(function () {
@@ -315,7 +316,7 @@
                 })(window);
 
 //            Return a random number between 100000 and 1000000
-                var randomN = Math.floor((Math.random() * 1000000) + 100000);
+                var randomN = Math.floor((Math.random() * 10000) + 1000);
 
                 if (!userID) {
                     
@@ -342,9 +343,6 @@
         </script-->
     </body>
 </html>
-
-
-
 
 
 

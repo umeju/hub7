@@ -395,6 +395,7 @@
     
     function createDivBigImage()
     {
+        _showImageTime = 5500;
 //        get visible image
         bigImage = $('.bigImage img:visible');
         bigImage2 = $('.allPics:first-child');
@@ -414,7 +415,7 @@
             })
         .appendTo('body')
         .fadeIn('slow')
-        .delay('3500').fadeOut('slow');
+        .delay(_showImageTime).fadeOut('slow');
 //        end div creation
         
     }
@@ -469,7 +470,7 @@
             console.log('refresh2');
             location.reload();
         });
-        
+        //zoom *****
         socket.on(userID + '-zoom', function (data)
         {
 //                fermo il conto alla rovescia del refresh pag
