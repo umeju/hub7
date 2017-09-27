@@ -158,7 +158,7 @@ io.sockets.on('connection', function(socket) {
             
             
           socket.broadcast.emit(
-                    data.pages.ID + '-' + data.pages.action, 
+                    data.pages.ID + '-' + data.pages.action,
 //                    data.pages.ID + '-' + data.pages.action
                     req.query
                             );
